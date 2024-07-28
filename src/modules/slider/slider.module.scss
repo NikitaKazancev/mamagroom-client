@@ -1,0 +1,48 @@
+.slider {
+	@apply relative;
+
+	.content {
+		@apply relative;
+
+		.firstImg {
+			@apply relative opacity-100 z-0;
+		}
+
+		.secondImg {
+			@apply absolute top-0 right-0 bottom-0 left-0 opacity-0 z-0;
+		}
+
+		&.transition {
+			img {
+				@apply transition-opacity;
+				transition-duration: 800ms;
+			}
+
+			.firstImg {
+				@apply opacity-0;
+			}
+
+			.secondImg {
+				@apply opacity-100;
+			}
+		}
+	}
+
+	.leftToggle,
+	.rightToggle {
+		@apply absolute top-1/2 -translate-y-1/2 z-10 cursor-pointer text-white bg-dark w-7 aspect-square rounded-full block text-center p-1;
+		// background-color: rgba(0, 0, 0, 0.5);
+		// text-shadow: rgb(0, 0, 0) 0 0 5px;
+	}
+
+	.leftToggle {
+		@apply -left-2.5;
+		padding-right: 5px;
+		// left: -15px;
+	}
+
+	.rightToggle {
+		@apply -right-2.5;
+		padding-left: 5px;
+	}
+}

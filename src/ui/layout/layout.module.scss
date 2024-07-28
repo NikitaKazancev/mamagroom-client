@@ -1,0 +1,7 @@
+.layout {
+	@apply w-full px-32;
+
+	&.bg {
+		@apply bg-red-25;
+	}
+}

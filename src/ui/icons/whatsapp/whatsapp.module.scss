@@ -1,0 +1,15 @@
+.icon {
+	@apply size-6 transition-all duration-200;
+
+	&.light {
+		&:hover {
+			@apply text-green-200;
+		}
+	}
+
+	&.dark {
+		&:hover {
+			@apply text-green-500;
+		}
+	}
+}

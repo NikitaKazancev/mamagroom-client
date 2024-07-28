@@ -1,0 +1,20 @@
+.main {
+	@apply w-full h-screen relative flex content-end flex-wrap overflow-hidden;
+	background-color: rgba(0, 0, 0, 0.15);
+
+	.headers {
+		@apply mb-40 ml-10 text-white;
+	}
+
+	img {
+		@apply absolute -z-10;
+	}
+
+	h1 {
+		@apply text-7xl;
+	}
+
+	h2 {
+		@apply text-4xl;
+	}
+}

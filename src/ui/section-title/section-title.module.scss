@@ -1,0 +1,25 @@
+.sectionTitle {
+	&::after {
+		content: '';
+		@apply block w-24 h-1 ml-1 mt-3;
+	}
+
+	.title {
+		@apply text-7xl text-dark;
+		// line-height: 0.5;
+
+		&::after {
+			@apply bg-dark;
+		}
+	}
+
+	&.blue {
+		.title {
+			@apply text-cyan-900;
+		}
+
+		&::after {
+			@apply bg-cyan-900;
+		}
+	}
+}

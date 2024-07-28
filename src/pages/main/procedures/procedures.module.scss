@@ -1,0 +1,13 @@
+.main {
+	.layout {
+		@apply flex gap-10;
+	}
+
+	.left {
+		@apply w-3/5;
+	}
+
+	.right {
+		@apply w-2/5;
+	}
+}

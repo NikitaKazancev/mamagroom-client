@@ -1,0 +1,13 @@
+.section {
+	&.pTop {
+		@apply pt-10;
+	}
+
+	&.pBottom {
+		@apply pb-10;
+	}
+
+	&.bg {
+		@apply bg-red-25;
+	}
+}

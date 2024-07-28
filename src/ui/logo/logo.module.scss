@@ -1,0 +1,34 @@
+.logo {
+	div {
+		@apply h-auto;
+		transition: all 0.5s;
+		width: 250px;
+		height: 74px;
+		background-size: 250px 74px;
+
+		&:hover {
+		}
+	}
+
+	&.dark {
+		div {
+			background-image: url('/logos/logo-row-dark.png');
+
+			// &:hover {
+			// 	@apply duration-300;
+			// 	background-image: url('/logos/logo-row-dark-blue.png');
+			// }
+		}
+	}
+
+	&.light {
+		div {
+			background-image: url('/logos/logo-row-light.png');
+
+			// &:hover {
+			// 	@apply duration-300;
+			// 	background-image: url('/logos/logo-row-light-blue.png');
+			// }
+		}
+	}
+}
