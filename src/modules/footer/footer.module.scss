@@ -1,6 +1,5 @@
 .footer {
-	@apply min-h-96 bg-cyan-800 py-10 text-white;
-	// background-color: #45909e;
+	@apply min-h-96 bg-secondary-800 py-10 text-white;
 
 	.content {
 		@apply flex;
@@ -20,7 +19,7 @@
 				a {
 					@apply transition-all;
 					&:hover {
-						@apply text-pink-200;
+						@apply text-secondary-200;
 					}
 				}
 

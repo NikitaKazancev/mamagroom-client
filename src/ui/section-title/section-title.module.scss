@@ -15,11 +15,11 @@
 
 	&.blue {
 		.title {
-			@apply text-cyan-900;
+			@apply text-secondary-900;
 		}
 
 		&::after {
-			@apply bg-cyan-900;
+			@apply bg-secondary-900;
 		}
 	}
 }

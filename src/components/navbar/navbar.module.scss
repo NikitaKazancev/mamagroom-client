@@ -11,7 +11,7 @@
 		li {
 			@apply text-black;
 			&:hover {
-				@apply text-cyan-700;
+				@apply text-secondary-700;
 			}
 		}
 	}
@@ -20,7 +20,7 @@
 		li {
 			@apply text-white;
 			&:hover {
-				@apply text-cyan-200;
+				@apply text-secondary-200;
 			}
 		}
 	}
