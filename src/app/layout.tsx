@@ -7,7 +7,7 @@ import { Providers } from './provider'
 
 const inter = Raleway({
 	subsets: ['latin'],
-	weight: ['500'],
+	weight: ['500', '700'],
 	display: 'swap',
 	style: ['normal'],
 })

@@ -1,15 +1,15 @@
 .main {
-	@apply flex justify-start relative pb-20;
+	@apply flex justify-center relative pb-20;
 
-	.left {
-		@apply w-1/2;
-	}
+	// .left {
+	// 	@apply w-1/2;
+	// }
 
-	.right {
-		@apply w-1/2;
+	// .right {
+	// 	@apply w-1/2;
 
-		.reviews {
-			@apply -translate-x-1/2;
-		}
-	}
+	// 	.reviews {
+	// 		@apply -translate-x-1/2;
+	// 	}
+	// }
 }

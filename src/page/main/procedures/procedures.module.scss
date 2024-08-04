@@ -1,13 +1,20 @@
 .main {
 	.layout {
-		@apply flex gap-10;
+		@apply flex gap-14 items-start;
 	}
 
-	.left {
-		@apply w-3/5;
+	.video {
+		@apply w-1/2;
 	}
 
-	.right {
-		@apply w-2/5;
+	.rightVideo {
+		p {
+			@apply min-h-28;
+		}
+	}
+
+	.separation {
+		@apply w-3 bg-secondary-900 self-center h-96 opacity-25;
+		border-radius: 4px;
 	}
 }

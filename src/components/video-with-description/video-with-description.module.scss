@@ -1,0 +1,22 @@
+.main {
+	@apply flex flex-col gap-4;
+
+	.titleWrapper {
+		@apply flex gap-2 items-center;
+
+		.title {
+			h3 {
+				@apply font-bold text-3xl;
+			}
+		}
+
+		.icon {
+			@apply text-main-700 text-3xl relative;
+			bottom: 6px;
+		}
+	}
+
+	.description {
+		@apply text-lg;
+	}
+}
