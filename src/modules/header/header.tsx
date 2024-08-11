@@ -1,6 +1,7 @@
 'use client'
 
 import { Navbar } from '@/components/navbar/navbar'
+import { LinkLocale } from '@/navigation'
 import { Button } from '@/ui/button/button'
 import { TelegramIcon } from '@/ui/icons/telegram/telegram'
 import { WhatsAppIcon } from '@/ui/icons/whatsapp/whatsapp'
@@ -10,7 +11,12 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import styles from './header.module.scss'
 
-export const Header = () => {
+type Props = {
+	lang: string
+	localeLinks?: React.ReactNode
+}
+
+export const Header = ({ lang, localeLinks }: Props) => {
 	const [isScrolled, setIsScrolled] = useState(false)
 
 	const handleScroll = () => {
@@ -26,6 +32,11 @@ export const Header = () => {
 		}
 	}, [])
 
+	const handleChangeLanguage = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		// console.log(e.target.value)
+		// redirect(`/${e.target.value}`)
+	}
+
 	const theme = isScrolled ? 'dark' : 'light'
 
 	return (
@@ -38,6 +49,18 @@ export const Header = () => {
 				<Logo theme={theme} />
 				<Navbar theme={theme} />
 				<div className={styles.rightSection}>
+					{/* <Select
+						options={['ru', 'en']}
+						handleChange={handleChangeLanguage}
+						selectedOption={lang}
+					/> */}
+					{/* {localeLinks} */}
+					<LinkLocale href={'/'} locale='ru'>
+						RU
+					</LinkLocale>
+					<LinkLocale href={'/'} locale='en'>
+						EN
+					</LinkLocale>
 					<TelegramIcon theme={theme} />
 					<WhatsAppIcon theme={theme} />
 					<Link href={'/'}>

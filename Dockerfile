@@ -4,6 +4,7 @@ WORKDIR /client
 
 COPY /src /client/src
 COPY /public /client/public
+COPY /messages /client/messages
 # COPY .env /client/
 COPY next-env.d.ts /client/
 COPY next.config.mjs /client/

@@ -6,10 +6,10 @@ import { MainProcedures } from '@/page/main/procedures/procedures'
 import { MainReviewsSection } from '@/page/main/reviews-section/reviews-section'
 import { ValuesMainSection } from '@/page/main/values/values'
 
-export default function Home() {
+export default function Home({ params }: { params: { locale: string } }) {
 	return (
 		<>
-			<Header />
+			<Header lang={params.locale} />
 			<main>
 				<MainMainSection />
 				<MainAboutUsSection />
