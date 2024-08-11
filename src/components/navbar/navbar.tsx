@@ -15,7 +15,11 @@ export const Navbar = ({ theme }: Props) => {
 			<ul>
 				{NAV_LINKS.map(link => (
 					<li key={link.path}>
-						<Link href={link.path}>{link.name}</Link>
+						{link.sublinks ? (
+							<span>{link.name}</span>
+						) : (
+							<Link href={link.path}>{link.name}</Link>
+						)}
 					</li>
 				))}
 			</ul>
