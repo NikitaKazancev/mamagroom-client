@@ -1,14 +1,16 @@
 import { NAV_LINKS } from '@/constants/pages.constants'
 import axios from 'axios'
+import https from 'https'
 
 class ConstantAPI {
 	private CONSTANTS = `${process.env.API}/constants`
 	private instance = axios.create({
-		// httpsAgent: new https.Agent({
-		// 	cert: readFileSync('./secrets/www_mamagroom_ru.pem'),
-		// 	key: readFileSync('./secrets/www_mamagroom_ru-key.pem'),
-		// 	ca: readFileSync('./secrets/www_mamagroom_ru-ca.pem'),
-		// }),
+		httpsAgent: new https.Agent({
+			// cert: readFileSync('./secrets/www_mamagroom_ru.pem'),
+			// key: readFileSync('./secrets/www_mamagroom_ru-key.pem'),
+			// ca: readFileSync('./secrets/www_mamagroom_ru-ca.pem'),
+			rejectUnauthorized: false,
+		}),
 	})
 
 	async findHeaderNavLinks({ lang }: { lang: string }) {
