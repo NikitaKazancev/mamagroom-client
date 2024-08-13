@@ -1,11 +1,12 @@
 import useFullTransparentBlockStore from '@/components/full-transparent-block/utils/store'
+import { LinkLocale } from '@/navigation'
 import classNames from 'classnames'
-import styles from './select.module.scss'
+import styles from '../select.module.scss'
 
 type Props = {
 	selectedOption: string
-	onClick: (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => void
-	options: string[]
+	onClick?: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void
+	options: { name: string; to: string; locale?: string }[]
 	className?: string
 	transparentValue?: boolean
 	theme?: 'light' | 'dark'
@@ -18,10 +19,10 @@ type Props = {
 		| 'bottom'
 }
 
-export const Select = ({
+export const SelectWithLinks = ({
 	selectedOption,
-	onClick,
 	options,
+	onClick,
 	className,
 	transparentValue,
 	theme,
@@ -37,9 +38,14 @@ export const Select = ({
 		}
 	}
 
-	const onChoose = (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+	const onChoose = (
+		event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+	) => {
 		hide()
-		onClick(event)
+
+		if (onClick) {
+			onClick(event)
+		}
 	}
 
 	return (
@@ -56,20 +62,22 @@ export const Select = ({
 			<div className={styles.selected} onClick={onToggle}>
 				{selectedOption}
 			</div>
-			<ul className={styles.options}>
-				{options.map((option, i) => (
-					<li
-						key={option}
-						onClick={onChoose}
+			<div className={styles.options}>
+				{options.map(({ name, to, locale }, i) => (
+					<LinkLocale
+						href={to}
+						key={name}
 						className={classNames(
 							styles.item,
 							i < options.length - 1 && styles.separator
 						)}
+						locale={locale}
+						onClick={onChoose}
 					>
-						{option}
-					</li>
+						{name}
+					</LinkLocale>
 				))}
-			</ul>
+			</div>
 		</div>
 	)
 }

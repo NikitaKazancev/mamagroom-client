@@ -16,7 +16,7 @@ export const MainProcedures = () => {
 		<Section className={styles.main}>
 			<Layout className={styles.layout}>
 				<div className={styles.titles}>
-					<Link href={SERVICES_DOGS.path} className={styles.titleWrapper}>
+					<Link href={SERVICES_DOGS.link} className={styles.titleWrapper}>
 						<SectionTitle
 							text={SERVICES_DOGS.name}
 							color='blue'
@@ -24,7 +24,7 @@ export const MainProcedures = () => {
 						/>
 						<div className={styles.icon}>{<LuDog />}</div>
 					</Link>
-					<Link href={SERVICES_CATS.path} className={styles.titleWrapper}>
+					<Link href={SERVICES_CATS.link} className={styles.titleWrapper}>
 						<SectionTitle
 							text={SERVICES_CATS.name}
 							color='blue'

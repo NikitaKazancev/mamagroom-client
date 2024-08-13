@@ -15,7 +15,7 @@ export const Logo = ({ theme, className, link, targetBlank }: Props) => {
 
 	return (
 		<Link
-			href={link || HOME.path}
+			href={link || HOME.link}
 			target={targetBlank ? '_blank' : '_self'}
 			className={clazzName}
 		>

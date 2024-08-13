@@ -1,24 +1,24 @@
-import { NAV_LINKS } from '@/constants/pages.constants'
 import classNames from 'classnames'
 import Link from 'next/link'
 import styles from './navbar.module.scss'
 
 type Props = {
 	theme: 'light' | 'dark'
+	navLinks: NavLink[]
 }
 
-export const Navbar = ({ theme }: Props) => {
+export const Navbar = ({ theme, navLinks }: Props) => {
 	const className = classNames(styles.navbar, styles[theme])
 
 	return (
 		<nav className={className}>
 			<ul>
-				{NAV_LINKS.map(link => (
-					<li key={link.path}>
-						{link.sublinks ? (
-							<span>{link.name}</span>
+				{navLinks.map(({ name, link, sublinks }) => (
+					<li key={name}>
+						{sublinks || !link ? (
+							<span>{name}</span>
 						) : (
-							<Link href={link.path}>{link.name}</Link>
+							<Link href={link}>{name}</Link>
 						)}
 					</li>
 				))}
