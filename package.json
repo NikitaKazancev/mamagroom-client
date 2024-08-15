@@ -1,6 +1,6 @@
 {
 	"name": "mamagroom-client",
-	"version": "0.3.7",
+	"version": "0.3.8",
 	"private": true,
 	"scripts": {
 		"dev": "next dev -p 80",
@@ -20,20 +20,23 @@
 		"next": "14.2.5",
 		"next-i18n-router": "^5.5.1",
 		"next-intl": "^3.17.2",
+		"node-cache": "^5.1.2",
 		"node-fetch": "^3.3.2",
 		"react": "^18",
 		"react-dom": "^18",
 		"react-i18next": "^15.0.0",
 		"react-icons": "^5.2.1",
+		"redis": "^4.7.0",
 		"sass": "^1.77.8",
 		"usehooks-ts": "^3.1.0",
 		"zustand": "^4.5.4"
 	},
 	"devDependencies": {
 		"@types/js-cookie": "^3.0.6",
-		"@types/node": "^20",
+		"@types/node": "^22.2.0",
 		"@types/react": "^18",
 		"@types/react-dom": "^18",
+		"@types/redis": "^4.0.10",
 		"eslint": "^8",
 		"eslint-config-next": "14.2.5",
 		"postcss": "^8",
