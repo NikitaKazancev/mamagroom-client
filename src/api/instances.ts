@@ -20,14 +20,27 @@ type CacheParams = {
 	ttl?: number
 }
 
-const fetchDataWithoutCache = async (url: string) => {
+const fetchDataWithoutCache = async (instance: AxiosInstance, url: string) => {
 	try {
-		const dataFromAPI = await axiosInstance
-			.get(url)
-			.then(res => res.data.value)
-		return dataFromAPI
+		const response = await instance.get(url)
+		if (response.status !== 200) {
+			return null
+		}
+
+		let dataFromAPI = await response.data
+
+		let result = undefined
+		if (dataFromAPI.data) {
+			result = dataFromAPI.data
+		} else if (dataFromAPI.value) {
+			result = dataFromAPI.value
+		} else {
+			result = dataFromAPI
+		}
+
+		return result
 	} catch (error) {
-		console.error(`Error fetching ${url}: `, error)
+		console.error(`Error fetching ${url}: `, (error as Error).message)
 		return null
 	}
 }
@@ -59,7 +72,6 @@ const fetchDataWithCache = async (
 			result = dataFromAPI
 		}
 
-		console.log('Data:', result)
 		await cache.set(key, result, ttl)
 		return result
 	} catch (error) {
@@ -76,7 +88,7 @@ const fetchData = async (
 		return await fetchDataWithCache(axiosInstance, url, cacheParams)
 	}
 
-	return await fetchDataWithoutCache(url)
+	return await fetchDataWithoutCache(axiosInstance, url)
 }
 
 const fetchDataWithAuth = async (
@@ -87,7 +99,7 @@ const fetchDataWithAuth = async (
 		return await fetchDataWithCache(axiosInstanceWithAuth, url, cacheParams)
 	}
 
-	return await fetchDataWithoutCache(url)
+	return await fetchDataWithoutCache(axiosInstanceWithAuth, url)
 }
 
 export { fetchData, fetchDataWithAuth }

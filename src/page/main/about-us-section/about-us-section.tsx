@@ -1,10 +1,13 @@
+import { fileAPI } from '@/api/file/file.api'
 import { Slider } from '@/modules/slider/slider'
 import { Layout } from '@/ui/layout/layout'
 import { SectionTitle } from '@/ui/section-title/section-title'
 import { Section } from '@/ui/section/section'
 import styles from './about-us-section.module.scss'
 
-export const MainAboutUsSection = () => {
+export const MainAboutUsSection = async () => {
+	const slideURLs = await fileAPI.findDestinationsSliderAboutUs()
+
 	return (
 		<Section className={styles.main} pTop={false}>
 			<Layout>
@@ -21,7 +24,7 @@ export const MainAboutUsSection = () => {
 					</div>
 
 					<div className={styles.right}>
-						<Slider />
+						<Slider urls={slideURLs} />
 					</div>
 				</div>
 			</Layout>

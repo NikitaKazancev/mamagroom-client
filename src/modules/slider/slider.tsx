@@ -5,9 +5,7 @@ import styles from './slider.module.scss'
 import Image from 'next/image'
 import { useState } from 'react'
 
-export const Slider = () => {
-	const IMAGES_AMOUNT = 6
-
+export const Slider = ({ urls }: { urls: string[] }) => {
 	const [
 		{ firstImgIndex, secondImgIndex, isAbleToChangeSlide },
 		setSliderData,
@@ -18,7 +16,7 @@ export const Slider = () => {
 	})
 
 	const srcByIndex = (index: number) => {
-		return `/pages/main/slider/${index}.png`
+		return urls[index]
 	}
 
 	const changeSlide = (index: number) => {
@@ -56,11 +54,11 @@ export const Slider = () => {
 	}
 
 	const prevSlide = () => {
-		changeSlide(firstImgIndex === 0 ? IMAGES_AMOUNT - 1 : firstImgIndex - 1)
+		changeSlide(firstImgIndex === 0 ? urls.length - 1 : firstImgIndex - 1)
 	}
 
 	const nextSlide = () => {
-		changeSlide(firstImgIndex === IMAGES_AMOUNT - 1 ? 0 : firstImgIndex + 1)
+		changeSlide(firstImgIndex === urls.length - 1 ? 0 : firstImgIndex + 1)
 	}
 
 	return (
