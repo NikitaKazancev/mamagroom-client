@@ -33,4 +33,9 @@ const set = async (key: string, data: any, ttl: number = 300) => {
 	await cache.set(key, JSON.stringify(data), { EX: ttl })
 }
 
-export const cache = { get, set }
+const del = async (key: string) => {
+	const cache = await connectedCache()
+	await cache.del(key)
+}
+
+export const cache = { get, set, del }

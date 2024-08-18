@@ -1,11 +1,14 @@
+import { constantAPI } from '@/api/constant/constant.api'
+import { Language } from '@/i18n'
 import { Layout } from '@/ui/layout/layout'
 import { Section } from '@/ui/section/section'
-import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import styles from './main-section.module.scss'
 
-export const MainMainSection = () => {
-	const t = useTranslations('HomePage')
+export const MainMainSection = async ({ language }: { language: Language }) => {
+	const mainTitleData = await constantAPI.findMainTitle({
+		language,
+	})
 
 	return (
 		<Section className={styles.main} bg={false} pTop={false} pBottom={false}>
@@ -18,8 +21,8 @@ export const MainMainSection = () => {
 			/>
 			<Layout>
 				<div className={styles.headers}>
-					<h1>{t('title')}</h1>
-					<h2>описание</h2>
+					<h1>{mainTitleData.title}</h1>
+					<h2>{mainTitleData.description}</h2>
 				</div>
 			</Layout>
 		</Section>

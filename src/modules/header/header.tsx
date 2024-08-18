@@ -1,24 +1,25 @@
 'use client'
 
+import { HeaderNavbarLink } from '@/api/header-navbar-link/header-navbar-link.types'
 import { Navbar } from '@/components/navbar/navbar'
-import { locales } from '@/i18n'
+import { Language, locales } from '@/i18n'
 import { Button } from '@/ui/button/button'
 import { TelegramIcon } from '@/ui/icons/telegram/telegram'
 import { WhatsAppIcon } from '@/ui/icons/whatsapp/whatsapp'
+import { WorldIcon } from '@/ui/icons/world/world'
 import { Logo } from '@/ui/logo/logo'
-import { SelectWithLinks } from '@/ui/select/select-with-links/select-with-links'
+import { SelectWithIcon } from '@/ui/select/select-with-icon/select-with-icon'
 import classNames from 'classnames'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import styles from './header.module.scss'
 
 type Props = {
-	lang: string
-	localeLinks?: React.ReactNode
-	navLinks: NavLink[]
+	language: Language
+	navLinks: HeaderNavbarLink[]
 }
 
-export const Header = ({ lang, localeLinks, navLinks }: Props) => {
+export const Header = ({ language, navLinks }: Props) => {
 	const [isScrolled, setIsScrolled] = useState(false)
 
 	const handleScroll = () => {
@@ -46,16 +47,16 @@ export const Header = ({ lang, localeLinks, navLinks }: Props) => {
 				<Logo theme={theme} />
 				<Navbar theme={theme} navLinks={navLinks} />
 				<div className={styles.rightSection}>
-					<SelectWithLinks
+					<SelectWithIcon
 						options={locales.map(locale => ({
 							name: locale,
 							to: '/',
 							locale,
 						}))}
-						selectedOption={lang}
 						transparentValue={true}
 						theme={theme}
 						direction='bottom'
+						icon={<WorldIcon theme={theme} />}
 					/>
 					<TelegramIcon theme={theme} />
 					<WhatsAppIcon theme={theme} />

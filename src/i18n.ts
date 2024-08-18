@@ -3,6 +3,13 @@ import { notFound } from 'next/navigation'
 
 export const locales = ['ru', 'en']
 
+export type Language = 'ru' | 'en'
+
+export const LANGUAGES = {
+	RUSSIAN: 'ru',
+	ENGLISH: 'en',
+}
+
 export default getRequestConfig(async ({ locale }) => {
 	if (!locales.includes(locale as any)) notFound()
 

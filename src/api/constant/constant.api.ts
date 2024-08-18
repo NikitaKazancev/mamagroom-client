@@ -1,16 +1,17 @@
-import { fetchData } from '../instances'
+import { fetchData, SERVER_PATH } from '../instances'
+import { MainTitle } from './constant.types'
+import { mainTitleUrl } from './constant.url'
 
 class ConstantAPI {
-	private CONSTANTS = `${process.env.API}/constants`
-
-	async findHeaderNavLinks({ lang }: { lang: string }) {
-		const data = await fetchData(
-			`${this.CONSTANTS}/header_nav_links?lang=${lang}`,
-			{ key: 'header_nav_links' }
-		)
+	async findMainTitle({ language }: { language: string }): Promise<MainTitle> {
+		const url = mainTitleUrl(language)
+		const data = await fetchData(`${SERVER_PATH}${url}`, { key: url })
 
 		if (!data) {
-			return []
+			return {
+				title: '',
+				description: '',
+			}
 		}
 
 		return data

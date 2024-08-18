@@ -3,6 +3,8 @@ import axios, { AxiosInstance } from 'axios'
 import https from 'https'
 import { cache } from './cache'
 
+const SERVER_PATH = process.env.API
+
 const axiosInstance = axios.create({
 	httpsAgent: new https.Agent({
 		rejectUnauthorized: false,
@@ -52,6 +54,7 @@ const fetchDataWithCache = async (
 ) => {
 	const data = await cache.get(key)
 	if (data) {
+		console.log(`Data from cache: ${key}`)
 		return data
 	}
 
@@ -102,4 +105,4 @@ const fetchDataWithAuth = async (
 	return await fetchDataWithoutCache(axiosInstanceWithAuth, url)
 }
 
-export { fetchData, fetchDataWithAuth }
+export { fetchData, fetchDataWithAuth, SERVER_PATH }

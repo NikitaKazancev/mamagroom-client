@@ -3,13 +3,13 @@
 
 	&.light {
 		&:hover {
-			@apply text-green-300;
+			@apply text-gray-300;
 		}
 	}
 
 	&.dark {
 		&:hover {
-			@apply text-green-500;
+			@apply text-gray-500;
 		}
 	}
 }
