@@ -1,6 +1,8 @@
-import { fetchData, SERVER_PATH } from '../instances'
+import { fetchData } from '../instances'
 import { HeaderNavbarLink } from './header-navbar-link.types'
-import { headerNavbarLinkUrl } from './header-navbar-link.url'
+
+export const headerNavbarLinkUrl = (language: string) =>
+	`/header-navbar-links?language=${language}`
 
 class HeaderNavbarLinkAPI {
 	async findMany({
@@ -9,7 +11,8 @@ class HeaderNavbarLinkAPI {
 		language: string
 	}): Promise<HeaderNavbarLink[]> {
 		const url = headerNavbarLinkUrl(language)
-		const data = await fetchData(`${SERVER_PATH}${url}`, { key: url })
+		// const data = await fetchData(`${SERVER_PATH}${url}`, { key: url })
+		const data = await fetchData({ url })
 
 		if (!data) {
 			return []

@@ -1,3 +1,4 @@
+import { valueAPI } from '@/api/values/values.api'
 import { GridList } from '@/modules/grid-list/grid-list'
 import { Layout } from '@/ui/layout/layout'
 import { SectionTitle } from '@/ui/section-title/section-title'
@@ -43,12 +44,26 @@ const VALUES = [
 	},
 ]
 
-export const ValuesMainSection = () => {
+type Props = {
+	language: string
+	title: string
+}
+
+export const ValuesMainSection = async ({ language, title }: Props) => {
+	const values = await valueAPI.findMany({ language })
+
 	return (
 		<Section className={styles.main}>
 			<Layout>
-				<SectionTitle text='наши ценности' color='blue' />
-				<GridList className={styles.list} content={VALUES} />
+				<SectionTitle text={title} color='blue' />
+				<GridList
+					className={styles.list}
+					content={values.map((value, i) => ({
+						title: value.title,
+						description: value.description,
+						imgSrc: `/pages/main/slider/${i}.png`,
+					}))}
+				/>
 			</Layout>
 		</Section>
 	)

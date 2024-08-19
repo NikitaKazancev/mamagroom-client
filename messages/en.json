@@ -1,5 +1,17 @@
 {
-	"HomePage": {
-		"title": "Title"
+	"Footer": {
+		"address": "Mytishchi, Novomytishchinsky Prospect, 41b1",
+		"workingHours": "10:00 am – 9:00 pm",
+		"copyright": "MamagrooM © 2024. All rights reserved."
+	},
+	"General": {
+		"book": "book"
+	},
+	"MainPage": {
+		"aboutUsTitle": "about us"
+	},
+	"Yandex": {
+		"leaveFeedback": "Leave feedback",
+		"reviews": "More reviews on Yandex Maps"
 	}
 }

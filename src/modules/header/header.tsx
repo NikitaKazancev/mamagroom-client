@@ -2,7 +2,7 @@
 
 import { HeaderNavbarLink } from '@/api/header-navbar-link/header-navbar-link.types'
 import { Navbar } from '@/components/navbar/navbar'
-import { Language, locales } from '@/i18n'
+import { locales } from '@/i18n'
 import { Button } from '@/ui/button/button'
 import { TelegramIcon } from '@/ui/icons/telegram/telegram'
 import { WhatsAppIcon } from '@/ui/icons/whatsapp/whatsapp'
@@ -15,13 +15,14 @@ import { useEffect, useState } from 'react'
 import styles from './header.module.scss'
 
 type Props = {
-	language: Language
 	navLinks: HeaderNavbarLink[]
+	translations: {
+		book: string
+	}
 }
 
-export const Header = ({ language, navLinks }: Props) => {
+export const Header = ({ navLinks, translations }: Props) => {
 	const [isScrolled, setIsScrolled] = useState(false)
-
 	const handleScroll = () => {
 		setIsScrolled(window.scrollY > window.innerHeight / 5)
 	}
@@ -61,7 +62,7 @@ export const Header = ({ language, navLinks }: Props) => {
 					<TelegramIcon theme={theme} />
 					<WhatsAppIcon theme={theme} />
 					<Link href={'/'}>
-						<Button text='записаться' theme={theme} />
+						<Button text={translations.book} theme={theme} />
 					</Link>
 				</div>
 			</div>

@@ -11,14 +11,26 @@ import Link from 'next/link'
 import { LuCat, LuDog } from 'react-icons/lu'
 import styles from './procedures.module.scss'
 
-export const MainProcedures = () => {
+type Props = {
+	dogsTitle: string
+	dogsDescription: string
+	catsTitle: string
+	catsDescription: string
+}
+
+export const MainProcedures = ({
+	dogsTitle,
+	dogsDescription,
+	catsTitle,
+	catsDescription,
+}: Props) => {
 	return (
 		<Section className={styles.main}>
 			<Layout className={styles.layout}>
 				<div className={styles.titles}>
 					<Link href={SERVICES_DOGS.link} className={styles.titleWrapper}>
 						<SectionTitle
-							text={SERVICES_DOGS.name}
+							text={dogsTitle}
 							color='blue'
 							className={styles.title}
 						/>
@@ -26,7 +38,7 @@ export const MainProcedures = () => {
 					</Link>
 					<Link href={SERVICES_CATS.link} className={styles.titleWrapper}>
 						<SectionTitle
-							text={SERVICES_CATS.name}
+							text={catsTitle}
 							color='blue'
 							className={styles.title}
 						/>
@@ -34,16 +46,8 @@ export const MainProcedures = () => {
 					</Link>
 				</div>
 				<div className={styles.descriptions}>
-					<p className={styles.description}>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut
-						architecto repellendus accusamus, unde consequatur dolorem cum
-						obcaecati vitae numquam mollitia reiciendis totam veniam
-						repudiandae nostrum. Quibusdam aliquid accusantium cum quos.
-					</p>
-					<p className={styles.description}>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut
-						architecto repellendus accusamu
-					</p>
+					<p className={styles.description}>{dogsDescription}</p>
+					<p className={styles.description}>{catsDescription}</p>
 				</div>
 				<div className={styles.videos}>
 					<Video src={VIDEO_DOGS_PROCEDURES} className={styles.video} />

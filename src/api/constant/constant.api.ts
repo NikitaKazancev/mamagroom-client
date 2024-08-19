@@ -1,11 +1,13 @@
-import { fetchData, SERVER_PATH } from '../instances'
-import { MainTitle } from './constant.types'
-import { mainTitleUrl } from './constant.url'
+import { fetchData } from '../instances'
+
+export const mainTitleUrl = (language: string, type: string) =>
+	`/constants?language=${language}&type=${type}`
 
 class ConstantAPI {
-	async findMainTitle({ language }: { language: string }): Promise<MainTitle> {
-		const url = mainTitleUrl(language)
-		const data = await fetchData(`${SERVER_PATH}${url}`, { key: url })
+	async findByType({ language, type }: { language: string; type: string }) {
+		const url = mainTitleUrl(language, type)
+		// const data = await fetchData(`${SERVER_PATH}${url}`, { key: url })
+		const data = await fetchData({ url })
 
 		if (!data) {
 			return {

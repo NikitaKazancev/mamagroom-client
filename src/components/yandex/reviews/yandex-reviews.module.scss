@@ -55,9 +55,10 @@
 		z-index: 1;
 		border-radius: 8px;
 		min-height: 100px;
+		text-wrap: nowrap;
 
 		button {
-			@apply text-sm bg-white;
+			@apply text-sm bg-white px-9;
 		}
 	}
 }

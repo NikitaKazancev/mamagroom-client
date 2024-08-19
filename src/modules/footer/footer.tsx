@@ -5,10 +5,13 @@ import { TelegramIcon } from '@/ui/icons/telegram/telegram'
 import { WhatsAppIcon } from '@/ui/icons/whatsapp/whatsapp'
 import { Layout } from '@/ui/layout/layout'
 import { Logo } from '@/ui/logo/logo'
+import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 import styles from './footer.module.scss'
 
 export const Footer = () => {
+	const t = useTranslations('Footer')
+
 	return (
 		<footer className={styles.footer}>
 			<Layout>
@@ -22,9 +25,9 @@ export const Footer = () => {
 						/>
 						<address>
 							<Link href={YANDEX_MAP} target='_blank'>
-								Мытищи, Новомытищинский проспект, 41к1
+								{t('address')}
 								<br />
-								10:00 – 21:00
+								{t('workingHours')}
 							</Link>
 							<div className={styles.bottomLinks}>
 								<Link href={`tel:${PHONE}`}>
@@ -43,7 +46,7 @@ export const Footer = () => {
 					</div>
 				</div>
 				<div className={styles.bottom}>
-					<p>© 2024. МамагруМ. Все права защищены.</p>
+					<p>{t('copyright')}</p>
 				</div>
 			</Layout>
 		</footer>

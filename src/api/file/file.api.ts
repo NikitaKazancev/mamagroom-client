@@ -1,16 +1,21 @@
-import { fetchData } from '../instances'
+import { fetchData, SERVER_PATH } from '../instances'
 
 class FileAPI {
-	private FILES = `${process.env.API}/files`
+	private FILES = `${SERVER_PATH}/files`
 
-	async findDestinationsSliderAboutUs() {
-		const data = await fetchData(`${this.FILES}/slider-about-us`)
+	async findSliderAboutUsDestinations() {
+		// const data = await fetchData(`${this.FILES}/pages/home/slider-about-us`)
+		const data = await fetchData({ url: '/files/pages/home/slider-about-us' })
 
 		if (!data) {
 			return []
 		}
 
-		return data.map((url: string) => `${process.env.API}${url}`)
+		return data.map((url: string) => `${SERVER_PATH}${url}`)
+	}
+
+	findHomePageMainBgDestination() {
+		return `${SERVER_PATH}/static/pages/home/main-bg.jpg`
 	}
 }
 

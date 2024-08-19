@@ -1,10 +1,11 @@
+import { HeaderNavbarLink } from '@/api/header-navbar-link/header-navbar-link.types'
 import classNames from 'classnames'
 import Link from 'next/link'
 import styles from './navbar.module.scss'
 
 type Props = {
 	theme: 'light' | 'dark'
-	navLinks: NavLink[]
+	navLinks: HeaderNavbarLink[]
 }
 
 export const Navbar = ({ theme, navLinks }: Props) => {

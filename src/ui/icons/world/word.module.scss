@@ -1,5 +1,6 @@
 .icon {
 	@apply size-6 transition-all duration-200;
+	transition-timing-function: cubic-bezier(0, 0.94, 0, 0.97);
 
 	&.light {
 		&:hover {

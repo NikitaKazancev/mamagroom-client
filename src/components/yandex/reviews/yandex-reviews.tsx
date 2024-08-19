@@ -6,6 +6,7 @@ import {
 } from '@/constants/yandex.constants'
 import { Button } from '@/ui/button/button'
 import classNames from 'classnames'
+import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 import styles from './yandex-reviews.module.scss'
 
@@ -14,6 +15,8 @@ type Props = {
 }
 
 export const YandexReviews = ({ className }: Props) => {
+	const t = useTranslations('Yandex')
+
 	return (
 		<div className={classNames(styles.reviews, className)}>
 			<iframe src={YANDEX_IFRAME_REVIEWS}></iframe>
@@ -22,14 +25,14 @@ export const YandexReviews = ({ className }: Props) => {
 				className={styles.addReview}
 				target='_blank'
 			>
-				<Button text='Оставить отзыв' theme='dark' />
+				<Button text={t('leaveFeedback')} theme='dark' />
 			</Link>
 			<Link
 				href={YANDEX_REVIEWS_MORE}
 				className={styles.moreReviews}
 				target='_blank'
 			>
-				<Button text='Больше отзывов на Яндекс Картах' theme='dark' />
+				<Button text={t('reviews')} theme='dark' />
 			</Link>
 			<Link href={YANDEX_MAP} target='_blank' className={styles.reviewsMap}>
 				МамагруМ на карте Мытищ — Яндекс Карты

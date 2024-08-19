@@ -1,5 +1,17 @@
 {
-	"HomePage": {
-		"title": "Заголовок"
+	"Footer": {
+		"address": "Мытищи, Новомытищинский проспект, 41к1",
+		"workingHours": "10:00 – 21:00",
+		"copyright": "МамагруМ © 2024. Все права защищены."
+	},
+	"General": {
+		"book": "записаться"
+	},
+	"MainPage": {
+		"aboutUsTitle": "о нас"
+	},
+	"Yandex": {
+		"leaveFeedback": "Оставить отзыв",
+		"reviews": "Больше отзывов на Яндекс Картах"
 	}
 }
