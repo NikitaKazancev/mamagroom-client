@@ -12,9 +12,28 @@ const nextConfig = {
 				port: '8080',
 				pathname: '/api/static/**',
 			},
+
 			{
 				protocol: 'https',
 				hostname: 'mamagroom.ru',
+				port: '80',
+				pathname: '/api/static/**',
+			},
+			{
+				protocol: 'https',
+				hostname: 'www.mamagroom.ru',
+				port: '80',
+				pathname: '/api/static/**',
+			},
+			{
+				protocol: 'http',
+				hostname: 'mamagroom.ru',
+				port: '80',
+				pathname: '/api/static/**',
+			},
+			{
+				protocol: 'http',
+				hostname: 'www.mamagroom.ru',
 				port: '80',
 				pathname: '/api/static/**',
 			},
