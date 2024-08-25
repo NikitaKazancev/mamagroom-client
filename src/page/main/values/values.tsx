@@ -61,7 +61,7 @@ export const ValuesMainSection = async ({ language, title }: Props) => {
 					content={values.map((value, i) => ({
 						title: value.title,
 						description: value.description,
-						imgSrc: `/pages/main/slider/${i}.png`,
+						imageSrc: value.imageSrc,
 					}))}
 				/>
 			</Layout>

@@ -1,3 +1,5 @@
+import console from 'console'
+
 /* eslint-disable no-console */
 export const SERVER_PATH = process.env.API
 

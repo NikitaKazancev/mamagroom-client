@@ -5,14 +5,10 @@ export const headerNavbarLinkUrl = (language: string) =>
 	`/header-navbar-links?language=${language}`
 
 class HeaderNavbarLinkAPI {
-	async findMany({
-		language,
-	}: {
-		language: string
-	}): Promise<HeaderNavbarLink[]> {
+	async findMany({ language }: { language: string }) {
 		const url = headerNavbarLinkUrl(language)
 		// const data = await fetchData(`${SERVER_PATH}${url}`, { key: url })
-		const data = await fetchData({ url })
+		const data: HeaderNavbarLink[] = await fetchData({ url })
 
 		if (!data) {
 			return []

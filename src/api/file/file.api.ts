@@ -5,7 +5,9 @@ class FileAPI {
 
 	async findSliderAboutUsDestinations() {
 		// const data = await fetchData(`${this.FILES}/pages/home/slider-about-us`)
-		const data = await fetchData({ url: '/files/pages/home/slider-about-us' })
+		const data: string[] = await fetchData({
+			url: '/files/pages/home/slider-about-us',
+		})
 
 		if (!data) {
 			return []

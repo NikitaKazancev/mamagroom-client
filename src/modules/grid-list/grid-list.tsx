@@ -8,7 +8,7 @@ import styles from './grid-list.module.scss'
 type Item = {
 	title: string
 	description: string
-	imgSrc: string
+	imageSrc: string
 }
 
 type Props = {
@@ -18,61 +18,28 @@ type Props = {
 
 type Direction = 'left' | 'right' | 'top' | 'bottom'
 
-type ItemState = {
-	isElem1Title: boolean
-	isElem2Title: boolean
-	isElem3Title: boolean
-	isElem4Title: boolean
-	isElem5Title: boolean
-}
-
-const initialItemsState: ItemState[] = [
-	{
-		isElem1Title: false,
-		isElem2Title: true,
-		isElem3Title: true,
-		isElem4Title: true,
-		isElem5Title: true,
-	},
-	{
-		isElem1Title: true,
-		isElem2Title: false,
-		isElem3Title: false,
-		isElem4Title: false,
-		isElem5Title: false,
-	},
-	{
-		isElem1Title: true,
-		isElem2Title: false,
-		isElem3Title: false,
-		isElem4Title: false,
-		isElem5Title: false,
-	},
-	{
-		isElem1Title: true,
-		isElem2Title: false,
-		isElem3Title: false,
-		isElem4Title: false,
-		isElem5Title: false,
-	},
-	{
-		isElem1Title: true,
-		isElem2Title: false,
-		isElem3Title: false,
-		isElem4Title: false,
-		isElem5Title: false,
-	},
-	{
-		isElem1Title: true,
-		isElem2Title: false,
-		isElem3Title: false,
-		isElem4Title: false,
-		isElem5Title: false,
-	},
-]
-
 export const GridList = ({ content, className }: Props) => {
-	const [itemsState, setItemsState] = useState(initialItemsState)
+	const [itemsState, setItemsState] = useState(
+		content.map((item, i) => {
+			if (i === 0) {
+				return {
+					isElem1Title: false,
+					isElem2Title: true,
+					isElem3Title: true,
+					isElem4Title: true,
+					isElem5Title: true,
+				}
+			}
+
+			return {
+				isElem1Title: true,
+				isElem2Title: false,
+				isElem3Title: false,
+				isElem4Title: false,
+				isElem5Title: false,
+			}
+		})
+	)
 	const elements = useRef<HTMLUListElement>(null)
 	const [canBeChanged, setCanBeChanged] = useState(true)
 
@@ -283,7 +250,7 @@ export const GridList = ({ content, className }: Props) => {
 const Item = ({
 	title,
 	description,
-	imgSrc,
+	imageSrc,
 	showTitle,
 	className,
 }: Item & {
@@ -304,7 +271,7 @@ const Item = ({
 				<>
 					<p className={styles.description}>{description}</p>
 					<Image
-						src={imgSrc}
+						src={imageSrc}
 						alt={title}
 						width={700}
 						height={1}
