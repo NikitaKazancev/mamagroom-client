@@ -37,6 +37,12 @@ const nextConfig = {
 				port: '80',
 				pathname: '/api/static/**',
 			},
+			{
+				protocol: 'https',
+				hostname: '**',
+				port: '',
+				pathname: '**',
+			},
 		],
 	},
 }
