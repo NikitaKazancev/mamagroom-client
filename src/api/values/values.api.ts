@@ -1,5 +1,4 @@
-import { SERVER_PATH } from '../axios-instances'
-import { fetchData } from '../instances'
+import { fetchData, SERVER_PATH } from '../instances'
 import { Value } from './values.types'
 
 export const valuesUrl = (language: string) => `/values?language=${language}`

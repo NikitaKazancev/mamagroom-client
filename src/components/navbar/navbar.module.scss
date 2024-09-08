@@ -1,14 +1,14 @@
 .navbar {
-	ul {
+	.list {
 		@apply flex items-center gap-6;
 	}
 
-	li {
+	.item {
 		@apply cursor-pointer lowercase transition-all duration-300 text-xl;
 	}
 
 	&.dark {
-		li {
+		.item {
 			@apply text-black;
 			&:hover {
 				@apply text-secondary-700;
@@ -17,7 +17,7 @@
 	}
 
 	&.light {
-		li {
+		.item {
 			@apply text-white;
 			&:hover {
 				@apply text-secondary-200;

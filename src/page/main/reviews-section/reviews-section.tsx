@@ -8,13 +8,6 @@ export const MainReviewsSection = () => {
 	return (
 		<Section pBottom={false}>
 			<Layout className={styles.main}>
-				{/* <div className={styles.left}>
-					<SectionTitle
-						text='отзывы'
-						color='blue'
-						className={styles.title}
-					/>
-				</div> */}
 				<div className={styles.right}>
 					<YandexReviews className={styles.reviews} />
 				</div>

@@ -1,4 +1,4 @@
-import console from 'console'
+import { getAccessToken } from '@/utils/cookies'
 
 /* eslint-disable no-console */
 export const SERVER_PATH = process.env.API
@@ -8,10 +8,12 @@ export const fetchData = async (
 		url,
 		ttl,
 		key,
+		auth,
 	}: {
 		url: string
 		ttl?: number
 		key?: string
+		auth?: boolean
 	} = { url: '', ttl: 300 }
 ) => {
 	try {
@@ -19,6 +21,9 @@ export const fetchData = async (
 			next: {
 				revalidate: ttl,
 				tags: [url],
+			},
+			headers: {
+				Authorization: auth ? `Bearer ${await getAccessToken()}` : '',
 			},
 		})
 			.then(res => res.json())

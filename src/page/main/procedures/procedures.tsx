@@ -3,11 +3,11 @@ import {
 	VIDEO_CATS_PROCEDURES,
 	VIDEO_DOGS_PROCEDURES,
 } from '@/constants/video-links.constants'
+import { Link } from '@/navigation'
 import { Layout } from '@/ui/layout/layout'
 import { SectionTitle } from '@/ui/section-title/section-title'
 import { Section } from '@/ui/section/section'
 import { Video } from '@/ui/video/video'
-import Link from 'next/link'
 import { LuCat, LuDog } from 'react-icons/lu'
 import styles from './procedures.module.scss'
 

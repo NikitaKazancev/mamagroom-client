@@ -5,13 +5,19 @@
 		"copyright": "МамагруМ © 2024. Все права защищены."
 	},
 	"General": {
-		"book": "записаться"
-	},
-	"MainPage": {
-		"aboutUsTitle": "о нас"
+		"book": "записаться",
+		"siteName": "МамагруМ",
+		"metadataTitle": "МамагруМ – груминг салон в Мытищах | mamagroom.ru",
+		"metadataDescription": "Вы нам – чубакку, мы вам – собаку"
 	},
 	"Yandex": {
-		"leaveFeedback": "Оставить отзыв",
-		"reviews": "Больше отзывов на Яндекс Картах"
+		"onMap": "МамагруМ на карте Мытищ — Яндекс Карты"
+	},
+	"Cookies": {
+		"message": "мы используем cookies, чтобы все отлично работало",
+		"accept": "уже привычно"
+	},
+	"Dogs": {
+		"metadataTitle": "Процедуры для собак"
 	}
 }

@@ -1,11 +1,11 @@
-import { SITE_NAME } from '@/constants/seo.constants'
-import type { Metadata } from 'next'
 // import { Comfortaa, Quicksand, Raleway, Montserrat, Nunito, Poppins } from 'next/font/google'
-import { useLocale } from 'next-intl'
+import { FullTransparentBlock } from '@/components/full-transparent-block/full-transparent-block'
+import { AcceptCookiePopUpServer } from '@/modules/accept-cookie-pop-up/accept-cookie-pop-up-server'
+import { getTranslations } from 'next-intl/server'
 import { Raleway } from 'next/font/google'
+import { cookies } from 'next/headers'
 import './globals.scss'
 import { Providers } from './provider'
-import Link from 'next/link'
 
 const inter = Raleway({
 	subsets: ['latin'],
@@ -14,12 +14,23 @@ const inter = Raleway({
 	style: ['normal'],
 })
 
-export const metadata: Metadata = {
-	title: {
-		default: `${SITE_NAME} - Мы ОБОЖАЕМ свое дело`,
-		template: `%s | ${SITE_NAME}`,
-	},
-	description: 'Любим стричь ваших любимцев',
+export async function generateMetadata({
+	params,
+}: {
+	params: { locale: string }
+}) {
+	const t = await getTranslations({
+		namespace: 'General',
+		locale: params.locale,
+	})
+
+	return {
+		title: {
+			default: t('metadataTitle'),
+			template: `%s | ${t('siteName')}`,
+		},
+		description: t('metadataDescription'),
+	}
 }
 
 export default function RootLayout({
@@ -29,20 +40,14 @@ export default function RootLayout({
 	children: React.ReactNode
 	params: { locale: string }
 }>) {
-	const locale = useLocale()
-	if (locale !== params.locale)
-		return (
-			<div>
-				<h2>Not Found</h2>
-				<p>Could not find requested resource</p>
-				<Link href='/'>Return Home</Link>
-			</div>
-		)
+	const cookieStore = cookies()
 
 	return (
 		<html lang={params.locale}>
 			<link rel='icon' href='/logos/favicon.png' sizes='any' />
 			<body className={inter.className}>
+				<FullTransparentBlock />
+				<AcceptCookiePopUpServer cookies={cookieStore} />
 				<Providers>{children}</Providers>
 			</body>
 		</html>

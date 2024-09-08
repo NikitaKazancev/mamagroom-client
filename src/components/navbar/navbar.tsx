@@ -1,6 +1,7 @@
 import { HeaderNavbarLink } from '@/api/header-navbar-link/header-navbar-link.types'
+import { Link } from '@/navigation'
+import { DropDown } from '@/ui/drop-down/drop-down'
 import classNames from 'classnames'
-import Link from 'next/link'
 import styles from './navbar.module.scss'
 
 type Props = {
@@ -13,13 +14,23 @@ export const Navbar = ({ theme, navLinks }: Props) => {
 
 	return (
 		<nav className={className}>
-			<ul>
+			<ul className={styles.list}>
 				{navLinks.map(({ name, link, sublinks }) => (
-					<li key={name}>
-						{sublinks || !link ? (
-							<span>{name}</span>
-						) : (
+					<li key={name} className={styles.item}>
+						{link ? (
 							<Link href={link}>{name}</Link>
+						) : !sublinks ? null : (
+							<DropDown
+								items={sublinks
+									.filter(({ link }) => !!link)
+									.map(({ name, link }) => ({
+										title: name,
+										href: link as string,
+									}))}
+								titleElement={name}
+								theme={theme}
+								direction='bottom'
+							/>
 						)}
 					</li>
 				))}

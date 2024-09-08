@@ -3,14 +3,14 @@
 import { HeaderNavbarLink } from '@/api/header-navbar-link/header-navbar-link.types'
 import { Navbar } from '@/components/navbar/navbar'
 import { locales } from '@/i18n'
+import { Link, usePathname } from '@/navigation'
 import { Button } from '@/ui/button/button'
+import { DropDown } from '@/ui/drop-down/drop-down'
 import { TelegramIcon } from '@/ui/icons/telegram/telegram'
 import { WhatsAppIcon } from '@/ui/icons/whatsapp/whatsapp'
 import { WorldIcon } from '@/ui/icons/world/world'
 import { Logo } from '@/ui/logo/logo'
-import { SelectWithIcon } from '@/ui/select/select-with-icon/select-with-icon'
 import classNames from 'classnames'
-import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import styles from './header.module.scss'
 
@@ -22,19 +22,27 @@ type Props = {
 }
 
 export const Header = ({ navLinks, translations }: Props) => {
-	const [isScrolled, setIsScrolled] = useState(false)
+	const alwaysDark = usePathname() !== '/'
+	const [isScrolled, setIsScrolled] = useState(alwaysDark)
+
 	const handleScroll = () => {
 		setIsScrolled(window.scrollY > window.innerHeight / 5)
 	}
 
 	useEffect(() => {
+		setIsScrolled(alwaysDark)
+		if (alwaysDark) return
+		if ((window as any).listenerAdded) return
+
 		window.addEventListener('scroll', handleScroll)
+		;(window as any).listenerAdded = true
 		handleScroll()
 
 		return () => {
-			window.removeEventListener('scroll', handleScroll)
+			document.body.removeEventListener('scroll', handleScroll)
+			;(window as any).listenerAdded = false
 		}
-	}, [])
+	}, [alwaysDark])
 
 	const theme = isScrolled ? 'dark' : 'light'
 
@@ -48,16 +56,16 @@ export const Header = ({ navLinks, translations }: Props) => {
 				<Logo theme={theme} />
 				<Navbar theme={theme} navLinks={navLinks} />
 				<div className={styles.rightSection}>
-					<SelectWithIcon
-						options={locales.map(locale => ({
-							name: locale,
-							to: '/',
+					<DropDown
+						items={locales.map(locale => ({
+							title: locale,
+							href: '/',
 							locale,
 						}))}
 						transparentValue={true}
 						theme={theme}
+						titleElement={<WorldIcon theme={theme} />}
 						direction='bottom'
-						icon={<WorldIcon theme={theme} />}
 					/>
 					<TelegramIcon theme={theme} />
 					<WhatsAppIcon theme={theme} />

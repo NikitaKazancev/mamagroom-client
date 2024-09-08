@@ -10,4 +10,8 @@
 	&.bg {
 		@apply bg-main-25;
 	}
+
+	&.pTopForHeader {
+		padding-top: 114px;
+	}
 }

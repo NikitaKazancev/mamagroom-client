@@ -5,13 +5,19 @@
 		"copyright": "MamagrooM © 2024. All rights reserved."
 	},
 	"General": {
-		"book": "book"
-	},
-	"MainPage": {
-		"aboutUsTitle": "about us"
+		"book": "book",
+		"siteName": "MamagrooM",
+		"metadataTitle": "MamagrooM - grooming salon in Mytishchi | mamagroom.ru",
+		"metadataDescription": "You give us Chewbacca, we give you a dog"
 	},
 	"Yandex": {
-		"leaveFeedback": "Leave feedback",
-		"reviews": "More reviews on Yandex Maps"
+		"onMap": "MamagrooM on the map of Mytishchi — Yandex Maps"
+	},
+	"Cookies": {
+		"message": "we use cookies to make everything work excellently",
+		"accept": "used to it"
+	},
+	"Dogs": {
+		"metadataTitle": "Procedures for dogs"
 	}
 }

@@ -1,5 +1,6 @@
 import useFullTransparentBlockStore from '@/components/full-transparent-block/utils/store'
 import classNames from 'classnames'
+import { useState } from 'react'
 import styles from './select.module.scss'
 
 type Props = {
@@ -27,7 +28,8 @@ export const Select = ({
 	theme,
 	direction,
 }: Props) => {
-	const { isShown, hide, show } = useFullTransparentBlockStore()
+	const { hide, show } = useFullTransparentBlockStore()
+	const [isShown, setIsShown] = useState(false)
 
 	const onToggle = () => {
 		if (isShown) {
@@ -35,10 +37,13 @@ export const Select = ({
 		} else {
 			show()
 		}
+
+		setIsShown(!isShown)
 	}
 
 	const onChoose = (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
 		hide()
+		setIsShown(false)
 		onClick(event)
 	}
 

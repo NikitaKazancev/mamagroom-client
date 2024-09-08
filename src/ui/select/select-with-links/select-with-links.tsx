@@ -1,5 +1,5 @@
 import useFullTransparentBlockStore from '@/components/full-transparent-block/utils/store'
-import { LinkLocale } from '@/navigation'
+import { Link } from '@/navigation'
 import classNames from 'classnames'
 import styles from '../select.module.scss'
 
@@ -64,7 +64,7 @@ export const SelectWithLinks = ({
 			</div>
 			<div className={styles.options}>
 				{options.map(({ name, to, locale }, i) => (
-					<LinkLocale
+					<Link
 						href={to}
 						key={name}
 						className={classNames(
@@ -75,7 +75,7 @@ export const SelectWithLinks = ({
 						onClick={onChoose}
 					>
 						{name}
-					</LinkLocale>
+					</Link>
 				))}
 			</div>
 		</div>
