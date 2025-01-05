@@ -1,37 +1,34 @@
 import { Language } from '@/i18n'
 import { basicQueryParams, request } from '../request'
 
-type HeaderNavbarLink = {
-	id: string
-	createdAt: Date
-	link?: string
+type Master = {
 	name: string
 	language: string
-	updatedAt: Date
 	isDeleted: boolean
-	order: number
-	parentLinkId?: string
-	sublinks: HeaderNavbarLink[]
+	id: string
+	imageName?: string
+	createdAt: Date
+	description?: string
+	updatedAt: Date
 }
 
-type HeaderNavbarLinkDto = {
+type MasterDto = {
 	language: Language
 	name: string
-	order?: number
-	link?: string
-	parentLinkId?: string
+	description?: string
+	imageName?: string
 	isDeleted?: boolean
 }
 
-class HeaderNavbarLinkApi {
-	url = 'header-navbar-links'
+class MasterApi {
+	url = 'masters'
 
 	async findMany(queryParams: { language?: Language; isDeleted?: boolean }) {
 		const url = `/${this.url}?${basicQueryParams(queryParams)}`
 		const data = await request({ url })
 
 		if (data) {
-			return data as HeaderNavbarLink[]
+			return data as Master[]
 		}
 
 		return []
@@ -42,29 +39,29 @@ class HeaderNavbarLinkApi {
 		const data = await request({ url })
 
 		if (data) {
-			return data as HeaderNavbarLink
+			return data as Master
 		}
 	}
 
-	async post(headerNavbarLink: HeaderNavbarLinkDto) {
+	async post(master: MasterDto) {
 		const url = `/${this.url}`
 		const data = await request({
 			url,
 			method: 'post',
-			body: headerNavbarLink,
+			body: master,
 		})
 
 		if (data) {
-			return data as HeaderNavbarLink
+			return data as Master
 		}
 	}
 
-	async put(id: string, headerNavbarLink: HeaderNavbarLinkDto) {
+	async put(id: string, master: MasterDto) {
 		const url = `/${this.url}/${id}`
-		const data = await request({ url, method: 'put', body: headerNavbarLink })
+		const data = await request({ url, method: 'put', body: master })
 
 		if (data) {
-			return data as HeaderNavbarLink
+			return data as Master
 		}
 	}
 
@@ -73,9 +70,9 @@ class HeaderNavbarLinkApi {
 		const data = await request({ url, method: 'delete' })
 
 		if (data) {
-			return data as HeaderNavbarLink
+			return data as Master
 		}
 	}
 }
 
-export const headerNavbarLinkApi = new HeaderNavbarLinkApi()
+export const masterApi = new MasterApi()

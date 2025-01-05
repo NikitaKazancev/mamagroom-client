@@ -1,37 +1,30 @@
-import { Language } from '@/i18n'
 import { basicQueryParams, request } from '../request'
 
-type Value = {
-	language: string
-	isDeleted: boolean
+type MainSlider = {
 	id: string
 	imageName: string
-	createdAt: Date
-	description: string
-	updatedAt: Date
 	order: number
-	title: string
+	createdAt: Date
+	updatedAt: Date
+	isDeleted: boolean
 }
 
-type ValueDto = {
-	language: Language
-	title: string
-	description: string
+type MainSliderDto = {
 	imageName?: string
 	order?: number
 	isDeleted?: boolean
 	file?: any
 }
 
-class ValueApi {
-	url = 'values'
+class MainSliderApi {
+	url = 'main-slider'
 
-	async findMany(queryParams: { language?: Language; isDeleted?: boolean }) {
+	async findMany(queryParams: { isDeleted?: boolean }) {
 		const url = `/${this.url}?${basicQueryParams(queryParams)}`
 		const data = await request({ url })
 
 		if (data) {
-			return data as Value[]
+			return data as MainSlider[]
 		}
 
 		return []
@@ -42,29 +35,29 @@ class ValueApi {
 		const data = await request({ url })
 
 		if (data) {
-			return data as Value
+			return data as MainSlider
 		}
 	}
 
-	async post(value: ValueDto) {
+	async post(mainSlider: MainSliderDto) {
 		const url = `/${this.url}`
 		const data = await request({
 			url,
 			method: 'post',
-			body: value,
+			body: mainSlider,
 		})
 
 		if (data) {
-			return data as Value
+			return data as MainSlider
 		}
 	}
 
-	async put(id: string, value: ValueDto) {
+	async put(id: string, mainSlider: MainSliderDto) {
 		const url = `/${this.url}/${id}`
-		const data = await request({ url, method: 'put', body: value })
+		const data = await request({ url, method: 'put', body: mainSlider })
 
 		if (data) {
-			return data as Value
+			return data as MainSlider
 		}
 	}
 
@@ -73,9 +66,9 @@ class ValueApi {
 		const data = await request({ url, method: 'delete' })
 
 		if (data) {
-			return data as Value
+			return data as MainSlider
 		}
 	}
 }
 
-export const valueApi = new ValueApi()
+export const mainSliderApi = new MainSliderApi()

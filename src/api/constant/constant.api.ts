@@ -1,23 +1,63 @@
-import { fetchData } from '../instances'
+import { Language } from '@/i18n'
+import { request } from '../request'
+import { Constant, ConstantDto } from './constant.types'
 
-export const mainTitleUrl = (language: string, type: string) =>
-	`/constants?language=${language}&type=${type}`
+class ConstantApi {
+	url = 'constants'
 
-class ConstantAPI {
-	async findByType({ language, type }: { language: string; type: string }) {
-		const url = mainTitleUrl(language, type)
-		// const data = await fetchData(`${SERVER_PATH}${url}`, { key: url })
-		const data = await fetchData({ url })
+	async findMany(queryParams: {
+		language?: Language
+		type?: string
+		name?: string
+	}) {
+		const url = `/${this.url}?${this.queryParams(queryParams)}`
+		const data = await request({ url })
 
-		if (!data) {
-			return {
-				title: '',
-				description: '',
-			}
+		if (data) {
+			return data as Constant[]
 		}
 
-		return data
+		return []
+	}
+
+	async put(constant: ConstantDto) {
+		const url = `/${this.url}`
+		const data = await request({ url, method: 'put', body: constant })
+
+		if (data) {
+			return data as Constant
+		}
+	}
+
+	async delete(queryParams: {
+		language?: Language
+		type?: string
+		name?: string
+	}) {
+		const url = `/${this.url}?${this.queryParams(queryParams)}`
+		const data = await request({ url, method: 'delete' })
+
+		if (data) {
+			return data as Constant
+		}
+	}
+
+	private queryParams({
+		language,
+		type,
+		name,
+	}: {
+		language?: Language
+		type?: string
+		name?: string
+	}) {
+		const queryParams = new URLSearchParams()
+		if (language !== undefined) queryParams.append('language', language)
+		if (type !== undefined) queryParams.append('type', type)
+		if (name !== undefined) queryParams.append('name', name)
+
+		return queryParams.toString()
 	}
 }
 
-export const constantAPI = new ConstantAPI()
+export const constantApi = new ConstantApi()

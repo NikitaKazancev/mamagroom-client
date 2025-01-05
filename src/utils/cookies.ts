@@ -3,20 +3,15 @@
 import Cookies from 'js-cookie'
 import { cookies } from 'next/headers'
 
-enum EnumTokens {
-	'ACCESS_TOKEN' = 'accessToken',
-	'REFRESH_TOKEN' = 'refreshToken',
+export const token = async () => {
+	return cookies().get('token')?.value || null
 }
 
-export const getAccessToken = async () => {
-	const accessToken = cookies().get(EnumTokens.ACCESS_TOKEN)?.value
-	return accessToken || null
-}
-
-export const saveAccessToken = async (accessToken: string) => {
-	Cookies.set(EnumTokens.ACCESS_TOKEN, accessToken, {
-		domain: 'localhost',
-		sameSite: 'strict',
-		expires: 1,
+export const saveToken = async (token: string) => {
+	Cookies.set('token', token, {
+		domain: process.env.NEXT_PUBLIC_DOMAIN,
+		sameSite: 'Lax',
+		expires: 7,
+		secure: true,
 	})
 }

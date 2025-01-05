@@ -1,37 +1,34 @@
 import { Language } from '@/i18n'
 import { basicQueryParams, request } from '../request'
 
-type HeaderNavbarLink = {
+type BreedType = 'cat' | 'smallDog' | 'mediumDog' | 'bigDog'
+
+type Breed = {
 	id: string
 	createdAt: Date
-	link?: string
 	name: string
 	language: string
 	updatedAt: Date
 	isDeleted: boolean
-	order: number
-	parentLinkId?: string
-	sublinks: HeaderNavbarLink[]
+	type: BreedType
 }
 
-type HeaderNavbarLinkDto = {
+type BreedDto = {
 	language: Language
 	name: string
-	order?: number
-	link?: string
-	parentLinkId?: string
+	type: BreedType
 	isDeleted?: boolean
 }
 
-class HeaderNavbarLinkApi {
-	url = 'header-navbar-links'
+class BreedApi {
+	url = 'breeds'
 
 	async findMany(queryParams: { language?: Language; isDeleted?: boolean }) {
 		const url = `/${this.url}?${basicQueryParams(queryParams)}`
 		const data = await request({ url })
 
 		if (data) {
-			return data as HeaderNavbarLink[]
+			return data as Breed[]
 		}
 
 		return []
@@ -42,29 +39,25 @@ class HeaderNavbarLinkApi {
 		const data = await request({ url })
 
 		if (data) {
-			return data as HeaderNavbarLink
+			return data as Breed
 		}
 	}
 
-	async post(headerNavbarLink: HeaderNavbarLinkDto) {
+	async post(breed: BreedDto) {
 		const url = `/${this.url}`
-		const data = await request({
-			url,
-			method: 'post',
-			body: headerNavbarLink,
-		})
+		const data = await request({ url, method: 'post', body: breed })
 
 		if (data) {
-			return data as HeaderNavbarLink
+			return data as Breed
 		}
 	}
 
-	async put(id: string, headerNavbarLink: HeaderNavbarLinkDto) {
+	async put(id: string, breed: BreedDto) {
 		const url = `/${this.url}/${id}`
-		const data = await request({ url, method: 'put', body: headerNavbarLink })
+		const data = await request({ url, method: 'put', body: breed })
 
 		if (data) {
-			return data as HeaderNavbarLink
+			return data as Breed
 		}
 	}
 
@@ -73,9 +66,9 @@ class HeaderNavbarLinkApi {
 		const data = await request({ url, method: 'delete' })
 
 		if (data) {
-			return data as HeaderNavbarLink
+			return data as Breed
 		}
 	}
 }
 
-export const headerNavbarLinkApi = new HeaderNavbarLinkApi()
+export const breedApi = new BreedApi()

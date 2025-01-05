@@ -1,37 +1,32 @@
 import { Language } from '@/i18n'
 import { basicQueryParams, request } from '../request'
 
-type Value = {
+type Vacancy = {
+	name: string
 	language: string
 	isDeleted: boolean
 	id: string
-	imageName: string
 	createdAt: Date
 	description: string
 	updatedAt: Date
-	order: number
-	title: string
 }
 
-type ValueDto = {
+type VacancyDto = {
 	language: Language
-	title: string
-	description: string
-	imageName?: string
-	order?: number
+	name: string
+	description?: string
 	isDeleted?: boolean
-	file?: any
 }
 
-class ValueApi {
-	url = 'values'
+class VacancyApi {
+	url = 'vacancies'
 
 	async findMany(queryParams: { language?: Language; isDeleted?: boolean }) {
 		const url = `/${this.url}?${basicQueryParams(queryParams)}`
 		const data = await request({ url })
 
 		if (data) {
-			return data as Value[]
+			return data as Vacancy[]
 		}
 
 		return []
@@ -42,29 +37,25 @@ class ValueApi {
 		const data = await request({ url })
 
 		if (data) {
-			return data as Value
+			return data as Vacancy
 		}
 	}
 
-	async post(value: ValueDto) {
+	async post(vacancy: VacancyDto) {
 		const url = `/${this.url}`
-		const data = await request({
-			url,
-			method: 'post',
-			body: value,
-		})
+		const data = await request({ url, method: 'post', body: vacancy })
 
 		if (data) {
-			return data as Value
+			return data as Vacancy
 		}
 	}
 
-	async put(id: string, value: ValueDto) {
+	async put(id: string, vacancy: VacancyDto) {
 		const url = `/${this.url}/${id}`
-		const data = await request({ url, method: 'put', body: value })
+		const data = await request({ url, method: 'put', body: vacancy })
 
 		if (data) {
-			return data as Value
+			return data as Vacancy
 		}
 	}
 
@@ -73,9 +64,9 @@ class ValueApi {
 		const data = await request({ url, method: 'delete' })
 
 		if (data) {
-			return data as Value
+			return data as Vacancy
 		}
 	}
 }
 
-export const valueApi = new ValueApi()
+export const vacancyApi = new VacancyApi()

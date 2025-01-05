@@ -1,7 +1,4 @@
-export type MainTitle = {
-	title: string
-	description: string
-}
+import { Language } from '@/i18n'
 
 export const CONSTANT_TYPES = {
 	homePage: 'home-page',
@@ -17,4 +14,20 @@ export const CONSTANT_NAMES = {
 	proceduresForCatsTitle: 'procedures-for-cats-title',
 	proceduresForCatsDescription: 'procedures-for-cats-description',
 	valuesTitle: 'values-title',
+}
+
+export type Constant = {
+	createdAt: Date
+	name: string
+	language: string
+	updatedAt: Date
+	type: string
+	value: string
+}
+
+export type ConstantDto = {
+	language: Language
+	type: string
+	name: string
+	value: string
 }

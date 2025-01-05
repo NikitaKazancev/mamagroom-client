@@ -1,23 +1,21 @@
-import { fetchData, SERVER_PATH } from '../instances'
+import { request, SERVER_URL } from '../request'
+
+export const FILE_PATHS = {
+	mainBg: 'pages/home/main-bg',
+}
+
+export type FilePath = keyof typeof FILE_PATHS
 
 class FileAPI {
-	private FILES = `${SERVER_PATH}/files`
+	private url = `${SERVER_URL}/files/static`
 
-	async findSliderAboutUsDestinations() {
-		// const data = await fetchData(`${this.FILES}/pages/home/slider-about-us`)
-		const data: string[] = await fetchData({
-			url: '/files/pages/home/slider-about-us',
-		})
-
-		if (!data) {
-			return []
-		}
-
-		return data.map((url: string) => `${SERVER_PATH}${url}`)
+	async findDestination(path: FilePath) {
+		return `/${this.url}/${path}`
 	}
 
-	findHomePageMainBgDestination() {
-		return `${SERVER_PATH}/static/pages/home/main-bg.jpg`
+	async post(path: FilePath, file: any) {
+		const url = `/${this.url}/${path}`
+		await request({ url, method: 'post', body: { file } })
 	}
 }
 

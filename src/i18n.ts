@@ -2,9 +2,7 @@ import { getRequestConfig } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 
 export const locales = ['ru', 'en']
-
 export type Language = 'ru' | 'en'
-
 export const LANGUAGES = {
 	RUSSIAN: 'ru',
 	ENGLISH: 'en',
