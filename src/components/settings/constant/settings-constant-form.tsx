@@ -1,18 +1,25 @@
-'use server'
+'use client'
 
 import { ConstantDto } from '@/api/constant/constant.types'
 import { Input } from '@/ui/input/input'
 
-export const SettingsConstantForm = async ({
-	title,
-	data,
-}: {
+export const SettingsConstantForm = (props: {
 	title?: string
 	data?: ConstantDto
+	setData?: (data: ConstantDto) => void
 }) => {
-	if (!data || !title) return
+	if (!props?.data || !props?.title || !props?.setData) return null
 
 	return (
-		<Input title={title} name='value' required initialValue={data.value} />
+		<Input
+			title={props.title}
+			name='value'
+			required
+			value={props.data.value}
+			onChange={e => {
+				//@ts-ignore
+				props.setData({ ...props.data, value: e.target.value })
+			}}
+		/>
 	)
 }

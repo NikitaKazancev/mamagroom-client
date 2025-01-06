@@ -40,7 +40,7 @@ export const MainPageMainSection = async ({
 					>
 						<h1>{title}</h1>
 					</SettingsConstant>
-					{/* <SettingsConstant
+					<SettingsConstant
 						data={{
 							language,
 							type: 'home-page',
@@ -51,7 +51,7 @@ export const MainPageMainSection = async ({
 						iconClassname={styles.settings}
 					>
 						<h2>{description}</h2>
-					</SettingsConstant> */}
+					</SettingsConstant>
 				</div>
 			</Layout>
 		</Section>

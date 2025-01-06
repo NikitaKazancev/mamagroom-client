@@ -1,4 +1,3 @@
-import { putConstant } from '@/api/constant/constant.server'
 import { ConstantDto } from '@/api/constant/constant.types'
 import { Settings } from '@/modules/settings/settings'
 import { ROLES } from '@/utils/auth/auth'
@@ -15,29 +14,16 @@ export const SettingsConstant = ({
 	data: ConstantDto
 	iconClassname?: string
 }) => {
-	async function post(formData: FormData) {
-		'use server'
-		console.log(formData)
-
-		const value = formData.get('value')
-		if (!value) return
-
-		if (!data) return
-		putConstant({
-			...data,
-			value: value.toString(),
-		})
-	}
-
 	return (
 		<div className='relative'>
 			{children}
 			{ROLES.constantPost && (
 				<Settings
-					formComponent={SettingsConstantForm}
-					componentProps={{ title, data }}
-					onSubmit={post}
+					Component={SettingsConstantForm}
+					componentProps={{ title }}
 					iconClassname={iconClassname}
+					type='constant'
+					data={data}
 				/>
 			)}
 		</div>

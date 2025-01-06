@@ -3,23 +3,26 @@
 import useSettingsStore from '@/modules/settings/utils/store'
 import { SettingsIcon } from '@/ui/icons/settings/settings'
 import classNames from 'classnames'
+import { ComponentType } from 'react'
 import styles from './settings.module.scss'
 
 export const Settings = ({
-	formComponent,
 	iconClassname,
-	onSubmit,
+	Component,
 	componentProps,
+	type,
+	data,
 }: {
-	formComponent: React.ComponentType
 	iconClassname?: string
-	onSubmit: (formData: FormData) => void
+	Component: ComponentType
 	componentProps: Record<string, any>
+	type: string
+	data: any
 }) => {
 	const { show } = useSettingsStore()
 
 	const handleClick = () => {
-		show({ Component: formComponent, componentProps, onSubmit })
+		show({ componentProps, type, Component, data })
 	}
 
 	return (

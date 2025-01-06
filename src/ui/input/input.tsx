@@ -1,24 +1,23 @@
 'use client'
 
 import classNames from 'classnames'
-import { useState } from 'react'
 import styles from './input.module.scss'
 
 export const Input = ({
 	title,
 	required,
 	name,
-	initialValue = '',
+	value = '',
 	type = 'text',
+	onChange,
 }: {
 	title: string
 	name: string
 	required?: boolean
-	initialValue?: string
+	value?: string
 	type?: string
+	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }) => {
-	const [value, setValue] = useState(initialValue)
-
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.inputbox}>
@@ -26,9 +25,9 @@ export const Input = ({
 					required={required}
 					type={type}
 					value={value}
-					onChange={e => setValue(e.target.value)}
 					className={classNames(styles.input, value && styles.filled)}
 					name={name}
+					onChange={onChange}
 				/>
 				<span>{title}</span>
 				<i></i>
