@@ -1,5 +1,5 @@
 import { Language } from '@/i18n'
-import { token } from '@/utils/cookies'
+import { getToken } from '@/utils/cookies/cookies-server.api'
 import axios, { AxiosRequestConfig } from 'axios'
 import FormData from 'form-data'
 
@@ -7,12 +7,14 @@ export const SERVER_URL = process.env.API
 
 export const request = async ({
 	url,
+	revalidateTag,
 	method,
 	ttl,
 	auth,
 	body,
 }: {
 	url: string
+	revalidateTag?: string
 	method?: 'get' | 'post' | 'put' | 'delete'
 	ttl?: number
 	auth?: boolean
@@ -21,7 +23,7 @@ export const request = async ({
 	if (!method) method = 'get'
 
 	if (method === 'get') {
-		return await fetchData({ url, ttl, auth })
+		return await fetchData({ url, ttl, auth, revalidateTag })
 	}
 
 	return await mutation({ url, method, body })
@@ -32,24 +34,26 @@ const fetchData = async ({
 	ttl,
 	auth,
 	body,
+	revalidateTag,
 }: {
 	url: string
 	ttl?: number
 	auth?: boolean
 	body?: any
+	revalidateTag?: string
 }): Promise<unknown> => {
 	if (!ttl) ttl = 300
 
 	const config: RequestInit = {
 		next: {
 			revalidate: ttl,
-			tags: [url],
+			tags: [revalidateTag || url],
 		},
 	}
 
 	if (auth) {
 		config.headers = {}
-		config.headers['Authorization'] = `Bearer ${await token()}`
+		config.headers['Authorization'] = `Bearer ${await getToken()}`
 	}
 
 	if (body) {
@@ -77,10 +81,10 @@ const mutation = async ({
 }): Promise<unknown> => {
 	const config: AxiosRequestConfig = {
 		method,
-		url,
+		url: `${SERVER_URL}${url}`,
 		headers: {
 			Accept: 'application/json',
-			Authorization: `Bearer ${await token()}`,
+			Authorization: `Bearer ${await getToken()}`,
 		},
 	}
 
@@ -133,4 +137,12 @@ export const basicQueryParams = ({
 		queryParams.append('isDeleted', String(isDeleted))
 
 	return queryParams.toString()
+}
+
+export const fullImageName = (imageName?: string) => {
+	return imageName ? `${SERVER_URL}${imageName}` : ''
+}
+
+export const revalidateTags = {
+	constants: 'constants',
 }

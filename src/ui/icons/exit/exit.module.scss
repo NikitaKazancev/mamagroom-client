@@ -1,0 +1,11 @@
+.icon {
+	@apply size-7;
+
+	&.light {
+		@apply text-white;
+	}
+
+	&.dark {
+		@apply text-black;
+	}
+}

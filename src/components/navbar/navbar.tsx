@@ -1,4 +1,4 @@
-import { HeaderNavbarLink } from '@/api/header-navbar-link/header-navbar-link.types'
+import { HeaderNavbarLink } from '@/api/header-navbar-link/header-navbar-link.api'
 import { Link } from '@/navigation'
 import { DropDown } from '@/ui/drop-down/drop-down'
 import classNames from 'classnames'
@@ -19,7 +19,7 @@ export const Navbar = ({ theme, navLinks }: Props) => {
 					<li key={name} className={styles.item}>
 						{link ? (
 							<Link href={link}>{name}</Link>
-						) : !sublinks ? null : (
+						) : sublinks && sublinks.length ? (
 							<DropDown
 								items={sublinks
 									.filter(({ link }) => !!link)
@@ -31,7 +31,7 @@ export const Navbar = ({ theme, navLinks }: Props) => {
 								theme={theme}
 								direction='bottom'
 							/>
-						)}
+						) : null}
 					</li>
 				))}
 			</ul>

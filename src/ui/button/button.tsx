@@ -5,13 +5,18 @@ interface Props {
 	text: string
 	theme: 'dark' | 'light'
 	className?: string
+	onClick?: () => void
 }
 
-export const Button = ({ text, theme, className }: Props) => {
+export const Button = ({ text, theme, className, onClick }: Props) => {
 	const clazz = classNames(styles.button, {
 		[styles.dark]: theme === 'dark',
 		[styles.light]: theme === 'light',
 		[className!]: !!className,
 	})
-	return <button className={clazz}>{text}</button>
+	return (
+		<button className={clazz} onClick={onClick}>
+			{text}
+		</button>
+	)
 }

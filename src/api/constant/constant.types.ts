@@ -1,8 +1,11 @@
 import { Language } from '@/i18n'
+import { CamelToKebab } from '@/utils/types'
 
 export const CONSTANT_TYPES = {
 	homePage: 'home-page',
 }
+
+export type ConstantType = keyof typeof CONSTANT_TYPES
 
 export const CONSTANT_NAMES = {
 	mainTitle: 'main-title',
@@ -16,18 +19,22 @@ export const CONSTANT_NAMES = {
 	valuesTitle: 'values-title',
 }
 
+export type ConstantName = keyof typeof CONSTANT_NAMES
+
+export type FullConstantName = Record<`${ConstantType}_${ConstantName}`, string>
+
 export type Constant = {
 	createdAt: Date
-	name: string
+	name: CamelToKebab<ConstantName>
 	language: string
 	updatedAt: Date
-	type: string
+	type: CamelToKebab<ConstantType>
 	value: string
 }
 
 export type ConstantDto = {
 	language: Language
-	type: string
-	name: string
+	type: CamelToKebab<ConstantType>
+	name: CamelToKebab<ConstantName>
 	value: string
 }

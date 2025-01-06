@@ -7,7 +7,7 @@ type Vacancy = {
 	isDeleted: boolean
 	id: string
 	createdAt: Date
-	description: string
+	description?: string
 	updatedAt: Date
 }
 
@@ -23,10 +23,10 @@ class VacancyApi {
 
 	async findMany(queryParams: { language?: Language; isDeleted?: boolean }) {
 		const url = `/${this.url}?${basicQueryParams(queryParams)}`
-		const data = await request({ url })
+		const data = (await request({ url })) as Vacancy[]
 
 		if (data) {
-			return data as Vacancy[]
+			return data
 		}
 
 		return []
@@ -34,37 +34,45 @@ class VacancyApi {
 
 	async findById(id: string) {
 		const url = `/${this.url}/${id}`
-		const data = await request({ url })
+		const data = (await request({ url })) as Vacancy
 
 		if (data) {
-			return data as Vacancy
+			return data
 		}
 	}
 
 	async post(vacancy: VacancyDto) {
 		const url = `/${this.url}`
-		const data = await request({ url, method: 'post', body: vacancy })
+		const data = (await request({
+			url,
+			method: 'post',
+			body: vacancy,
+		})) as Vacancy
 
 		if (data) {
-			return data as Vacancy
+			return data
 		}
 	}
 
 	async put(id: string, vacancy: VacancyDto) {
 		const url = `/${this.url}/${id}`
-		const data = await request({ url, method: 'put', body: vacancy })
+		const data = (await request({
+			url,
+			method: 'put',
+			body: vacancy,
+		})) as Vacancy
 
 		if (data) {
-			return data as Vacancy
+			return data
 		}
 	}
 
 	async delete(id: string) {
 		const url = `/${this.url}/${id}`
-		const data = await request({ url, method: 'delete' })
+		const data = (await request({ url, method: 'delete' })) as Vacancy
 
 		if (data) {
-			return data as Vacancy
+			return data
 		}
 	}
 }

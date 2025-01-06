@@ -1,10 +1,11 @@
 import { YandexMap } from '@/components/yandex/map/yandex-map'
-import { EMAIL, PHONE, PHONE_REPRESENTATION } from '@/constants/links.constants'
-import { YANDEX_MAP } from '@/constants/yandex.constants'
+import { LINKS } from '@/constants/links.constants'
+import { LogoutIcon } from '@/ui/icons/logout/logout'
 import { TelegramIcon } from '@/ui/icons/telegram/telegram'
 import { WhatsAppIcon } from '@/ui/icons/whatsapp/whatsapp'
 import { Layout } from '@/ui/layout/layout'
 import { Logo } from '@/ui/logo/logo'
+import { formatPhoneNumber } from '@/utils/functions'
 import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 import styles from './footer.module.scss'
@@ -18,22 +19,24 @@ export const Footer = () => {
 				<div className={styles.content}>
 					<div className={styles.left}>
 						<Logo
-							link={YANDEX_MAP}
+							link={LINKS.yandex.map}
 							theme='light'
 							className={styles.logo}
 							targetBlank
 						/>
 						<address>
-							<Link href={YANDEX_MAP} target='_blank'>
+							<Link href={LINKS.yandex.map} target='_blank'>
 								{t('address')}
 								<br />
 								{t('workingHours')}
 							</Link>
 							<div className={styles.bottomLinks}>
-								<Link href={`tel:${PHONE}`}>
-									{PHONE_REPRESENTATION}
+								<Link href={`tel:${LINKS.foreign.phone}`}>
+									{formatPhoneNumber(LINKS.foreign.phone)}
 								</Link>
-								<Link href={`mailto:${EMAIL}`}>{EMAIL}</Link>
+								<Link href={`mailto:${LINKS.foreign.email}`}>
+									{LINKS.foreign.email}
+								</Link>
 								<div className={styles.socialNetworks}>
 									<TelegramIcon theme='light' />
 									<WhatsAppIcon theme='light' />
@@ -49,6 +52,8 @@ export const Footer = () => {
 					<p>{t('copyright')}</p>
 				</div>
 			</Layout>
+			{/* <Settings formComponent={<Auth />} iconClassname={styles.auth} /> */}
+			<LogoutIcon className={styles.auth} />
 		</footer>
 	)
 }

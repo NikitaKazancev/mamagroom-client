@@ -35,14 +35,14 @@ class ProcedureApi {
 		let res: unknown
 		if (data?.description || file) {
 			const url = this.url
-			res = await request({ url, body: { ...data, file } })
+			res = (await request({ url, body: { ...data, file } })) as Procedure[]
 		} else {
 			const url = `/${this.url}?${basicQueryParams({ language, isDeleted })}`
-			res = await request({ url })
+			res = (await request({ url })) as Procedure[]
 		}
 
 		if (res) {
-			return res as Procedure[]
+			return res
 		}
 
 		return []
@@ -50,41 +50,45 @@ class ProcedureApi {
 
 	async findById(id: string) {
 		const url = `/${this.url}/${id}`
-		const data = await request({ url })
+		const data = (await request({ url })) as Procedure
 
 		if (data) {
-			return data as Procedure
+			return data
 		}
 	}
 
 	async post(procedure: ProcedureDto) {
 		const url = `/${this.url}`
-		const data = await request({
+		const data = (await request({
 			url,
 			method: 'post',
 			body: procedure,
-		})
+		})) as Procedure
 
 		if (data) {
-			return data as Procedure
+			return data
 		}
 	}
 
 	async put(id: string, procedure: ProcedureDto) {
 		const url = `/${this.url}/${id}`
-		const data = await request({ url, method: 'put', body: procedure })
+		const data = (await request({
+			url,
+			method: 'put',
+			body: procedure,
+		})) as Procedure
 
 		if (data) {
-			return data as Procedure
+			return data
 		}
 	}
 
 	async delete(id: string) {
 		const url = `/${this.url}/${id}`
-		const data = await request({ url, method: 'delete' })
+		const data = (await request({ url, method: 'delete' })) as Procedure
 
 		if (data) {
-			return data as Procedure
+			return data
 		}
 	}
 }

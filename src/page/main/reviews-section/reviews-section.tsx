@@ -4,7 +4,7 @@ import { Layout } from '@/ui/layout/layout'
 import { Section } from '@/ui/section/section'
 import styles from './reviews-section.module.scss'
 
-export const MainReviewsSection = () => {
+export const MainPageReviews = () => {
 	return (
 		<Section pBottom={false}>
 			<Layout className={styles.main}>

@@ -2,8 +2,8 @@
 
 import { PopUp } from '@/components/pop-up/pop-up'
 import usePopUpStore from '@/components/pop-up/utils/store'
-import { COOKIES } from '@/utils/constants'
-import Cookies from 'js-cookie'
+import { setCookie } from '@/utils/cookies/cookies-client.api'
+import { COOKIES } from '@/utils/cookies/cookies.general'
 import { useEffect } from 'react'
 
 type Props = {
@@ -16,7 +16,7 @@ export const AcceptCookiePopUp = ({ openOnMount, message, accept }: Props) => {
 	const { show } = usePopUpStore()
 
 	const acceptCookie = () => {
-		Cookies.set(COOKIES.ACCEPT_COOKIE, 'true', { expires: 365 })
+		setCookie(COOKIES.isCookiesAccepted, 'true')
 	}
 
 	useEffect(() => {

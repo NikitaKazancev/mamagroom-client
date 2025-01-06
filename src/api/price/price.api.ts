@@ -30,10 +30,10 @@ class PriceApi {
 		time?: number
 	}) {
 		const url = `/${this.url}?${this.queryParams(queryParams)}`
-		const data = await request({ url })
+		const data = (await request({ url })) as Price[]
 
 		if (data) {
-			return data as Price[]
+			return data
 		}
 
 		return []
@@ -41,10 +41,10 @@ class PriceApi {
 
 	async put(price: PriceDto) {
 		const url = `/${this.url}`
-		const data = await request({ url, method: 'put', body: price })
+		const data = (await request({ url, method: 'put', body: price })) as Price
 
 		if (data) {
-			return data as Price
+			return data
 		}
 	}
 
@@ -55,10 +55,10 @@ class PriceApi {
 		time?: number
 	}) {
 		const url = `/${this.url}?${this.queryParams(queryParams)}`
-		const data = await request({ url, method: 'delete' })
+		const data = (await request({ url, method: 'delete' })) as Price
 
 		if (data) {
-			return data as Price
+			return data
 		}
 	}
 

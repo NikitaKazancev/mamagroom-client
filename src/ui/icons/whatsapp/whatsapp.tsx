@@ -1,4 +1,4 @@
-import { WHATSAPP_LINK } from '@/constants/links.constants'
+import { LINKS } from '@/constants/links.constants'
 import classNames from 'classnames'
 import Link from 'next/link'
 import { FaWhatsapp } from 'react-icons/fa'
@@ -10,7 +10,7 @@ type Props = {
 
 export const WhatsAppIcon = ({ theme }: Props) => {
 	return (
-		<Link href={WHATSAPP_LINK} target='_blank'>
+		<Link href={LINKS.foreign.whatsapp} target='_blank'>
 			<FaWhatsapp className={classNames(styles.icon, styles[theme])} />
 		</Link>
 	)

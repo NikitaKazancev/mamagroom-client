@@ -1,16 +1,16 @@
 import { request, SERVER_URL } from '../request'
 
 export const FILE_PATHS = {
-	mainBg: 'pages/home/main-bg',
+	mainBg: 'pages/home/main-bg.jpg',
 }
 
 export type FilePath = keyof typeof FILE_PATHS
 
 class FileAPI {
-	private url = `${SERVER_URL}/files/static`
+	url = `${SERVER_URL}/files`
 
-	async findDestination(path: FilePath) {
-		return `/${this.url}/${path}`
+	findDestination(path: FilePath) {
+		return `${SERVER_URL}/static/${FILE_PATHS[path]}`
 	}
 
 	async post(path: FilePath, file: any) {
@@ -19,4 +19,4 @@ class FileAPI {
 	}
 }
 
-export const fileAPI = new FileAPI()
+export const fileApi = new FileAPI()

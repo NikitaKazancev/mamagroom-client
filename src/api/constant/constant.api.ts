@@ -1,44 +1,68 @@
 import { Language } from '@/i18n'
-import { request } from '../request'
-import { Constant, ConstantDto } from './constant.types'
+import { kebabToCamel } from '@/utils/functions'
+import { request, revalidateTags } from '../request'
+import {
+	Constant,
+	CONSTANT_NAMES,
+	CONSTANT_TYPES,
+	ConstantDto,
+	ConstantName,
+	ConstantType,
+	FullConstantName,
+} from './constant.types'
 
 class ConstantApi {
 	url = 'constants'
 
 	async findMany(queryParams: {
 		language?: Language
-		type?: string
-		name?: string
+		type?: ConstantType
+		name?: ConstantName
 	}) {
 		const url = `/${this.url}?${this.queryParams(queryParams)}`
-		const data = await request({ url })
+		const data = (await request({
+			url,
+			revalidateTag: revalidateTags.constants,
+		})) as Constant[]
 
-		if (data) {
-			return data as Constant[]
+		if (!data) {
+			return undefined
 		}
 
-		return []
+		// @ts-ignore
+		const res: FullConstantName = {}
+
+		data.forEach((item: Constant) => {
+			res[`${kebabToCamel(item.type)}_${kebabToCamel(item.name)}`] =
+				item.value
+		})
+
+		return res
 	}
 
 	async put(constant: ConstantDto) {
 		const url = `/${this.url}`
-		const data = await request({ url, method: 'put', body: constant })
+		const data = (await request({
+			url,
+			method: 'put',
+			body: constant,
+		})) as Constant
 
 		if (data) {
-			return data as Constant
+			return data
 		}
 	}
 
 	async delete(queryParams: {
 		language?: Language
-		type?: string
-		name?: string
+		type?: ConstantType
+		name?: ConstantName
 	}) {
 		const url = `/${this.url}?${this.queryParams(queryParams)}`
-		const data = await request({ url, method: 'delete' })
+		const data = (await request({ url, method: 'delete' })) as Constant
 
 		if (data) {
-			return data as Constant
+			return data
 		}
 	}
 
@@ -48,13 +72,13 @@ class ConstantApi {
 		name,
 	}: {
 		language?: Language
-		type?: string
-		name?: string
+		type?: ConstantType
+		name?: ConstantName
 	}) {
 		const queryParams = new URLSearchParams()
 		if (language !== undefined) queryParams.append('language', language)
-		if (type !== undefined) queryParams.append('type', type)
-		if (name !== undefined) queryParams.append('name', name)
+		if (type !== undefined) queryParams.append('type', CONSTANT_TYPES[type])
+		if (name !== undefined) queryParams.append('name', CONSTANT_NAMES[name])
 
 		return queryParams.toString()
 	}

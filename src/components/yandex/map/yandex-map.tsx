@@ -1,4 +1,4 @@
-import { YANDEX_IFRAME_MAP } from '@/constants/yandex.constants'
+import { LINKS } from '@/constants/links.constants'
 import classNames from 'classnames'
 import styles from './yandex-map.module.scss'
 
@@ -9,7 +9,7 @@ type Props = {
 export const YandexMap = ({ className }: Props) => {
 	return (
 		<div className={classNames(styles.map, className)}>
-			<iframe src={YANDEX_IFRAME_MAP} loading='lazy'></iframe>
+			<iframe src={LINKS.yandex.iframeMap} loading='lazy'></iframe>
 		</div>
 	)
 }

@@ -19,6 +19,7 @@
 		"framer-motion": "^11.3.8",
 		"i18next": "^23.12.2",
 		"i18next-resources-to-backend": "^1.2.1",
+		"jose": "^5.9.6",
 		"js-cookie": "^3.0.5",
 		"mamagroom-client": "file:",
 		"next": "14.2.5",

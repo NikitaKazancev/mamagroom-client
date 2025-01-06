@@ -1,8 +1,4 @@
-import { SERVICES_CATS, SERVICES_DOGS } from '@/constants/pages.constants'
-import {
-	VIDEO_CATS_PROCEDURES,
-	VIDEO_DOGS_PROCEDURES,
-} from '@/constants/video-links.constants'
+import { LINKS } from '@/constants/links.constants'
 import { Link } from '@/navigation'
 import { Layout } from '@/ui/layout/layout'
 import { SectionTitle } from '@/ui/section-title/section-title'
@@ -18,7 +14,7 @@ type Props = {
 	catsDescription: string
 }
 
-export const MainProcedures = ({
+export const MainPageProcedures = ({
 	dogsTitle,
 	dogsDescription,
 	catsTitle,
@@ -28,7 +24,7 @@ export const MainProcedures = ({
 		<Section className={styles.main}>
 			<Layout className={styles.layout}>
 				<div className={styles.titles}>
-					<Link href={SERVICES_DOGS.link} className={styles.titleWrapper}>
+					<Link href={LINKS.pages.dogs} className={styles.titleWrapper}>
 						<SectionTitle
 							text={dogsTitle}
 							color='blue'
@@ -36,7 +32,7 @@ export const MainProcedures = ({
 						/>
 						<div className={styles.icon}>{<LuDog />}</div>
 					</Link>
-					<Link href={SERVICES_CATS.link} className={styles.titleWrapper}>
+					<Link href={LINKS.pages.cats} className={styles.titleWrapper}>
 						<SectionTitle
 							text={catsTitle}
 							color='blue'
@@ -50,8 +46,14 @@ export const MainProcedures = ({
 					<p className={styles.description}>{catsDescription}</p>
 				</div>
 				<div className={styles.videos}>
-					<Video src={VIDEO_DOGS_PROCEDURES} className={styles.video} />
-					<Video src={VIDEO_CATS_PROCEDURES} className={styles.video} />
+					<Video
+						src={LINKS.video.dogsProcedures}
+						className={styles.video}
+					/>
+					<Video
+						src={LINKS.video.dogsProcedures}
+						className={styles.video}
+					/>
 				</div>
 			</Layout>
 		</Section>

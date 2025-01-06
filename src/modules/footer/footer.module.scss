@@ -1,5 +1,5 @@
 .footer {
-	@apply min-h-96 bg-secondary-800 py-10 text-white;
+	@apply relative min-h-96 bg-secondary-800 py-10 text-white;
 
 	.content {
 		@apply flex;
@@ -48,5 +48,9 @@
 
 	.bottom {
 		@apply flex justify-center mt-5;
+	}
+
+	.auth {
+		@apply absolute bottom-5 right-5;
 	}
 }

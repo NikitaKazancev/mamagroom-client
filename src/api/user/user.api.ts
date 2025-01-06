@@ -6,10 +6,10 @@ class UserApi {
 
 	async findMany(queryParams: { isDeleted?: boolean }) {
 		const url = `/${this.url}?${basicQueryParams(queryParams)}`
-		const data = await request({ url })
+		const data = (await request({ url })) as User[]
 
 		if (data) {
-			return data as User[]
+			return data
 		}
 
 		return []
@@ -17,37 +17,37 @@ class UserApi {
 
 	async findById(id: string) {
 		const url = `/${this.url}/${id}`
-		const data = await request({ url })
+		const data = (await request({ url })) as User
 
 		if (data) {
-			return data as User
+			return data
 		}
 	}
 
 	async post(user: UserDto) {
 		const url = `/${this.url}`
-		const data = await request({ url, method: 'post', body: user })
+		const data = (await request({ url, method: 'post', body: user })) as User
 
 		if (data) {
-			return data as User
+			return data
 		}
 	}
 
 	async put(id: string, user: UserDto) {
 		const url = `/${this.url}/${id}`
-		const data = await request({ url, method: 'put', body: user })
+		const data = (await request({ url, method: 'put', body: user })) as User
 
 		if (data) {
-			return data as User
+			return data
 		}
 	}
 
 	async delete(id: string) {
 		const url = `/${this.url}/${id}`
-		const data = await request({ url, method: 'delete' })
+		const data = (await request({ url, method: 'delete' })) as User
 
 		if (data) {
-			return data as User
+			return data
 		}
 	}
 }

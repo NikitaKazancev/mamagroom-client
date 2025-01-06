@@ -1,4 +1,4 @@
-import { YANDEX_IFRAME_REVIEWS, YANDEX_MAP } from '@/constants/yandex.constants'
+import { LINKS } from '@/constants/links.constants'
 import classNames from 'classnames'
 import { useTranslations } from 'next-intl'
 import Link from 'next/link'
@@ -13,8 +13,12 @@ export const YandexReviews = ({ className }: Props) => {
 
 	return (
 		<div className={classNames(styles.reviews, className)}>
-			<iframe src={YANDEX_IFRAME_REVIEWS}></iframe>
-			<Link href={YANDEX_MAP} target='_blank' className={styles.reviewsMap}>
+			<iframe src={LINKS.yandex.reviews}></iframe>
+			<Link
+				href={LINKS.yandex.map}
+				target='_blank'
+				className={styles.reviewsMap}
+			>
 				{t('onMap')}
 			</Link>
 		</div>

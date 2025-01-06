@@ -4,6 +4,7 @@ import classNames from 'classnames'
 import Image from 'next/image'
 import { useRef, useState } from 'react'
 import styles from './grid-list.module.scss'
+import { capitalizeFirst } from '@/utils/functions'
 
 type Item = {
 	title: string
@@ -19,106 +20,56 @@ type Props = {
 type Direction = 'left' | 'right' | 'top' | 'bottom'
 
 export const GridList = ({ content, className }: Props) => {
-	const [itemsState, setItemsState] = useState(
-		content.map((item, i) => {
-			if (i === 0) {
-				return {
-					isElem1Title: false,
-					isElem2Title: true,
-					isElem3Title: true,
-					isElem4Title: true,
-					isElem5Title: true,
-				}
-			}
+	const [elemsState, setElemsState] = useState(
+		content.map((_, i) => {
+			const isFirstElem = i === 0
 
 			return {
-				isElem1Title: true,
-				isElem2Title: false,
-				isElem3Title: false,
-				isElem4Title: false,
-				isElem5Title: false,
+				isComponent1Title: !isFirstElem,
+				isComponent2Title: isFirstElem,
+				isComponent3Title: isFirstElem,
+				isComponent4Title: isFirstElem,
+				isComponent5Title: isFirstElem,
 			}
 		})
 	)
-	const elements = useRef<HTMLUListElement>(null)
 	const [canBeChanged, setCanBeChanged] = useState(true)
 
+	const ul = useRef<HTMLUListElement>(null)
+
 	const directionToAnimate = (from: number, to: number): Direction => {
-		if (from === 0) {
-			if (to === 1) {
-				return 'right'
-			} else {
-				return 'bottom'
-			}
-		}
+		const fromMod = from % 3
+		const toMod = to % 3
 
-		if (from === 1) {
-			if (to === 0) {
-				return 'left'
-			} else if (to === 2) {
-				return 'right'
-			} else {
-				return 'bottom'
-			}
+		if (toMod > fromMod) {
+			return 'right'
+		} else if (toMod < fromMod) {
+			return 'left'
+		} else if (to > from) {
+			return 'bottom'
+		} else {
+			return 'top'
 		}
-
-		if (from === 2) {
-			if (to === 1) {
-				return 'left'
-			} else {
-				return 'bottom'
-			}
-		}
-
-		if (from === 3) {
-			if (to === 4) {
-				return 'right'
-			} else {
-				return 'top'
-			}
-		}
-
-		if (from === 4) {
-			if (to === 3) {
-				return 'left'
-			} else if (to === 5) {
-				return 'right'
-			} else {
-				return 'top'
-			}
-		}
-
-		if (from === 5) {
-			if (to === 4) {
-				return 'left'
-			} else {
-				return 'top'
-			}
-		}
-
-		return 'bottom'
 	}
 
-	const classForRotationByDirection = (direction: Direction) => {
-		return styles[
-			`rotate${direction.charAt(0).toUpperCase()}${direction.slice(1)}`
-		]
+	const classForRotation = (direction: Direction) => {
+		return styles[`rotate${capitalizeFirst(direction)}`]
 	}
 
 	const activeItemIndex = () => {
-		return itemsState.findIndex(({ isElem1Title }) => !isElem1Title)
+		return elemsState.findIndex(({ isComponent1Title }) => !isComponent1Title)
 	}
 
 	const handleHover = (index: number) => {
-		const items = elements.current?.querySelectorAll('li')
-		if (!items) return
+		const elems = ul.current?.querySelectorAll('li')
+		if (!elems) return
 
 		const activeIndex = activeItemIndex()
 
 		let prevItem = undefined
 		let nextItem = undefined
-		for (let i = 0; i < items.length; i++) {
-			const li = items[i]
+		for (let i = 0; i < elems.length; i++) {
+			const li = elems[i]
 			const dataIndex = li.getAttribute('data-index')
 
 			if (dataIndex === activeIndex.toString()) {
@@ -134,8 +85,8 @@ export const GridList = ({ content, className }: Props) => {
 		if (!canBeChanged) return
 		setCanBeChanged(false)
 
-		for (let i = 0; i < items.length; i++) {
-			const li = items[i]
+		for (let i = 0; i < elems.length; i++) {
+			const li = elems[i]
 			li.classList.remove(
 				styles.rotateTop,
 				styles.rotateBottom,
@@ -148,7 +99,7 @@ export const GridList = ({ content, className }: Props) => {
 		}
 
 		const direction = directionToAnimate(activeIndex, index)
-		const classForRotation = classForRotationByDirection(direction)
+		const classToRotate = classForRotation(direction)
 
 		if (direction === 'bottom' || direction === 'top') {
 			prevItem.classList.add(styles.prepareRotateY)
@@ -158,8 +109,8 @@ export const GridList = ({ content, className }: Props) => {
 			nextItem.classList.add(styles.prepareRotateX)
 		}
 
-		prevItem.classList.add(classForRotation)
-		nextItem.classList.add(styles.onTop, classForRotation)
+		prevItem.classList.add(classToRotate)
+		nextItem.classList.add(styles.onTop, classToRotate)
 
 		setTimeout(() => {
 			prevItem.classList.remove(styles.transition)
@@ -178,16 +129,16 @@ export const GridList = ({ content, className }: Props) => {
 				styles.rotateLeft
 			)
 
-			setItemsState(prev => {
+			setElemsState(prev => {
 				return prev.map((item, i) => {
 					const isNewItem = i === index
 
 					return {
-						isElem1Title: !isNewItem,
-						isElem2Title: isNewItem,
-						isElem3Title: isNewItem,
-						isElem4Title: isNewItem,
-						isElem5Title: isNewItem,
+						isComponent1Title: !isNewItem,
+						isComponent2Title: isNewItem,
+						isComponent3Title: isNewItem,
+						isComponent4Title: isNewItem,
+						isComponent5Title: isNewItem,
 					}
 				})
 			})
@@ -202,9 +153,9 @@ export const GridList = ({ content, className }: Props) => {
 
 	return (
 		<div className={classNames(styles.main, className)}>
-			<ul ref={elements}>
+			<ul ref={ul}>
 				{content.map((data, i) => {
-					const itemState = itemsState[i]
+					const elemstate = elemsState[i]
 
 					return (
 						<li
@@ -216,27 +167,27 @@ export const GridList = ({ content, className }: Props) => {
 						>
 							<Item
 								{...data}
-								showTitle={itemState.isElem1Title}
+								showTitle={elemstate.isComponent1Title}
 								className={styles.wrapper1}
 							/>
 							<Item
 								{...data}
-								showTitle={itemState.isElem2Title}
+								showTitle={elemstate.isComponent2Title}
 								className={styles.wrapper2}
 							/>
 							<Item
 								{...data}
-								showTitle={itemState.isElem3Title}
+								showTitle={elemstate.isComponent3Title}
 								className={styles.wrapper3}
 							/>
 							<Item
 								{...data}
-								showTitle={itemState.isElem4Title}
+								showTitle={elemstate.isComponent4Title}
 								className={styles.wrapper4}
 							/>
 							<Item
 								{...data}
-								showTitle={itemState.isElem5Title}
+								showTitle={elemstate.isComponent5Title}
 								className={styles.wrapper5}
 							/>
 						</li>

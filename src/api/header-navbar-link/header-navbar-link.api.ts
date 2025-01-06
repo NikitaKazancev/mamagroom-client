@@ -1,7 +1,7 @@
 import { Language } from '@/i18n'
 import { basicQueryParams, request } from '../request'
 
-type HeaderNavbarLink = {
+export type HeaderNavbarLink = {
 	id: string
 	createdAt: Date
 	link?: string
@@ -14,7 +14,7 @@ type HeaderNavbarLink = {
 	sublinks: HeaderNavbarLink[]
 }
 
-type HeaderNavbarLinkDto = {
+export type HeaderNavbarLinkDto = {
 	language: Language
 	name: string
 	order?: number
@@ -28,10 +28,10 @@ class HeaderNavbarLinkApi {
 
 	async findMany(queryParams: { language?: Language; isDeleted?: boolean }) {
 		const url = `/${this.url}?${basicQueryParams(queryParams)}`
-		const data = await request({ url })
+		const data = (await request({ url })) as HeaderNavbarLink[]
 
 		if (data) {
-			return data as HeaderNavbarLink[]
+			return data
 		}
 
 		return []
@@ -39,41 +39,48 @@ class HeaderNavbarLinkApi {
 
 	async findById(id: string) {
 		const url = `/${this.url}/${id}`
-		const data = await request({ url })
+		const data = (await request({ url })) as HeaderNavbarLink
 
 		if (data) {
-			return data as HeaderNavbarLink
+			return data
 		}
 	}
 
 	async post(headerNavbarLink: HeaderNavbarLinkDto) {
 		const url = `/${this.url}`
-		const data = await request({
+		const data = (await request({
 			url,
 			method: 'post',
 			body: headerNavbarLink,
-		})
+		})) as HeaderNavbarLink
 
 		if (data) {
-			return data as HeaderNavbarLink
+			return data
 		}
 	}
 
 	async put(id: string, headerNavbarLink: HeaderNavbarLinkDto) {
 		const url = `/${this.url}/${id}`
-		const data = await request({ url, method: 'put', body: headerNavbarLink })
+		const data = (await request({
+			url,
+			method: 'put',
+			body: headerNavbarLink,
+		})) as HeaderNavbarLink
 
 		if (data) {
-			return data as HeaderNavbarLink
+			return data
 		}
 	}
 
 	async delete(id: string) {
 		const url = `/${this.url}/${id}`
-		const data = await request({ url, method: 'delete' })
+		const data = (await request({
+			url,
+			method: 'delete',
+		})) as HeaderNavbarLink
 
 		if (data) {
-			return data as HeaderNavbarLink
+			return data
 		}
 	}
 }

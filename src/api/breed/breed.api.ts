@@ -25,10 +25,10 @@ class BreedApi {
 
 	async findMany(queryParams: { language?: Language; isDeleted?: boolean }) {
 		const url = `/${this.url}?${basicQueryParams(queryParams)}`
-		const data = await request({ url })
+		const data = (await request({ url })) as Breed[]
 
 		if (data) {
-			return data as Breed[]
+			return data
 		}
 
 		return []
@@ -36,37 +36,41 @@ class BreedApi {
 
 	async findById(id: string) {
 		const url = `/${this.url}/${id}`
-		const data = await request({ url })
+		const data = (await request({ url })) as Breed
 
 		if (data) {
-			return data as Breed
+			return data
 		}
 	}
 
 	async post(breed: BreedDto) {
 		const url = `/${this.url}`
-		const data = await request({ url, method: 'post', body: breed })
+		const data = (await request({
+			url,
+			method: 'post',
+			body: breed,
+		})) as Breed
 
 		if (data) {
-			return data as Breed
+			return data
 		}
 	}
 
 	async put(id: string, breed: BreedDto) {
 		const url = `/${this.url}/${id}`
-		const data = await request({ url, method: 'put', body: breed })
+		const data = (await request({ url, method: 'put', body: breed })) as Breed
 
 		if (data) {
-			return data as Breed
+			return data
 		}
 	}
 
 	async delete(id: string) {
 		const url = `/${this.url}/${id}`
-		const data = await request({ url, method: 'delete' })
+		const data = (await request({ url, method: 'delete' })) as Breed
 
 		if (data) {
-			return data as Breed
+			return data
 		}
 	}
 }

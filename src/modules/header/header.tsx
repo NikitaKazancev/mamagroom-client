@@ -1,9 +1,9 @@
 'use client'
 
-import { HeaderNavbarLink } from '@/api/header-navbar-link/header-navbar-link.types'
+import { HeaderNavbarLink } from '@/api/header-navbar-link/header-navbar-link.api'
 import { Navbar } from '@/components/navbar/navbar'
 import { locales } from '@/i18n'
-import { Link, usePathname } from '@/navigation'
+import { usePathname } from '@/navigation'
 import { Button } from '@/ui/button/button'
 import { DropDown } from '@/ui/drop-down/drop-down'
 import { TelegramIcon } from '@/ui/icons/telegram/telegram'
@@ -69,9 +69,7 @@ export const Header = ({ navLinks, translations }: Props) => {
 					/>
 					<TelegramIcon theme={theme} />
 					<WhatsAppIcon theme={theme} />
-					<Link href={'/'}>
-						<Button text={translations.book} theme={theme} />
-					</Link>
+					<Button text={translations.book} theme={theme} />
 				</div>
 			</div>
 			<div className={styles.blurBlock}></div>

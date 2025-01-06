@@ -1,4 +1,4 @@
-import useFullTransparentBlockStore from '@/components/full-transparent-block/utils/store'
+import useFullTransparentBlockStore from '@/modules/full-transparent-block/utils/store'
 import classNames from 'classnames'
 import { useState } from 'react'
 import styles from './select.module.scss'

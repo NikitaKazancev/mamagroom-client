@@ -1,0 +1,33 @@
+.wrapper {
+	@apply fixed z-50 top-0 right-0 bottom-0 left-0 flex justify-center items-center bg-black/40 p-5;
+
+	&.hide {
+		@apply hidden;
+	}
+
+	.main {
+		@apply relative bg-white rounded-md px-5 py-4;
+		max-width: 50vw;
+		box-shadow: 0 0 100px black;
+
+		.header {
+			@apply flex justify-between items-center mb-5;
+
+			.title {
+				@apply text-3xl text-black font-semibold;
+			}
+
+			.exit {
+				@apply cursor-pointer;
+			}
+		}
+
+		.form {
+			@apply flex flex-col gap-3;
+
+			button {
+				@apply self-end;
+			}
+		}
+	}
+}

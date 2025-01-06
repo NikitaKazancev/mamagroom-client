@@ -1,0 +1,31 @@
+.wrapper {
+	@apply pt-6 pb-4;
+}
+
+.inputbox {
+	@apply relative text-xl min-w-96;
+
+	input {
+		@apply relative w-full px-2 py-2 bg-transparent outline-none shadow-none border-none  transition-all duration-500 z-10;
+
+		&:focus,
+		&.filled {
+			~ span {
+				transform: translateX(-6px) translateY(-36px);
+			}
+
+			~ i {
+				height: 44px;
+			}
+		}
+	}
+
+	span {
+		@apply absolute left-0 px-2 py-2 transition-all duration-500 pointer-events-none text-dark;
+	}
+
+	i {
+		@apply absolute left-0 bottom-0 w-full bg-secondary-800 rounded-md transition-all duration-500 pointer-events-none;
+		height: 2px;
+	}
+}

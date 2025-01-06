@@ -1,4 +1,4 @@
-import { TELEGRAM_LINK } from '@/constants/links.constants'
+import { LINKS } from '@/constants/links.constants'
 import classNames from 'classnames'
 import Link from 'next/link'
 import { FaTelegramPlane } from 'react-icons/fa'
@@ -10,7 +10,7 @@ type Props = {
 
 export const TelegramIcon = ({ theme }: Props) => {
 	return (
-		<Link href={TELEGRAM_LINK} target='_blank'>
+		<Link href={LINKS.foreign.telegram} target='_blank'>
 			<FaTelegramPlane className={classNames(styles.icon, styles[theme])} />
 		</Link>
 	)

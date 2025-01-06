@@ -1,5 +1,5 @@
 import { Language } from '@/i18n'
-import { basicQueryParams, request } from '../request'
+import { basicQueryParams, fullImageName, request } from '../request'
 
 type Master = {
 	name: string
@@ -25,10 +25,13 @@ class MasterApi {
 
 	async findMany(queryParams: { language?: Language; isDeleted?: boolean }) {
 		const url = `/${this.url}?${basicQueryParams(queryParams)}`
-		const data = await request({ url })
+		const data = (await request({ url })) as Master[]
 
 		if (data) {
-			return data as Master[]
+			data.forEach(master => {
+				master.imageName = fullImageName(master.imageName)
+			})
+			return data
 		}
 
 		return []
@@ -36,41 +39,49 @@ class MasterApi {
 
 	async findById(id: string) {
 		const url = `/${this.url}/${id}`
-		const data = await request({ url })
+		const data = (await request({ url })) as Master
 
 		if (data) {
-			return data as Master
+			data.imageName = fullImageName(data.imageName)
+			return data
 		}
 	}
 
 	async post(master: MasterDto) {
 		const url = `/${this.url}`
-		const data = await request({
+		const data = (await request({
 			url,
 			method: 'post',
 			body: master,
-		})
+		})) as Master
 
 		if (data) {
-			return data as Master
+			data.imageName = fullImageName(data.imageName)
+			return data
 		}
 	}
 
 	async put(id: string, master: MasterDto) {
 		const url = `/${this.url}/${id}`
-		const data = await request({ url, method: 'put', body: master })
+		const data = (await request({
+			url,
+			method: 'put',
+			body: master,
+		})) as Master
 
 		if (data) {
-			return data as Master
+			data.imageName = fullImageName(data.imageName)
+			return data
 		}
 	}
 
 	async delete(id: string) {
 		const url = `/${this.url}/${id}`
-		const data = await request({ url, method: 'delete' })
+		const data = (await request({ url, method: 'delete' })) as Master
 
 		if (data) {
-			return data as Master
+			data.imageName = fullImageName(data.imageName)
+			return data
 		}
 	}
 }
