@@ -42,7 +42,7 @@ const fetchData = async ({
 	body?: any
 	revalidateTag?: string
 }): Promise<unknown> => {
-	if (!ttl) ttl = 300
+	if (!ttl) ttl = 60 * 60 * 24 * 365
 
 	const config: RequestInit = {
 		next: {
