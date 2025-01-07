@@ -15,3 +15,24 @@ address {
 .relative {
 	position: relative;
 }
+
+* {
+	&::-webkit-scrollbar-track {
+		@apply bg-main-25;
+	}
+
+	&::-webkit-scrollbar {
+		width: 15px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		@apply bg-secondary-800;
+		border-radius: 10px;
+	}
+}
+
+body {
+	&.disable-scroll {
+		overflow: hidden;
+	}
+}

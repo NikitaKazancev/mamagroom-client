@@ -2,7 +2,7 @@
 	@apply pt-6 pb-4;
 }
 
-.inputbox {
+.container {
 	@apply relative text-xl min-w-96;
 
 	input {
@@ -21,11 +21,34 @@
 	}
 
 	span {
-		@apply absolute left-0 px-2 py-2 transition-all duration-500 pointer-events-none text-dark;
+		@apply absolute left-0 px-2 py-2 transition-all duration-500 pointer-events-none;
 	}
 
 	i {
-		@apply absolute left-0 bottom-0 w-full bg-secondary-800 rounded-md transition-all duration-500 pointer-events-none;
+		@apply absolute left-0 bottom-0 w-full rounded-md transition-all duration-500 pointer-events-none;
 		height: 2px;
+	}
+
+	&.light {
+		input {
+			@apply text-white;
+		}
+		span {
+			@apply text-dark;
+		}
+		i {
+			@apply bg-secondary-800;
+		}
+	}
+	&.dark {
+		input {
+			@apply text-dark;
+		}
+		span {
+			@apply text-white;
+		}
+		i {
+			@apply bg-secondary-300;
+		}
 	}
 }

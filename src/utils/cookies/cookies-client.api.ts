@@ -43,3 +43,7 @@ export const setToken = async (token: string) => {
 		})
 	}, 1000)
 }
+
+export const removeToken = async () => {
+	Cookies.remove(COOKIES.token)
+}

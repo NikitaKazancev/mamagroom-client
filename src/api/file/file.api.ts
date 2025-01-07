@@ -15,7 +15,11 @@ class FileAPI {
 
 	async post(path: FilePath, file: any) {
 		const url = `/${this.url}/${path}`
-		await request({ url, method: 'post', body: { file } })
+		await request({
+			url,
+			method: 'post',
+			body: { file },
+		})
 	}
 }
 

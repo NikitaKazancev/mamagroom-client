@@ -1,20 +1,22 @@
 import { mainSliderApi } from '@/api/main-slider/main-slider.api'
-import { Language } from '@/i18n'
+import { SettingsConstant } from '@/components/settings/constant/settings-constant'
 import { Slider } from '@/modules/slider/slider'
 import { Layout } from '@/ui/layout/layout'
+import { SectionTitle } from '@/ui/section-title/section-title'
 import { Section } from '@/ui/section/section'
+import { GeneralProps } from '@/utils/types'
 import styles from './about-us-section.module.scss'
 
 type Props = {
 	title: string
 	description: string
-	language: Language
+	generalProps: GeneralProps
 }
 
 export const MainPageAboutUs = async ({
 	title,
 	description,
-	language,
+	generalProps,
 }: Props) => {
 	const slideURLs = await mainSliderApi.findMany({ isDeleted: false })
 	const urls = slideURLs.map(data => data.imageName)
@@ -24,19 +26,35 @@ export const MainPageAboutUs = async ({
 			<Layout>
 				<div className={styles.content}>
 					<div className={styles.left}>
-						{/* <SettingsConstant
+						<SettingsConstant
 							data={{
-								language,
+								language: generalProps.language,
 								type: 'home-page',
 								name: 'about-us-title',
 								value: title,
 							}}
-							title='О нас'
+							title='Заголовок секции'
 							iconClassname={styles.settings}
+							type='constant_short'
+							roles={generalProps.roles}
 						>
 							<SectionTitle text={title} color='blue' />
-						</SettingsConstant> */}
-						<h4>{description}</h4>
+						</SettingsConstant>
+
+						<SettingsConstant
+							data={{
+								language: generalProps.language,
+								type: 'home-page',
+								name: 'about-us-description',
+								value: description,
+							}}
+							title='Описание секции'
+							iconClassname={styles.settings}
+							type='constant_long'
+							roles={generalProps.roles}
+						>
+							<h4>{description}</h4>
+						</SettingsConstant>
 					</div>
 
 					<div className={styles.right}>

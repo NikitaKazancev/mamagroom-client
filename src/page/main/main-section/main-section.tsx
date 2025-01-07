@@ -1,21 +1,21 @@
 import { fileApi } from '@/api/file/file.api'
 import { SettingsConstant } from '@/components/settings/constant/settings-constant'
-import { Language } from '@/i18n'
 import { Layout } from '@/ui/layout/layout'
 import { Section } from '@/ui/section/section'
+import { GeneralProps } from '@/utils/types'
 import Image from 'next/image'
 import styles from './main-section.module.scss'
 
 type Props = {
 	title: string
 	description: string
-	language: Language
+	generalProps: GeneralProps
 }
 
 export const MainPageMainSection = async ({
 	title,
 	description,
-	language,
+	generalProps,
 }: Props) => {
 	return (
 		<Section className={styles.main} bg={false} pTop={false} pBottom={false}>
@@ -30,25 +30,29 @@ export const MainPageMainSection = async ({
 				<div className={styles.headers}>
 					<SettingsConstant
 						data={{
-							language,
+							language: generalProps.language,
 							type: 'home-page',
 							name: 'main-title',
 							value: title,
 						}}
 						title='Главный заголовок'
 						iconClassname={styles.settings}
+						type='constant_short'
+						roles={generalProps.roles}
 					>
 						<h1>{title}</h1>
 					</SettingsConstant>
 					<SettingsConstant
 						data={{
-							language,
+							language: generalProps.language,
 							type: 'home-page',
 							name: 'main-description',
 							value: description,
 						}}
-						title='Главное содержание'
+						title='Главное описание'
 						iconClassname={styles.settings}
+						type='constant_long'
+						roles={generalProps.roles}
 					>
 						<h2>{description}</h2>
 					</SettingsConstant>

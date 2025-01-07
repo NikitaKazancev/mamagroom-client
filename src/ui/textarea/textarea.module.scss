@@ -1,0 +1,45 @@
+.wrapper {
+	@apply pt-6 pb-4;
+}
+
+.container {
+	@apply relative text-xl min-w-96;
+
+	textarea {
+		@apply relative w-full px-2 py-1 bg-transparent outline-none shadow-none border-none z-10  rounded-md h-36;
+
+		~ span {
+			@apply absolute left-0 px-2 py-2 transition-all duration-500 pointer-events-none;
+			transform: translateX(-6px) translateY(-36px);
+		}
+
+		&::-webkit-scrollbar-track {
+			@apply bg-white;
+		}
+
+		&::-webkit-scrollbar {
+			width: 10px;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			@apply rounded-none bg-gray-400;
+		}
+	}
+
+	&.light {
+		textarea {
+			@apply bg-secondary-800 text-white;
+		}
+		span {
+			@apply text-dark;
+		}
+	}
+	&.dark {
+		textarea {
+			@apply bg-secondary-300 text-dark;
+		}
+		span {
+			@apply text-white;
+		}
+	}
+}

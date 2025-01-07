@@ -1,6 +1,6 @@
+import { Logout } from '@/components/logout/logout'
 import { YandexMap } from '@/components/yandex/map/yandex-map'
 import { LINKS } from '@/constants/links.constants'
-import { LogoutIcon } from '@/ui/icons/logout/logout'
 import { TelegramIcon } from '@/ui/icons/telegram/telegram'
 import { WhatsAppIcon } from '@/ui/icons/whatsapp/whatsapp'
 import { Layout } from '@/ui/layout/layout'
@@ -8,9 +8,11 @@ import { Logo } from '@/ui/logo/logo'
 import { formatPhoneNumber } from '@/utils/functions'
 import { useTranslations } from 'next-intl'
 import Link from 'next/link'
+import { AuthForm } from '../auth/auth-form'
+import { Settings } from '../settings/settings'
 import styles from './footer.module.scss'
 
-export const Footer = () => {
+export const Footer = ({ token }: { token?: string }) => {
 	const t = useTranslations('Footer')
 
 	return (
@@ -52,8 +54,15 @@ export const Footer = () => {
 					<p>{t('copyright')}</p>
 				</div>
 			</Layout>
-			{/* <Settings formComponent={<Auth />} iconClassname={styles.auth} /> */}
-			<LogoutIcon className={styles.auth} />
+			{token ? (
+				<Logout className={styles.auth} />
+			) : (
+				<Settings
+					Component={AuthForm}
+					iconClassname={styles.auth}
+					type='auth'
+				/>
+			)}
 		</footer>
 	)
 }

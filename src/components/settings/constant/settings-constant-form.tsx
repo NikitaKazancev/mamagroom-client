@@ -1,25 +1,56 @@
 'use client'
 
 import { ConstantDto } from '@/api/constant/constant.types'
+import {
+	SettingFormSetData,
+	SettingsFormData,
+	SettingsFormType,
+} from '@/modules/settings/utils/store'
 import { Input } from '@/ui/input/input'
+import { TextArea } from '@/ui/textarea/textarea'
 
-export const SettingsConstantForm = (props: {
+export const SettingsConstantForm = ({
+	title,
+	data,
+	setData,
+	type,
+}: {
 	title?: string
-	data?: ConstantDto
-	setData?: (data: ConstantDto) => void
+	data: SettingsFormData
+	setData: SettingFormSetData
+	type: SettingsFormType
 }) => {
-	if (!props?.data || !props?.title || !props?.setData) return null
+	if (!title || !data) return null
+	const localData = data as ConstantDto
 
-	return (
-		<Input
-			title={props.title}
-			name='value'
-			required
-			value={props.data.value}
-			onChange={e => {
-				//@ts-ignore
-				props.setData({ ...props.data, value: e.target.value })
-			}}
-		/>
-	)
+	const onChange = (
+		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+	) => {
+		setData({ ...localData, [e.target.name]: e.target.value })
+	}
+
+	let result = null
+	if (type === 'constant_short') {
+		result = (
+			<Input
+				title={title}
+				name='value'
+				required
+				value={localData.value}
+				onChange={onChange}
+			/>
+		)
+	} else {
+		result = (
+			<TextArea
+				title={title}
+				name='value'
+				required
+				value={localData.value}
+				onChange={onChange}
+			/>
+		)
+	}
+
+	return result
 }

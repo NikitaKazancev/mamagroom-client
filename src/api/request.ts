@@ -145,4 +145,5 @@ export const fullImageName = (imageName?: string) => {
 
 export const revalidateTags = {
 	constants: 'constants',
+	files: 'files',
 }

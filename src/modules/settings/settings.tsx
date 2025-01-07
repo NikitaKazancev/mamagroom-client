@@ -1,9 +1,12 @@
 'use client'
 
-import useSettingsStore from '@/modules/settings/utils/store'
+import useSettingsStore, {
+	SettingsFormComponent,
+	SettingsFormData,
+	SettingsFormType,
+} from '@/modules/settings/utils/store'
 import { SettingsIcon } from '@/ui/icons/settings/settings'
 import classNames from 'classnames'
-import { ComponentType } from 'react'
 import styles from './settings.module.scss'
 
 export const Settings = ({
@@ -14,10 +17,10 @@ export const Settings = ({
 	data,
 }: {
 	iconClassname?: string
-	Component: ComponentType
-	componentProps: Record<string, any>
-	type: string
-	data: any
+	Component: SettingsFormComponent
+	componentProps?: Record<string, any>
+	type: SettingsFormType
+	data?: SettingsFormData
 }) => {
 	const { show } = useSettingsStore()
 

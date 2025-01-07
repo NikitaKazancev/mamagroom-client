@@ -1,5 +1,3 @@
-'use client'
-
 import classNames from 'classnames'
 import { MdLogout } from 'react-icons/md'
 import styles from './logout.module.scss'
@@ -9,12 +7,12 @@ export const LogoutIcon = ({
 	onClick,
 }: {
 	className?: string
-	onClick?: () => void
+	onClick: () => void
 }) => {
 	return (
 		<MdLogout
 			className={classNames(styles.icon, className)}
-			onClick={() => onClick?.()}
+			onClick={onClick}
 		/>
 	)
 }

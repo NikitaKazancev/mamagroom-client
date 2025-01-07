@@ -1,15 +1,13 @@
 'use client'
 
 import classNames from 'classnames'
-import { HTMLInputTypeAttribute } from 'react'
-import styles from './input.module.scss'
+import styles from './textarea.module.scss'
 
-export const Input = ({
+export const TextArea = ({
 	title,
 	required,
 	name,
 	value = '',
-	type = 'text',
 	onChange,
 	theme = 'light',
 }: {
@@ -17,23 +15,20 @@ export const Input = ({
 	name: string
 	required?: boolean
 	value?: string
-	type?: HTMLInputTypeAttribute
-	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+	onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
 	theme?: 'light' | 'dark'
 }) => {
 	return (
 		<div className={styles.wrapper}>
 			<div className={classNames(styles.container, styles[theme])}>
-				<input
+				<textarea
 					required={required}
-					type={type}
 					value={value}
-					className={classNames(styles.input, value && styles.filled)}
+					className={styles.input}
 					name={name}
 					onChange={onChange}
 				/>
 				<span>{title}</span>
-				<i></i>
 			</div>
 		</div>
 	)

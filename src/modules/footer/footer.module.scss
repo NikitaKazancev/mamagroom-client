@@ -51,6 +51,6 @@
 	}
 
 	.auth {
-		@apply absolute bottom-5 right-5;
+		@apply absolute bottom-5 right-5 left-auto top-auto translate-y-0;
 	}
 }

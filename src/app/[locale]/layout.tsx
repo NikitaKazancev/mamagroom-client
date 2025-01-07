@@ -6,11 +6,10 @@ import { Footer } from '@/modules/footer/footer'
 import { FullTransparentBlock } from '@/modules/full-transparent-block/full-transparent-block'
 import { Header } from '@/modules/header/header'
 import { SettingsForm } from '@/modules/settings/form/settings-form'
-import { fillRoles } from '@/utils/auth/auth'
+import { getToken } from '@/utils/cookies/cookies-server.api'
 import { getTranslations } from 'next-intl/server'
 import { Raleway } from 'next/font/google'
 import './globals.scss'
-import { Providers } from './provider'
 
 const inter = Raleway({
 	subsets: ['latin'],
@@ -45,24 +44,23 @@ export default async function RootLayout({
 	children: React.ReactNode
 	params: { locale: Language }
 }>) {
-	await fillRoles()
-
 	const navLinks = await headerNavbarLinkApi.findMany({
 		language: params.locale,
 		isDeleted: false,
 	})
 	const t = await getTranslations('General')
+	const token = await getToken()
 
 	return (
 		<html lang={params.locale}>
 			<link rel='icon' href='/logos/favicon.png' sizes='any' />
 			<body className={inter.className}>
 				<FullTransparentBlock />
-				<SettingsForm />
 				<Header translations={{ book: t('book') }} navLinks={navLinks} />
+				<SettingsForm />
 				<AcceptCookiePopUpServer />
-				<Providers>{children}</Providers>
-				<Footer />
+				{children}
+				<Footer token={token} />
 			</body>
 		</html>
 	)

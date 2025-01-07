@@ -1,9 +1,11 @@
+import { SettingsConstant } from '@/components/settings/constant/settings-constant'
 import { LINKS } from '@/constants/links.constants'
 import { Link } from '@/navigation'
 import { Layout } from '@/ui/layout/layout'
 import { SectionTitle } from '@/ui/section-title/section-title'
 import { Section } from '@/ui/section/section'
 import { Video } from '@/ui/video/video'
+import { GeneralProps } from '@/utils/types'
 import { LuCat, LuDog } from 'react-icons/lu'
 import styles from './procedures.module.scss'
 
@@ -12,6 +14,7 @@ type Props = {
 	dogsDescription: string
 	catsTitle: string
 	catsDescription: string
+	generalProps: GeneralProps
 }
 
 export const MainPageProcedures = ({
@@ -19,31 +22,85 @@ export const MainPageProcedures = ({
 	dogsDescription,
 	catsTitle,
 	catsDescription,
+	generalProps,
 }: Props) => {
 	return (
 		<Section className={styles.main}>
 			<Layout className={styles.layout}>
 				<div className={styles.titles}>
-					<Link href={LINKS.pages.dogs} className={styles.titleWrapper}>
-						<SectionTitle
-							text={dogsTitle}
-							color='blue'
-							className={styles.title}
-						/>
-						<div className={styles.icon}>{<LuDog />}</div>
-					</Link>
-					<Link href={LINKS.pages.cats} className={styles.titleWrapper}>
-						<SectionTitle
-							text={catsTitle}
-							color='blue'
-							className={styles.title}
-						/>
-						<div className={styles.icon}>{<LuCat />}</div>
-					</Link>
+					<SettingsConstant
+						data={{
+							language: generalProps.language,
+							type: 'home-page',
+							name: 'procedures-for-dogs-title',
+							value: dogsTitle,
+						}}
+						title='Заголовок'
+						iconClassname={styles.settings}
+						type='constant_short'
+						roles={generalProps.roles}
+					>
+						<Link href={LINKS.pages.dogs} className={styles.titleWrapper}>
+							<SectionTitle
+								text={dogsTitle}
+								color='blue'
+								className={styles.title}
+							/>
+							<div className={styles.icon}>{<LuDog />}</div>
+						</Link>
+					</SettingsConstant>
+					<SettingsConstant
+						data={{
+							language: generalProps.language,
+							type: 'home-page',
+							name: 'procedures-for-cats-title',
+							value: catsTitle,
+						}}
+						title='Заголовок'
+						iconClassname={styles.settings}
+						type='constant_short'
+						roles={generalProps.roles}
+					>
+						<Link href={LINKS.pages.cats} className={styles.titleWrapper}>
+							<SectionTitle
+								text={catsTitle}
+								color='blue'
+								className={styles.title}
+							/>
+							<div className={styles.icon}>{<LuCat />}</div>
+						</Link>
+					</SettingsConstant>
 				</div>
 				<div className={styles.descriptions}>
-					<p className={styles.description}>{dogsDescription}</p>
-					<p className={styles.description}>{catsDescription}</p>
+					<SettingsConstant
+						data={{
+							language: generalProps.language,
+							type: 'home-page',
+							name: 'procedures-for-dogs-description',
+							value: dogsDescription,
+						}}
+						title='Описание'
+						iconClassname={styles.settings}
+						type='constant_long'
+						roles={generalProps.roles}
+					>
+						<p className={styles.description}>{dogsDescription}</p>
+					</SettingsConstant>
+
+					<SettingsConstant
+						data={{
+							language: generalProps.language,
+							type: 'home-page',
+							name: 'procedures-for-cats-description',
+							value: catsDescription,
+						}}
+						title='Описание'
+						iconClassname={styles.settings}
+						type='constant_long'
+						roles={generalProps.roles}
+					>
+						<p className={styles.description}>{catsDescription}</p>
+					</SettingsConstant>
 				</div>
 				<div className={styles.videos}>
 					<Video

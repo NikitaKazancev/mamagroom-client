@@ -2,7 +2,9 @@ import { Role } from '@/api/user/user.types'
 import { jwtVerify } from 'jose'
 import { getToken } from '../cookies/cookies-server.api'
 
-export const ROLES: { [P in Role]: boolean } = {
+export type Roles = { [P in Role]: boolean }
+
+const ROLES: Roles = {
 	fullAccess: false,
 	deleteMarkedForDeletion: false,
 	userGet: false,
@@ -43,11 +45,11 @@ export const ROLES: { [P in Role]: boolean } = {
 	responseFromAIDelete: false,
 }
 
-export const fillRoles = async () => {
+export const getRoles = async () => {
 	const token = await getToken()
 	if (!token) {
 		fillWith(false)
-		return
+		return ROLES
 	}
 
 	const { payload } = await jwtVerify(
@@ -57,7 +59,7 @@ export const fillRoles = async () => {
 
 	if (!payload?.roles) {
 		fillWith(false)
-		return
+		return ROLES
 	}
 
 	const roles = payload.roles as Role[]
@@ -69,6 +71,8 @@ export const fillRoles = async () => {
 	for (const role of roles) {
 		ROLES[role] = true
 	}
+
+	return ROLES
 }
 
 const fillWith = (value: boolean) => {
