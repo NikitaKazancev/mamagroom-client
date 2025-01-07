@@ -5,6 +5,7 @@ const withNextIntl = createNextIntlPlugin()
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	images: {
+		minimumCacheTTL: 1,
 		remotePatterns: [
 			{
 				protocol: 'http',

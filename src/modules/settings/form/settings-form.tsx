@@ -4,6 +4,7 @@ import { AuthDto } from '@/api/auth/auth.api'
 import { login } from '@/api/auth/auth.server'
 import { putConstant } from '@/api/constant/constant.server'
 import { ConstantDto } from '@/api/constant/constant.types'
+import { postFile } from '@/api/file/file.server'
 import { Button } from '@/ui/button/button'
 import { ExitIcon } from '@/ui/icons/exit/exit'
 import { setToken } from '@/utils/cookies/cookies-client.api'
@@ -37,6 +38,10 @@ export const SettingsForm = () => {
 					setToken(token)
 				}
 			})
+		} else if (type === 'file') {
+			console.log(formData.get('file'))
+
+			postFile(formData)
 		}
 	}
 

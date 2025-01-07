@@ -1,5 +1,9 @@
 .wrapper {
 	@apply pt-6 pb-4;
+
+	&.hide {
+		@apply hidden;
+	}
 }
 
 .container {
@@ -10,7 +14,7 @@
 
 		&:focus,
 		&.filled {
-			~ span {
+			~ label {
 				transform: translateX(-6px) translateY(-36px);
 			}
 
@@ -20,7 +24,7 @@
 		}
 	}
 
-	span {
+	label {
 		@apply absolute left-0 px-2 py-2 transition-all duration-500 pointer-events-none;
 	}
 
@@ -33,7 +37,7 @@
 		input {
 			@apply text-white;
 		}
-		span {
+		label {
 			@apply text-dark;
 		}
 		i {
@@ -44,11 +48,73 @@
 		input {
 			@apply text-dark;
 		}
-		span {
+		label {
 			@apply text-white;
 		}
 		i {
 			@apply bg-secondary-300;
+		}
+	}
+}
+
+.fileContainer {
+	@apply bg-secondary-800 rounded-lg p-1;
+
+	input {
+		@apply p-2 m-1 relative outline-none text-white;
+
+		&::file-selector-button {
+			@apply text-black;
+			border-radius: 4px;
+			padding: 0 16px;
+			height: 40px;
+			cursor: pointer;
+			background-color: white;
+			border: 1px solid rgba(#000, 0.16);
+			box-shadow: 0px 1px 0px rgba(#000, 0.05);
+			margin-right: 16px;
+
+			width: 162px;
+			color: transparent;
+
+			@supports (-moz-appearance: none) {
+				color: var(--primary-color);
+			}
+
+			&:hover {
+				background-color: #f3f4f6;
+			}
+
+			&:active {
+				background-color: #e5e7eb;
+			}
+		}
+
+		&::before {
+			position: absolute;
+			pointer-events: none;
+			top: 18px;
+			left: 16px;
+			height: 20px;
+			width: 20px;
+			content: '';
+			background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22%23000000%22%3E%3Cpath%20d%3D%22M18%2015v3H6v-3H4v3c0%201.1.9%202%202%202h12c1.1%200%202-.9%202-2v-3h-2zM7%209l1.41%201.41L11%207.83V16h2V7.83l2.59%202.58L17%209l-5-5-5%205z%22%2F%3E%3C%2Fsvg%3E');
+		}
+
+		&::after {
+			@apply text-black;
+			position: absolute;
+			pointer-events: none;
+			top: 16px;
+			left: 40px;
+			// color: var(--primary-color);
+			content: 'Загрузить файл';
+		}
+
+		&:focus-within::file-selector-button,
+		&:focus::file-selector-button {
+			outline: 2px solid var(--primary-color);
+			outline-offset: 2px;
 		}
 	}
 }

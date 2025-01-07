@@ -1,7 +1,6 @@
 import { Language } from '@/i18n'
 import { getToken } from '@/utils/cookies/cookies-server.api'
 import axios, { AxiosRequestConfig } from 'axios'
-import FormData from 'form-data'
 
 export const SERVER_URL = process.env.API
 
@@ -105,21 +104,18 @@ const processRequestBody = (
 		config.headers = {}
 	}
 
-	if (body.file) {
-		const data = new FormData()
-		Object.keys(body).forEach(key => data.append(key, body[key]))
-
-		// @ts-ignore: Unreachable code error
+	if (body.constructor === FormData) {
+		// @ts-ignore
 		config.headers['Content-Type'] = 'multipart/form-data'
-		config.headers = {
-			...config.headers,
-			...data.getHeaders(),
-		}
+		// config.headers = {
+		// 	...config.headers,
+		// 	...body.getHeaders(),
+		// }
 
-		return data
+		return body
 	}
 
-	// @ts-ignore: Unreachable code error
+	// @ts-ignore
 	config.headers!['Content-Type'] = 'application/json'
 	return body
 }

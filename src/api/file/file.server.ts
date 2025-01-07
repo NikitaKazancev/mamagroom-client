@@ -7,5 +7,5 @@ export const postFile = async (formData: FormData) => {
 	const file = formData.get('file')
 	if (!file || !path) return
 
-	await fileApi.post(path as FilePath, file)
+	await fileApi.post(path as FilePath, formData)
 }

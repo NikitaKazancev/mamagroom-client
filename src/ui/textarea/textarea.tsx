@@ -28,7 +28,7 @@ export const TextArea = ({
 					name={name}
 					onChange={onChange}
 				/>
-				<span>{title}</span>
+				<label>{title}</label>
 			</div>
 		</div>
 	)

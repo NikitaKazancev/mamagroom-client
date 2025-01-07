@@ -8,7 +8,7 @@
 	textarea {
 		@apply relative w-full px-2 py-1 bg-transparent outline-none shadow-none border-none z-10  rounded-md h-36;
 
-		~ span {
+		~ label {
 			@apply absolute left-0 px-2 py-2 transition-all duration-500 pointer-events-none;
 			transform: translateX(-6px) translateY(-36px);
 		}
@@ -30,7 +30,7 @@
 		textarea {
 			@apply bg-secondary-800 text-white;
 		}
-		span {
+		label {
 			@apply text-dark;
 		}
 	}
@@ -38,7 +38,7 @@
 		textarea {
 			@apply bg-secondary-300 text-dark;
 		}
-		span {
+		label {
 			@apply text-white;
 		}
 	}

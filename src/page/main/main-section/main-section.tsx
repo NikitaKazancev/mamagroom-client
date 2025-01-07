@@ -1,5 +1,7 @@
 import { fileApi } from '@/api/file/file.api'
 import { SettingsConstant } from '@/components/settings/constant/settings-constant'
+import { SettingsFileForm } from '@/components/settings/file/settings-constant-form'
+import { Settings } from '@/modules/settings/settings'
 import { Layout } from '@/ui/layout/layout'
 import { Section } from '@/ui/section/section'
 import { GeneralProps } from '@/utils/types'
@@ -26,6 +28,13 @@ export const MainPageMainSection = async ({
 				height={59}
 				priority
 			/>
+			{generalProps.roles.filePostPut && (
+				<Settings
+					Component={SettingsFileForm}
+					iconClassname={styles.settings}
+					type='file'
+				/>
+			)}
 			<Layout>
 				<div className={styles.headers}>
 					<SettingsConstant
@@ -36,7 +45,6 @@ export const MainPageMainSection = async ({
 							value: title,
 						}}
 						title='Главный заголовок'
-						iconClassname={styles.settings}
 						type='constant_short'
 						roles={generalProps.roles}
 					>
@@ -50,7 +58,6 @@ export const MainPageMainSection = async ({
 							value: description,
 						}}
 						title='Главное описание'
-						iconClassname={styles.settings}
 						type='constant_long'
 						roles={generalProps.roles}
 					>

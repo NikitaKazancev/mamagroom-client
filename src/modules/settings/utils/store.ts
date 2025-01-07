@@ -9,7 +9,7 @@ export type SettingsFormType =
 	| 'auth'
 	| 'file'
 	| undefined
-export type SettingsFormData = ConstantDto | AuthDto | undefined
+export type SettingsFormData = ConstantDto | AuthDto | File | undefined
 export type SettingFormSetData = (data: SettingsFormData) => void
 export type SettingsFormComponent = ComponentType<{
 	data: SettingsFormData
