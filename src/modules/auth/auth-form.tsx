@@ -19,7 +19,7 @@ export const AuthForm = ({
 	}
 	const localData = data as AuthDto
 
-	const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+	const onChange = (e: any) => {
 		setData({ ...localData, [e.target.name]: e.target.value })
 	}
 
@@ -28,7 +28,6 @@ export const AuthForm = ({
 			<Input
 				name='email'
 				onChange={onChange}
-				theme='light'
 				title='Email'
 				required
 				type='email'
@@ -37,7 +36,6 @@ export const AuthForm = ({
 			<Input
 				name='password'
 				onChange={onChange}
-				theme='light'
 				title='Password'
 				required
 				type='password'

@@ -10,6 +10,7 @@ import { TelegramIcon } from '@/ui/icons/telegram/telegram'
 import { WhatsAppIcon } from '@/ui/icons/whatsapp/whatsapp'
 import { WorldIcon } from '@/ui/icons/world/world'
 import { Logo } from '@/ui/logo/logo'
+import { GeneralProps } from '@/utils/types'
 import classNames from 'classnames'
 import { useEffect, useState } from 'react'
 import styles from './header.module.scss'
@@ -19,9 +20,10 @@ type Props = {
 	translations: {
 		book: string
 	}
+	generalProps: GeneralProps
 }
 
-export const Header = ({ navLinks, translations }: Props) => {
+export const Header = ({ navLinks, translations, generalProps }: Props) => {
 	const alwaysDark = usePathname() !== '/'
 	const [isScrolled, setIsScrolled] = useState(alwaysDark)
 
@@ -54,7 +56,11 @@ export const Header = ({ navLinks, translations }: Props) => {
 		>
 			<div className={styles.content}>
 				<Logo theme={theme} />
-				<Navbar theme={theme} navLinks={navLinks} />
+				<Navbar
+					theme={theme}
+					navLinks={navLinks}
+					generalProps={generalProps}
+				/>
 				<div className={styles.rightSection}>
 					<DropDown
 						items={locales.map(locale => ({

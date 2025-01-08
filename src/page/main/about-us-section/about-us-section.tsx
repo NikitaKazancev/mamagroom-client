@@ -37,10 +37,10 @@ export const MainPageAboutUs = async ({
 							iconClassname={styles.settings}
 							type='constant_short'
 							roles={generalProps.roles}
+							theme='dark'
 						>
 							<SectionTitle text={title} color='blue' />
 						</SettingsConstant>
-
 						<SettingsConstant
 							data={{
 								language: generalProps.language,
@@ -52,6 +52,7 @@ export const MainPageAboutUs = async ({
 							iconClassname={styles.settings}
 							type='constant_long'
 							roles={generalProps.roles}
+							theme='dark'
 						>
 							<h4>{description}</h4>
 						</SettingsConstant>

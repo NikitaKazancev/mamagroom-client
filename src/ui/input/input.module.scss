@@ -22,6 +22,36 @@
 				height: 44px;
 			}
 		}
+
+		&[type='number'] {
+			-moz-appearance: textfield;
+			&::-webkit-outer-spin-button,
+			&::-webkit-inner-spin-button {
+				-webkit-appearance: none;
+				margin: 0;
+			}
+
+			~ .numberControls {
+				@apply flex gap-2 absolute right-3 top-1/2 -translate-y-1/2 z-10 content-center;
+
+				button {
+					@apply text-4xl text-dark;
+
+					&.minus {
+						transform: translateY(-2px);
+					}
+				}
+			}
+
+			&:focus,
+			&.filled {
+				~ .numberControls {
+					button {
+						@apply text-4xl text-white;
+					}
+				}
+			}
+		}
 	}
 
 	label {

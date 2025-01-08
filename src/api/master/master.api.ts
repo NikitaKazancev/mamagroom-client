@@ -3,7 +3,7 @@ import { basicQueryParams, fullImageName, request } from '../request'
 
 type Master = {
 	name: string
-	language: string
+	language: Language
 	isDeleted: boolean
 	id: string
 	imageName?: string
@@ -25,7 +25,10 @@ class MasterApi {
 
 	async findMany(queryParams: { language?: Language; isDeleted?: boolean }) {
 		const url = `/${this.url}?${basicQueryParams(queryParams)}`
-		const data = (await request({ url })) as Master[]
+		const data = (await request({
+			url,
+			revalidateTag: 'masters',
+		})) as Master[]
 
 		if (data) {
 			data.forEach(master => {

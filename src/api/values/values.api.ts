@@ -2,7 +2,7 @@ import { Language } from '@/i18n'
 import { basicQueryParams, fullImageName, request } from '../request'
 
 type Value = {
-	language: string
+	language: Language
 	isDeleted: boolean
 	id: string
 	imageName: string
@@ -28,7 +28,7 @@ class ValueApi {
 
 	async findMany(queryParams: { language?: Language; isDeleted?: boolean }) {
 		const url = `/${this.url}?${basicQueryParams(queryParams)}`
-		let data = (await request({ url })) as Value[]
+		let data = (await request({ url, revalidateTag: 'values' })) as Value[]
 
 		if (data) {
 			data.forEach(value => {

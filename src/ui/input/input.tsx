@@ -1,7 +1,7 @@
 'use client'
 
 import classNames from 'classnames'
-import { HTMLInputTypeAttribute } from 'react'
+import { HTMLInputTypeAttribute, useRef } from 'react'
 import styles from './input.module.scss'
 
 export const Input = ({
@@ -17,9 +17,13 @@ export const Input = ({
 	title: string
 	name: string
 	required?: boolean
-	value?: string
+	value?: string | number
 	type?: HTMLInputTypeAttribute
-	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+	onChange?: (
+		data:
+			| React.ChangeEvent<HTMLInputElement>
+			| { name: string; value: string | number }
+	) => void
 	theme?: 'light' | 'dark'
 	invisible?: boolean
 }) => {
@@ -27,17 +31,21 @@ export const Input = ({
 		required?: boolean
 		type?: HTMLInputTypeAttribute
 		name: string
-		value?: string
-		onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+		value?: string | number
+		onChange?: (
+			data:
+				| React.ChangeEvent<HTMLInputElement>
+				| { name: string; value: string | number }
+		) => void
 	} = {
 		required,
 		type,
 		name,
+		value: value || '',
 	}
 
-	if (value) {
-		props.value = value
-	}
+	const input = useRef<HTMLInputElement>(null)
+
 	if (onChange) {
 		props.onChange = onChange
 	}
@@ -50,15 +58,49 @@ export const Input = ({
 		)
 	}
 
+	let decreaseValue = undefined
+	let increaseValue = undefined
+	if (type === 'number') {
+		const changeNumberValue = (value: number) => {
+			if (!input.current || !onChange) return
+			onChange({
+				name,
+				value: Number(input.current.value) + value,
+			})
+		}
+
+		decreaseValue = () => changeNumberValue(-1)
+		increaseValue = () => changeNumberValue(1)
+	}
+
 	return (
 		<div className={classNames(styles.wrapper, invisible && styles.hide)}>
 			<div className={classNames(styles.container, styles[theme])}>
 				<input
 					{...props}
 					className={classNames(styles.input, value && styles.filled)}
+					ref={input}
 				/>
 				<label>{title}</label>
 				<i></i>
+				{type === 'number' && (
+					<div className={styles.numberControls}>
+						<button
+							type='button'
+							className={styles.minus}
+							onClick={decreaseValue}
+						>
+							-
+						</button>
+						<button
+							type='button'
+							className={styles.plus}
+							onClick={increaseValue}
+						>
+							+
+						</button>
+					</div>
+				)}
 			</div>
 		</div>
 	)

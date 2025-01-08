@@ -7,7 +7,7 @@ type Breed = {
 	id: string
 	createdAt: Date
 	name: string
-	language: string
+	language: Language
 	updatedAt: Date
 	isDeleted: boolean
 	type: BreedType
@@ -25,7 +25,7 @@ class BreedApi {
 
 	async findMany(queryParams: { language?: Language; isDeleted?: boolean }) {
 		const url = `/${this.url}?${basicQueryParams(queryParams)}`
-		const data = (await request({ url })) as Breed[]
+		const data = (await request({ url, revalidateTag: 'breeds' })) as Breed[]
 
 		if (data) {
 			return data

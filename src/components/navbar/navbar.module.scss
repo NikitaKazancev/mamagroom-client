@@ -10,18 +10,24 @@
 	&.dark {
 		.item {
 			@apply text-black;
-			&:hover {
-				@apply text-secondary-700;
-			}
+		}
+
+		.hover:hover {
+			@apply text-secondary-700;
 		}
 	}
 
 	&.light {
 		.item {
 			@apply text-white;
-			&:hover {
-				@apply text-secondary-200;
-			}
 		}
+
+		.hover:hover {
+			@apply text-secondary-200;
+		}
+	}
+
+	.settings {
+		@apply left-auto top-auto translate-y-0 right-0 -top-4;
 	}
 }

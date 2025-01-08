@@ -6,7 +6,7 @@ class UserApi {
 
 	async findMany(queryParams: { isDeleted?: boolean }) {
 		const url = `/${this.url}?${basicQueryParams(queryParams)}`
-		const data = (await request({ url })) as User[]
+		const data = (await request({ url, revalidateTag: 'users' })) as User[]
 
 		if (data) {
 			return data

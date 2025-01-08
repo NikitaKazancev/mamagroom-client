@@ -1,18 +1,18 @@
 import classNames from 'classnames'
-import { RiCloseLargeLine } from 'react-icons/ri'
-import styles from './exit.module.scss'
+import { FaCheck } from 'react-icons/fa'
+import styles from './check.module.scss'
 
-export const ExitIcon = ({
+export const CheckIcon = ({
 	className,
 	onClick,
-	theme = 'dark',
+	theme = 'green',
 }: {
 	className?: string
 	onClick?: () => void
-	theme?: 'light' | 'dark' | 'red'
+	theme?: 'light' | 'dark' | 'green'
 }) => {
 	return (
-		<RiCloseLargeLine
+		<FaCheck
 			className={classNames(styles.icon, styles[theme], className)}
 			onClick={() => onClick?.()}
 		/>

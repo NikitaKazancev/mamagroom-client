@@ -1,5 +1,6 @@
 import { AuthDto } from '@/api/auth/auth.api'
 import { ConstantDto } from '@/api/constant/constant.types'
+import { HeaderNavbarLinkDto } from '@/api/header-navbar-link/header-navbar-link.api'
 import { ComponentType } from 'react'
 import { create } from 'zustand'
 
@@ -8,8 +9,14 @@ export type SettingsFormType =
 	| 'constant_long'
 	| 'auth'
 	| 'file'
+	| 'header-navbar-link'
 	| undefined
-export type SettingsFormData = ConstantDto | AuthDto | File | undefined
+export type SettingsFormData =
+	| ConstantDto
+	| AuthDto
+	| File
+	| HeaderNavbarLinkDto
+	| undefined
 export type SettingFormSetData = (data: SettingsFormData) => void
 export type SettingsFormComponent = ComponentType<{
 	data: SettingsFormData

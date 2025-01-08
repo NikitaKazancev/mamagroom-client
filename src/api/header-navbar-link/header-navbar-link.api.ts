@@ -6,7 +6,7 @@ export type HeaderNavbarLink = {
 	createdAt: Date
 	link?: string
 	name: string
-	language: string
+	language: Language
 	updatedAt: Date
 	isDeleted: boolean
 	order: number
@@ -15,6 +15,7 @@ export type HeaderNavbarLink = {
 }
 
 export type HeaderNavbarLinkDto = {
+	id: string
 	language: Language
 	name: string
 	order?: number
@@ -28,7 +29,10 @@ class HeaderNavbarLinkApi {
 
 	async findMany(queryParams: { language?: Language; isDeleted?: boolean }) {
 		const url = `/${this.url}?${basicQueryParams(queryParams)}`
-		const data = (await request({ url })) as HeaderNavbarLink[]
+		const data = (await request({
+			url,
+			revalidateTag: 'header-navbar-links',
+		})) as HeaderNavbarLink[]
 
 		if (data) {
 			return data
@@ -59,8 +63,8 @@ class HeaderNavbarLinkApi {
 		}
 	}
 
-	async put(id: string, headerNavbarLink: HeaderNavbarLinkDto) {
-		const url = `/${this.url}/${id}`
+	async put(headerNavbarLink: HeaderNavbarLinkDto) {
+		const url = `/${this.url}/${headerNavbarLink.id}`
 		const data = (await request({
 			url,
 			method: 'put',

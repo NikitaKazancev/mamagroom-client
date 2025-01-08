@@ -1,21 +1,21 @@
 'use server'
 
 import { removeToken, setToken } from '@/utils/cookies/cookies-server.api'
-import { authApi, AuthDto } from './auth.api'
+import { objectFromFormData } from '@/utils/functions'
+import { authApi } from './auth.api'
 
-export const login = async (formData: FormData, initialData: AuthDto) => {
-	const email = formData.get('email')
-	const password = formData.get('password')
-	if (!email || !password) return
+export const login = async (formData: FormData) => {
+	const data = objectFromFormData(formData)
+	if (!data.email || !data.password) return
 
-	const data = await authApi.login({
-		email: email.toString(),
-		password: password.toString(),
+	const fetchedData = await authApi.login({
+		email: data.email.toString(),
+		password: data.password.toString(),
 	})
 
-	if (data) {
-		setToken(data.token)
-		return data.token
+	if (fetchedData) {
+		setToken(fetchedData.token)
+		return fetchedData.token
 	}
 }
 

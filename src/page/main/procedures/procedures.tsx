@@ -39,6 +39,7 @@ export const MainPageProcedures = ({
 						iconClassname={styles.settings}
 						type='constant_short'
 						roles={generalProps.roles}
+						theme='dark'
 					>
 						<Link href={LINKS.pages.dogs} className={styles.titleWrapper}>
 							<SectionTitle
@@ -60,6 +61,7 @@ export const MainPageProcedures = ({
 						iconClassname={styles.settings}
 						type='constant_short'
 						roles={generalProps.roles}
+						theme='dark'
 					>
 						<Link href={LINKS.pages.cats} className={styles.titleWrapper}>
 							<SectionTitle
@@ -83,6 +85,7 @@ export const MainPageProcedures = ({
 						iconClassname={styles.settings}
 						type='constant_long'
 						roles={generalProps.roles}
+						theme='dark'
 					>
 						<p className={styles.description}>{dogsDescription}</p>
 					</SettingsConstant>
@@ -98,6 +101,7 @@ export const MainPageProcedures = ({
 						iconClassname={styles.settings}
 						type='constant_long'
 						roles={generalProps.roles}
+						theme='dark'
 					>
 						<p className={styles.description}>{catsDescription}</p>
 					</SettingsConstant>

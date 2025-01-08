@@ -8,7 +8,7 @@ type Procedure = {
 	updatedAt: Date
 	isDeleted: boolean
 	description?: string
-	language: string
+	language: Language
 }
 
 type ProcedureDto = {
@@ -38,7 +38,10 @@ class ProcedureApi {
 			res = (await request({ url, body: { ...data, file } })) as Procedure[]
 		} else {
 			const url = `/${this.url}?${basicQueryParams({ language, isDeleted })}`
-			res = (await request({ url })) as Procedure[]
+			res = (await request({
+				url,
+				revalidateTag: 'procedures',
+			})) as Procedure[]
 		}
 
 		if (res) {

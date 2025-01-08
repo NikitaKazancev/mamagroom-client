@@ -1,5 +1,5 @@
 .wrapper {
-	@apply fixed z-50 top-0 right-0 bottom-0 left-0 flex justify-center items-center bg-black/40 p-5;
+	@apply fixed z-50 top-0 right-0 bottom-0 left-0 flex justify-center items-center bg-black/30 p-5;
 
 	&.hide {
 		@apply hidden;
@@ -8,7 +8,7 @@
 	.main {
 		@apply relative bg-white rounded-md px-5 py-4;
 		max-width: 50vw;
-		box-shadow: 0 0 100px black;
+		box-shadow: 0 0 20px rgb(97, 97, 97);
 
 		.header {
 			@apply flex justify-between items-center mb-5;
@@ -23,7 +23,7 @@
 		}
 
 		.form {
-			@apply flex flex-col gap-3;
+			@apply flex flex-col;
 
 			button {
 				@apply self-end;

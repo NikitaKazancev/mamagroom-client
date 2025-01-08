@@ -3,7 +3,7 @@ import { basicQueryParams, request } from '../request'
 
 type Vacancy = {
 	name: string
-	language: string
+	language: Language
 	isDeleted: boolean
 	id: string
 	createdAt: Date
@@ -23,7 +23,10 @@ class VacancyApi {
 
 	async findMany(queryParams: { language?: Language; isDeleted?: boolean }) {
 		const url = `/${this.url}?${basicQueryParams(queryParams)}`
-		const data = (await request({ url })) as Vacancy[]
+		const data = (await request({
+			url,
+			revalidateTag: 'vacancies',
+		})) as Vacancy[]
 
 		if (data) {
 			return data

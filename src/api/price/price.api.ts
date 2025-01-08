@@ -30,7 +30,7 @@ class PriceApi {
 		time?: number
 	}) {
 		const url = `/${this.url}?${this.queryParams(queryParams)}`
-		const data = (await request({ url })) as Price[]
+		const data = (await request({ url, revalidateTag: 'prices' })) as Price[]
 
 		if (data) {
 			return data

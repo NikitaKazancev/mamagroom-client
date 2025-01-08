@@ -21,7 +21,10 @@ class MainSliderApi {
 
 	async findMany(queryParams: { isDeleted?: boolean }) {
 		const url = `/${this.url}?${basicQueryParams(queryParams)}`
-		const data = (await request({ url })) as MainSlider[]
+		const data = (await request({
+			url,
+			revalidateTag: 'main-slider',
+		})) as MainSlider[]
 
 		if (data) {
 			data.forEach(mainSlider => {

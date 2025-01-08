@@ -26,13 +26,12 @@ address {
 	}
 
 	&::-webkit-scrollbar-thumb {
-		@apply bg-secondary-800;
-		border-radius: 10px;
+		@apply bg-secondary-800 rounded-s-lg;
 	}
 }
 
 body {
 	&.disable-scroll {
-		overflow: hidden;
+		@apply overflow-hidden;
 	}
 }

@@ -26,3 +26,6 @@ export const formatPhoneNumber = (phone: string) => {
 
 	return `${countryCode} (${areaCode}) ${firstPart}-${secondPart}-${thirdPart}`
 }
+
+export const objectFromFormData = (formData: FormData) =>
+	Object.fromEntries(formData.entries())

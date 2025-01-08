@@ -1,3 +1,19 @@
 .icon {
-	@apply size-5;
+	@apply size-5 transition-all duration-200;
+
+	&.light {
+		@apply text-light;
+
+		&:hover {
+			@apply text-gray-300;
+		}
+	}
+
+	&.dark {
+		@apply text-dark;
+
+		&:hover {
+			@apply text-gray-500;
+		}
+	}
 }

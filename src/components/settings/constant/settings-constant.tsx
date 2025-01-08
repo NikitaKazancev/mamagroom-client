@@ -19,6 +19,7 @@ export const SettingsConstant = ({
 	iconClassname,
 	type,
 	roles,
+	theme,
 }: {
 	children: React.ReactNode
 	title: Title
@@ -26,17 +27,19 @@ export const SettingsConstant = ({
 	iconClassname?: string
 	type: SettingsFormType
 	roles: Roles
+	theme?: 'light' | 'dark'
 }) => {
 	return (
 		<div className='relative'>
 			{children}
-			{roles.constantPost && (
+			{roles.constantPut && (
 				<Settings
 					Component={SettingsConstantForm}
 					componentProps={{ title }}
 					iconClassname={iconClassname}
 					type={type}
 					data={data}
+					theme={theme}
 				/>
 			)}
 		</div>

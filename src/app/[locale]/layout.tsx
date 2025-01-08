@@ -6,7 +6,9 @@ import { Footer } from '@/modules/footer/footer'
 import { FullTransparentBlock } from '@/modules/full-transparent-block/full-transparent-block'
 import { Header } from '@/modules/header/header'
 import { SettingsForm } from '@/modules/settings/form/settings-form'
+import { getRoles } from '@/utils/auth/auth'
 import { getToken } from '@/utils/cookies/cookies-server.api'
+import { GeneralProps } from '@/utils/types'
 import { getTranslations } from 'next-intl/server'
 import { Raleway } from 'next/font/google'
 import './globals.scss'
@@ -44,19 +46,30 @@ export default async function RootLayout({
 	children: React.ReactNode
 	params: { locale: Language }
 }>) {
-	const navLinks = await headerNavbarLinkApi.findMany({
-		language: params.locale,
-		isDeleted: false,
-	})
 	const t = await getTranslations('General')
 	const token = await getToken()
+	const roles = await getRoles()
+	const generalProps: GeneralProps = { roles, language: params.locale }
 
+	const navLinks = await headerNavbarLinkApi.findMany({
+		language: params.locale,
+		isDeleted:
+			roles.headerNavbarLinkPost ||
+			roles.headerNavbarLinkPut ||
+			roles.headerNavbarLinkDelete
+				? undefined
+				: false,
+	})
 	return (
 		<html lang={params.locale}>
 			<link rel='icon' href='/logos/favicon.png' sizes='any' />
 			<body className={inter.className}>
 				<FullTransparentBlock />
-				<Header translations={{ book: t('book') }} navLinks={navLinks} />
+				<Header
+					translations={{ book: t('book') }}
+					navLinks={navLinks}
+					generalProps={generalProps}
+				/>
 				<SettingsForm />
 				<AcceptCookiePopUpServer />
 				{children}

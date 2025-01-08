@@ -19,10 +19,12 @@ export const MainPageMainSection = async ({
 	description,
 	generalProps,
 }: Props) => {
+	const fileUrl = await fileApi.findDestination('pages/home', 'main-bg')
+
 	return (
 		<Section className={styles.main} bg={false} pTop={false} pBottom={false}>
 			<Image
-				src={fileApi.findDestination('mainBg')}
+				src={fileUrl ? fileUrl : ''}
 				alt='МамагруМ'
 				width={1920}
 				height={59}
@@ -33,6 +35,7 @@ export const MainPageMainSection = async ({
 					Component={SettingsFileForm}
 					iconClassname={styles.settings}
 					type='file'
+					theme='light'
 				/>
 			)}
 			<Layout>

@@ -26,7 +26,7 @@ export type FullConstantName = Record<`${ConstantType}_${ConstantName}`, string>
 export type Constant = {
 	createdAt: Date
 	name: CamelToKebab<ConstantName>
-	language: string
+	language: Language
 	updatedAt: Date
 	type: CamelToKebab<ConstantType>
 	value: string

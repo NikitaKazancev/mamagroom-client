@@ -23,9 +23,7 @@ export const SettingsConstantForm = ({
 	if (!title || !data) return null
 	const localData = data as ConstantDto
 
-	const onChange = (
-		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-	) => {
+	const onChange = (e: any) => {
 		setData({ ...localData, [e.target.name]: e.target.value })
 	}
 

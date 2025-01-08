@@ -13,7 +13,7 @@ export const request = async ({
 	body,
 }: {
 	url: string
-	revalidateTag?: string
+	revalidateTag?: RevalidateTag
 	method?: 'get' | 'post' | 'put' | 'delete'
 	ttl?: number
 	auth?: boolean
@@ -46,7 +46,7 @@ const fetchData = async ({
 	const config: RequestInit = {
 		next: {
 			revalidate: ttl,
-			tags: [revalidateTag || url],
+			tags: revalidateTag ? [revalidateTag] : undefined,
 		},
 	}
 
@@ -56,17 +56,19 @@ const fetchData = async ({
 	}
 
 	if (body) {
-		config.body = processRequestBody(body, config)
+		processRequestByBody(body, config)
+		config.body = body
 	}
 
-	try {
-		return await fetch(`${SERVER_URL}${url}`, config)
-			.then(res => res.json())
-			.catch(console.error)
-	} catch (error) {
-		console.error(`Error fetching url "${url}": `, error)
-		return undefined
-	}
+	return await fetch(`${SERVER_URL}${url}`, config)
+		.then(res => res.json())
+		.catch(error =>
+			console.error(
+				`Error fetching url "${url}": `,
+				error.message,
+				error.response?.data
+			)
+		)
 }
 
 const mutation = async ({
@@ -88,15 +90,22 @@ const mutation = async ({
 	}
 
 	if (body) {
-		config.data = processRequestBody(body, config)
+		processRequestByBody(body, config)
+		config.data = body
 	}
 
 	return await axios(config)
 		.then(res => res.data)
-		.catch(console.error)
+		.catch(error =>
+			console.error(
+				`Error fetching url "${url}": `,
+				error.message,
+				error.response?.data
+			)
+		)
 }
 
-const processRequestBody = (
+const processRequestByBody = (
 	body: any,
 	config: AxiosRequestConfig | RequestInit
 ) => {
@@ -107,17 +116,10 @@ const processRequestBody = (
 	if (body.constructor === FormData) {
 		// @ts-ignore
 		config.headers['Content-Type'] = 'multipart/form-data'
-		// config.headers = {
-		// 	...config.headers,
-		// 	...body.getHeaders(),
-		// }
-
-		return body
+	} else {
+		// @ts-ignore
+		config.headers['Content-Type'] = 'application/json'
 	}
-
-	// @ts-ignore
-	config.headers!['Content-Type'] = 'application/json'
-	return body
 }
 
 export const basicQueryParams = ({
@@ -139,7 +141,18 @@ export const fullImageName = (imageName?: string) => {
 	return imageName ? `${SERVER_URL}${imageName}` : ''
 }
 
-export const revalidateTags = {
+export const REVALIDATE_TAGS = {
+	breeds: 'breeds',
 	constants: 'constants',
 	files: 'files',
-}
+	headerNavbarLink: 'header-navbar-links',
+	mainSlider: 'main-slider',
+	masters: 'masters',
+	prices: 'prices',
+	procedures: 'procedures',
+	users: 'users',
+	vacancies: 'vacancies',
+	values: 'values',
+} as const
+export type RevalidateTag =
+	(typeof REVALIDATE_TAGS)[keyof typeof REVALIDATE_TAGS]

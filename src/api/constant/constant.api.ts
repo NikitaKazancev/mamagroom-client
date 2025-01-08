@@ -1,6 +1,6 @@
 import { Language } from '@/i18n'
 import { kebabToCamel } from '@/utils/functions'
-import { request, revalidateTags } from '../request'
+import { request } from '../request'
 import {
 	Constant,
 	CONSTANT_NAMES,
@@ -22,7 +22,7 @@ class ConstantApi {
 		const url = `/${this.url}?${this.queryParams(queryParams)}`
 		const data = (await request({
 			url,
-			revalidateTag: revalidateTags.constants,
+			revalidateTag: 'constants',
 		})) as Constant[]
 
 		if (!data) {

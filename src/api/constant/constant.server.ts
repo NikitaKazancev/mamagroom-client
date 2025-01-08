@@ -1,7 +1,8 @@
 'use server'
 
+import { objectFromFormData } from '@/utils/functions'
 import { revalidateTag } from 'next/cache'
-import { revalidateTags } from '../request'
+import { REVALIDATE_TAGS } from '../request'
 import { constantApi } from './constant.api'
 import { ConstantDto } from './constant.types'
 
@@ -9,12 +10,12 @@ export const putConstant = async (
 	formData: FormData,
 	initialData: ConstantDto
 ) => {
-	const value = formData.get('value')
-	if (!value) return
+	const data = objectFromFormData(formData)
+	if (!data.value) return
 
 	await constantApi.put({
 		...initialData,
-		value: value.toString(),
+		...data,
 	})
-	revalidateTag(revalidateTags.constants)
+	revalidateTag(REVALIDATE_TAGS.constants)
 }

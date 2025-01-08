@@ -1,0 +1,30 @@
+'use server'
+
+import { objectFromFormData } from '@/utils/functions'
+import { revalidateTag } from 'next/cache'
+import { REVALIDATE_TAGS } from '../request'
+import {
+	headerNavbarLinkApi,
+	HeaderNavbarLinkDto,
+} from './header-navbar-link.api'
+
+export const putHeaderNavbarLink = async (
+	formData: FormData,
+	initialData: HeaderNavbarLinkDto
+) => {
+	const data = objectFromFormData(formData)
+	if (!data.name || !data.order) return
+
+	await headerNavbarLinkApi.put({ ...initialData, ...data })
+	revalidateTag(REVALIDATE_TAGS.headerNavbarLink)
+}
+
+export const deleteHeaderNavbarLink = async (id: string) => {
+	await headerNavbarLinkApi.delete(id)
+	revalidateTag(REVALIDATE_TAGS.headerNavbarLink)
+}
+
+export const recoverHeaderNavbarLink = async (data: HeaderNavbarLinkDto) => {
+	await headerNavbarLinkApi.put({ ...data, isDeleted: false })
+	revalidateTag(REVALIDATE_TAGS.headerNavbarLink)
+}
