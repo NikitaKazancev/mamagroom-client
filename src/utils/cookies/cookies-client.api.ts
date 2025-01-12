@@ -8,10 +8,6 @@ import {
 
 import { COOKIES } from './cookies.general'
 
-export const getCookie = async (cookieName: COOKIES) => {
-	return Cookies.get(cookieName)
-}
-
 export const setCookie = async (
 	cookieName: COOKIES,
 	value: string,
@@ -26,10 +22,6 @@ export const setCookie = async (
 			sameSite: 'lax',
 		})
 	}, 1000)
-}
-
-export const getToken = async () => {
-	return Cookies.get(COOKIES.token)
 }
 
 export const setToken = async (token: string) => {

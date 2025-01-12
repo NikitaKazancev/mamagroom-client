@@ -1,3 +1,5 @@
+'use client'
+
 import useFullTransparentBlockStore from '@/modules/full-transparent-block/utils/store'
 import { Link } from '@/navigation'
 import classNames from 'classnames'

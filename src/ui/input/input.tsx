@@ -63,9 +63,13 @@ export const Input = ({
 	if (type === 'number') {
 		const changeNumberValue = (value: number) => {
 			if (!input.current || !onChange) return
+
+			const currentValue = Number(input.current.value)
+			if (currentValue <= 0 && value < 0) return
+
 			onChange({
 				name,
-				value: Number(input.current.value) + value,
+				value: currentValue + value,
 			})
 		}
 

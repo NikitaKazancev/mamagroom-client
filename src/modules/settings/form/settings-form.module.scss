@@ -23,10 +23,10 @@
 		}
 
 		.form {
-			@apply flex flex-col;
+			@apply flex flex-col gap-3;
 
 			button {
-				@apply self-end;
+				@apply self-end mt-1;
 			}
 		}
 	}

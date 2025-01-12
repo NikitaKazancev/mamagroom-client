@@ -10,12 +10,15 @@ import { Button } from '@/ui/button/button'
 import { ExitIcon } from '@/ui/icons/exit/exit'
 import { setToken } from '@/utils/cookies/cookies-client.api'
 import classNames from 'classnames'
+import { useRef } from 'react'
 import useSettingsStore from '../utils/store'
 import styles from './settings-form.module.scss'
 
 export const SettingsForm = () => {
 	const { hide, isShown, componentProps, type, Component, data, setData } =
 		useSettingsStore()
+
+	const form = useRef<HTMLFormElement>(null)
 
 	let formElems: {
 		title: string
@@ -26,17 +29,23 @@ export const SettingsForm = () => {
 		formElems = { title: 'Авторизация', buttonText: 'Войти' }
 	}
 
+	const closeAndClearForm = () => {
+		if (form.current) form.current.reset()
+		hide()
+	}
+
 	const onWrapperClick = (e: React.MouseEvent<HTMLDivElement>) => {
 		if (e.target === e.currentTarget) {
-			hide()
+			closeAndClearForm()
 		}
 	}
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
-		hide()
-
 		const formData = new FormData(e.currentTarget)
+
+		closeAndClearForm()
+
 		if (type && type.startsWith('constant')) {
 			putConstant(formData, data as ConstantDto)
 		} else if (type === 'auth') {
@@ -62,7 +71,7 @@ export const SettingsForm = () => {
 					<h2 className={styles.title}>{formElems.title}</h2>
 					<ExitIcon className={styles.exit} theme='dark' onClick={hide} />
 				</div>
-				<form onSubmit={handleSubmit} className={styles.form}>
+				<form onSubmit={handleSubmit} className={styles.form} ref={form}>
 					{Component && (
 						<Component
 							{...componentProps}

@@ -45,8 +45,9 @@ const ROLES: Roles = {
 	responseFromAIDelete: false,
 }
 
-export const getRoles = async () => {
-	const token = await getToken()
+export const getRoles = async (jwtToken: string | undefined = undefined) => {
+	let token = jwtToken
+	if (token === undefined) token = await getToken() // not an empty string
 	if (!token) {
 		fillWith(false)
 		return ROLES

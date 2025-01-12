@@ -48,7 +48,7 @@ export default async function RootLayout({
 }>) {
 	const t = await getTranslations('General')
 	const token = await getToken()
-	const roles = await getRoles()
+	const roles = await getRoles(token ? token : '')
 	const generalProps: GeneralProps = { roles, language: params.locale }
 
 	const navLinks = await headerNavbarLinkApi.findMany({

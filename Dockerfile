@@ -16,8 +16,6 @@ COPY bun.lockb /client/
 COPY package.json /client/
 COPY package-lock.json /client/
 
-# RUN npm install -g bun@1.1.21
-# RUN bun install
 RUN npm install
 RUN npm run build
 

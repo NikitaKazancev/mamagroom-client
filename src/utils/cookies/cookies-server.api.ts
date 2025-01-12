@@ -19,7 +19,10 @@ export const setCookie = async (
 }
 
 export const getToken = async () => {
-	return cookies().get(COOKIES.token)?.value || undefined
+	const cookie = cookies()
+
+	if (!cookie.has(COOKIES.token)) return undefined
+	return cookie.get(COOKIES.token)?.value || undefined
 }
 
 export const setToken = async (token: string) => {
@@ -31,11 +34,5 @@ export const setToken = async (token: string) => {
 }
 
 export const removeToken = async () => {
-	// cookies().set(COOKIES.token, '', {
-	// 	expires: 7,
-	// 	sameSite: 'lax',
-	// 	secure: true,
-	// })
-
 	cookies().delete(COOKIES.token)
 }
