@@ -7,7 +7,6 @@ COPY /public /client/public
 COPY /messages /client/messages
 COPY /secrets /client/secrets
 # COPY .env /client/
-COPY ./next-env.d.ts /client/
 COPY next.config.mjs /client/
 COPY postcss.config.mjs /client/
 COPY tailwind.config.ts /client/
