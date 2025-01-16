@@ -17,6 +17,6 @@ export const putConstant = async (
 		...initialData,
 		...data,
 	})
-	console.log(res)
+	console.log(Date.now(), res)
 	revalidateTag(REVALIDATE_TAGS.constants)
 }
