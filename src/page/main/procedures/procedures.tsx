@@ -112,7 +112,7 @@ export const MainPageProcedures = ({
 						className={styles.video}
 					/>
 					<Video
-						src={LINKS.video.dogsProcedures}
+						src={LINKS.video.catsProcedures}
 						className={styles.video}
 					/>
 				</div>
