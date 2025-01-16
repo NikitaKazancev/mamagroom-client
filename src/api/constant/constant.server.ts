@@ -13,10 +13,9 @@ export const putConstant = async (
 	const data = objectFromFormData(formData)
 	if (!data.value) return
 
-	const res = await constantApi.put({
+	await constantApi.put({
 		...initialData,
 		...data,
 	})
-	console.log(Date.now(), res)
 	revalidateTag(REVALIDATE_TAGS.constants)
 }
