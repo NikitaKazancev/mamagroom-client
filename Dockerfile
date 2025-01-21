@@ -1,21 +1,14 @@
 FROM node:current-slim
 
-WORKDIR /client
+WORKDIR /app
+COPY . .
+ENV NODE_ENV=production
 
-COPY /src /client/src
-COPY /public /client/public
-COPY /messages /client/messages
-COPY next.config.mjs /client/
-COPY postcss.config.mjs /client/
-COPY tailwind.config.ts /client/
-COPY tsconfig.json /client/
-COPY bun.lockb /client/
-COPY package.json /client/
-COPY package-lock.json /client/
-
-RUN npm install
+RUN npm install bun -g
+RUN bun install
 RUN npm run build
+RUN cp -r public .next/standalone/ && cp -r .next/static .next/standalone/.next/
 
 EXPOSE 80
 
-CMD ["npm", "run", "start"]
+CMD ["bun", ".next/standalone/server.js"]
