@@ -25,6 +25,8 @@ export const AuthForm = ({
 		setData({ ...localData, [e.target.name]: e.target.value })
 	}
 
+	const recaptchaKey = '6LdeucAqAAAAAI-7CwmII_NzojrXyUWqRS7TEfJb'
+
 	return (
 		<>
 			<Input
@@ -45,7 +47,7 @@ export const AuthForm = ({
 			/>
 			<ReCAPTCHA
 				size='normal'
-				sitekey={process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_KEY as string}
+				sitekey={recaptchaKey}
 				theme='light'
 				className={styles.recaptcha}
 			/>
