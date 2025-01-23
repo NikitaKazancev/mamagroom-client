@@ -11,6 +11,7 @@ import { WorkingPopup } from '@/temp/working-popup/working-popup'
 import { getRoles } from '@/utils/auth/auth'
 import { getToken } from '@/utils/cookies/cookies-server.api'
 import { GeneralProps } from '@/utils/types'
+import { Metadata } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 import { Raleway } from 'next/font/google'
@@ -27,7 +28,7 @@ export async function generateMetadata({
 	params,
 }: {
 	params: { locale: string }
-}) {
+}): Promise<Metadata> {
 	const t = await getTranslations({
 		namespace: 'General',
 		locale: params.locale,
@@ -39,6 +40,10 @@ export async function generateMetadata({
 			template: `%s | ${t('siteName')}`,
 		},
 		description: t('metadataDescription'),
+		verification: {
+			google: 'H36KGQNSmi2SdKelkImPwdO69JOYLUcSvNfabDWJ9wU',
+			yandex: 'adefe41fd50ead4c',
+		},
 	}
 }
 
