@@ -4,7 +4,7 @@ import { getToken } from '@/utils/cookies/cookies-server.api'
 import axios, { AxiosRequestConfig } from 'axios'
 
 export const SERVER_URL = process.env.API
-const initialTtl = 10
+const initialTtl = process.env.NODE_ENV === 'development' ? 1 : 60 * 5
 
 export const request = async ({
 	url,
