@@ -4,7 +4,7 @@ WORKDIR /app
 COPY . .
 ENV NODE_ENV=production
 
-RUN npm install bun -g
+RUN npm install -g bun@1.1.45
 RUN bun install
 RUN npm run build
 RUN cp -r public .next/standalone/ && cp -r .next/static .next/standalone/.next/
