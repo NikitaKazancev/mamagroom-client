@@ -11,6 +11,9 @@ export const login = async (formData: FormData) => {
 	const fetchedData = await authApi.login({
 		email: data.email.toString(),
 		password: data.password.toString(),
+		recaptchaToken: data['g-recaptcha-response']
+			? data['g-recaptcha-response'].toString()
+			: undefined,
 	})
 
 	if (fetchedData) {

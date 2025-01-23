@@ -1,0 +1,7 @@
+.recaptcha {
+	@apply mt-1 min-h-20;
+
+	> div > div {
+		@apply mx-auto;
+	}
+}

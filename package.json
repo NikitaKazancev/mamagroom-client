@@ -1,6 +1,6 @@
 {
 	"name": "mamagroom-client",
-	"version": "0.4.2",
+	"version": "0.4.3",
 	"private": true,
 	"repository": {
 		"type": "git",
@@ -30,6 +30,7 @@
 		"node-fetch": "^3.3.2",
 		"react": "^18",
 		"react-dom": "^18",
+		"react-google-recaptcha": "^3.1.0",
 		"react-i18next": "^15.0.0",
 		"react-icons": "^5.2.1",
 		"redis": "^4.7.0",
@@ -44,6 +45,7 @@
 		"@types/node": "^22.2.0",
 		"@types/react": "^18",
 		"@types/react-dom": "^18",
+		"@types/react-google-recaptcha": "^2.1.9",
 		"@types/redis": "^4.0.10",
 		"eslint": "^8",
 		"eslint-config-next": "14.2.5",

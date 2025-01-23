@@ -7,6 +7,7 @@ import { postFile } from '@/api/file/file.server'
 import { HeaderNavbarLinkDto } from '@/api/header-navbar-link/header-navbar-link.api'
 import { putHeaderNavbarLink } from '@/api/header-navbar-link/header-navbar-link.server'
 import usePopUpStore from '@/components/pop-up/utils/store'
+import { AuthFormBtns } from '@/modules/auth/auth-form-btns'
 import { Button } from '@/ui/button/button'
 import { ExitIcon } from '@/ui/icons/exit/exit'
 import { setToken } from '@/utils/cookies/cookies-client.api'
@@ -27,7 +28,7 @@ export const SettingsForm = () => {
 		setData,
 	} = useSettingsStore()
 
-	const { show } = usePopUpStore()
+	const { show, hide: hidePopUp } = usePopUpStore()
 
 	const form = useRef<HTMLFormElement>(null)
 
@@ -42,6 +43,7 @@ export const SettingsForm = () => {
 
 	const closeAndClearForm = () => {
 		if (form.current) form.current.reset()
+		hidePopUp()
 		hide()
 	}
 
@@ -56,19 +58,28 @@ export const SettingsForm = () => {
 		const formData = new FormData(e.currentTarget)
 
 		let result: SettingsFormResultType = undefined
-		if (type && type.startsWith('constant')) {
-			result = await putConstant(formData, data as ConstantDto)
-		} else if (type === 'auth') {
+		if (type === 'auth') {
 			result = await login(formData)
-			if (result) setToken(result)
+			if (result) {
+				setToken(result)
+				closeAndClearForm()
+			} else {
+				show({
+					message: 'Неверные данные',
+				})
+			}
+
+			return
+		} else if (type === 'file') {
+			postFile(formData)
+			result = 'true'
+		} else if (type && type.startsWith('constant')) {
+			result = await putConstant(formData, data as ConstantDto)
 		} else if (type === 'header-navbar-link') {
 			result = await putHeaderNavbarLink(
 				formData,
 				data as HeaderNavbarLinkDto
 			)
-		} else if (type === 'file') {
-			postFile(formData)
-			result = 'true'
 		}
 
 		if (!result) {
@@ -101,7 +112,18 @@ export const SettingsForm = () => {
 							allData={allData}
 						/>
 					)}
-					<Button text={formElems.buttonText} theme='dark' />
+					<div className={styles.buttons}>
+						{type === 'auth' && (
+							<div className={styles.leftBtns}>
+								<AuthFormBtns btnStyle={styles.btn} />
+							</div>
+						)}
+						<Button
+							className={styles.btn}
+							text={formElems.buttonText}
+							theme='dark'
+						/>
+					</div>
 				</form>
 			</div>
 		</div>

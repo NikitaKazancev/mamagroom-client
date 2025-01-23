@@ -2,7 +2,9 @@
 
 import { AuthDto } from '@/api/auth/auth.api'
 import { Input } from '@/ui/input/input'
+import ReCAPTCHA from 'react-google-recaptcha'
 import { SettingFormSetData, SettingsFormData } from '../settings/utils/store'
+import styles from './auth-form.module.scss'
 
 export const AuthForm = ({
 	data,
@@ -40,6 +42,12 @@ export const AuthForm = ({
 				required
 				type='password'
 				value={localData.password}
+			/>
+			<ReCAPTCHA
+				size='normal'
+				sitekey={process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_KEY as string}
+				theme='light'
+				className={styles.recaptcha}
 			/>
 		</>
 	)

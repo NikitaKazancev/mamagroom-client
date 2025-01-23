@@ -2,13 +2,14 @@ import classNames from 'classnames'
 import styles from './button.module.scss'
 
 interface Props {
-	text: string
+	text?: string
+	Icon?: React.ReactNode
 	theme: 'dark' | 'light'
 	className?: string
 	onClick?: () => void
 }
 
-export const Button = ({ text, theme, className, onClick }: Props) => {
+export const Button = ({ text, theme, className, onClick, Icon }: Props) => {
 	const clazz = classNames(styles.button, {
 		[styles.dark]: theme === 'dark',
 		[styles.light]: theme === 'light',
@@ -16,7 +17,7 @@ export const Button = ({ text, theme, className, onClick }: Props) => {
 	})
 	return (
 		<button className={clazz} onClick={onClick}>
-			{text}
+			{Icon ? Icon : text}
 		</button>
 	)
 }

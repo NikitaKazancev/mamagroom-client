@@ -7,6 +7,9 @@
 
 		&:hover {
 			@apply bg-secondary-800 text-white border-secondary-800;
+			* {
+				@apply text-white;
+			}
 		}
 	}
 
@@ -14,7 +17,10 @@
 		@apply text-white border-secondary-300;
 
 		&:hover {
-			@apply bg-secondary-300 text-dark border-secondary-300;
+			@apply bg-secondary-300 text-dark border-secondary-300 !important;
+			* {
+				@apply text-dark;
+			}
 		}
 	}
 }

@@ -1,5 +1,5 @@
 .icon {
-	@apply size-5;
+	@apply size-5 transition-colors duration-200;
 
 	&.light {
 		@apply text-white;

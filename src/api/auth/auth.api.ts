@@ -16,6 +16,7 @@ type Auth = {
 export type AuthDto = {
 	email: string
 	password: string
+	recaptchaToken?: string
 }
 
 class AuthApi {
@@ -28,6 +29,7 @@ class AuthApi {
 			method: 'post',
 			body: auth,
 			auth: false,
+			recaptchaToken: auth.recaptchaToken,
 		})) as Auth
 
 		if (data) {

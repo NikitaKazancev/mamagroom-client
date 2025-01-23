@@ -3,7 +3,7 @@ import { Language } from '@/i18n/types'
 import { getToken } from '@/utils/cookies/cookies-server.api'
 import axios, { AxiosRequestConfig } from 'axios'
 
-export const SERVER_URL = process.env.API
+export const SERVER_URL = process.env.NEXT_PUBLIC_API
 const initialTtl = process.env.NODE_ENV === 'development' ? 1 : 60 * 5
 
 export const request = async ({
@@ -13,6 +13,7 @@ export const request = async ({
 	ttl,
 	auth,
 	body,
+	recaptchaToken,
 }: {
 	url: string
 	revalidateTag?: RevalidateTag
@@ -20,6 +21,7 @@ export const request = async ({
 	ttl?: number
 	auth?: boolean
 	body?: any
+	recaptchaToken?: string
 }) => {
 	if (!method) method = 'get'
 
@@ -27,7 +29,7 @@ export const request = async ({
 		return await fetchData({ url, ttl, auth, revalidateTag })
 	}
 
-	return await mutation({ url, method, body })
+	return await mutation({ url, method, body, recaptchaToken })
 }
 
 const fetchData = async ({
@@ -77,10 +79,12 @@ const mutation = async ({
 	url,
 	method,
 	body,
+	recaptchaToken,
 }: {
 	url: string
 	method: 'post' | 'put' | 'delete'
 	body?: any
+	recaptchaToken?: string
 }): Promise<unknown> => {
 	const config: AxiosRequestConfig = {
 		method,
@@ -94,6 +98,10 @@ const mutation = async ({
 	if (body) {
 		processRequestByBody(body, config)
 		config.data = body
+	}
+
+	if (recaptchaToken && config.headers) {
+		config.headers['recaptcha'] = recaptchaToken
 	}
 
 	return await axios(config)
