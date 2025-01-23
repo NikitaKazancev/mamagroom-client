@@ -1,4 +1,4 @@
-import { Language } from '@/i18n'
+import { Language } from '@/i18n/types'
 import { basicQueryParams, fullImageName, request } from '../request'
 
 type Value = {

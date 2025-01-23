@@ -1,21 +1,28 @@
 'use client'
 
-import { HeaderNavbarLinkDto } from '@/api/header-navbar-link/header-navbar-link.api'
+import {
+	HeaderNavbarLink,
+	HeaderNavbarLinkDto,
+} from '@/api/header-navbar-link/header-navbar-link.api'
 import {
 	SettingFormSetData,
 	SettingsFormData,
 } from '@/modules/settings/utils/store'
+import { DropDown } from '@/ui/drop-down/drop-down'
 import { Input } from '@/ui/input/input'
 
 export const SettingsHeaderNavbarLinkForm = ({
 	data,
 	setData,
+	allData,
 }: {
 	data: SettingsFormData
 	setData: SettingFormSetData
+	allData?: HeaderNavbarLink[]
 }) => {
-	if (!data) return
+	if (!data || !allData) return
 	const localData = data as HeaderNavbarLinkDto
+	const localAllData = allData as HeaderNavbarLink[]
 
 	const onChange = (e: any) => {
 		if (e.target) {
@@ -48,12 +55,9 @@ export const SettingsHeaderNavbarLinkForm = ({
 				title='Ссылка'
 				value={localData.link}
 			/>
-			<Input
-				type='number'
-				name='parentLinkId'
-				onChange={onChange}
-				title='ID родительской категории'
-				value={localData.parentLinkId}
+			<DropDown
+				items={localAllData.map(data => data.name)}
+				titleElement={<div>Test</div>}
 			/>
 		</>
 	)

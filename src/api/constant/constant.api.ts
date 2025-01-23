@@ -1,4 +1,4 @@
-import { Language } from '@/i18n'
+import { Language } from '@/i18n/types'
 import { kebabToCamel } from '@/utils/functions'
 import { request } from '../request'
 import {

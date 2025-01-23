@@ -1,4 +1,7 @@
-import { HeaderNavbarLinkDto } from '@/api/header-navbar-link/header-navbar-link.api'
+import {
+	HeaderNavbarLink,
+	HeaderNavbarLinkDto,
+} from '@/api/header-navbar-link/header-navbar-link.api'
 import { Settings } from '@/modules/settings/settings'
 import { Roles } from '@/utils/auth/auth'
 import { SettingsHeaderNavbarLinkForm } from './settings-header-navbar-link-form'
@@ -9,12 +12,14 @@ export const SettingsHeaderNavbarLink = ({
 	iconClassname,
 	roles,
 	theme,
+	allData,
 }: {
 	children: React.ReactNode
 	data: HeaderNavbarLinkDto
 	iconClassname?: string
 	roles: Roles
 	theme?: 'light' | 'dark'
+	allData: HeaderNavbarLink[]
 }) => {
 	return (
 		<div className='relative'>
@@ -27,6 +32,7 @@ export const SettingsHeaderNavbarLink = ({
 					data={data}
 					theme={theme}
 					isDeleted={data.isDeleted}
+					allData={allData}
 				/>
 			)}
 		</div>

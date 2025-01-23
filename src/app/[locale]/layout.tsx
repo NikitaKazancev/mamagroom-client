@@ -1,14 +1,17 @@
 // import { Comfortaa, Quicksand, Raleway, Montserrat, Nunito, Poppins } from 'next/font/google'
 import { headerNavbarLinkApi } from '@/api/header-navbar-link/header-navbar-link.api'
-import { Language } from '@/i18n'
+import { PopUp } from '@/components/pop-up/pop-up'
+import { Language } from '@/i18n/types'
 import { AcceptCookiePopUpServer } from '@/modules/accept-cookie-pop-up/accept-cookie-pop-up-server'
 import { Footer } from '@/modules/footer/footer'
 import { FullTransparentBlock } from '@/modules/full-transparent-block/full-transparent-block'
 import { Header } from '@/modules/header/header'
 import { SettingsForm } from '@/modules/settings/form/settings-form'
+import { WorkingPopup } from '@/temp/working-popup/working-popup'
 import { getRoles } from '@/utils/auth/auth'
 import { getToken } from '@/utils/cookies/cookies-server.api'
 import { GeneralProps } from '@/utils/types'
+import { NextIntlClientProvider } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 import { Raleway } from 'next/font/google'
 import './globals.scss'
@@ -63,17 +66,33 @@ export default async function RootLayout({
 	return (
 		<html lang={params.locale}>
 			<link rel='icon' href='/logos/favicon.png' sizes='any' />
+			<link
+				rel='preload'
+				href='/logos/logo-row-dark.png'
+				as='image'
+				fetchPriority='high'
+			/>
+			<link
+				rel='preload'
+				href='/logos/logo-row-light.png'
+				as='image'
+				fetchPriority='high'
+			/>
 			<body className={inter.className}>
-				<FullTransparentBlock />
-				<Header
-					translations={{ book: t('book') }}
-					navLinks={navLinks}
-					generalProps={generalProps}
-				/>
-				<SettingsForm />
-				<AcceptCookiePopUpServer />
-				{children}
-				<Footer token={token} />
+				<NextIntlClientProvider>
+					<PopUp />
+					{process.env.NODE_ENV === 'production' && <WorkingPopup />}
+					<AcceptCookiePopUpServer />
+					<FullTransparentBlock />
+					<Header
+						translations={{ book: t('book') }}
+						navLinks={navLinks}
+						generalProps={generalProps}
+					/>
+					<SettingsForm />
+					{children}
+					<Footer token={token} />
+				</NextIntlClientProvider>
 			</body>
 		</html>
 	)

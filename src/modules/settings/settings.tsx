@@ -6,6 +6,7 @@ import {
 	recoverHeaderNavbarLink,
 } from '@/api/header-navbar-link/header-navbar-link.server'
 import useSettingsStore, {
+	SettingsFormAllData,
 	SettingsFormComponent,
 	SettingsFormData,
 	SettingsFormType,
@@ -24,6 +25,7 @@ export const Settings = ({
 	data,
 	theme,
 	isDeleted,
+	allData,
 }: {
 	iconClassname?: string
 	Component: SettingsFormComponent
@@ -32,11 +34,12 @@ export const Settings = ({
 	data?: SettingsFormData
 	theme?: 'light' | 'dark'
 	isDeleted?: boolean
+	allData?: SettingsFormAllData
 }) => {
 	const { show } = useSettingsStore()
 
 	const handleClick = () => {
-		show({ componentProps, type, Component, data })
+		show({ componentProps, type, Component, data, allData })
 	}
 
 	const onDelete = () => {

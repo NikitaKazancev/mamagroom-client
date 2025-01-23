@@ -1,7 +1,7 @@
 'use client'
 
+import { Link } from '@/i18n/routing'
 import useFullTransparentBlockStore from '@/modules/full-transparent-block/utils/store'
-import { Link } from '@/navigation'
 import classNames from 'classnames'
 import { useEffect, useState } from 'react'
 import styles from './drop-down.module.scss'

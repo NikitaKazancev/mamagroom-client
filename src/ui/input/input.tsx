@@ -2,6 +2,7 @@
 
 import classNames from 'classnames'
 import { HTMLInputTypeAttribute, useRef } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 import styles from './input.module.scss'
 
 export const Input = ({
@@ -65,7 +66,7 @@ export const Input = ({
 			if (!input.current || !onChange) return
 
 			const currentValue = Number(input.current.value)
-			if (currentValue <= 0 && value < 0) return
+			if (currentValue <= 1 && value < 1) return
 
 			onChange({
 				name,
@@ -77,6 +78,8 @@ export const Input = ({
 		increaseValue = () => changeNumberValue(1)
 	}
 
+	const id = uuidv4()
+
 	return (
 		<div className={classNames(styles.wrapper, invisible && styles.hide)}>
 			<div className={classNames(styles.container, styles[theme])}>
@@ -84,8 +87,10 @@ export const Input = ({
 					{...props}
 					className={classNames(styles.input, value && styles.filled)}
 					ref={input}
+					autoComplete='on'
+					id={id}
 				/>
-				<label>{title}</label>
+				<label htmlFor={id}>{title}</label>
 				<i></i>
 				{type === 'number' && (
 					<div className={styles.numberControls}>

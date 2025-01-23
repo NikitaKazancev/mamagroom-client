@@ -1,8 +1,10 @@
-import { Language } from '@/i18n'
+/* eslint-disable no-console */
+import { Language } from '@/i18n/types'
 import { getToken } from '@/utils/cookies/cookies-server.api'
 import axios, { AxiosRequestConfig } from 'axios'
 
 export const SERVER_URL = process.env.API
+const initialTtl = 10
 
 export const request = async ({
 	url,
@@ -41,7 +43,7 @@ const fetchData = async ({
 	body?: any
 	revalidateTag?: string
 }): Promise<unknown> => {
-	if (!ttl) ttl = 60 * 5
+	if (!ttl) ttl = initialTtl
 
 	const config: RequestInit = {
 		next: {

@@ -2,8 +2,7 @@
 
 import { HeaderNavbarLink } from '@/api/header-navbar-link/header-navbar-link.api'
 import { Navbar } from '@/components/navbar/navbar'
-import { locales } from '@/i18n'
-import { usePathname } from '@/navigation'
+import { routing, usePathname } from '@/i18n/routing'
 import { Button } from '@/ui/button/button'
 import { DropDown } from '@/ui/drop-down/drop-down'
 import { TelegramIcon } from '@/ui/icons/telegram/telegram'
@@ -63,7 +62,7 @@ export const Header = ({ navLinks, translations, generalProps }: Props) => {
 				/>
 				<div className={styles.rightSection}>
 					<DropDown
-						items={locales.map(locale => ({
+						items={routing.locales.map(locale => ({
 							title: locale,
 							href: '/',
 							locale,

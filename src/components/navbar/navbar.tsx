@@ -26,6 +26,7 @@ export const Navbar = ({ theme, navLinks, generalProps }: Props) => {
 							roles={generalProps.roles}
 							iconClassname={styles.settings}
 							theme={theme}
+							allData={navLinks}
 						>
 							{link ? (
 								<Link className={styles.hover} href={link}>

@@ -6,17 +6,28 @@ import { ConstantDto } from '@/api/constant/constant.types'
 import { postFile } from '@/api/file/file.server'
 import { HeaderNavbarLinkDto } from '@/api/header-navbar-link/header-navbar-link.api'
 import { putHeaderNavbarLink } from '@/api/header-navbar-link/header-navbar-link.server'
+import usePopUpStore from '@/components/pop-up/utils/store'
 import { Button } from '@/ui/button/button'
 import { ExitIcon } from '@/ui/icons/exit/exit'
 import { setToken } from '@/utils/cookies/cookies-client.api'
 import classNames from 'classnames'
 import { useRef } from 'react'
-import useSettingsStore from '../utils/store'
+import useSettingsStore, { SettingsFormResultType } from '../utils/store'
 import styles from './settings-form.module.scss'
 
 export const SettingsForm = () => {
-	const { hide, isShown, componentProps, type, Component, data, setData } =
-		useSettingsStore()
+	const {
+		hide,
+		isShown,
+		componentProps,
+		type,
+		Component,
+		data,
+		allData,
+		setData,
+	} = useSettingsStore()
+
+	const { show } = usePopUpStore()
 
 	const form = useRef<HTMLFormElement>(null)
 
@@ -40,31 +51,40 @@ export const SettingsForm = () => {
 		}
 	}
 
-	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 		const formData = new FormData(e.currentTarget)
 
-		closeAndClearForm()
-
+		let result: SettingsFormResultType = undefined
 		if (type && type.startsWith('constant')) {
-			putConstant(formData, data as ConstantDto)
+			result = await putConstant(formData, data as ConstantDto)
 		} else if (type === 'auth') {
-			login(formData).then(token => {
-				if (token) {
-					setToken(token)
-				}
-			})
+			result = await login(formData)
+			if (result) setToken(result)
+		} else if (type === 'header-navbar-link') {
+			result = await putHeaderNavbarLink(
+				formData,
+				data as HeaderNavbarLinkDto
+			)
 		} else if (type === 'file') {
 			postFile(formData)
-		} else if (type === 'header-navbar-link') {
-			putHeaderNavbarLink(formData, data as HeaderNavbarLinkDto)
+			result = 'true'
+		}
+
+		if (!result) {
+			show({
+				message:
+					'Произошла ошибка. Скорее всего такой элемент уже существует',
+			})
+		} else {
+			closeAndClearForm()
 		}
 	}
 
 	return (
 		<div
 			className={classNames(styles.wrapper, !isShown && styles.hide)}
-			onClick={onWrapperClick}
+			onDoubleClick={onWrapperClick}
 		>
 			<div className={styles.main}>
 				<div className={styles.header}>
@@ -78,6 +98,7 @@ export const SettingsForm = () => {
 							data={data}
 							setData={setData}
 							type={type}
+							allData={allData}
 						/>
 					)}
 					<Button text={formElems.buttonText} theme='dark' />

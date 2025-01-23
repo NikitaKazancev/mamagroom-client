@@ -1,4 +1,4 @@
-import { Language } from '@/i18n'
+import { Language } from '@/i18n/types'
 import { CamelToKebab } from '@/utils/types'
 
 export const CONSTANT_TYPES = {

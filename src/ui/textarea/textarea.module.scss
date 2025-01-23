@@ -13,16 +13,8 @@
 			transform: translateX(-6px) translateY(-36px);
 		}
 
-		&::-webkit-scrollbar-track {
-			@apply bg-white;
-		}
-
-		&::-webkit-scrollbar {
-			width: 10px;
-		}
-
 		&::-webkit-scrollbar-thumb {
-			@apply rounded-none bg-gray-400;
+			@apply bg-gray-400;
 		}
 	}
 

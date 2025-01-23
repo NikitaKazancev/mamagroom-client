@@ -15,8 +15,10 @@ export const putHeaderNavbarLink = async (
 	const data = objectFromFormData(formData)
 	if (!data.name || !data.order) return
 
-	await headerNavbarLinkApi.put({ ...initialData, ...data })
+	const res = await headerNavbarLinkApi.put({ ...initialData, ...data })
 	revalidateTag(REVALIDATE_TAGS.headerNavbarLink)
+
+	return res
 }
 
 export const deleteHeaderNavbarLink = async (id: string) => {

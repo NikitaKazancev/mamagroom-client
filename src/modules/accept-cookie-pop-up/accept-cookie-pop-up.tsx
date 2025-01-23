@@ -1,6 +1,5 @@
 'use client'
 
-import { PopUp } from '@/components/pop-up/pop-up'
 import usePopUpStore from '@/components/pop-up/utils/store'
 import { setCookie } from '@/utils/cookies/cookies-client.api'
 import { COOKIES } from '@/utils/cookies/cookies.general'
@@ -26,5 +25,5 @@ export const AcceptCookiePopUp = ({ openOnMount, message, accept }: Props) => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
-	return <PopUp />
+	return <></>
 }

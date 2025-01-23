@@ -1,6 +1,6 @@
 import { SettingsConstant } from '@/components/settings/constant/settings-constant'
 import { LINKS } from '@/constants/links.constants'
-import { Link } from '@/navigation'
+import { Link } from '@/i18n/routing'
 import { Layout } from '@/ui/layout/layout'
 import { SectionTitle } from '@/ui/section-title/section-title'
 import { Section } from '@/ui/section/section'

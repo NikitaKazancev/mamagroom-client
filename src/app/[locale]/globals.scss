@@ -16,17 +16,26 @@ address {
 	position: relative;
 }
 
-* {
-	&::-webkit-scrollbar-track {
-		@apply bg-main-25;
-	}
+@supports (-webkit-appearance: none) {
+	* {
+		&::-webkit-scrollbar-track {
+			@apply bg-main-25 !important;
+		}
 
-	&::-webkit-scrollbar {
-		width: 15px;
-	}
+		&::-webkit-scrollbar {
+			width: 5px !important;
+		}
 
-	&::-webkit-scrollbar-thumb {
-		@apply bg-secondary-800 rounded-s-lg;
+		&::-webkit-scrollbar-thumb {
+			@apply bg-secondary-800 rounded-lg !important;
+		}
+	}
+}
+
+@-moz-document url-prefix() {
+	* {
+		scrollbar-width: thin;
+		scrollbar-color: rgb(8 111 131) rgb(246 242 236);
 	}
 }
 

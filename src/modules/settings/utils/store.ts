@@ -1,6 +1,9 @@
 import { AuthDto } from '@/api/auth/auth.api'
-import { ConstantDto } from '@/api/constant/constant.types'
-import { HeaderNavbarLinkDto } from '@/api/header-navbar-link/header-navbar-link.api'
+import { Constant, ConstantDto } from '@/api/constant/constant.types'
+import {
+	HeaderNavbarLink,
+	HeaderNavbarLinkDto,
+} from '@/api/header-navbar-link/header-navbar-link.api'
 import { ComponentType } from 'react'
 import { create } from 'zustand'
 
@@ -17,11 +20,18 @@ export type SettingsFormData =
 	| File
 	| HeaderNavbarLinkDto
 	| undefined
+export type SettingsFormResultType =
+	| undefined
+	| string
+	| Constant
+	| HeaderNavbarLink
+export type SettingsFormAllData = HeaderNavbarLink[]
 export type SettingFormSetData = (data: SettingsFormData) => void
 export type SettingsFormComponent = ComponentType<{
 	data: SettingsFormData
 	setData: SettingFormSetData
 	type: SettingsFormType
+	allData?: SettingsFormAllData
 }> | null
 
 export type Store = {
@@ -30,17 +40,20 @@ export type Store = {
 	Component: SettingsFormComponent
 	componentProps?: Record<string, any>
 	data: SettingsFormData
+	allData?: SettingsFormAllData
 	type: SettingsFormType
 	show: ({
 		componentProps,
 		type,
 		Component,
 		data,
+		allData,
 	}: {
 		Component: SettingsFormComponent
 		componentProps?: Record<string, any>
 		type: SettingsFormType
 		data: SettingsFormData
+		allData?: SettingsFormAllData
 	}) => void
 	setData: SettingFormSetData
 }
@@ -51,8 +64,8 @@ const useSettingsStore = create<Store>(set => ({
 	Component: null,
 	componentProps: {},
 	type: 'constant_short',
-	show: ({ componentProps, type, Component, data }) =>
-		set({ isShown: true, componentProps, type, Component, data }),
+	show: ({ componentProps, type, Component, data, allData }) =>
+		set({ isShown: true, componentProps, type, Component, data, allData }),
 	data: undefined,
 	setData: data => set({ data }),
 }))

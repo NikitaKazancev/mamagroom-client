@@ -1,5 +1,5 @@
 import { constantApi } from '@/api/constant/constant.api'
-import { Language } from '@/i18n'
+import { Language } from '@/i18n/types'
 import { MainPageAboutUs } from '@/page/main/about-us-section/about-us-section'
 import { MainPageMainSection } from '@/page/main/main-section/main-section'
 import { MainPageProcedures } from '@/page/main/procedures/procedures'

@@ -1,6 +1,7 @@
 'use client'
 
 import classNames from 'classnames'
+import { v4 as uuidv4 } from 'uuid'
 import styles from './textarea.module.scss'
 
 export const TextArea = ({
@@ -18,6 +19,8 @@ export const TextArea = ({
 	onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
 	theme?: 'light' | 'dark'
 }) => {
+	const id = uuidv4()
+
 	return (
 		<div className={styles.wrapper}>
 			<div className={classNames(styles.container, styles[theme])}>
@@ -27,8 +30,10 @@ export const TextArea = ({
 					className={styles.input}
 					name={name}
 					onChange={onChange}
+					autoComplete='on'
+					id={id}
 				/>
-				<label>{title}</label>
+				<label htmlFor={id}>{title}</label>
 			</div>
 		</div>
 	)

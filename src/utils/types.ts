@@ -1,4 +1,4 @@
-import { Language } from '@/i18n'
+import { Language } from '@/i18n/types'
 import { Roles } from './auth/auth'
 
 export type CamelToKebab<T extends string> =

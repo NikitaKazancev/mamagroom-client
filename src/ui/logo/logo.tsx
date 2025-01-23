@@ -1,5 +1,5 @@
 import { LINKS } from '@/constants/links.constants'
-import { Link as LinkLocale } from '@/navigation'
+import { Link as LinkLocale } from '@/i18n/routing'
 import classNames from 'classnames'
 import Link from 'next/link'
 import styles from './logo.module.scss'

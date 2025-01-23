@@ -13,7 +13,12 @@ const nextConfig = {
 				port: '8080',
 				pathname: '/api/static/**',
 			},
-
+			{
+				protocol: 'http',
+				hostname: 'localhost',
+				port: '8080',
+				pathname: '/server-api/static/**',
+			},
 			{
 				protocol: 'https',
 				hostname: 'mamagroom.ru',
@@ -25,30 +30,6 @@ const nextConfig = {
 				hostname: 'www.mamagroom.ru',
 				port: '80',
 				pathname: '/api/static/**',
-			},
-			{
-				protocol: 'http',
-				hostname: 'mamagroom.ru',
-				port: '80',
-				pathname: '/api/static/**',
-			},
-			{
-				protocol: 'http',
-				hostname: 'www.mamagroom.ru',
-				port: '80',
-				pathname: '/api/static/**',
-			},
-			{
-				protocol: 'https',
-				hostname: '**',
-				port: '',
-				pathname: '**',
-			},
-			{
-				protocol: 'http',
-				hostname: '**',
-				port: '',
-				pathname: '**',
 			},
 		],
 	},
