@@ -44,6 +44,10 @@ export async function generateMetadata({
 			google: 'H36KGQNSmi2SdKelkImPwdO69JOYLUcSvNfabDWJ9wU',
 			yandex: 'adefe41fd50ead4c',
 		},
+		robots: {
+			index: false,
+			follow: false,
+		},
 	}
 }
 
