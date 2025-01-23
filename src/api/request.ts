@@ -3,7 +3,11 @@ import { Language } from '@/i18n/types'
 import { getToken } from '@/utils/cookies/cookies-server.api'
 import axios, { AxiosRequestConfig } from 'axios'
 
-export const SERVER_URL = process.env.NEXT_PUBLIC_API
+// to make variable public
+export const SERVER_URL =
+	process.env.NODE_ENV === 'development'
+		? 'http://localhost:8080/api'
+		: 'https://mamagroom.ru/api'
 const initialTtl = process.env.NODE_ENV === 'development' ? 1 : 60 * 5
 
 export const request = async ({
