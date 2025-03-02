@@ -1,3 +1,4 @@
+import { format } from 'date-fns'
 import { CamelToKebab, KebabToCamel } from './types'
 
 export const kebabToCamel = <T extends string>(str: T): KebabToCamel<T> => {
@@ -29,3 +30,7 @@ export const formatPhoneNumber = (phone: string) => {
 
 export const objectFromFormData = (formData: FormData) =>
 	Object.fromEntries(formData.entries())
+
+export const formatDate = (date: Date): string => {
+	return format(new Date(date), 'MMM dd, yyyy HH:mm')
+}

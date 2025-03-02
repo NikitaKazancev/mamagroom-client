@@ -58,4 +58,49 @@ export enum RoleType {
 	responseFromAIDelete,
 }
 
+export enum RoleName {
+	fullAccess = 'Полный доступ',
+	deleteMarkedForDeletion = 'Удалить помеченные для удаления',
+	userGet = 'Получить пользователей',
+	userPost = 'Добавить пользователя',
+	userPut = 'Изменить пользователя',
+	userDelete = 'Удалить пользователя',
+	breedPost = 'Добавить породу',
+	breedPut = 'Изменить породу',
+	breedDelete = 'Удалить породу',
+	constantPost = 'Добавить текст на сайте',
+	constantPut = 'Изменить текст на сайте',
+	constantDelete = 'Удалить текст на сайте',
+	headerNavbarLinkPost = 'Добавить ссылку в шапке',
+	headerNavbarLinkPut = 'Изменить ссылку в шапке',
+	headerNavbarLinkDelete = 'Удалить ссылку в шапке',
+	mainSliderPost = 'Добавить слайд в главный слайдер',
+	mainSliderPut = 'Изменить слайд в главном слайдере',
+	mainSliderDelete = 'Удалить слайд из главного слайдера',
+	masterPost = 'Добавить мастера',
+	masterPut = 'Изменить мастера',
+	masterDelete = 'Удалить мастера',
+	pricePost = 'Добавить цену',
+	pricePut = 'Изменить цену',
+	priceDelete = 'Удалить цену',
+	procedurePost = 'Добавить процедуру',
+	procedurePut = 'Изменить процедуру',
+	procedureDelete = 'Удалить процедуру',
+	vacancyPost = 'Добавить вакансию',
+	vacancyPut = 'Изменить вакансию',
+	vacancyDelete = 'Удалить вакансию',
+	valuePost = 'Добавить ценность',
+	valuePut = 'Изменить ценность',
+	valueDelete = 'Удалить ценность',
+	filePostPut = 'Изменить картинку',
+	responseFromAIGet = 'Получить ответ от AI',
+	responseFromAIPost = 'Добавить ответ от AI',
+	responseFromAIPut = 'Изменить ответ от AI',
+	responseFromAIDelete = 'Удалить ответ от AI',
+}
+
+export const roleName = (role: Role): string => {
+	return RoleName[role]
+}
+
 export type Role = keyof typeof RoleType

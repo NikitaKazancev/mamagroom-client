@@ -1,0 +1,55 @@
+.table {
+	@apply min-w-full bg-white rounded-lg shadow-md overflow-hidden;
+
+	&.expandedItemIsOpen {
+		@apply rounded-none rounded-ss-lg rounded-se-lg;
+	}
+}
+
+.thead {
+	@apply bg-secondary-700;
+
+	th {
+		@apply px-6 py-3 text-left uppercase tracking-wider text-white;
+	}
+}
+
+.tbody {
+	@apply divide-y divide-main-100;
+
+	tr {
+		@apply hover:bg-gray-50 cursor-pointer;
+	}
+
+	td {
+		@apply px-6 py-3 text-left font-medium text-gray-500 tracking-wider;
+	}
+
+	.itemsList {
+		@apply text-gray-500 flex flex-wrap gap-1;
+
+		.itemsTag {
+			@apply px-2 py-1 rounded-full bg-blue-100 text-blue-800;
+		}
+
+		.moreItemsTag {
+			@apply px-2 py-1 rounded-full bg-gray-100 text-gray-800;
+		}
+	}
+}
+
+.expandedItem {
+	@apply p-4 bg-gray-50 border-t border-gray-200 rounded-ee-lg rounded-es-lg;
+
+	h4 {
+		@apply font-medium text-gray-900 mb-3;
+	}
+
+	.expandedItemGrid {
+		@apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2;
+	}
+
+	.expandedItemGridValue {
+		@apply px-3 py-2 bg-white rounded-md border border-gray-200;
+	}
+}

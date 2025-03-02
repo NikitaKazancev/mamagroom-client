@@ -2,7 +2,7 @@
 
 import { HeaderNavbarLink } from '@/api/header-navbar-link/header-navbar-link.api'
 import { Navbar } from '@/components/navbar/navbar'
-import { routing } from '@/i18n/routing'
+import { routing, usePathname } from '@/i18n/routing'
 import { Button } from '@/ui/button/button'
 import { DropDown } from '@/ui/drop-down/drop-down'
 import { TelegramIcon } from '@/ui/icons/telegram/telegram'
@@ -22,25 +22,38 @@ type Props = {
 	generalProps: GeneralProps
 }
 
-export const Header = ({ navLinks, translations, generalProps }: Props) => {
-	const [isScrolled, setIsScrolled] = useState(false)
+const hasFirstState = (pathname: string) => {
+	if (pathname.includes('/users')) return false
+	return true
+}
 
-	const handleScroll = () => {
-		setIsScrolled(window.scrollY > window.innerHeight / 5)
-	}
+export const Header = ({ navLinks, translations, generalProps }: Props) => {
+	const pathname = usePathname()
+	const [isScrolled, setIsScrolled] = useState(!hasFirstState(pathname))
 
 	useEffect(() => {
-		if ((window as any).listenerAdded) return
+		const initialIsScrolled = !hasFirstState(pathname)
+		setIsScrolled(prev =>
+			prev !== initialIsScrolled ? initialIsScrolled : prev
+		)
+
+		const handleScroll = () => {
+			if (!hasFirstState(pathname)) {
+				setIsScrolled(prev => (prev ? prev : true))
+				return
+			}
+
+			const newIsScrolled = window.scrollY > window.innerHeight / 5
+			setIsScrolled(prev => (prev !== newIsScrolled ? newIsScrolled : prev))
+		}
 
 		window.addEventListener('scroll', handleScroll)
-		;(window as any).listenerAdded = true
 		handleScroll()
 
 		return () => {
-			document.body.removeEventListener('scroll', handleScroll)
-			;(window as any).listenerAdded = false
+			window.removeEventListener('scroll', handleScroll)
 		}
-	}, [])
+	}, [pathname])
 
 	const theme = isScrolled ? 'dark' : 'light'
 
