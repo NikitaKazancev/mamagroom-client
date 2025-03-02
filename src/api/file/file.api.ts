@@ -5,11 +5,15 @@ export const FILE_NAMES = {
 } as const
 
 export const FILE_PATHS = {
-	mainBg: `pages/home`,
+	mainPage: `pages/home`,
+	vacanciesPage: 'pages/vacancies',
+	mastersPage: 'pages/masters',
 } as const
 
 export const EXTERNAL_PATHS = {
-	mainBg: `${FILE_PATHS.mainBg}/${FILE_NAMES.mainBg}`,
+	mainPageMainBg: `${FILE_PATHS.mainPage}/${FILE_NAMES.mainBg}`,
+	vacanciesPageMainBg: `${FILE_PATHS.vacanciesPage}/${FILE_NAMES.mainBg}`,
+	mastersPageMainBg: `${FILE_PATHS.mastersPage}/${FILE_NAMES.mainBg}`,
 } as const
 
 export type FileName = (typeof FILE_NAMES)[keyof typeof FILE_NAMES]

@@ -4,7 +4,7 @@ import { SettingsFormType } from '@/modules/settings/utils/store'
 import { Roles } from '@/utils/auth/auth'
 import { SettingsConstantForm } from './settings-constant-form'
 
-type Title =
+export type SettingsConstantTitle =
 	| 'Главный заголовок'
 	| 'Главное описание'
 	| 'Заголовок секции'
@@ -22,7 +22,7 @@ export const SettingsConstant = ({
 	theme,
 }: {
 	children: React.ReactNode
-	title: Title
+	title: SettingsConstantTitle
 	data: ConstantDto
 	iconClassname?: string
 	type: SettingsFormType

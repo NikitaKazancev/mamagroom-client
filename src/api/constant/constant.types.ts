@@ -3,6 +3,8 @@ import { CamelToKebab } from '@/utils/types'
 
 export const CONSTANT_TYPES = {
 	homePage: 'home-page',
+	vacanciesPage: 'vacancies-page',
+	mastersPage: 'masters-page',
 }
 
 export type ConstantType = keyof typeof CONSTANT_TYPES

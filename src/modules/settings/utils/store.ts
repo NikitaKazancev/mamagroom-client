@@ -1,5 +1,6 @@
 import { AuthDto } from '@/api/auth/auth.api'
 import { Constant, ConstantDto } from '@/api/constant/constant.types'
+import { ExternalPath } from '@/api/file/file.api'
 import {
 	HeaderNavbarLink,
 	HeaderNavbarLinkDto,
@@ -17,8 +18,8 @@ export type SettingsFormType =
 export type SettingsFormData =
 	| ConstantDto
 	| AuthDto
-	| File
 	| HeaderNavbarLinkDto
+	| { path: ExternalPath }
 	| undefined
 export type SettingsFormResultType =
 	| undefined

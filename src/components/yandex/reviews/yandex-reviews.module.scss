@@ -32,33 +32,5 @@
 		white-space: nowrap;
 		padding: 0 16px;
 		box-sizing: border-box;
-		z-index: 2;
-	}
-
-	.addReview {
-		@apply absolute;
-		top: 138px;
-		left: 300px;
-		z-index: 1;
-		border-radius: 8px;
-		min-height: 100px;
-
-		button {
-			@apply text-base px-2;
-			background-color: #f6f6f6;
-		}
-	}
-
-	.moreReviews {
-		@apply absolute left-1/2 -translate-x-1/2;
-		bottom: -28px;
-		z-index: 1;
-		border-radius: 8px;
-		min-height: 100px;
-		text-wrap: nowrap;
-
-		button {
-			@apply text-sm bg-white px-9;
-		}
 	}
 }

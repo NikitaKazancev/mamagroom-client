@@ -1,26 +1,32 @@
-import { fileApi } from '@/api/file/file.api'
-import { SettingsConstant } from '@/components/settings/constant/settings-constant'
-import { SettingsFileForm } from '@/components/settings/file/settings-constant-form'
+import { ConstantDto } from '@/api/constant/constant.types'
+import { ExternalPath } from '@/api/file/file.api'
+import {
+	SettingsConstant,
+	SettingsConstantTitle,
+} from '@/components/settings/constant/settings-constant'
+import { SettingsFileForm } from '@/components/settings/file/settings-file-form'
 import { Settings } from '@/modules/settings/settings'
 import { Layout } from '@/ui/layout/layout'
 import { Section } from '@/ui/section/section'
 import { GeneralProps } from '@/utils/types'
 import Image from 'next/image'
-import styles from './main-section.module.scss'
+import styles from './main-image-section.module.scss'
 
 type Props = {
-	title: string
-	description: string
+	titleData: ConstantDto & { settingsTitle: SettingsConstantTitle }
+	descriptionData: ConstantDto & { settingsDescription: SettingsConstantTitle }
+	fileUrl?: string
 	generalProps: GeneralProps
+	externalPath: ExternalPath
 }
 
-export const MainPageMainSection = async ({
-	title,
-	description,
+export const MainImageSection = async ({
+	titleData,
+	descriptionData,
 	generalProps,
+	fileUrl,
+	externalPath,
 }: Props) => {
-	const fileUrl = await fileApi.findDestination('pages/home', 'main-bg')
-
 	return (
 		<Section className={styles.main} bg={false} pTop={false} pBottom={false}>
 			<Image
@@ -36,6 +42,7 @@ export const MainPageMainSection = async ({
 					iconClassname={styles.settings}
 					type='file'
 					theme='light'
+					data={{ path: externalPath }}
 				/>
 			)}
 			<Layout>
@@ -43,28 +50,28 @@ export const MainPageMainSection = async ({
 					<SettingsConstant
 						data={{
 							language: generalProps.language,
-							type: 'home-page',
-							name: 'main-title',
-							value: title,
+							type: titleData.type,
+							name: titleData.name,
+							value: titleData.value,
 						}}
-						title='Главный заголовок'
+						title={titleData.settingsTitle}
 						type='constant_short'
 						roles={generalProps.roles}
 					>
-						<h1>{title}</h1>
+						<h2>{titleData.value}</h2>
 					</SettingsConstant>
 					<SettingsConstant
 						data={{
 							language: generalProps.language,
-							type: 'home-page',
-							name: 'main-description',
-							value: description,
+							type: descriptionData.type,
+							name: descriptionData.name,
+							value: descriptionData.value,
 						}}
-						title='Главное описание'
+						title={descriptionData.settingsDescription}
 						type='constant_long'
 						roles={generalProps.roles}
 					>
-						<h2>{description}</h2>
+						<h3>{descriptionData.value}</h3>
 					</SettingsConstant>
 				</div>
 			</Layout>

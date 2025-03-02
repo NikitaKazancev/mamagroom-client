@@ -47,6 +47,10 @@ export async function generateMetadata({
 		robots: {
 			index: false,
 			follow: false,
+			googleBot: {
+				index: false,
+				follow: false,
+			},
 		},
 	}
 }
@@ -99,7 +103,7 @@ export default async function RootLayout({
 						generalProps={generalProps}
 					/>
 					<SettingsForm />
-					{children}
+					<main>{children}</main>
 					<Footer token={token} />
 				</NextIntlClientProvider>
 			</body>

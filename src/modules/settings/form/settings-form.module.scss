@@ -1,5 +1,6 @@
 .wrapper {
-	@apply fixed z-50 top-0 right-0 bottom-0 left-0 flex justify-center items-center bg-black/30 p-5;
+	@apply fixed top-0 right-0 bottom-0 left-0 flex justify-center items-center bg-black/30 p-5;
+	z-index: 20;
 
 	&.hide {
 		@apply hidden;

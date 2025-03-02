@@ -1,5 +1,6 @@
 'use client'
 
+import classNames from 'classnames'
 import styles from './slider.module.scss'
 
 import Image from 'next/image'
@@ -28,14 +29,15 @@ export const Slider = ({ urls }: { urls: string[] }) => {
 			<div className={styles.content}>
 				{urls.map((url, index) => {
 					return (
-						<Image
+						<div
 							key={index}
-							width={600}
-							height={1}
-							src={url}
-							alt={`Slide ${index + 1}`}
-							className={index === activeSlideIndex ? styles.active : ''}
-						/>
+							className={classNames(
+								styles.slide,
+								index === activeSlideIndex ? styles.active : ''
+							)}
+						>
+							<Image fill src={url} alt={`Slide ${index + 1}`} />
+						</div>
 					)
 				})}
 			</div>

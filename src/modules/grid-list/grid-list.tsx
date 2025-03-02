@@ -1,10 +1,10 @@
 'use client'
 
+import { capitalizeFirst } from '@/utils/functions'
 import classNames from 'classnames'
 import Image from 'next/image'
 import { useRef, useState } from 'react'
 import styles from './grid-list.module.scss'
-import { capitalizeFirst } from '@/utils/functions'
 
 type Item = {
 	title: string
@@ -152,49 +152,47 @@ export const GridList = ({ content, className }: Props) => {
 	}
 
 	return (
-		<div className={classNames(styles.main, className)}>
-			<ul ref={ul}>
-				{content.map((data, i) => {
-					const elemstate = elemsState[i]
+		<ul ref={ul} className={classNames(styles.main, className)}>
+			{content.map((data, i) => {
+				const elemstate = elemsState[i]
 
-					return (
-						<li
-							key={data.title}
-							className={classNames(styles.item, styles.transition)}
-							onMouseMove={() => handleHover(i)}
-							onMouseOver={() => handleHover(i)}
-							data-index={i}
-						>
-							<Item
-								{...data}
-								showTitle={elemstate.isComponent1Title}
-								className={styles.wrapper1}
-							/>
-							<Item
-								{...data}
-								showTitle={elemstate.isComponent2Title}
-								className={styles.wrapper2}
-							/>
-							<Item
-								{...data}
-								showTitle={elemstate.isComponent3Title}
-								className={styles.wrapper3}
-							/>
-							<Item
-								{...data}
-								showTitle={elemstate.isComponent4Title}
-								className={styles.wrapper4}
-							/>
-							<Item
-								{...data}
-								showTitle={elemstate.isComponent5Title}
-								className={styles.wrapper5}
-							/>
-						</li>
-					)
-				})}
-			</ul>
-		</div>
+				return (
+					<li
+						key={data.title}
+						className={classNames(styles.item, styles.transition)}
+						onMouseMove={() => handleHover(i)}
+						onMouseOver={() => handleHover(i)}
+						data-index={i}
+					>
+						<Item
+							{...data}
+							showTitle={elemstate.isComponent1Title}
+							className={styles.wrapper1}
+						/>
+						<Item
+							{...data}
+							showTitle={elemstate.isComponent2Title}
+							className={styles.wrapper2}
+						/>
+						<Item
+							{...data}
+							showTitle={elemstate.isComponent3Title}
+							className={styles.wrapper3}
+						/>
+						<Item
+							{...data}
+							showTitle={elemstate.isComponent4Title}
+							className={styles.wrapper4}
+						/>
+						<Item
+							{...data}
+							showTitle={elemstate.isComponent5Title}
+							className={styles.wrapper5}
+						/>
+					</li>
+				)
+			})}
+		</ul>
 	)
 }
 
@@ -221,13 +219,7 @@ const Item = ({
 			) : (
 				<>
 					<p className={styles.description}>{description}</p>
-					<Image
-						src={imageSrc}
-						alt={title}
-						width={700}
-						height={1}
-						className={styles.img}
-					/>
+					<Image src={imageSrc} alt={title} fill className={styles.img} />
 				</>
 			)}
 		</div>

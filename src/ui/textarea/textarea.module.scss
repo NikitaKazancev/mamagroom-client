@@ -6,7 +6,8 @@
 	@apply relative text-xl min-w-96;
 
 	textarea {
-		@apply relative w-full px-2 py-1 bg-transparent outline-none shadow-none border-none z-10  rounded-md h-36;
+		@apply relative w-full px-2 py-1 bg-transparent outline-none shadow-none border-none rounded-md h-36;
+		z-index: 1;
 
 		~ label {
 			@apply absolute left-0 px-2 py-2 transition-all duration-500 pointer-events-none;

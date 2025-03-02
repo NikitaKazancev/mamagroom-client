@@ -1,15 +1,14 @@
 import { constantApi } from '@/api/constant/constant.api'
 import { fileApi } from '@/api/file/file.api'
+import { vacancyApi } from '@/api/vacancy/vacancy.api'
+import { Feed } from '@/components/feed/feed'
 import { Language } from '@/i18n/types'
 import { MainImageSection } from '@/modules/main-image-section/main-image-section'
-import { MainPageAboutUs } from '@/page/main/about-us-section/about-us-section'
-import { MainPageProcedures } from '@/page/main/procedures/procedures'
 import { MainPageReviews } from '@/page/main/reviews-section/reviews-section'
-import { MainPageValues } from '@/page/main/values/values'
 import { getRoles } from '@/utils/auth/auth'
 import { GeneralProps } from '@/utils/types'
 
-export default async function Home({
+export default async function Vacancies({
 	params,
 }: {
 	params: { locale: Language }
@@ -19,52 +18,42 @@ export default async function Home({
 
 	const constants = await constantApi.findMany({
 		language: params.locale,
-		type: 'homePage',
+		type: 'vacanciesPage',
 	})
 
 	if (!constants) {
 		return null
 	}
 
-	const mainImageUrl = await fileApi.findDestination('pages/home', 'main-bg')
+	const mainImageUrl = await fileApi.findDestination(
+		'pages/vacancies',
+		'main-bg'
+	)
+
+	const vacancies = await vacancyApi.findMany({ language: params.locale })
 
 	return (
 		<>
 			<MainImageSection
 				titleData={{
 					language: params.locale,
-					type: 'home-page',
+					type: 'vacancies-page',
 					name: 'main-title',
-					value: constants.homePage_mainTitle,
+					value: constants.vacanciesPage_mainTitle,
 					settingsTitle: 'Главный заголовок',
 				}}
 				descriptionData={{
 					language: params.locale,
-					type: 'home-page',
+					type: 'vacancies-page',
 					name: 'main-description',
-					value: constants.homePage_mainDescription,
+					value: constants.vacanciesPage_mainDescription,
 					settingsDescription: 'Главное описание',
 				}}
 				generalProps={generalProps}
 				fileUrl={mainImageUrl}
-				externalPath='pages/home/main-bg'
+				externalPath='pages/vacancies/main-bg'
 			/>
-			<MainPageAboutUs
-				title={constants.homePage_aboutUsTitle}
-				description={constants.homePage_aboutUsDescription}
-				generalProps={generalProps}
-			/>
-			<MainPageProcedures
-				dogsTitle={constants.homePage_proceduresForDogsTitle}
-				dogsDescription={constants.homePage_proceduresForDogsDescription}
-				catsTitle={constants.homePage_proceduresForCatsTitle}
-				catsDescription={constants.homePage_proceduresForCatsDescription}
-				generalProps={generalProps}
-			/>
-			<MainPageValues
-				title={constants.homePage_valuesTitle}
-				generalProps={generalProps}
-			/>
+			<Feed data={vacancies} />
 			<MainPageReviews generalProps={generalProps} />
 		</>
 	)

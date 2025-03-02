@@ -1,0 +1,37 @@
+.main {
+	@apply flex flex-col gap-20 w-full mt-10;
+}
+
+.item {
+	@apply flex gap-3 relative;
+
+	.imgWrapper {
+		@apply relative h-72 w-full rounded-md overflow-hidden;
+	}
+
+	.info {
+		@apply flex flex-col gap-4 px-2;
+
+		.title {
+			@apply text-3xl font-bold;
+		}
+
+		.desc {
+			@apply text-xl font-medium;
+		}
+
+		button {
+			@apply self-start;
+		}
+	}
+
+	&::after {
+		content: '';
+		@apply absolute left-0 right-0 -bottom-11 bg-black/30;
+		height: 1px;
+	}
+
+	&:last-child::after {
+		@apply hidden;
+	}
+}

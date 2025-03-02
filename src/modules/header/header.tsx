@@ -2,7 +2,7 @@
 
 import { HeaderNavbarLink } from '@/api/header-navbar-link/header-navbar-link.api'
 import { Navbar } from '@/components/navbar/navbar'
-import { routing, usePathname } from '@/i18n/routing'
+import { routing } from '@/i18n/routing'
 import { Button } from '@/ui/button/button'
 import { DropDown } from '@/ui/drop-down/drop-down'
 import { TelegramIcon } from '@/ui/icons/telegram/telegram'
@@ -23,16 +23,13 @@ type Props = {
 }
 
 export const Header = ({ navLinks, translations, generalProps }: Props) => {
-	const alwaysDark = usePathname() !== '/'
-	const [isScrolled, setIsScrolled] = useState(alwaysDark)
+	const [isScrolled, setIsScrolled] = useState(false)
 
 	const handleScroll = () => {
 		setIsScrolled(window.scrollY > window.innerHeight / 5)
 	}
 
 	useEffect(() => {
-		setIsScrolled(alwaysDark)
-		if (alwaysDark) return
 		if ((window as any).listenerAdded) return
 
 		window.addEventListener('scroll', handleScroll)
@@ -43,7 +40,7 @@ export const Header = ({ navLinks, translations, generalProps }: Props) => {
 			document.body.removeEventListener('scroll', handleScroll)
 			;(window as any).listenerAdded = false
 		}
-	}, [alwaysDark])
+	}, [])
 
 	const theme = isScrolled ? 'dark' : 'light'
 

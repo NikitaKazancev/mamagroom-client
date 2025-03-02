@@ -13,6 +13,8 @@ export const putConstant = async (
 	const data = objectFromFormData(formData)
 	if (!data.value) return
 
+	console.log(data)
+
 	const res = await constantApi.put({
 		...initialData,
 		...data,

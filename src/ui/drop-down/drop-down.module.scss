@@ -2,6 +2,7 @@
 	@apply cursor-pointer rounded-lg text-xl outline-none relative;
 	-moz-appearance: none;
 	-webkit-appearance: none;
+	z-index: 3;
 
 	.list {
 		@apply transition-all duration-200 absolute rounded-md overflow-hidden opacity-0 pointer-events-none flex flex-col text-nowrap;

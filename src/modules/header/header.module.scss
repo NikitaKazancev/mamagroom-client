@@ -1,9 +1,10 @@
 .header {
-	@apply fixed top-0 left-0 right-0 z-50 text-white;
+	@apply fixed top-0 left-0 right-0 text-white;
+	z-index: 10;
 
 	.content {
 		@apply px-10 py-5 flex items-center gap-10 relative;
-		z-index: 52;
+		z-index: 12;
 		transition: padding-top 0.5s;
 
 		.logo {
@@ -21,7 +22,7 @@
 
 	.blurBlock {
 		@apply absolute -top-5 bottom-0 left-0 right-0;
-		z-index: 51;
+		z-index: 11;
 		transition: backdrop-filter background-color;
 		transition-duration: 0.5s;
 		background-color: initial;

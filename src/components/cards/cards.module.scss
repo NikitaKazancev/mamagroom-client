@@ -1,0 +1,23 @@
+.cards {
+	@apply grid grid-cols-4 gap-7 mt-10 justify-items-center justify-between;
+}
+
+.card {
+	@apply flex flex-col gap-3 w-64;
+
+	.imgWrapper {
+		@apply relative h-72 w-full rounded-md overflow-hidden;
+	}
+
+	.info {
+		@apply flex flex-col gap-1 px-2;
+
+		.title {
+			@apply text-2xl font-bold;
+		}
+
+		.desc {
+			@apply text-lg font-medium;
+		}
+	}
+}
