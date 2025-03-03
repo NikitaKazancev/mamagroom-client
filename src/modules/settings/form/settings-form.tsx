@@ -6,13 +6,13 @@ import { ConstantDto } from '@/api/constant/constant.types'
 import { postFile } from '@/api/file/file.server'
 import { HeaderNavbarLinkDto } from '@/api/header-navbar-link/header-navbar-link.api'
 import { putHeaderNavbarLink } from '@/api/header-navbar-link/header-navbar-link.server'
-import usePopUpStore from '@/components/pop-up/utils/store'
 import { AuthFormBtns } from '@/modules/auth/auth-form-btns'
 import { Button } from '@/ui/button/button'
 import { ExitIcon } from '@/ui/icons/exit/exit'
 import { setToken } from '@/utils/cookies/cookies-client.api'
 import classNames from 'classnames'
 import { useRef } from 'react'
+import toast from 'react-hot-toast'
 import useSettingsStore, { SettingsFormResultType } from '../utils/store'
 import styles from './settings-form.module.scss'
 
@@ -28,8 +28,6 @@ export const SettingsForm = () => {
 		setData,
 	} = useSettingsStore()
 
-	const { show, hide: hidePopUp } = usePopUpStore()
-
 	const form = useRef<HTMLFormElement>(null)
 
 	let formElems: {
@@ -43,7 +41,6 @@ export const SettingsForm = () => {
 
 	const closeAndClearForm = () => {
 		if (form.current) form.current.reset()
-		hidePopUp()
 		hide()
 	}
 
@@ -57,20 +54,26 @@ export const SettingsForm = () => {
 		e.preventDefault()
 		const formData = new FormData(e.currentTarget)
 
-		let result: SettingsFormResultType = undefined
 		if (type === 'auth') {
-			result = await login(formData)
-			if (result) {
-				setToken(result)
-				closeAndClearForm()
-			} else {
-				show({
-					message: 'Неверные данные',
-				})
-			}
+			await toast.promise(login(formData), {
+				loading: 'Авторизация...',
+				success: data => {
+					if (!data) throw new Error('Неверные данные')
+					setToken(data)
+					closeAndClearForm()
+					return 'Авторизация прошла успешно'
+				},
+				error: error => {
+					return error.message || 'Неверные данные'
+				},
+			})
 
 			return
-		} else if (type === 'file') {
+		}
+
+		const toastId = toast.loading('Загрузка...')
+		let result: SettingsFormResultType = undefined
+		if (type === 'file') {
 			postFile(formData)
 			result = 'true'
 		} else if (type && type.startsWith('constant')) {
@@ -83,11 +86,16 @@ export const SettingsForm = () => {
 		}
 
 		if (!result) {
-			show({
-				message:
-					'Произошла ошибка. Скорее всего такой элемент уже существует',
-			})
+			toast.error(
+				'Произошла ошибка.\nСкорее всего такой элемент уже существует',
+				{
+					id: toastId,
+				}
+			)
 		} else {
+			toast.success('Данные успешно сохранены', {
+				id: toastId,
+			})
 			closeAndClearForm()
 		}
 	}

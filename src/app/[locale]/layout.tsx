@@ -1,13 +1,13 @@
 // import { Comfortaa, Quicksand, Raleway, Montserrat, Nunito, Poppins } from 'next/font/google'
 import { headerNavbarLinkApi } from '@/api/header-navbar-link/header-navbar-link.api'
-import { PopUp } from '@/components/pop-up/pop-up'
 import { Language } from '@/i18n/types'
 import { AcceptCookiePopUpServer } from '@/modules/accept-cookie-pop-up/accept-cookie-pop-up-server'
 import { Footer } from '@/modules/footer/footer'
 import { FullTransparentBlock } from '@/modules/full-transparent-block/full-transparent-block'
 import { Header } from '@/modules/header/header'
 import { SettingsForm } from '@/modules/settings/form/settings-form'
-import { WorkingPopup } from '@/temp/working-popup/working-popup'
+import { WorkingMessage } from '@/temp/working-message/working-message'
+import { MyToaster } from '@/ui/toaster/my-toaster'
 import { getRoles } from '@/utils/auth/auth'
 import { getToken } from '@/utils/cookies/cookies-server.api'
 import { GeneralProps } from '@/utils/types'
@@ -93,8 +93,8 @@ export default async function RootLayout({
 			/>
 			<body className={inter.className}>
 				<NextIntlClientProvider>
-					<PopUp />
-					{process.env.NODE_ENV === 'production' && <WorkingPopup />}
+					<MyToaster />
+					{process.env.NODE_ENV === 'production' && <WorkingMessage />}
 					<AcceptCookiePopUpServer />
 					<FullTransparentBlock />
 					<Header

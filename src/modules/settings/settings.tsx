@@ -15,6 +15,7 @@ import { CheckIcon } from '@/ui/icons/check/check'
 import { ExitIcon } from '@/ui/icons/exit/exit'
 import { SettingsIcon } from '@/ui/icons/settings/settings'
 import classNames from 'classnames'
+import toast from 'react-hot-toast'
 import styles from './settings.module.scss'
 
 export const Settings = ({
@@ -42,16 +43,26 @@ export const Settings = ({
 		show({ componentProps, type, Component, data, allData })
 	}
 
-	const onDelete = () => {
+	const onDelete = async () => {
+		const toastId = toast.loading('Удаление...')
 		if (type === 'header-navbar-link') {
-			deleteHeaderNavbarLink((data as HeaderNavbarLinkDto).id)
+			await deleteHeaderNavbarLink((data as HeaderNavbarLinkDto).id)
 		}
+
+		toast.success('Помечено на удаление', {
+			id: toastId,
+		})
 	}
 
-	const onRecover = () => {
+	const onRecover = async () => {
+		const toastId = toast.loading('Восстановление...')
 		if (type === 'header-navbar-link') {
-			recoverHeaderNavbarLink(data as HeaderNavbarLinkDto)
+			await recoverHeaderNavbarLink(data as HeaderNavbarLinkDto)
 		}
+
+		toast.success('Восстановлено', {
+			id: toastId,
+		})
 	}
 
 	if (isDeleted === undefined) {

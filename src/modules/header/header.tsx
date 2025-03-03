@@ -12,6 +12,7 @@ import { Logo } from '@/ui/logo/logo'
 import { GeneralProps } from '@/utils/types'
 import classNames from 'classnames'
 import { useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
 import styles from './header.module.scss'
 
 type Props = {
@@ -57,6 +58,12 @@ export const Header = ({ navLinks, translations, generalProps }: Props) => {
 
 	const theme = isScrolled ? 'dark' : 'light'
 
+	const message = () => {
+		toast.success('test', {
+			duration: Infinity,
+		})
+	}
+
 	return (
 		<header
 			className={classNames(styles.header, styles.blur, {
@@ -84,7 +91,11 @@ export const Header = ({ navLinks, translations, generalProps }: Props) => {
 					/>
 					<TelegramIcon theme={theme} />
 					<WhatsAppIcon theme={theme} />
-					<Button text={translations.book} theme={theme} />
+					<Button
+						text={translations.book}
+						theme={theme}
+						onClick={message}
+					/>
 				</div>
 			</div>
 			<div className={styles.blurBlock}></div>

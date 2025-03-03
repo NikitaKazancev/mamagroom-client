@@ -1,0 +1,7 @@
+.toast {
+	@apply flex gap-2 items-center bg-main-100 rounded-lg p-2;
+
+	p {
+		@apply text-lg;
+	}
+}
