@@ -19,7 +19,7 @@ export default async function Users({
 
 	return (
 		<>
-			<UsersSection />
+			<UsersSection generalProps={generalProps} />
 		</>
 	)
 }
