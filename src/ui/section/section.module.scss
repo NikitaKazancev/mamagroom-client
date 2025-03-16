@@ -1,4 +1,6 @@
 .section {
+	@apply relative;
+
 	&.pTop {
 		@apply pt-10;
 	}

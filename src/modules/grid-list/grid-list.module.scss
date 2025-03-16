@@ -105,6 +105,10 @@
 	}
 }
 
+.settings {
+	@apply absolute -top-3 right-0 w-fit left-auto;
+}
+
 @media (min-width: 1440px) {
 	.main {
 		--grid-width: 408px;

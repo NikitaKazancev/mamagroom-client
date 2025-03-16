@@ -1,6 +1,8 @@
 import { valueApi } from '@/api/values/values.api'
 import { SettingsConstant } from '@/components/settings/constant/settings-constant'
+import { SettingsValueForm } from '@/components/settings/values/values-form'
 import { GridList } from '@/modules/grid-list/grid-list'
+import { AddItem } from '@/modules/settings/add/add-item'
 import { Layout } from '@/ui/layout/layout'
 import { SectionTitle } from '@/ui/section-title/section-title'
 import { Section } from '@/ui/section/section'
@@ -15,7 +17,12 @@ type Props = {
 export const MainPageValues = async ({ generalProps, title }: Props) => {
 	const values = await valueApi.findMany({
 		language: generalProps.language,
-		isDeleted: false,
+		isDeleted:
+			generalProps.roles.headerNavbarLinkPost ||
+			generalProps.roles.headerNavbarLinkPut ||
+			generalProps.roles.headerNavbarLinkDelete
+				? undefined
+				: false,
 	})
 
 	return (
@@ -32,16 +39,26 @@ export const MainPageValues = async ({ generalProps, title }: Props) => {
 					iconClassname={styles.settings}
 					type='constant_short'
 					roles={generalProps.roles}
+					theme='dark'
 				>
 					<SectionTitle text={title} color='blue' />
 				</SettingsConstant>
 				<GridList
+					generalProps={generalProps}
 					className={styles.list}
-					content={values.map((value, i) => ({
-						title: value.title,
-						description: value.description,
-						imageSrc: value.imageName,
-					}))}
+					content={values}
+				/>
+				<AddItem
+					data={{
+						id: '',
+						language: generalProps.language,
+						title: '',
+						description: '',
+					}}
+					type='value'
+					Component={SettingsValueForm}
+					className={styles.addItem}
+					postRole={generalProps.roles.valuePost}
 				/>
 			</Layout>
 		</Section>

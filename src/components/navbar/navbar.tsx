@@ -1,9 +1,11 @@
 import { HeaderNavbarLink } from '@/api/header-navbar-link/header-navbar-link.api'
+import { AddItem } from '@/modules/settings/add/add-item'
 import { DropDown } from '@/ui/drop-down/drop-down'
 import { GeneralProps } from '@/utils/types'
 import classNames from 'classnames'
 import Link from 'next/link'
 import { SettingsHeaderNavbarLink } from '../settings/header-navbar-link/settings-header-navbar-link'
+import { SettingsHeaderNavbarLinkForm } from '../settings/header-navbar-link/settings-header-navbar-link-form'
 import styles from './navbar.module.scss'
 
 type Props = {
@@ -21,13 +23,7 @@ export const Navbar = ({ theme, navLinks, generalProps }: Props) => {
 					if (!link && (!sublinks || !sublinks.length)) return null
 
 					const contentWithSettings = (
-						<SettingsHeaderNavbarLink
-							data={{ ...data }}
-							roles={generalProps.roles}
-							iconClassname={styles.settings}
-							theme={theme}
-							allData={navLinks}
-						>
+						<>
 							{link ? (
 								<Link className={styles.hover} href={link}>
 									{name}
@@ -46,7 +42,14 @@ export const Navbar = ({ theme, navLinks, generalProps }: Props) => {
 									className={styles.hover}
 								/>
 							)}
-						</SettingsHeaderNavbarLink>
+							<SettingsHeaderNavbarLink
+								data={{ ...data }}
+								roles={generalProps.roles}
+								iconClassname={styles.settings}
+								theme={theme}
+								headerNavbarLinks={navLinks}
+							/>
+						</>
 					)
 
 					return (
@@ -56,6 +59,20 @@ export const Navbar = ({ theme, navLinks, generalProps }: Props) => {
 					)
 				})}
 			</ul>
+			<AddItem
+				Component={SettingsHeaderNavbarLinkForm}
+				type='header-navbar-link'
+				data={{
+					id: '',
+					language: generalProps.language,
+					name: '',
+					order: 1,
+					link: '/',
+					parentLinkId: '',
+				}}
+				headerNavbarLinks={navLinks}
+				postRole={generalProps.roles.headerNavbarLinkPost}
+			/>
 		</nav>
 	)
 }

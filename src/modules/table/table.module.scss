@@ -18,7 +18,13 @@
 	@apply divide-y divide-main-100;
 
 	tr {
-		@apply hover:bg-gray-50 cursor-pointer;
+		@apply hover:bg-gray-50;
+	}
+
+	&.isUser {
+		tr {
+			@apply cursor-pointer;
+		}
 	}
 
 	td {
@@ -36,6 +42,10 @@
 			@apply px-2 py-1 rounded-full bg-gray-100 text-gray-800;
 		}
 	}
+
+	.textList {
+		@apply flex flex-col gap-1;
+	}
 }
 
 .expandedItem {
@@ -51,5 +61,16 @@
 
 	.expandedItemGridValue {
 		@apply px-3 py-2 bg-white rounded-md border border-gray-200;
+	}
+}
+
+.settingsWrapper {
+	@apply absolute flex flex-col right-3 justify-around;
+	height: calc(100% - 3rem);
+	top: 3rem;
+
+	.settings {
+		@apply relative left-auto top-auto;
+		transform: none;
 	}
 }

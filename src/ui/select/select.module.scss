@@ -1,0 +1,30 @@
+.wrapper {
+	@apply relative text-lg flex flex-col;
+
+	&::after {
+		@apply absolute top-10 right-3 pointer-events-none text-secondary-800;
+		content: '\25BC';
+	}
+
+	label {
+		@apply relative left-2 px-1 text-dark w-fit bg-white;
+		z-index: 1;
+		top: 10px;
+	}
+}
+
+.select {
+	@apply relative appearance-none border-secondary-700 rounded-md py-2 px-3;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	border-width: 2px;
+	border-style: solid;
+
+	&:focus {
+		outline: none;
+	}
+
+	option:checked {
+		@apply bg-secondary-700 text-white;
+	}
+}

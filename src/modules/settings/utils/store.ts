@@ -1,10 +1,15 @@
 import { AuthDto } from '@/api/auth/auth.api'
+import { Breed, BreedDto } from '@/api/breed/breed.api'
 import { Constant, ConstantDto } from '@/api/constant/constant.types'
 import { ExternalPath } from '@/api/file/file.api'
 import {
 	HeaderNavbarLink,
 	HeaderNavbarLinkDto,
 } from '@/api/header-navbar-link/header-navbar-link.api'
+import { MainSlider, MainSliderDto } from '@/api/main-slider/main-slider.api'
+import { Price, PriceDto } from '@/api/price/price.api'
+import { Procedure } from '@/api/procedure/procedure.api'
+import { Value, ValueDto } from '@/api/values/values.api'
 import { ComponentType } from 'react'
 import { create } from 'zustand'
 
@@ -14,11 +19,19 @@ export type SettingsFormType =
 	| 'auth'
 	| 'file'
 	| 'header-navbar-link'
+	| 'value'
+	| 'main-slider'
+	| 'breed'
+	| 'price'
 	| undefined
 export type SettingsFormData =
 	| ConstantDto
 	| AuthDto
 	| HeaderNavbarLinkDto
+	| ValueDto
+	| MainSliderDto
+	| BreedDto
+	| PriceDto
 	| { path: ExternalPath }
 	| undefined
 export type SettingsFormResultType =
@@ -26,13 +39,18 @@ export type SettingsFormResultType =
 	| string
 	| Constant
 	| HeaderNavbarLink
-export type SettingsFormAllData = HeaderNavbarLink[]
+	| Value
+	| MainSlider
+	| Breed
+	| Price
 export type SettingFormSetData = (data: SettingsFormData) => void
 export type SettingsFormComponent = ComponentType<{
 	data: SettingsFormData
 	setData: SettingFormSetData
 	type: SettingsFormType
-	allData?: SettingsFormAllData
+	headerNavbarLinks?: HeaderNavbarLink[]
+	procedures?: Procedure[]
+	method?: 'post' | 'put'
 }> | null
 
 export type Store = {
@@ -41,20 +59,26 @@ export type Store = {
 	Component: SettingsFormComponent
 	componentProps?: Record<string, any>
 	data: SettingsFormData
-	allData?: SettingsFormAllData
+	headerNavbarLinks?: HeaderNavbarLink[]
+	procedures?: Procedure[]
 	type: SettingsFormType
+	method: 'post' | 'put'
 	show: ({
 		componentProps,
 		type,
 		Component,
 		data,
-		allData,
+		headerNavbarLinks,
+		procedures,
+		method,
 	}: {
 		Component: SettingsFormComponent
 		componentProps?: Record<string, any>
 		type: SettingsFormType
-		data: SettingsFormData
-		allData?: SettingsFormAllData
+		data?: SettingsFormData
+		headerNavbarLinks?: HeaderNavbarLink[]
+		procedures?: Procedure[]
+		method: 'post' | 'put'
 	}) => void
 	setData: SettingFormSetData
 }
@@ -65,8 +89,26 @@ const useSettingsStore = create<Store>(set => ({
 	Component: null,
 	componentProps: {},
 	type: 'constant_short',
-	show: ({ componentProps, type, Component, data, allData }) =>
-		set({ isShown: true, componentProps, type, Component, data, allData }),
+	method: 'put',
+	show: ({
+		componentProps,
+		type,
+		Component,
+		data,
+		headerNavbarLinks,
+		procedures,
+		method,
+	}) =>
+		set({
+			isShown: true,
+			componentProps,
+			type,
+			Component,
+			data,
+			headerNavbarLinks,
+			procedures,
+			method,
+		}),
 	data: undefined,
 	setData: data => set({ data }),
 }))

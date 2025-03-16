@@ -1,9 +1,9 @@
 import { Language } from '@/i18n/types'
-import { basicQueryParams, request } from '../request'
+import { request } from '../request'
 
-type BreedType = 'cat' | 'smallDog' | 'mediumDog' | 'bigDog'
+export type BreedType = 'cat' | 'smallDog' | 'mediumDog' | 'bigDog'
 
-type Breed = {
+export type Breed = {
 	id: string
 	createdAt: Date
 	name: string
@@ -13,7 +13,8 @@ type Breed = {
 	type: BreedType
 }
 
-type BreedDto = {
+export type BreedDto = {
+	id: string
 	language: Language
 	name: string
 	type: BreedType
@@ -23,8 +24,12 @@ type BreedDto = {
 class BreedApi {
 	url = 'breeds'
 
-	async findMany(queryParams: { language?: Language; isDeleted?: boolean }) {
-		const url = `/${this.url}?${basicQueryParams(queryParams)}`
+	async findMany(queryParams: {
+		language?: Language
+		isDeleted?: boolean
+		type?: 'dogs' | 'cats'
+	}) {
+		const url = `/${this.url}?${this.queryParams(queryParams)}`
 		const data = (await request({ url, revalidateTag: 'breeds' })) as Breed[]
 
 		if (data) {
@@ -72,6 +77,24 @@ class BreedApi {
 		if (data) {
 			return data
 		}
+	}
+
+	private queryParams({
+		language,
+		type,
+		isDeleted,
+	}: {
+		language?: Language
+		type?: 'dogs' | 'cats'
+		isDeleted?: boolean
+	}) {
+		const queryParams = new URLSearchParams()
+		if (language !== undefined) queryParams.append('language', language)
+		if (type !== undefined) queryParams.append('type', type)
+		if (isDeleted !== undefined)
+			queryParams.append('isDeleted', isDeleted.toString())
+
+		return queryParams.toString()
 	}
 }
 

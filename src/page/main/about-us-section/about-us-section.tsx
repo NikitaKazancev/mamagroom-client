@@ -18,8 +18,7 @@ export const MainPageAboutUs = async ({
 	description,
 	generalProps,
 }: Props) => {
-	const slideURLs = await mainSliderApi.findMany({ isDeleted: false })
-	const urls = slideURLs.map(data => data.imageName)
+	const mainSliders = await mainSliderApi.findMany({ isDeleted: false })
 
 	return (
 		<Section className={styles.main} pTop={false}>
@@ -59,7 +58,7 @@ export const MainPageAboutUs = async ({
 					</div>
 
 					<div className={styles.right}>
-						<Slider urls={urls} />
+						<Slider data={mainSliders} generalProps={generalProps} />
 					</div>
 				</div>
 			</Layout>

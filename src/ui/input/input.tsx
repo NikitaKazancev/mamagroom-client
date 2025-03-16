@@ -12,8 +12,9 @@ export const Input = ({
 	value = '',
 	type = 'text',
 	onChange,
-	theme = 'light',
+	theme = 'white',
 	invisible = false,
+	placeholder,
 }: {
 	title: string
 	name: string
@@ -25,8 +26,9 @@ export const Input = ({
 			| React.ChangeEvent<HTMLInputElement>
 			| { name: string; value: string | number }
 	) => void
-	theme?: 'light' | 'dark'
+	theme?: 'white' | 'main'
 	invisible?: boolean
+	placeholder?: string
 }) => {
 	const props: {
 		required?: boolean
@@ -38,10 +40,16 @@ export const Input = ({
 				| React.ChangeEvent<HTMLInputElement>
 				| { name: string; value: string | number }
 		) => void
+		placeholder?: string
 	} = {
 		required,
 		type,
 		name,
+		placeholder: placeholder
+			? placeholder
+			: !required
+			? 'Не обязательно'
+			: '',
 		value: value || '',
 	}
 
@@ -54,7 +62,7 @@ export const Input = ({
 	if (type === 'file') {
 		return (
 			<div className={styles.fileContainer}>
-				<input type='file' name='file' />
+				<input type='file' name='file' required={required} />
 			</div>
 		)
 	}
@@ -81,36 +89,39 @@ export const Input = ({
 	const id = uuidv4()
 
 	return (
-		<div className={classNames(styles.wrapper, invisible && styles.hide)}>
-			<div className={classNames(styles.container, styles[theme])}>
-				<input
-					{...props}
-					className={classNames(styles.input, value && styles.filled)}
-					ref={input}
-					autoComplete='on'
-					id={id}
-				/>
-				<label htmlFor={id}>{title}</label>
-				<i></i>
-				{type === 'number' && (
-					<div className={styles.numberControls}>
-						<button
-							type='button'
-							className={styles.minus}
-							onClick={decreaseValue}
-						>
-							-
-						</button>
-						<button
-							type='button'
-							className={styles.plus}
-							onClick={increaseValue}
-						>
-							+
-						</button>
-					</div>
-				)}
-			</div>
+		<div
+			className={classNames(
+				styles.container,
+				styles[theme],
+				invisible && styles.hide
+			)}
+		>
+			<label htmlFor={id}>{title}</label>
+			<input
+				{...props}
+				className={classNames(styles.input, value && styles.filled)}
+				ref={input}
+				autoComplete='on'
+				id={id}
+			/>
+			{type === 'number' && (
+				<div className={styles.numberControls}>
+					<button
+						type='button'
+						className={styles.minus}
+						onClick={decreaseValue}
+					>
+						-
+					</button>
+					<button
+						type='button'
+						className={styles.plus}
+						onClick={increaseValue}
+					>
+						+
+					</button>
+				</div>
+			)}
 		</div>
 	)
 }

@@ -1,7 +1,7 @@
 import { Language } from '@/i18n/types'
 import { basicQueryParams, request } from '../request'
 
-type Procedure = {
+export type Procedure = {
 	name: string
 	id: string
 	createdAt: Date
@@ -11,7 +11,7 @@ type Procedure = {
 	language: Language
 }
 
-type ProcedureDto = {
+export type ProcedureDto = {
 	language: Language
 	name: string
 	description?: string
@@ -45,7 +45,7 @@ class ProcedureApi {
 		}
 
 		if (res) {
-			return res
+			return res as Procedure[]
 		}
 
 		return []

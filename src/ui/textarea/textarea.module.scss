@@ -1,17 +1,18 @@
-.wrapper {
-	@apply pt-6 pb-4;
-}
-
 .container {
-	@apply relative text-xl min-w-96;
+	@apply relative text-xl min-w-96 flex flex-col;
+
+	label {
+		@apply relative left-2 px-1 text-dark w-fit;
+		top: 10px;
+	}
 
 	textarea {
-		@apply relative w-full px-2 py-1 bg-transparent outline-none shadow-none border-none rounded-md h-36;
-		z-index: 1;
+		@apply py-2 px-3 border-secondary-700 rounded-md h-36;
+		border-width: 2px;
+		border-style: solid;
 
-		~ label {
-			@apply absolute left-0 px-2 py-2 transition-all duration-500 pointer-events-none;
-			transform: translateX(-6px) translateY(-36px);
+		&:focus {
+			outline: none;
 		}
 
 		&::-webkit-scrollbar-thumb {
@@ -19,20 +20,16 @@
 		}
 	}
 
-	&.light {
+	&.white {
+		label,
 		textarea {
-			@apply bg-secondary-800 text-white;
-		}
-		label {
-			@apply text-dark;
+			@apply bg-white;
 		}
 	}
-	&.dark {
+	&.main {
+		label,
 		textarea {
-			@apply bg-secondary-300 text-dark;
-		}
-		label {
-			@apply text-white;
+			@apply bg-main-25;
 		}
 	}
 }

@@ -55,7 +55,11 @@ const MastersPage = async ({ params }: { params: { locale: Language } }) => {
 				fileUrl={mainImageUrl}
 				externalPath='pages/masters/main-bg'
 			/>
-			<Cards title={'наша команда'} data={masters} />
+			<Cards
+				title={'наша команда'}
+				data={masters}
+				generalProps={generalProps}
+			/>
 			<MainPageReviews generalProps={generalProps} />
 		</>
 	)

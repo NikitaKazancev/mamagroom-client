@@ -6,7 +6,6 @@ import { authApi } from './auth.api'
 
 export const login = async (formData: FormData) => {
 	const data = objectFromFormData(formData)
-	if (!data.email || !data.password) return undefined
 
 	const fetchedData = await authApi.login({
 		email: data.email.toString(),

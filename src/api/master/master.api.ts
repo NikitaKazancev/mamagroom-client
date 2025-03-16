@@ -7,6 +7,7 @@ type Master = {
 	isDeleted: boolean
 	id: string
 	imageName?: string
+	position?: string
 	createdAt: Date
 	description?: string
 	updatedAt: Date
@@ -16,6 +17,7 @@ type MasterDto = {
 	language: Language
 	name: string
 	description?: string
+	position?: string
 	imageName?: string
 	isDeleted?: boolean
 }

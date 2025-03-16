@@ -5,6 +5,8 @@ export const CONSTANT_TYPES = {
 	homePage: 'home-page',
 	vacanciesPage: 'vacancies-page',
 	mastersPage: 'masters-page',
+	dogsPage: 'dogs-page',
+	catsPage: 'cats-page',
 }
 
 export type ConstantType = keyof typeof CONSTANT_TYPES

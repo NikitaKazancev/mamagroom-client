@@ -1,27 +1,22 @@
-.wrapper {
-	@apply pt-6;
+.container {
+	@apply relative text-xl min-w-96 flex flex-col;
 
 	&.hide {
 		@apply hidden;
 	}
-}
 
-.container {
-	@apply relative text-xl min-w-96;
+	label {
+		@apply relative left-2 px-1 text-dark w-fit;
+		top: 10px;
+	}
 
 	input {
-		@apply relative w-full px-2 py-2 bg-transparent outline-none shadow-none border-none  transition-all duration-500;
-		z-index: 1;
+		@apply py-2 px-3 border-secondary-700 rounded-md;
+		border-width: 2px;
+		border-style: solid;
 
-		&:focus,
-		&.filled {
-			~ label {
-				transform: translateX(-6px) translateY(-36px);
-			}
-
-			~ i {
-				height: 44px;
-			}
+		&:focus {
+			outline: none;
 		}
 
 		&[type='number'] {
@@ -31,66 +26,38 @@
 				-webkit-appearance: none;
 				margin: 0;
 			}
+		}
+	}
 
-			~ .numberControls {
-				@apply flex gap-2 absolute right-3 top-1/2 -translate-y-1/2 content-center;
-				z-index: 1;
+	.numberControls {
+		@apply flex gap-2 absolute right-3 top-8 content-center;
+		z-index: 1;
 
-				button {
-					@apply text-4xl text-dark;
+		button {
+			@apply text-4xl text-dark;
 
-					&.minus {
-						transform: translateY(-2px);
-					}
-				}
-			}
-
-			&:focus,
-			&.filled {
-				~ .numberControls {
-					button {
-						@apply text-4xl text-white;
-					}
-				}
+			&.minus {
+				transform: translateY(-2px);
 			}
 		}
 	}
 
-	label {
-		@apply absolute left-0 px-2 py-2 transition-all duration-500 pointer-events-none;
-	}
-
-	i {
-		@apply absolute left-0 bottom-0 w-full rounded-md transition-all duration-500 pointer-events-none;
-		height: 2px;
-	}
-
-	&.light {
+	&.white {
+		label,
 		input {
-			@apply text-white;
-		}
-		label {
-			@apply text-dark;
-		}
-		i {
-			@apply bg-secondary-800;
+			@apply bg-white;
 		}
 	}
-	&.dark {
+	&.main {
+		label,
 		input {
-			@apply text-dark;
-		}
-		label {
-			@apply text-white;
-		}
-		i {
-			@apply bg-secondary-300;
+			@apply bg-main-25;
 		}
 	}
 }
 
 .fileContainer {
-	@apply bg-secondary-800 rounded-lg p-1;
+	@apply bg-secondary-800 rounded-lg p-1 mt-3;
 
 	input {
 		@apply p-2 m-1 relative outline-none text-white;

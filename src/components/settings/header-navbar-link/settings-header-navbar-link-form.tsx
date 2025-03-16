@@ -8,21 +8,20 @@ import {
 	SettingFormSetData,
 	SettingsFormData,
 } from '@/modules/settings/utils/store'
-import { DropDown } from '@/ui/drop-down/drop-down'
 import { Input } from '@/ui/input/input'
+import { Select } from '@/ui/select/select'
 
 export const SettingsHeaderNavbarLinkForm = ({
 	data,
 	setData,
-	allData,
+	headerNavbarLinks,
 }: {
 	data: SettingsFormData
 	setData: SettingFormSetData
-	allData?: HeaderNavbarLink[]
+	headerNavbarLinks?: HeaderNavbarLink[]
 }) => {
-	if (!data || !allData) return
+	if (!data || !headerNavbarLinks) return
 	const localData = data as HeaderNavbarLinkDto
-	const localAllData = allData as HeaderNavbarLink[]
 
 	const onChange = (e: any) => {
 		if (e.target) {
@@ -54,10 +53,17 @@ export const SettingsHeaderNavbarLinkForm = ({
 				onChange={onChange}
 				title='Ссылка'
 				value={localData.link}
+				required
 			/>
-			<DropDown
-				items={localAllData.map(data => data.name)}
-				titleElement={<div>Test</div>}
+			<Select
+				name='parentLinkId'
+				title='Родительская ссылка'
+				options={headerNavbarLinks.map(data => ({
+					name: data.name,
+					value: data.id,
+				}))}
+				value={localData.parentLinkId}
+				onChange={onChange}
 			/>
 		</>
 	)

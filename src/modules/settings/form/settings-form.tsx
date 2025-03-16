@@ -1,11 +1,25 @@
 'use client'
 
 import { login } from '@/api/auth/auth.server'
+import { BreedDto } from '@/api/breed/breed.api'
+import { postBreed, putBreed } from '@/api/breed/breed.server'
 import { putConstant } from '@/api/constant/constant.server'
 import { ConstantDto } from '@/api/constant/constant.types'
 import { postFile } from '@/api/file/file.server'
 import { HeaderNavbarLinkDto } from '@/api/header-navbar-link/header-navbar-link.api'
-import { putHeaderNavbarLink } from '@/api/header-navbar-link/header-navbar-link.server'
+import {
+	postHeaderNavbarLink,
+	putHeaderNavbarLink,
+} from '@/api/header-navbar-link/header-navbar-link.server'
+import { MainSliderDto } from '@/api/main-slider/main-slider.api'
+import {
+	postMainSlider,
+	putMainSlider,
+} from '@/api/main-slider/main-slider.server'
+import { PriceDto } from '@/api/price/price.api'
+import { postPrice, putPrice } from '@/api/price/price.server'
+import { ValueDto } from '@/api/values/values.api'
+import { postValue, putValue } from '@/api/values/values.server'
 import { AuthFormBtns } from '@/modules/auth/auth-form-btns'
 import { Button } from '@/ui/button/button'
 import { ExitIcon } from '@/ui/icons/exit/exit'
@@ -24,8 +38,10 @@ export const SettingsForm = () => {
 		type,
 		Component,
 		data,
-		allData,
+		headerNavbarLinks,
+		procedures,
 		setData,
+		method,
 	} = useSettingsStore()
 
 	const form = useRef<HTMLFormElement>(null)
@@ -79,10 +95,41 @@ export const SettingsForm = () => {
 		} else if (type && type.startsWith('constant')) {
 			result = await putConstant(formData, data as ConstantDto)
 		} else if (type === 'header-navbar-link') {
-			result = await putHeaderNavbarLink(
-				formData,
-				data as HeaderNavbarLinkDto
-			)
+			if (method === 'post') {
+				result = await postHeaderNavbarLink(
+					formData,
+					data as HeaderNavbarLinkDto
+				)
+			} else {
+				result = await putHeaderNavbarLink(
+					formData,
+					data as HeaderNavbarLinkDto
+				)
+			}
+		} else if (type === 'value') {
+			if (method === 'post') {
+				result = await postValue(formData)
+			} else {
+				result = await putValue(formData, data as ValueDto)
+			}
+		} else if (type === 'main-slider') {
+			if (method === 'post') {
+				result = await postMainSlider(formData)
+			} else {
+				result = await putMainSlider(formData, data as MainSliderDto)
+			}
+		} else if (type === 'breed') {
+			if (method === 'post') {
+				result = await postBreed(formData, data as BreedDto)
+			} else {
+				result = await putBreed(formData, data as BreedDto)
+			}
+		} else if (type === 'price') {
+			if (method === 'post') {
+				result = await postPrice(formData, data as PriceDto)
+			} else {
+				result = await putPrice(formData, data as PriceDto)
+			}
 		}
 
 		if (!result) {
@@ -117,7 +164,9 @@ export const SettingsForm = () => {
 							data={data}
 							setData={setData}
 							type={type}
-							allData={allData}
+							headerNavbarLinks={headerNavbarLinks}
+							procedures={procedures}
+							method={method}
 						/>
 					)}
 					<div className={styles.buttons}>

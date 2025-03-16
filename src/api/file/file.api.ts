@@ -8,12 +8,16 @@ export const FILE_PATHS = {
 	mainPage: `pages/home`,
 	vacanciesPage: 'pages/vacancies',
 	mastersPage: 'pages/masters',
+	dogsPage: 'pages/dogs',
+	catsPage: 'pages/cats',
 } as const
 
 export const EXTERNAL_PATHS = {
 	mainPageMainBg: `${FILE_PATHS.mainPage}/${FILE_NAMES.mainBg}`,
 	vacanciesPageMainBg: `${FILE_PATHS.vacanciesPage}/${FILE_NAMES.mainBg}`,
 	mastersPageMainBg: `${FILE_PATHS.mastersPage}/${FILE_NAMES.mainBg}`,
+	dogsPageMainBg: `${FILE_PATHS.dogsPage}/${FILE_NAMES.mainBg}`,
+	catsPageMainBg: `${FILE_PATHS.catsPage}/${FILE_NAMES.mainBg}`,
 } as const
 
 export type FileName = (typeof FILE_NAMES)[keyof typeof FILE_NAMES]

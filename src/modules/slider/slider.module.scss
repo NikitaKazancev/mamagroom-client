@@ -27,10 +27,23 @@
 
 		&.active {
 			@apply opacity-100;
+
+			.settings {
+				@apply flex;
+			}
 		}
+	}
+
+	.settings {
+		@apply top-4 right-2 left-auto hidden;
+		z-index: 1;
 	}
 
 	img {
 		@apply object-cover;
 	}
+}
+
+.addItem {
+	@apply absolute -right-10 left-auto top-1/2 -translate-y-1/2;
 }

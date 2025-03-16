@@ -1,6 +1,9 @@
 'use client'
 
+import { Value } from '@/api/values/values.api'
+import { SettingsValue } from '@/components/settings/values/values-link'
 import { capitalizeFirst } from '@/utils/functions'
+import { GeneralProps } from '@/utils/types'
 import classNames from 'classnames'
 import Image from 'next/image'
 import { useRef, useState } from 'react'
@@ -9,17 +12,18 @@ import styles from './grid-list.module.scss'
 type Item = {
 	title: string
 	description: string
-	imageSrc: string
+	imageName: string
 }
 
 type Props = {
-	content: Item[]
+	content: Value[]
 	className?: string
+	generalProps: GeneralProps
 }
 
 type Direction = 'left' | 'right' | 'top' | 'bottom'
 
-export const GridList = ({ content, className }: Props) => {
+export const GridList = ({ content, className, generalProps }: Props) => {
 	const [elemsState, setElemsState] = useState(
 		content.map((_, i) => {
 			const isFirstElem = i === 0
@@ -157,39 +161,47 @@ export const GridList = ({ content, className }: Props) => {
 				const elemstate = elemsState[i]
 
 				return (
-					<li
-						key={data.title}
-						className={classNames(styles.item, styles.transition)}
-						onMouseMove={() => handleHover(i)}
-						onMouseOver={() => handleHover(i)}
-						data-index={i}
-					>
-						<Item
-							{...data}
-							showTitle={elemstate.isComponent1Title}
-							className={styles.wrapper1}
-						/>
-						<Item
-							{...data}
-							showTitle={elemstate.isComponent2Title}
-							className={styles.wrapper2}
-						/>
-						<Item
-							{...data}
-							showTitle={elemstate.isComponent3Title}
-							className={styles.wrapper3}
-						/>
-						<Item
-							{...data}
-							showTitle={elemstate.isComponent4Title}
-							className={styles.wrapper4}
-						/>
-						<Item
-							{...data}
-							showTitle={elemstate.isComponent5Title}
-							className={styles.wrapper5}
-						/>
-					</li>
+					<>
+						<li
+							className={classNames(styles.item, styles.transition)}
+							onMouseMove={() => handleHover(i)}
+							onMouseOver={() => handleHover(i)}
+							data-index={i}
+							key={data.title}
+						>
+							<Item
+								{...data}
+								showTitle={elemstate.isComponent1Title}
+								className={styles.wrapper1}
+							/>
+							<Item
+								{...data}
+								showTitle={elemstate.isComponent2Title}
+								className={styles.wrapper2}
+							/>
+							<Item
+								{...data}
+								showTitle={elemstate.isComponent3Title}
+								className={styles.wrapper3}
+							/>
+							<Item
+								{...data}
+								showTitle={elemstate.isComponent4Title}
+								className={styles.wrapper4}
+							/>
+							<Item
+								{...data}
+								showTitle={elemstate.isComponent5Title}
+								className={styles.wrapper5}
+							/>
+							<SettingsValue
+								data={{ ...data }}
+								roles={generalProps.roles}
+								iconClassname={styles.settings}
+								theme='dark'
+							/>
+						</li>
+					</>
 				)
 			})}
 		</ul>
@@ -199,7 +211,7 @@ export const GridList = ({ content, className }: Props) => {
 const Item = ({
 	title,
 	description,
-	imageSrc,
+	imageName,
 	showTitle,
 	className,
 }: Item & {
@@ -219,7 +231,7 @@ const Item = ({
 			) : (
 				<>
 					<p className={styles.description}>{description}</p>
-					<Image src={imageSrc} alt={title} fill className={styles.img} />
+					<Image src={imageName} alt={title} fill className={styles.img} />
 				</>
 			)}
 		</div>

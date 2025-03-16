@@ -1,7 +1,7 @@
 import { Language } from '@/i18n/types'
 import { basicQueryParams, fullImageName, request } from '../request'
 
-type Value = {
+export type Value = {
 	language: Language
 	isDeleted: boolean
 	id: string
@@ -13,7 +13,8 @@ type Value = {
 	title: string
 }
 
-type ValueDto = {
+export type ValueDto = {
+	id: string
 	language: Language
 	title: string
 	description: string
@@ -50,7 +51,7 @@ class ValueApi {
 		}
 	}
 
-	async post(value: ValueDto) {
+	async post(value: FormData) {
 		const url = `/${this.url}`
 		const data = (await request({
 			url,
@@ -64,7 +65,7 @@ class ValueApi {
 		}
 	}
 
-	async put(id: string, value: ValueDto) {
+	async put(id: string, value: FormData | ValueDto) {
 		const url = `/${this.url}/${id}`
 		const data = (await request({ url, method: 'put', body: value })) as Value
 

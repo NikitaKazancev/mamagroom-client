@@ -1,17 +1,24 @@
+import { Language } from '@/i18n/types'
 import { request } from '../request'
 
-type Price = {
+export type Price = {
+	id: string
 	price: number
 	createdAt: Date
 	updatedAt: Date
 	isDeleted: boolean
 	breedId: string
 	procedureId: string
+	procedure: {
+		id: string
+		name: string
+	}
 	weight: number
 	time: number
 }
 
-type PriceDto = {
+export type PriceDto = {
+	id: string
 	breedId: string
 	procedureId: string
 	weight?: number
@@ -28,6 +35,8 @@ class PriceApi {
 		procedureId?: string
 		weight?: number
 		time?: number
+		language?: Language
+		isDeleted?: boolean
 	}) {
 		const url = `/${this.url}?${this.queryParams(queryParams)}`
 		const data = (await request({ url, revalidateTag: 'prices' })) as Price[]
@@ -39,22 +48,43 @@ class PriceApi {
 		return []
 	}
 
-	async put(price: PriceDto) {
-		const url = `/${this.url}`
-		const data = (await request({ url, method: 'put', body: price })) as Price
+	async findById(id: string) {
+		const url = `/${this.url}/${id}`
+		const data = (await request({ url })) as Price
 
 		if (data) {
 			return data
 		}
 	}
 
-	async delete(queryParams: {
-		breedId?: string
-		procedureId?: string
-		weight?: number
-		time?: number
-	}) {
-		const url = `/${this.url}?${this.queryParams(queryParams)}`
+	async post(price: PriceDto) {
+		const url = `/${this.url}`
+		const data = (await request({
+			url,
+			method: 'post',
+			body: price,
+		})) as Price
+
+		if (data) {
+			return data
+		}
+	}
+
+	async put(id: string, price: PriceDto) {
+		const url = `/${this.url}/${id}`
+		const data = (await request({
+			url,
+			method: 'put',
+			body: price,
+		})) as Price
+
+		if (data) {
+			return data
+		}
+	}
+
+	async delete(id: string) {
+		const url = `/${this.url}/${id}`
 		const data = (await request({ url, method: 'delete' })) as Price
 
 		if (data) {
@@ -67,11 +97,15 @@ class PriceApi {
 		procedureId,
 		weight,
 		time,
+		language,
+		isDeleted,
 	}: {
 		breedId?: string
 		procedureId?: string
 		weight?: number
 		time?: number
+		language?: Language
+		isDeleted?: boolean
 	}) {
 		const queryParams = new URLSearchParams()
 		if (breedId !== undefined) queryParams.append('breedId', breedId)
@@ -79,6 +113,10 @@ class PriceApi {
 			queryParams.append('procedureId', procedureId)
 		if (weight !== undefined) queryParams.append('weight', String(weight))
 		if (time !== undefined) queryParams.append('time', String(time))
+		if (language !== undefined)
+			queryParams.append('language', String(language))
+		if (isDeleted !== undefined)
+			queryParams.append('isDeleted', String(isDeleted))
 
 		return queryParams.toString()
 	}

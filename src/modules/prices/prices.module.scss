@@ -1,0 +1,24 @@
+.main {
+	position: relative;
+}
+
+.breadCrumbs {
+	@apply text-lg transition-all duration-100 w-fit;
+
+	&:hover {
+		@apply text-gray-500;
+	}
+}
+
+.prices {
+	@apply mt-3;
+
+	.addItem {
+		@apply left-1/2 -translate-x-1/2;
+	}
+}
+
+.identifier {
+	position: relative;
+	top: -60px;
+}

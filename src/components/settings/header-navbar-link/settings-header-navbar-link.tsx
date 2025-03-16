@@ -7,34 +7,29 @@ import { Roles } from '@/utils/auth/auth'
 import { SettingsHeaderNavbarLinkForm } from './settings-header-navbar-link-form'
 
 export const SettingsHeaderNavbarLink = ({
-	children,
 	data,
 	iconClassname,
 	roles,
 	theme,
-	allData,
+	headerNavbarLinks,
 }: {
-	children: React.ReactNode
 	data: HeaderNavbarLinkDto
 	iconClassname?: string
 	roles: Roles
 	theme?: 'light' | 'dark'
-	allData: HeaderNavbarLink[]
+	headerNavbarLinks: HeaderNavbarLink[]
 }) => {
+	if (!roles.headerNavbarLinkPut && !roles.headerNavbarLinkDelete) return null
+
 	return (
-		<div className='relative'>
-			{children}
-			{(roles.headerNavbarLinkPut || roles.headerNavbarLinkDelete) && (
-				<Settings
-					Component={SettingsHeaderNavbarLinkForm}
-					iconClassname={iconClassname}
-					type='header-navbar-link'
-					data={data}
-					theme={theme}
-					isDeleted={data.isDeleted}
-					allData={allData}
-				/>
-			)}
-		</div>
+		<Settings
+			Component={SettingsHeaderNavbarLinkForm}
+			iconClassname={iconClassname}
+			type='header-navbar-link'
+			data={data}
+			theme={theme}
+			isDeleted={data.isDeleted}
+			headerNavbarLinks={headerNavbarLinks}
+		/>
 	)
 }

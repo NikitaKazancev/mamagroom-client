@@ -34,3 +34,18 @@ export const objectFromFormData = (formData: FormData) =>
 export const formatDate = (date: Date): string => {
 	return format(new Date(date), 'MMM dd, yyyy HH:mm')
 }
+
+export const minutesToHours = (minutes: number): string => {
+	const hours = Math.floor(minutes / 60)
+	const mins = minutes % 60
+
+	if (hours && mins) {
+		return `${hours}ч ${mins}мин`
+	}
+
+	if (hours) {
+		return `${hours}ч`
+	}
+
+	return `${mins}мин`
+}

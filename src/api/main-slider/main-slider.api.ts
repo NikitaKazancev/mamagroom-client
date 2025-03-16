@@ -1,6 +1,7 @@
+import console from 'console'
 import { basicQueryParams, fullImageName, request } from '../request'
 
-type MainSlider = {
+export type MainSlider = {
 	id: string
 	imageName: string
 	order: number
@@ -9,7 +10,8 @@ type MainSlider = {
 	isDeleted: boolean
 }
 
-type MainSliderDto = {
+export type MainSliderDto = {
+	id: string
 	imageName?: string
 	order?: number
 	isDeleted?: boolean
@@ -47,7 +49,7 @@ class MainSliderApi {
 		}
 	}
 
-	async post(mainSlider: MainSliderDto) {
+	async post(mainSlider: FormData) {
 		const url = `/${this.url}`
 		const data = (await request({
 			url,
@@ -61,7 +63,9 @@ class MainSliderApi {
 		}
 	}
 
-	async put(id: string, mainSlider: MainSliderDto) {
+	async put(id: string, mainSlider: FormData | MainSliderDto) {
+		console.log(mainSlider)
+
 		const url = `/${this.url}/${id}`
 		const data = (await request({
 			url,

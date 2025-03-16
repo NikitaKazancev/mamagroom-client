@@ -11,9 +11,6 @@ export const putConstant = async (
 	initialData: ConstantDto
 ) => {
 	const data = objectFromFormData(formData)
-	if (!data.value) return
-
-	console.log(data)
 
 	const res = await constantApi.put({
 		...initialData,

@@ -1,10 +1,12 @@
 .navbar {
+	@apply flex gap-4;
+
 	.list {
 		@apply flex items-center gap-6;
 	}
 
 	.item {
-		@apply cursor-pointer lowercase transition-all duration-300 text-xl;
+		@apply relative cursor-pointer lowercase transition-all duration-300 text-xl;
 	}
 
 	&.dark {

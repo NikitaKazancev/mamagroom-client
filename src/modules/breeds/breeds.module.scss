@@ -1,0 +1,81 @@
+.filters {
+	@apply flex gap-4 justify-between items-end;
+
+	.breedTypes {
+		@apply flex gap-2 items-center;
+
+		button {
+			@apply px-4 py-2 rounded-lg transition-all duration-200 bg-white text-gray-800;
+
+			&:hover {
+				@apply bg-gray-300;
+			}
+
+			&.active {
+				@apply bg-secondary-700 text-white;
+			}
+		}
+	}
+}
+
+.list {
+	@apply flex flex-col gap-6;
+
+	&.dogs {
+		@apply mt-6;
+	}
+}
+
+.item {
+	@apply flex flex-col gap-4 mt-1;
+
+	.title {
+		@apply text-2xl font-bold mt-2;
+	}
+
+	.line {
+		@apply bg-gray-300 relative -left-4 -right-4;
+		width: calc(100% + 32px);
+		height: 1px;
+	}
+}
+
+.breeds {
+	@apply grid grid-cols-4 gap-4;
+
+	.breed {
+		@apply relative;
+
+		a {
+			@apply block w-full h-full;
+
+			&:hover {
+				span {
+					&::after {
+						@apply hidden;
+					}
+				}
+			}
+		}
+
+		span {
+			@apply relative;
+
+			&::after {
+				@apply absolute -bottom-1 left-0 right-0 bg-gray-400;
+				height: 2px;
+				content: '';
+			}
+		}
+	}
+}
+
+.identifier {
+	position: relative;
+	top: -60px;
+}
+
+.settings {
+	@apply top-4;
+	left: -3rem !important;
+}
