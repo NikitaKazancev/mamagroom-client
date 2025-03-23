@@ -1,14 +1,29 @@
 {
+	"General": {
+		"book": "записаться",
+		"siteName": "МамагруМ",
+		"metadataTitle": "МамагруМ – груминг салон в Мытищах | mamagroom.ru",
+		"metadataDescription": "Вы нам – чубакку, мы вам – собаку",
+		"search": "Поиск"
+	},
 	"Footer": {
 		"address": "Мытищи, Новомытищинский проспект, 41к1",
 		"workingHours": "10:00 – 21:00",
 		"copyright": "МамагруМ © 2025. Все права защищены."
 	},
-	"General": {
-		"book": "записаться",
-		"siteName": "МамагруМ",
-		"metadataTitle": "МамагруМ – груминг салон в Мытищах | mamagroom.ru",
-		"metadataDescription": "Вы нам – чубакку, мы вам – собаку"
+	"Procedures": {
+		"smallDog": "Мелкие",
+		"mediumDog": "Средние",
+		"bigDog": "Крупные",
+		"searchPlaceholder": "Алабай...",
+		"fullDogsLink": "Процедуры для собак",
+		"fullCatsLink": "Процедуры для кошек",
+		"tableProcedureCol": "Процедура",
+		"tableTimeCol": "Время",
+		"tablePriceCol": "Цена (₽)"
+	},
+	"Vacancies": {
+		"linkText": "Подробнее"
 	},
 	"Yandex": {
 		"onMap": "МамагруМ на карте Мытищ — Яндекс Карты"
@@ -16,8 +31,5 @@
 	"Cookies": {
 		"message": "мы используем cookies, чтобы все хорошо работало",
 		"accept": "уже привычно"
-	},
-	"Dogs": {
-		"metadataTitle": "Процедуры для собак"
 	}
 }
