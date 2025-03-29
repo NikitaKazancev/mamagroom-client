@@ -18,6 +18,7 @@ export const AddItem = ({
 	data,
 	className,
 	postRole,
+	formTitle,
 }: {
 	Component: SettingsFormComponent
 	type: SettingsFormType
@@ -26,6 +27,7 @@ export const AddItem = ({
 	data: SettingsFormData
 	className?: string
 	postRole: boolean
+	formTitle: string
 }) => {
 	const { show } = useSettingsStore()
 
@@ -37,6 +39,7 @@ export const AddItem = ({
 			procedures,
 			data,
 			method: 'post',
+			formTitle,
 		})
 	}
 

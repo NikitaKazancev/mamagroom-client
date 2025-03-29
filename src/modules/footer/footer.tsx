@@ -61,6 +61,7 @@ export const Footer = ({ token }: { token?: string }) => {
 					Component={AuthForm}
 					iconClassname={styles.auth}
 					type='auth'
+					formTitle='Авторизация'
 				/>
 			)}
 		</footer>

@@ -8,11 +8,13 @@ export const SettingsBreed = ({
 	iconClassname,
 	roles,
 	theme,
+	formTitle,
 }: {
 	data: BreedDto
 	iconClassname?: string
 	roles: Roles
 	theme?: 'light' | 'dark'
+	formTitle: string
 }) => {
 	if (!roles.breedPut && !roles.breedDelete) return null
 
@@ -24,6 +26,7 @@ export const SettingsBreed = ({
 			data={data}
 			theme={theme}
 			isDeleted={data.isDeleted}
+			formTitle={formTitle}
 		/>
 	)
 }

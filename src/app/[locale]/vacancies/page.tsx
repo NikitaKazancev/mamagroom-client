@@ -30,7 +30,15 @@ export default async function Vacancies({
 		'main-bg'
 	)
 
-	const vacancies = await vacancyApi.findMany({ language: params.locale })
+	const vacancies = await vacancyApi.findMany({
+		language: params.locale,
+		isDeleted:
+			generalProps.roles.vacancyDelete ||
+			generalProps.roles.vacancyPut ||
+			generalProps.roles.vacancyPost
+				? undefined
+				: false,
+	})
 
 	return (
 		<>
@@ -40,14 +48,12 @@ export default async function Vacancies({
 					type: 'vacancies-page',
 					name: 'main-title',
 					value: constants.vacanciesPage_mainTitle,
-					settingsTitle: 'Главный заголовок',
 				}}
 				descriptionData={{
 					language: params.locale,
 					type: 'vacancies-page',
 					name: 'main-description',
 					value: constants.vacanciesPage_mainDescription,
-					settingsDescription: 'Главное описание',
 				}}
 				generalProps={generalProps}
 				fileUrl={mainImageUrl}

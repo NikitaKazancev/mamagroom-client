@@ -4,14 +4,6 @@ import { SettingsFormType } from '@/modules/settings/utils/store'
 import { Roles } from '@/utils/auth/auth'
 import { SettingsConstantForm } from './settings-constant-form'
 
-export type SettingsConstantTitle =
-	| 'Главный заголовок'
-	| 'Главное описание'
-	| 'Заголовок секции'
-	| 'Описание секции'
-	| 'Заголовок'
-	| 'Описание'
-
 export const SettingsConstant = ({
 	children,
 	title,
@@ -20,14 +12,16 @@ export const SettingsConstant = ({
 	type,
 	roles,
 	theme,
+	formTitle,
 }: {
 	children: React.ReactNode
-	title: SettingsConstantTitle
+	title: string
 	data: ConstantDto
 	iconClassname?: string
 	type: SettingsFormType
 	roles: Roles
 	theme?: 'light' | 'dark'
+	formTitle: string
 }) => {
 	return (
 		<div className='relative'>
@@ -40,6 +34,7 @@ export const SettingsConstant = ({
 					type={type}
 					data={data}
 					theme={theme}
+					formTitle={formTitle}
 				/>
 			)}
 		</div>

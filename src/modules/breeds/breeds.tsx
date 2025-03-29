@@ -14,6 +14,12 @@ export const Breeds = async ({ type, generalProps }: Props) => {
 	const breeds = await breedApi.findMany({
 		language: 'ru',
 		type,
+		isDeleted:
+			generalProps.roles.breedPut ||
+			generalProps.roles.breedDelete ||
+			generalProps.roles.breedPost
+				? undefined
+				: false,
 	})
 
 	return (

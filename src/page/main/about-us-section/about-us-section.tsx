@@ -18,7 +18,14 @@ export const MainPageAboutUs = async ({
 	description,
 	generalProps,
 }: Props) => {
-	const mainSliders = await mainSliderApi.findMany({ isDeleted: false })
+	const mainSliders = await mainSliderApi.findMany({
+		isDeleted:
+			generalProps.roles.mainSliderDelete ||
+			generalProps.roles.mainSliderPost ||
+			generalProps.roles.mainSliderPut
+				? undefined
+				: false,
+	})
 
 	return (
 		<Section className={styles.main} pTop={false}>
@@ -32,11 +39,12 @@ export const MainPageAboutUs = async ({
 								name: 'about-us-title',
 								value: title,
 							}}
-							title='Заголовок секции'
+							title='Значение'
 							iconClassname={styles.settings}
 							type='constant_short'
 							roles={generalProps.roles}
 							theme='dark'
+							formTitle='Заголовок'
 						>
 							<SectionTitle text={title} color='blue' />
 						</SettingsConstant>
@@ -47,11 +55,12 @@ export const MainPageAboutUs = async ({
 								name: 'about-us-description',
 								value: description,
 							}}
-							title='Описание секции'
+							title='Значение'
 							iconClassname={styles.settings}
 							type='constant_long'
 							roles={generalProps.roles}
 							theme='dark'
+							formTitle='Описание'
 						>
 							<h4>{description}</h4>
 						</SettingsConstant>

@@ -5,7 +5,7 @@
 	@apply grid gap-7 justify-items-stretch;
 	grid-template-columns: repeat(3, var(--grid-width));
 
-	li {
+	.item {
 		@apply relative text-white grid items-center justify-items-stretch;
 		transform-style: preserve-3d;
 		transition-property: rotate;
@@ -106,7 +106,10 @@
 }
 
 .settings {
-	@apply absolute -top-3 right-0 w-fit left-auto;
+	@apply absolute w-fit;
+	top: -12px !important;
+	right: 0 !important;
+	left: auto !important;
 }
 
 @media (min-width: 1440px) {

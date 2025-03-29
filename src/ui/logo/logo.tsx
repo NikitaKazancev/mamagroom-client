@@ -1,7 +1,6 @@
 import { LINKS } from '@/constants/links.constants'
-import { Link as LinkLocale } from '@/i18n/routing'
+import { Link } from '@/i18n/routing'
 import classNames from 'classnames'
-import Link from 'next/link'
 import styles from './logo.module.scss'
 
 type Props = {
@@ -27,8 +26,8 @@ export const Logo = ({ theme, className, link, targetBlank }: Props) => {
 	}
 
 	return (
-		<LinkLocale href={link || LINKS.pages.home} className={clazzName}>
+		<Link href={link || LINKS.pages.home} className={clazzName}>
 			<div></div>
-		</LinkLocale>
+		</Link>
 	)
 }

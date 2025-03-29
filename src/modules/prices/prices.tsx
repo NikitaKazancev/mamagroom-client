@@ -58,9 +58,22 @@ export const Prices = async ({
 	const prices = await priceApi.findMany({
 		breedId: id,
 		language: generalProps.language,
+		isDeleted:
+			generalProps.roles.priceDelete ||
+			generalProps.roles.pricePut ||
+			generalProps.roles.pricePost
+				? undefined
+				: false,
 	})
 	const procedures = await procedureApi.findMany({
 		language: generalProps.language,
+
+		isDeleted:
+			generalProps.roles.procedureDelete ||
+			generalProps.roles.procedurePut ||
+			generalProps.roles.procedurePost
+				? undefined
+				: false,
 	})
 
 	const isAdmin = generalProps.roles.pricePut || generalProps.roles.priceDelete
@@ -125,6 +138,7 @@ export const Prices = async ({
 							postRole={generalProps.roles.pricePost}
 							className={styles.addItem}
 							procedures={procedures}
+							formTitle='Добавление цены'
 						/>
 					</div>
 				</Layout>

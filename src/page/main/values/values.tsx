@@ -18,9 +18,9 @@ export const MainPageValues = async ({ generalProps, title }: Props) => {
 	const values = await valueApi.findMany({
 		language: generalProps.language,
 		isDeleted:
-			generalProps.roles.headerNavbarLinkPost ||
-			generalProps.roles.headerNavbarLinkPut ||
-			generalProps.roles.headerNavbarLinkDelete
+			generalProps.roles.valuePost ||
+			generalProps.roles.valuePut ||
+			generalProps.roles.valueDelete
 				? undefined
 				: false,
 	})
@@ -35,11 +35,12 @@ export const MainPageValues = async ({ generalProps, title }: Props) => {
 						name: 'values-title',
 						value: title,
 					}}
-					title='Заголовок секции'
+					title='Значение'
 					iconClassname={styles.settings}
 					type='constant_short'
 					roles={generalProps.roles}
 					theme='dark'
+					formTitle='Заголовок'
 				>
 					<SectionTitle text={title} color='blue' />
 				</SettingsConstant>
@@ -59,6 +60,7 @@ export const MainPageValues = async ({ generalProps, title }: Props) => {
 					Component={SettingsValueForm}
 					className={styles.addItem}
 					postRole={generalProps.roles.valuePost}
+					formTitle='Добавление ценности'
 				/>
 			</Layout>
 		</Section>

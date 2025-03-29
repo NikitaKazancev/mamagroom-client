@@ -33,9 +33,9 @@ export const SettingsMainSliderForm = ({
 				name='order'
 				onChange={onChange}
 				title='Порядок'
-				required
 				type='number'
 				value={localData.order}
+				required={method === 'put'}
 			/>
 			<Input
 				name='file'

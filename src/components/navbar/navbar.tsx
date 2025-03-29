@@ -1,9 +1,9 @@
 import { HeaderNavbarLink } from '@/api/header-navbar-link/header-navbar-link.api'
+import { Link } from '@/i18n/routing'
 import { AddItem } from '@/modules/settings/add/add-item'
 import { DropDown } from '@/ui/drop-down/drop-down'
 import { GeneralProps } from '@/utils/types'
 import classNames from 'classnames'
-import Link from 'next/link'
 import { SettingsHeaderNavbarLink } from '../settings/header-navbar-link/settings-header-navbar-link'
 import { SettingsHeaderNavbarLinkForm } from '../settings/header-navbar-link/settings-header-navbar-link-form'
 import styles from './navbar.module.scss'
@@ -48,6 +48,7 @@ export const Navbar = ({ theme, navLinks, generalProps }: Props) => {
 								iconClassname={styles.settings}
 								theme={theme}
 								headerNavbarLinks={navLinks}
+								formTitle='Изменение ссылки'
 							/>
 						</>
 					)
@@ -66,12 +67,12 @@ export const Navbar = ({ theme, navLinks, generalProps }: Props) => {
 					id: '',
 					language: generalProps.language,
 					name: '',
-					order: 1,
 					link: '/',
 					parentLinkId: '',
 				}}
 				headerNavbarLinks={navLinks}
 				postRole={generalProps.roles.headerNavbarLinkPost}
+				formTitle='Добавление ссылки'
 			/>
 		</nav>
 	)

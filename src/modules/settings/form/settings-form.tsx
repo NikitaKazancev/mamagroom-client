@@ -42,17 +42,16 @@ export const SettingsForm = () => {
 		procedures,
 		setData,
 		method,
+		formTitle,
 	} = useSettingsStore()
 
 	const form = useRef<HTMLFormElement>(null)
 
 	let formElems: {
-		title: string
 		buttonText: string
-	} = { title: 'Настройки', buttonText: 'Сохранить' }
-
+	} = { buttonText: 'Сохранить' }
 	if (type === 'auth') {
-		formElems = { title: 'Авторизация', buttonText: 'Войти' }
+		formElems = { buttonText: 'Войти' }
 	}
 
 	const closeAndClearForm = () => {
@@ -154,7 +153,7 @@ export const SettingsForm = () => {
 		>
 			<div className={styles.main}>
 				<div className={styles.header}>
-					<h2 className={styles.title}>{formElems.title}</h2>
+					<h2 className={styles.title}>{formTitle}</h2>
 					<ExitIcon className={styles.exit} theme='dark' onClick={hide} />
 				</div>
 				<form onSubmit={handleSubmit} className={styles.form} ref={form}>
@@ -167,6 +166,7 @@ export const SettingsForm = () => {
 							headerNavbarLinks={headerNavbarLinks}
 							procedures={procedures}
 							method={method}
+							formTitle={formTitle}
 						/>
 					)}
 					<div className={styles.buttons}>

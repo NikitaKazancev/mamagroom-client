@@ -9,16 +9,17 @@ import {
 	SettingsFormData,
 } from '@/modules/settings/utils/store'
 import { Input } from '@/ui/input/input'
-import { Select } from '@/ui/select/select'
 
 export const SettingsHeaderNavbarLinkForm = ({
 	data,
 	setData,
 	headerNavbarLinks,
+	method,
 }: {
 	data: SettingsFormData
 	setData: SettingFormSetData
 	headerNavbarLinks?: HeaderNavbarLink[]
+	method?: 'post' | 'put'
 }) => {
 	if (!data || !headerNavbarLinks) return
 	const localData = data as HeaderNavbarLinkDto
@@ -45,8 +46,8 @@ export const SettingsHeaderNavbarLinkForm = ({
 				name='order'
 				onChange={onChange}
 				title='Порядок'
-				required
 				value={localData.order}
+				required={method === 'put'}
 			/>
 			<Input
 				name='link'
@@ -55,7 +56,7 @@ export const SettingsHeaderNavbarLinkForm = ({
 				value={localData.link}
 				required
 			/>
-			<Select
+			{/* <Select
 				name='parentLinkId'
 				title='Родительская ссылка'
 				options={headerNavbarLinks.map(data => ({
@@ -64,7 +65,7 @@ export const SettingsHeaderNavbarLinkForm = ({
 				}))}
 				value={localData.parentLinkId}
 				onChange={onChange}
-			/>
+			/> */}
 		</>
 	)
 }

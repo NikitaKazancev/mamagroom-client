@@ -32,7 +32,13 @@ const MastersPage = async ({ params }: { params: { locale: Language } }) => {
 		'main-bg'
 	)
 
-	const masters = await masterApi.findMany({ language: params.locale })
+	const masters = await masterApi.findMany({
+		language: params.locale,
+		isDeleted:
+			roles.masterDelete || roles.masterPut || roles.masterPost
+				? undefined
+				: false,
+	})
 
 	return (
 		<>
@@ -42,14 +48,12 @@ const MastersPage = async ({ params }: { params: { locale: Language } }) => {
 					type: 'masters-page',
 					name: 'main-title',
 					value: constants.mastersPage_mainTitle,
-					settingsTitle: 'Главный заголовок',
 				}}
 				descriptionData={{
 					language: params.locale,
 					type: 'masters-page',
 					name: 'main-description',
 					value: constants.mastersPage_mainDescription,
-					settingsDescription: 'Главное описание',
 				}}
 				generalProps={generalProps}
 				fileUrl={mainImageUrl}

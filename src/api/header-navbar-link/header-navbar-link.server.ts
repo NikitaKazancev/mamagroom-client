@@ -12,8 +12,14 @@ export const postHeaderNavbarLink = async (
 	formData: FormData,
 	permanentData: HeaderNavbarLinkDto
 ) => {
+	if (formData.get('order') === '') {
+		formData.delete('order')
+	}
+	if (formData.get('parentLinkId')) {
+		formData.delete('parentLinkId')
+	}
+
 	const data = objectFromFormData(formData)
-	if (!data.name || !data.order) return
 
 	const res = await headerNavbarLinkApi.post({ ...permanentData, ...data })
 	revalidateTag(REVALIDATE_TAGS.headerNavbarLink)
@@ -25,6 +31,9 @@ export const putHeaderNavbarLink = async (
 	formData: FormData,
 	initialData: HeaderNavbarLinkDto
 ) => {
+	if (formData.get('parentLinkId')) {
+		formData.delete('parentLinkId')
+	}
 	const data = objectFromFormData(formData)
 
 	const res = await headerNavbarLinkApi.put({ ...initialData, ...data })

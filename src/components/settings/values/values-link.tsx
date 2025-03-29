@@ -8,11 +8,13 @@ export const SettingsValue = ({
 	iconClassname,
 	roles,
 	theme,
+	formTitle,
 }: {
 	data: ValueDto
 	iconClassname?: string
 	roles: Roles
 	theme?: 'light' | 'dark'
+	formTitle: string
 }) => {
 	if (!roles.valuePut && !roles.valueDelete) return null
 
@@ -24,6 +26,7 @@ export const SettingsValue = ({
 			data={data}
 			theme={theme}
 			isDeleted={data.isDeleted}
+			formTitle={formTitle}
 		/>
 	)
 }

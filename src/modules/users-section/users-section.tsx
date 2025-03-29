@@ -11,7 +11,14 @@ type Props = {
 }
 
 export const UsersSection = async ({ generalProps }: Props) => {
-	const users = await userApi.findMany({})
+	const users = await userApi.findMany({
+		isDeleted:
+			generalProps.roles.userDelete ||
+			generalProps.roles.userPut ||
+			generalProps.roles.userPost
+				? undefined
+				: false,
+	})
 
 	return (
 		<Section className={styles.main}>

@@ -55,6 +55,7 @@ export const Slider = ({ data, generalProps }: Props) => {
 								roles={generalProps.roles}
 								iconClassname={styles.settings}
 								theme='dark'
+								formTitle='Изменение слайда'
 							/>
 						</div>
 					)
@@ -66,12 +67,12 @@ export const Slider = ({ data, generalProps }: Props) => {
 			<AddItem
 				data={{
 					id: '',
-					order: 1,
 				}}
 				Component={SettingsMainSliderForm}
 				type='main-slider'
 				className={styles.addItem}
 				postRole={generalProps.roles.mainSliderPost}
+				formTitle='Добавление слайда'
 			/>
 		</div>
 	)

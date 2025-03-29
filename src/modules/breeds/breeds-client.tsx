@@ -3,10 +3,10 @@
 import { Breed } from '@/api/breed/breed.api'
 import { SettingsBreedForm } from '@/components/settings/breeds/breeds-form'
 import { SettingsBreed } from '@/components/settings/breeds/breeds-link'
+import { Link } from '@/i18n/routing'
 import { Input } from '@/ui/input/input'
 import { GeneralProps } from '@/utils/types'
 import classNames from 'classnames'
-import Link from 'next/link'
 import { useMemo, useState } from 'react'
 import { AddItem } from '../settings/add/add-item'
 import styles from './breeds.module.scss'
@@ -96,8 +96,14 @@ export const BreedsClient = ({ breeds, type, generalProps }: Props) => {
 					<AddItem
 						type='breed'
 						Component={SettingsBreedForm}
-						data={{ id: '', name: '', type: 'smallDog' }}
+						data={{
+							id: '',
+							name: '',
+							type: 'smallDog',
+							language: generalProps.language,
+						}}
 						postRole={generalProps.roles.breedPost}
+						formTitle='Добавление породы'
 					/>
 				</div>
 				<Input
@@ -135,6 +141,7 @@ export const BreedsClient = ({ breeds, type, generalProps }: Props) => {
 										roles={generalProps.roles}
 										theme='dark'
 										iconClassname={styles.settings}
+										formTitle='Изменение породы'
 									/>
 								</li>
 							))}

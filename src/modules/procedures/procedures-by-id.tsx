@@ -47,14 +47,12 @@ export default async function ProceduresById({
 					type: `${type}-page`,
 					name: 'main-title',
 					value: constants[`${type}Page_mainTitle`],
-					settingsTitle: 'Главный заголовок',
 				}}
 				descriptionData={{
 					language: locale,
 					type: `${type}-page`,
 					name: 'main-description',
 					value: constants[`${type}Page_mainDescription`],
-					settingsDescription: 'Главное описание',
 				}}
 				generalProps={generalProps}
 				fileUrl={mainImageUrl}

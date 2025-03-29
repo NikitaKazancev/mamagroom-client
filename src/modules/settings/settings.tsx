@@ -42,6 +42,7 @@ export const Settings = ({
 	isDeleted,
 	headerNavbarLinks,
 	procedures,
+	formTitle,
 }: {
 	iconClassname?: string
 	Component: SettingsFormComponent
@@ -52,6 +53,7 @@ export const Settings = ({
 	isDeleted?: boolean
 	headerNavbarLinks?: HeaderNavbarLink[]
 	procedures?: Procedure[]
+	formTitle: string
 }) => {
 	const { show } = useSettingsStore()
 
@@ -63,6 +65,7 @@ export const Settings = ({
 			data,
 			headerNavbarLinks,
 			procedures,
+			formTitle,
 			method: 'put',
 		})
 	}

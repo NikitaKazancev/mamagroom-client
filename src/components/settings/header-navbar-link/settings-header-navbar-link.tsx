@@ -12,12 +12,14 @@ export const SettingsHeaderNavbarLink = ({
 	roles,
 	theme,
 	headerNavbarLinks,
+	formTitle,
 }: {
 	data: HeaderNavbarLinkDto
 	iconClassname?: string
 	roles: Roles
 	theme?: 'light' | 'dark'
 	headerNavbarLinks: HeaderNavbarLink[]
+	formTitle: string
 }) => {
 	if (!roles.headerNavbarLinkPut && !roles.headerNavbarLinkDelete) return null
 
@@ -30,6 +32,7 @@ export const SettingsHeaderNavbarLink = ({
 			theme={theme}
 			isDeleted={data.isDeleted}
 			headerNavbarLinks={headerNavbarLinks}
+			formTitle={formTitle}
 		/>
 	)
 }

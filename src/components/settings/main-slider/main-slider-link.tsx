@@ -8,11 +8,13 @@ export const SettingsMainSlider = ({
 	iconClassname,
 	roles,
 	theme,
+	formTitle,
 }: {
 	data: MainSliderDto
 	iconClassname?: string
 	roles: Roles
 	theme?: 'light' | 'dark'
+	formTitle: string
 }) => {
 	if (!roles.mainSliderPut && !roles.mainSliderDelete) return null
 
@@ -24,6 +26,7 @@ export const SettingsMainSlider = ({
 			data={data}
 			theme={theme}
 			isDeleted={data.isDeleted}
+			formTitle={formTitle}
 		/>
 	)
 }

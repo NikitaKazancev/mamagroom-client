@@ -1,9 +1,6 @@
 import { ConstantDto } from '@/api/constant/constant.types'
 import { ExternalPath } from '@/api/file/file.api'
-import {
-	SettingsConstant,
-	SettingsConstantTitle,
-} from '@/components/settings/constant/settings-constant'
+import { SettingsConstant } from '@/components/settings/constant/settings-constant'
 import { SettingsFileForm } from '@/components/settings/file/settings-file-form'
 import { Settings } from '@/modules/settings/settings'
 import { Layout } from '@/ui/layout/layout'
@@ -13,8 +10,8 @@ import Image from 'next/image'
 import styles from './main-image-section.module.scss'
 
 type Props = {
-	titleData: ConstantDto & { settingsTitle: SettingsConstantTitle }
-	descriptionData: ConstantDto & { settingsDescription: SettingsConstantTitle }
+	titleData: ConstantDto
+	descriptionData: ConstantDto
 	fileUrl?: string
 	generalProps: GeneralProps
 	externalPath: ExternalPath
@@ -43,6 +40,7 @@ export const MainImageSection = async ({
 					type='file'
 					theme='light'
 					data={{ path: externalPath }}
+					formTitle='Фото'
 				/>
 			)}
 			<Layout>
@@ -54,9 +52,10 @@ export const MainImageSection = async ({
 							name: titleData.name,
 							value: titleData.value,
 						}}
-						title={titleData.settingsTitle}
+						title='Значение'
 						type='constant_short'
 						roles={generalProps.roles}
+						formTitle='Главный заголовок'
 					>
 						<h2>{titleData.value}</h2>
 					</SettingsConstant>
@@ -67,9 +66,10 @@ export const MainImageSection = async ({
 							name: descriptionData.name,
 							value: descriptionData.value,
 						}}
-						title={descriptionData.settingsDescription}
+						title='Значение'
 						type='constant_long'
 						roles={generalProps.roles}
+						formTitle='Главное описание'
 					>
 						<h3>{descriptionData.value}</h3>
 					</SettingsConstant>

@@ -45,5 +45,9 @@
 }
 
 .addItem {
-	@apply absolute -right-10 left-auto top-1/2 -translate-y-1/2;
+	position: absolute !important;
+	right: -40px !important;
+	left: auto !important;
+	top: 50% !important;
+	transform: translateY(-50%) !important;
 }

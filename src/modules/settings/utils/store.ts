@@ -50,11 +50,13 @@ export type SettingsFormComponent = ComponentType<{
 	type: SettingsFormType
 	headerNavbarLinks?: HeaderNavbarLink[]
 	procedures?: Procedure[]
+	formTitle: string
 	method?: 'post' | 'put'
 }> | null
 
 export type Store = {
 	isShown: boolean
+	formTitle: string
 	hide: () => void
 	Component: SettingsFormComponent
 	componentProps?: Record<string, any>
@@ -71,6 +73,7 @@ export type Store = {
 		headerNavbarLinks,
 		procedures,
 		method,
+		formTitle,
 	}: {
 		Component: SettingsFormComponent
 		componentProps?: Record<string, any>
@@ -79,12 +82,14 @@ export type Store = {
 		headerNavbarLinks?: HeaderNavbarLink[]
 		procedures?: Procedure[]
 		method: 'post' | 'put'
+		formTitle: string
 	}) => void
 	setData: SettingFormSetData
 }
 
 const useSettingsStore = create<Store>(set => ({
 	isShown: false,
+	formTitle: 'Настройки',
 	hide: () => set({ isShown: false }),
 	Component: null,
 	componentProps: {},
@@ -98,6 +103,7 @@ const useSettingsStore = create<Store>(set => ({
 		headerNavbarLinks,
 		procedures,
 		method,
+		formTitle,
 	}) =>
 		set({
 			isShown: true,
@@ -108,6 +114,7 @@ const useSettingsStore = create<Store>(set => ({
 			headerNavbarLinks,
 			procedures,
 			method,
+			formTitle,
 		}),
 	data: undefined,
 	setData: data => set({ data }),

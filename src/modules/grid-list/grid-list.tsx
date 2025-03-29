@@ -23,6 +23,41 @@ type Props = {
 
 type Direction = 'left' | 'right' | 'top' | 'bottom'
 
+const directionToAnimate = (from: number, to: number): Direction => {
+	const fromMod = from % 3
+	const toMod = to % 3
+
+	if (toMod > fromMod) {
+		return 'right'
+	} else if (toMod < fromMod) {
+		return 'left'
+	} else if (to > from) {
+		return 'bottom'
+	} else {
+		return 'top'
+	}
+}
+
+const classForRotation = (direction: Direction) => {
+	return styles[`rotate${capitalizeFirst(direction)}`]
+}
+
+const isSettingElem = (elem: HTMLElement) => {
+	if (!elem) return false
+
+	let parent = elem
+	while (
+		parent &&
+		!parent.classList.contains(styles.item) &&
+		parent !== document.body
+	) {
+		if (parent.classList.contains(styles.settings)) return true
+		parent = parent.parentElement as HTMLElement
+	}
+
+	return false
+}
+
 export const GridList = ({ content, className, generalProps }: Props) => {
 	const [elemsState, setElemsState] = useState(
 		content.map((_, i) => {
@@ -41,32 +76,15 @@ export const GridList = ({ content, className, generalProps }: Props) => {
 
 	const ul = useRef<HTMLUListElement>(null)
 
-	const directionToAnimate = (from: number, to: number): Direction => {
-		const fromMod = from % 3
-		const toMod = to % 3
-
-		if (toMod > fromMod) {
-			return 'right'
-		} else if (toMod < fromMod) {
-			return 'left'
-		} else if (to > from) {
-			return 'bottom'
-		} else {
-			return 'top'
-		}
-	}
-
-	const classForRotation = (direction: Direction) => {
-		return styles[`rotate${capitalizeFirst(direction)}`]
-	}
-
 	const activeItemIndex = () => {
 		return elemsState.findIndex(({ isComponent1Title }) => !isComponent1Title)
 	}
 
-	const handleHover = (index: number) => {
+	const handleHover = (index: number, { target }: { target: EventTarget }) => {
 		const elems = ul.current?.querySelectorAll('li')
 		if (!elems) return
+
+		if (isSettingElem(target as HTMLElement)) return
 
 		const activeIndex = activeItemIndex()
 
@@ -158,40 +176,41 @@ export const GridList = ({ content, className, generalProps }: Props) => {
 	return (
 		<ul ref={ul} className={classNames(styles.main, className)}>
 			{content.map((data, i) => {
-				const elemstate = elemsState[i]
+				const elemState = elemsState[i]
+				if (!elemState) return null
 
 				return (
 					<>
 						<li
 							className={classNames(styles.item, styles.transition)}
-							onMouseMove={() => handleHover(i)}
-							onMouseOver={() => handleHover(i)}
+							onMouseMove={e => handleHover(i, e)}
+							onMouseOver={e => handleHover(i, e)}
 							data-index={i}
 							key={data.title}
 						>
 							<Item
 								{...data}
-								showTitle={elemstate.isComponent1Title}
+								showTitle={elemState.isComponent1Title}
 								className={styles.wrapper1}
 							/>
 							<Item
 								{...data}
-								showTitle={elemstate.isComponent2Title}
+								showTitle={elemState.isComponent2Title}
 								className={styles.wrapper2}
 							/>
 							<Item
 								{...data}
-								showTitle={elemstate.isComponent3Title}
+								showTitle={elemState.isComponent3Title}
 								className={styles.wrapper3}
 							/>
 							<Item
 								{...data}
-								showTitle={elemstate.isComponent4Title}
+								showTitle={elemState.isComponent4Title}
 								className={styles.wrapper4}
 							/>
 							<Item
 								{...data}
-								showTitle={elemstate.isComponent5Title}
+								showTitle={elemState.isComponent5Title}
 								className={styles.wrapper5}
 							/>
 							<SettingsValue
@@ -199,6 +218,7 @@ export const GridList = ({ content, className, generalProps }: Props) => {
 								roles={generalProps.roles}
 								iconClassname={styles.settings}
 								theme='dark'
+								formTitle='Изменение ценности'
 							/>
 						</li>
 					</>

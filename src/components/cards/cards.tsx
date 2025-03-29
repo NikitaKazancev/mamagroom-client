@@ -1,10 +1,10 @@
 import { Layout } from '@/ui/layout/layout'
 import { SectionTitle } from '@/ui/section-title/section-title'
 import { Section } from '@/ui/section/section'
-import Image from 'next/image'
-import styles from './cards.module.scss'
 import { GeneralProps } from '@/utils/types'
+import Image from 'next/image'
 import { SettingsConstant } from '../settings/constant/settings-constant'
+import styles from './cards.module.scss'
 
 type Props = {
 	generalProps: GeneralProps
@@ -28,11 +28,12 @@ export const Cards = ({ data, title, generalProps }: Props) => {
 						name: 'about-us-title',
 						value: title,
 					}}
-					title='Заголовок секции'
+					title='Значение'
 					iconClassname={styles.settings}
 					type='constant_short'
 					roles={generalProps.roles}
 					theme='dark'
+					formTitle='Заголовок секции'
 				>
 					<SectionTitle text={title} color='blue' />
 				</SettingsConstant>

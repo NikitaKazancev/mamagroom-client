@@ -180,6 +180,7 @@ export const Table = ({
 		const list = columns.map(column => {
 			const itemData = expandedItem[column as keyof typeof expandedItem]
 			if (Array.isArray(itemData)) {
+				if (itemData.length === 0) return null
 				return (
 					<div key={column}>
 						<h4>{columnsNames[column as keyof typeof columnsNames]}</h4>
@@ -237,6 +238,9 @@ export const Table = ({
 							iconClassname={styles.settings}
 							procedures={(props as any).procedures}
 							theme='dark'
+							formTitle={
+								isUser ? 'Изменение пользователя' : 'Изменение цены'
+							}
 						/>
 					))}
 				</div>

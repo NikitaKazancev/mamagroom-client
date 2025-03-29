@@ -10,12 +10,14 @@ export const SettingsPrice = ({
 	roles,
 	theme,
 	procedures,
+	formTitle,
 }: {
 	data: PriceDto
 	iconClassname?: string
 	roles: Roles
 	theme?: 'light' | 'dark'
 	procedures: Procedure[]
+	formTitle: string
 }) => {
 	if (!roles.pricePut && !roles.priceDelete) return null
 
@@ -28,6 +30,7 @@ export const SettingsPrice = ({
 			theme={theme}
 			isDeleted={data.isDeleted}
 			procedures={procedures}
+			formTitle={formTitle}
 		/>
 	)
 }
