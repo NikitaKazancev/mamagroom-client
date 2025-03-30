@@ -15,6 +15,7 @@ export const Input = ({
 	theme = 'white',
 	invisible = false,
 	placeholder,
+	className,
 }: {
 	title: string
 	name: string
@@ -29,6 +30,7 @@ export const Input = ({
 	theme?: 'white' | 'main'
 	invisible?: boolean
 	placeholder?: string
+	className?: string
 }) => {
 	const props: {
 		required?: boolean
@@ -41,6 +43,7 @@ export const Input = ({
 				| { name: string; value: string | number }
 		) => void
 		placeholder?: string
+		className?: string
 	} = {
 		required,
 		type,
@@ -51,6 +54,7 @@ export const Input = ({
 			? 'Не обязательно'
 			: '',
 		value: value || '',
+		className,
 	}
 
 	const input = useRef<HTMLInputElement>(null)
@@ -61,7 +65,7 @@ export const Input = ({
 
 	if (type === 'file') {
 		return (
-			<div className={styles.fileContainer}>
+			<div className={classNames(styles.fileContainer, className)}>
 				<input type='file' name='file' required={required} />
 			</div>
 		)

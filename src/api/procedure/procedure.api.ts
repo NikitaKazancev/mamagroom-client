@@ -60,6 +60,27 @@ class ProcedureApi {
 		}
 	}
 
+	async findByUserData(formData: FormData) {
+		const url = `/${this.url}/ai`
+		const data = (await request({
+			url,
+			method: 'post',
+			body: formData,
+		})) as {
+			procedures: Procedure[]
+			breedId: string
+		}
+
+		if (data) {
+			return data
+		}
+
+		return {
+			procedures: [],
+			breedId: '',
+		}
+	}
+
 	async post(procedure: ProcedureDto) {
 		const url = `/${this.url}`
 		const data = (await request({

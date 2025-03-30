@@ -1,0 +1,52 @@
+.main {
+	@apply fixed right-4 bottom-4 w-fit p-3 bg-main-100 rounded-2xl flex justify-center items-center cursor-pointer;
+
+	&.open {
+		@apply flex-col cursor-auto;
+	}
+
+	.exit {
+		@apply cursor-pointer;
+	}
+
+	.header {
+		@apply flex justify-between items-center w-full;
+
+		h4 {
+			@apply text-2xl font-semibold;
+		}
+	}
+
+	.form {
+		@apply flex flex-col items-end;
+
+		.textarea > * {
+			background-color: #eadbc5 !important;
+		}
+
+		.input {
+			@apply w-full;
+		}
+
+		.button {
+			@apply mt-3 min-w-36 flex justify-center items-center;
+			min-height: 50px;
+		}
+	}
+
+	.procedures {
+		@apply flex flex-col items-end mt-4;
+
+		ul {
+			@apply flex flex-col gap-4 text-lg;
+
+			li {
+				@apply flex justify-between gap-2 items-center bg-main-25 rounded-lg px-3 py-2;
+			}
+		}
+
+		.button {
+			@apply mt-4;
+		}
+	}
+}

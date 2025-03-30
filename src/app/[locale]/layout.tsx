@@ -6,8 +6,8 @@ import { AcceptCookiePopUpServer } from '@/modules/accept-cookie-pop-up/accept-c
 import { Footer } from '@/modules/footer/footer'
 import { FullTransparentBlock } from '@/modules/full-transparent-block/full-transparent-block'
 import { Header } from '@/modules/header/header'
+import { ProcedureSelection } from '@/modules/procedure-selection/procedure-selection'
 import { SettingsForm } from '@/modules/settings/form/settings-form'
-import { WorkingMessage } from '@/temp/working-message/working-message'
 import { MyToaster } from '@/ui/toaster/my-toaster'
 import { getRoles } from '@/utils/auth/auth'
 import { getToken } from '@/utils/cookies/cookies-server.api'
@@ -99,7 +99,7 @@ export default async function RootLayout({
 			<body className={inter.className}>
 				<NextIntlClientProvider>
 					<MyToaster />
-					{process.env.NODE_ENV === 'production' && <WorkingMessage />}
+					{/* {process.env.NODE_ENV === 'production' && <WorkingMessage />} */}
 					<AcceptCookiePopUpServer />
 					<FullTransparentBlock />
 					<Header
@@ -110,6 +110,7 @@ export default async function RootLayout({
 					<SettingsForm />
 					<main>{children}</main>
 					<Footer token={token} />
+					<ProcedureSelection />
 				</NextIntlClientProvider>
 			</body>
 		</html>

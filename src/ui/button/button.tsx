@@ -10,6 +10,7 @@ interface Props {
 	onClick?: () => void
 	href?: string
 	isExternalLink?: boolean
+	disabled?: boolean
 }
 
 export const Button = ({
@@ -20,6 +21,7 @@ export const Button = ({
 	Icon,
 	href,
 	isExternalLink,
+	disabled,
 }: Props) => {
 	const clazz = classNames(styles.button, {
 		[styles.dark]: theme === 'dark',
@@ -43,7 +45,7 @@ export const Button = ({
 	}
 
 	return (
-		<button className={clazz} onClick={onClick}>
+		<button className={clazz} onClick={onClick} disabled={disabled}>
 			{Icon ? Icon : text}
 		</button>
 	)

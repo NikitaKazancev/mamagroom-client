@@ -9,6 +9,7 @@ export const TextArea = ({
 	value = '',
 	onChange,
 	theme = 'white',
+	className,
 }: {
 	title: string
 	name: string
@@ -16,11 +17,12 @@ export const TextArea = ({
 	value?: string
 	onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
 	theme?: 'white' | 'main'
+	className?: string
 }) => {
 	const id = uuidv4()
 
 	return (
-		<div className={classNames(styles.container, styles[theme])}>
+		<div className={classNames(styles.container, styles[theme], className)}>
 			<label htmlFor={id}>{title}</label>
 			<textarea
 				required={required}
