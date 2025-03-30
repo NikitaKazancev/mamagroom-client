@@ -7,8 +7,10 @@ import {
 	HeaderNavbarLinkDto,
 } from '@/api/header-navbar-link/header-navbar-link.api'
 import { MainSlider, MainSliderDto } from '@/api/main-slider/main-slider.api'
+import { Master, MasterDto } from '@/api/master/master.api'
 import { Price, PriceDto } from '@/api/price/price.api'
 import { Procedure, ProcedureDto } from '@/api/procedure/procedure.api'
+import { Vacancy, VacancyDto } from '@/api/vacancy/vacancy.api'
 import { Value, ValueDto } from '@/api/values/values.api'
 import { ComponentType } from 'react'
 import { create } from 'zustand'
@@ -24,6 +26,8 @@ export type SettingsFormType =
 	| 'breed'
 	| 'price'
 	| 'procedure'
+	| 'master'
+	| 'vacancy'
 	| undefined
 export type SettingsFormData =
 	| ConstantDto
@@ -34,6 +38,8 @@ export type SettingsFormData =
 	| BreedDto
 	| PriceDto
 	| ProcedureDto
+	| MasterDto
+	| VacancyDto
 	| { path: ExternalPath }
 	| undefined
 export type SettingsFormResultType =
@@ -46,6 +52,8 @@ export type SettingsFormResultType =
 	| Breed
 	| Price
 	| Procedure
+	| Master
+	| Vacancy
 export type SettingFormSetData = (data: SettingsFormData) => void
 export type SettingsFormComponent = ComponentType<{
 	data: SettingsFormData

@@ -1,20 +1,19 @@
+import { MasterDto } from '@/api/master/master.api'
+import { AddItem } from '@/modules/settings/add/add-item'
 import { Layout } from '@/ui/layout/layout'
 import { SectionTitle } from '@/ui/section-title/section-title'
 import { Section } from '@/ui/section/section'
 import { GeneralProps } from '@/utils/types'
 import Image from 'next/image'
 import { SettingsConstant } from '../settings/constant/settings-constant'
+import { SettingsMasterForm } from '../settings/master/master-form'
+import { SettingsMaster } from '../settings/master/master-link'
 import styles from './cards.module.scss'
 
 type Props = {
 	generalProps: GeneralProps
 	title: string
-	data: {
-		id: string
-		name: string
-		description?: string
-		imageName?: string
-	}[]
+	data: MasterDto[]
 }
 
 export const Cards = ({ data, title, generalProps }: Props) => {
@@ -37,9 +36,16 @@ export const Cards = ({ data, title, generalProps }: Props) => {
 				>
 					<SectionTitle text={title} color='blue' />
 				</SettingsConstant>
-				<div className={styles.cards}>
+				<ul className={styles.cards}>
 					{data.map(item => (
-						<div key={item.id} className={styles.card}>
+						<li key={item.id} className={styles.card}>
+							<SettingsMaster
+								data={{ ...item }}
+								roles={generalProps.roles}
+								iconClassname={styles.settings}
+								theme='dark'
+								formTitle='Изменение мастера'
+							/>
 							{item.imageName && (
 								<div className={styles.imgWrapper}>
 									<Image
@@ -51,13 +57,27 @@ export const Cards = ({ data, title, generalProps }: Props) => {
 									/>
 								</div>
 							)}
-							<div className={styles.info}>
-								<h3 className={styles.title}>{item.name}</h3>
-								<p className={styles.desc}>{item.description}</p>
-							</div>
-						</div>
+							<h3 className={styles.title}>{item.name}</h3>
+							<h4 className={styles.position}>{item.position}</h4>
+							<div className={styles.line}></div>
+							<p className={styles.desc}>{item.description}</p>
+						</li>
 					))}
-				</div>
+				</ul>
+				<AddItem
+					data={{
+						id: '',
+						language: generalProps.language,
+						name: '',
+						position: '',
+						description: '',
+					}}
+					type='master'
+					Component={SettingsMasterForm}
+					className={styles.addItem}
+					postRole={generalProps.roles.masterPost}
+					formTitle='Добавление мастера'
+				/>
 			</Layout>
 		</Section>
 	)

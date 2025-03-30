@@ -47,7 +47,6 @@ export const SettingsPriceForm = ({
 				type='number'
 				value={localData.weight}
 				onChange={onChange}
-				placeholder='Не обязательно'
 			/>
 			<Input
 				name='time'

@@ -9,6 +9,7 @@ interface Props {
 	className?: string
 	onClick?: () => void
 	href?: string
+	isExternalLink?: boolean
 }
 
 export const Button = ({
@@ -18,6 +19,7 @@ export const Button = ({
 	onClick,
 	Icon,
 	href,
+	isExternalLink,
 }: Props) => {
 	const clazz = classNames(styles.button, {
 		[styles.dark]: theme === 'dark',
@@ -26,6 +28,13 @@ export const Button = ({
 	})
 
 	if (href) {
+		if (isExternalLink) {
+			return (
+				<Link href={href} className={clazz} target='_blank'>
+					{Icon ? Icon : text}
+				</Link>
+			)
+		}
 		return (
 			<Link href={href} className={clazz}>
 				{Icon ? Icon : text}

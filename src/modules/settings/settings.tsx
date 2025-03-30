@@ -15,9 +15,13 @@ import {
 	deleteMainSlider,
 	recoverMainSlider,
 } from '@/api/main-slider/main-slider.server'
+import { Master } from '@/api/master/master.api'
+import { deleteMaster, recoverMaster } from '@/api/master/master.server'
 import { Price } from '@/api/price/price.api'
 import { deletePrice, recoverPrice } from '@/api/price/price.server'
 import { Procedure } from '@/api/procedure/procedure.api'
+import { Vacancy } from '@/api/vacancy/vacancy.api'
+import { deleteVacancy, recoverVacancy } from '@/api/vacancy/vacancy.server'
 import { ValueDto } from '@/api/values/values.api'
 import { deleteValue, recoverValue } from '@/api/values/values.server'
 import useSettingsStore, {
@@ -82,6 +86,10 @@ export const Settings = ({
 			await deleteBreed((data as Breed).id)
 		} else if (type === 'price') {
 			await deletePrice((data as Price).id)
+		} else if (type === 'master') {
+			await deleteMaster((data as Master).id)
+		} else if (type === 'vacancy') {
+			await deleteVacancy((data as Vacancy).id)
 		}
 
 		toast.success('Помечено на удаление', {
@@ -101,6 +109,10 @@ export const Settings = ({
 			await recoverBreed(data as Breed)
 		} else if (type === 'price') {
 			await recoverPrice(data as Price)
+		} else if (type === 'master') {
+			await recoverMaster(data as Master)
+		} else if (type === 'vacancy') {
+			await recoverVacancy(data as Vacancy)
 		}
 
 		toast.success('Восстановлено', {

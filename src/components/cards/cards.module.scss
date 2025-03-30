@@ -1,23 +1,43 @@
 .cards {
-	@apply grid grid-cols-4 gap-7 mt-10 justify-items-center justify-between;
+	@apply flex mt-12 mx-auto flex-wrap relative gap-x-10 gap-y-20;
+	max-width: 1145px;
 }
 
 .card {
-	@apply flex flex-col gap-3 w-64;
+	@apply w-64 relative;
 
 	.imgWrapper {
-		@apply relative h-72 w-full rounded-md overflow-hidden;
+		@apply relative h-80 w-full overflow-hidden;
 	}
 
-	.info {
-		@apply flex flex-col gap-1 px-2;
-
-		.title {
-			@apply text-2xl font-bold;
-		}
-
-		.desc {
-			@apply text-lg font-medium;
-		}
+	.title {
+		@apply text-2xl font-bold mt-3;
 	}
+
+	.position {
+		@apply text-xl;
+		margin-top: 2px;
+	}
+
+	.line {
+		@apply w-16 bg-secondary-700 my-4;
+		height: 3px;
+	}
+
+	.desc {
+		@apply text-base font-medium;
+	}
+
+	.settings {
+		top: -12px !important;
+		right: 0 !important;
+		left: auto !important;
+	}
+}
+
+.addItem {
+	top: auto !important;
+	bottom: 0 !important;
+	left: 50% !important;
+	transform: translateX(-50%) !important;
 }

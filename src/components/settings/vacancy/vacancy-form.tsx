@@ -1,6 +1,6 @@
 'use client'
 
-import { ValueDto } from '@/api/values/values.api'
+import { VacancyDto } from '@/api/vacancy/vacancy.api'
 import {
 	SettingFormSetData,
 	SettingsFormData,
@@ -8,17 +8,15 @@ import {
 import { Input } from '@/ui/input/input'
 import { TextArea } from '@/ui/textarea/textarea'
 
-export const SettingsValueForm = ({
+export const SettingsVacancyForm = ({
 	data,
 	setData,
-	method,
 }: {
 	data: SettingsFormData
 	setData: SettingFormSetData
-	method?: 'post' | 'put'
 }) => {
 	if (!data) return
-	const localData = data as ValueDto
+	const localData = data as VacancyDto
 
 	const onChange = (e: any) => {
 		if (e.target) {
@@ -31,26 +29,26 @@ export const SettingsValueForm = ({
 	return (
 		<>
 			<Input
-				name='title'
-				onChange={onChange}
+				name='name'
 				title='Название'
+				value={localData.name}
+				onChange={onChange}
 				required
-				value={localData.title}
 			/>
 			<TextArea
 				name='description'
-				onChange={onChange}
 				title='Описание'
-				required
 				value={localData.description}
+				onChange={onChange}
+				required
 			/>
 			<Input
-				name='file'
-				title='File'
-				required={method === 'post'}
-				type='file'
+				name='link'
+				title='Ссылка'
+				value={localData.link}
+				onChange={onChange}
+				required
 			/>
-			<Input name='language' title='' value={localData.language} invisible />
 		</>
 	)
 }

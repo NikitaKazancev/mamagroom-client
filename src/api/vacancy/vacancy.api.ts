@@ -1,20 +1,23 @@
 import { Language } from '@/i18n/types'
 import { basicQueryParams, request } from '../request'
 
-type Vacancy = {
+export type Vacancy = {
 	name: string
 	language: Language
 	isDeleted: boolean
 	id: string
 	createdAt: Date
 	description?: string
+	link: string
 	updatedAt: Date
 }
 
-type VacancyDto = {
+export type VacancyDto = {
+	id: string
 	language: Language
 	name: string
 	description?: string
+	link: string
 	isDeleted?: boolean
 }
 

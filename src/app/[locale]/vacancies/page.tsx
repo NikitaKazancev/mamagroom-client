@@ -76,7 +76,7 @@ export default async function Vacancies({
 				fileUrl={mainImageUrl}
 				externalPath='pages/vacancies/main-bg'
 			/>
-			<Feed data={vacancies} />
+			<Feed data={vacancies} generalProps={generalProps} />
 			<MainPageReviews generalProps={generalProps} />
 		</>
 	)

@@ -34,4 +34,10 @@
 	&:last-child::after {
 		@apply hidden;
 	}
+
+	.settings {
+		top: -8px !important;
+		bottom: auto !important;
+		left: 6px !important;
+	}
 }

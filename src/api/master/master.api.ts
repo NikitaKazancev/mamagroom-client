@@ -1,7 +1,7 @@
 import { Language } from '@/i18n/types'
 import { basicQueryParams, fullImageName, request } from '../request'
 
-type Master = {
+export type Master = {
 	name: string
 	language: Language
 	isDeleted: boolean
@@ -13,7 +13,8 @@ type Master = {
 	updatedAt: Date
 }
 
-type MasterDto = {
+export type MasterDto = {
+	id: string
 	language: Language
 	name: string
 	description?: string
@@ -52,7 +53,7 @@ class MasterApi {
 		}
 	}
 
-	async post(master: MasterDto) {
+	async post(master: FormData) {
 		const url = `/${this.url}`
 		const data = (await request({
 			url,
@@ -66,7 +67,7 @@ class MasterApi {
 		}
 	}
 
-	async put(id: string, master: MasterDto) {
+	async put(id: string, master: FormData | MasterDto) {
 		const url = `/${this.url}/${id}`
 		const data = (await request({
 			url,

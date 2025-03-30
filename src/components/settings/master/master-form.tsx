@@ -1,6 +1,6 @@
 'use client'
 
-import { ValueDto } from '@/api/values/values.api'
+import { MasterDto } from '@/api/master/master.api'
 import {
 	SettingFormSetData,
 	SettingsFormData,
@@ -8,7 +8,7 @@ import {
 import { Input } from '@/ui/input/input'
 import { TextArea } from '@/ui/textarea/textarea'
 
-export const SettingsValueForm = ({
+export const SettingsMasterForm = ({
 	data,
 	setData,
 	method,
@@ -18,7 +18,7 @@ export const SettingsValueForm = ({
 	method?: 'post' | 'put'
 }) => {
 	if (!data) return
-	const localData = data as ValueDto
+	const localData = data as MasterDto
 
 	const onChange = (e: any) => {
 		if (e.target) {
@@ -31,11 +31,18 @@ export const SettingsValueForm = ({
 	return (
 		<>
 			<Input
-				name='title'
+				name='name'
 				onChange={onChange}
-				title='Название'
+				title='Имя'
 				required
-				value={localData.title}
+				value={localData.name}
+			/>
+			<Input
+				name='position'
+				onChange={onChange}
+				title='Должность'
+				required
+				value={localData.position}
 			/>
 			<TextArea
 				name='description'
