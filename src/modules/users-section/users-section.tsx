@@ -29,6 +29,7 @@ export const UsersSection = async ({ generalProps }: Props) => {
 					columns={['name', 'email', 'createdAt', 'updatedAt', 'roles']}
 					className={styles.table}
 					generalProps={generalProps}
+					translations={undefined}
 				/>
 			</Layout>
 		</Section>
