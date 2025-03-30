@@ -7,6 +7,7 @@ import { LoadingIcon } from '@/ui/icons/loading/loading'
 import { Input } from '@/ui/input/input'
 import { TextArea } from '@/ui/textarea/textarea'
 import classNames from 'classnames'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import styles from './procedure-selection.module.scss'
 
@@ -19,6 +20,8 @@ export const ProcedureSelection = () => {
 	}>({ procedures: [], breedId: '' })
 	const [description, setDescription] = useState('')
 
+	const router = useRouter()
+
 	const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 		setLoading(true)
@@ -27,6 +30,10 @@ export const ProcedureSelection = () => {
 		const data = await procedureApi.findByUserData(formData)
 		setDataFromAI(data)
 		setLoading(false)
+	}
+
+	const clearData = () => {
+		setDataFromAI({ procedures: [], breedId: '' })
 	}
 
 	if (!isOpen)
@@ -75,9 +82,13 @@ export const ProcedureSelection = () => {
 						<li key={procedure.id}>
 							{procedure.name}
 							<Button
-								href={`/dogs/${dataFromAI.breedId}#prices`}
 								theme='dark'
 								text='Подробнее'
+								onClick={() => {
+									router.replace(`/dogs/${dataFromAI.breedId}#prices`)
+									setIsOpen(false)
+									clearData()
+								}}
 							/>
 						</li>
 					))}
@@ -86,7 +97,7 @@ export const ProcedureSelection = () => {
 					theme='dark'
 					text='Назад'
 					className={styles.button}
-					onClick={() => setDataFromAI({ procedures: [], breedId: '' })}
+					onClick={() => clearData()}
 				/>
 			</div>
 		)
