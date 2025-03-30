@@ -1,6 +1,7 @@
 import { Button } from '@/ui/button/button'
 import { Layout } from '@/ui/layout/layout'
 import { Section } from '@/ui/section/section'
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import styles from './feed.module.scss'
 
@@ -14,6 +15,8 @@ type Props = {
 }
 
 export const Feed = ({ data }: Props) => {
+	const t = useTranslations('Vacancies')
+
 	return (
 		<Section>
 			<Layout>
@@ -33,7 +36,7 @@ export const Feed = ({ data }: Props) => {
 							<div className={styles.info}>
 								<h3 className={styles.title}>{item.name}</h3>
 								<p className={styles.desc}>{item.description}</p>
-								<Button text='Подробнее' theme='dark' />
+								<Button text={t('linkText')} theme='dark' />
 							</div>
 						</div>
 					))}

@@ -22,6 +22,7 @@ type Props =
 			columns: (keyof User)[]
 			className?: string
 			generalProps: GeneralProps
+			translations: undefined
 	  }
 	| {
 			data: MergedPrice[]
@@ -29,6 +30,12 @@ type Props =
 			className?: string
 			generalProps: GeneralProps
 			procedures: Procedure[]
+			translations: {
+				procedureCol: string
+				timeCol: string
+				priceCol: string
+				weightCol: string
+			}
 	  }
 
 const userColumnsNames = {
@@ -40,13 +47,6 @@ const userColumnsNames = {
 	id: 'ID',
 	isDeleted: 'Удален',
 	password: 'Пароль',
-} as const
-
-const priceColumnsNames = {
-	procedure: 'Процедура',
-	time: 'Время',
-	price: 'Цена (₽)',
-	weight: 'Вес (кг)',
 } as const
 
 const itIsUser = (item: User | MergedPrice): item is User => {
@@ -62,12 +62,20 @@ export const Table = ({
 	columns,
 	className,
 	generalProps,
+	translations,
 	...props
 }: Props) => {
 	const [expandedItem, setExpandedItem] = useState<User | null>(null)
 
 	const isUser = itIsUser(data[0])
 	const isPrice = itIsPrice(data[0])
+
+	const priceColumnsNames = {
+		procedure: translations?.procedureCol,
+		time: translations?.timeCol,
+		price: translations?.priceCol,
+		weight: translations?.weightCol,
+	} as const
 
 	const columnsNames = isPrice
 		? priceColumnsNames

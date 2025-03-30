@@ -6,6 +6,7 @@ import { Link } from '@/i18n/routing'
 import { Layout } from '@/ui/layout/layout'
 import { Section } from '@/ui/section/section'
 import { GeneralProps } from '@/utils/types'
+import { getTranslations } from 'next-intl/server'
 import { AddItem } from '../settings/add/add-item'
 import { MergedPrice, Table } from '../table/table'
 import styles from './prices.module.scss'
@@ -57,7 +58,6 @@ export const Prices = async ({
 }) => {
 	const prices = await priceApi.findMany({
 		breedId: id,
-		language: generalProps.language,
 		isDeleted:
 			generalProps.roles.priceDelete ||
 			generalProps.roles.pricePut ||
@@ -75,6 +75,7 @@ export const Prices = async ({
 				? undefined
 				: false,
 	})
+	const t = await getTranslations('Table')
 
 	const isAdmin = generalProps.roles.pricePut || generalProps.roles.priceDelete
 
@@ -101,10 +102,7 @@ export const Prices = async ({
 								type === 'dogs' ? LINKS.pages.dogs : LINKS.pages.cats
 							}#breeds`}
 						>
-							←{' '}
-							{type === 'dogs'
-								? 'Процедуры для собак'
-								: 'Процедуры для кошек'}
+							← {type === 'dogs' ? t('dogsLink') : t('catsLink')}
 						</Link>
 					</div>
 					<div className={styles.prices}>
@@ -118,11 +116,17 @@ export const Prices = async ({
 								}
 								generalProps={generalProps}
 								procedures={procedures}
+								translations={{
+									procedureCol: t('procedureCol'),
+									timeCol: t('timeCol'),
+									priceCol: t('priceCol'),
+									weightCol: t('weightCol'),
+								}}
 							/>
 						) : (
-							<span>
+							<div>
 								Для выбранной породы услуги пока не предоставляются
-							</span>
+							</div>
 						)}
 						<AddItem
 							data={{

@@ -180,48 +180,46 @@ export const GridList = ({ content, className, generalProps }: Props) => {
 				if (!elemState) return null
 
 				return (
-					<>
-						<li
-							className={classNames(styles.item, styles.transition)}
-							onMouseMove={e => handleHover(i, e)}
-							onMouseOver={e => handleHover(i, e)}
-							data-index={i}
-							key={data.title}
-						>
-							<Item
-								{...data}
-								showTitle={elemState.isComponent1Title}
-								className={styles.wrapper1}
-							/>
-							<Item
-								{...data}
-								showTitle={elemState.isComponent2Title}
-								className={styles.wrapper2}
-							/>
-							<Item
-								{...data}
-								showTitle={elemState.isComponent3Title}
-								className={styles.wrapper3}
-							/>
-							<Item
-								{...data}
-								showTitle={elemState.isComponent4Title}
-								className={styles.wrapper4}
-							/>
-							<Item
-								{...data}
-								showTitle={elemState.isComponent5Title}
-								className={styles.wrapper5}
-							/>
-							<SettingsValue
-								data={{ ...data }}
-								roles={generalProps.roles}
-								iconClassname={styles.settings}
-								theme='dark'
-								formTitle='Изменение ценности'
-							/>
-						</li>
-					</>
+					<li
+						className={classNames(styles.item, styles.transition)}
+						onMouseMove={e => handleHover(i, e)}
+						onMouseOver={e => handleHover(i, e)}
+						data-index={i}
+						key={data.title}
+					>
+						<Item
+							{...data}
+							showTitle={elemState.isComponent1Title}
+							className={styles.wrapper1}
+						/>
+						<Item
+							{...data}
+							showTitle={elemState.isComponent2Title}
+							className={styles.wrapper2}
+						/>
+						<Item
+							{...data}
+							showTitle={elemState.isComponent3Title}
+							className={styles.wrapper3}
+						/>
+						<Item
+							{...data}
+							showTitle={elemState.isComponent4Title}
+							className={styles.wrapper4}
+						/>
+						<Item
+							{...data}
+							showTitle={elemState.isComponent5Title}
+							className={styles.wrapper5}
+						/>
+						<SettingsValue
+							data={{ ...data }}
+							roles={generalProps.roles}
+							iconClassname={styles.settings}
+							theme='dark'
+							formTitle='Изменение ценности'
+						/>
+					</li>
 				)
 			})}
 		</ul>
@@ -251,7 +249,13 @@ const Item = ({
 			) : (
 				<>
 					<p className={styles.description}>{description}</p>
-					<Image src={imageName} alt={title} fill className={styles.img} />
+					<Image
+						src={imageName}
+						alt={title}
+						fill
+						className={styles.img}
+						sizes='400px'
+					/>
 				</>
 			)}
 		</div>

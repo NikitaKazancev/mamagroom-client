@@ -1,4 +1,5 @@
 // import { Comfortaa, Quicksand, Raleway, Montserrat, Nunito, Poppins } from 'next/font/google'
+import { constantApi } from '@/api/constant/constant.api'
 import { headerNavbarLinkApi } from '@/api/header-navbar-link/header-navbar-link.api'
 import { Language } from '@/i18n/types'
 import { AcceptCookiePopUpServer } from '@/modules/accept-cookie-pop-up/accept-cookie-pop-up-server'
@@ -30,16 +31,20 @@ export async function generateMetadata({
 	params: { locale: string }
 }): Promise<Metadata> {
 	const t = await getTranslations({
-		namespace: 'General',
+		namespace: 'Metadata',
 		locale: params.locale,
+	})
+	const constants = await constantApi.findMany({
+		language: params.locale as Language,
+		type: 'homePage',
 	})
 
 	return {
 		title: {
-			default: t('metadataTitle'),
+			default: t('baseTitle'),
 			template: `%s | ${t('siteName')}`,
 		},
-		description: t('metadataDescription'),
+		description: constants?.homePage_mainDescription,
 		verification: {
 			google: 'H36KGQNSmi2SdKelkImPwdO69JOYLUcSvNfabDWJ9wU',
 			yandex: 'adefe41fd50ead4c',

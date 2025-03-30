@@ -49,6 +49,7 @@ export const Slider = ({ data, generalProps }: Props) => {
 								fill
 								src={slider.imageName}
 								alt={`Slide ${index + 1}`}
+								sizes='550px'
 							/>
 							<SettingsMainSlider
 								data={slider}

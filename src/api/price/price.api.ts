@@ -1,4 +1,3 @@
-import { Language } from '@/i18n/types'
 import { request } from '../request'
 
 export type Price = {
@@ -35,7 +34,6 @@ class PriceApi {
 		procedureId?: string
 		weight?: number
 		time?: number
-		language?: Language
 		isDeleted?: boolean
 	}) {
 		const url = `/${this.url}?${this.queryParams(queryParams)}`
@@ -97,14 +95,12 @@ class PriceApi {
 		procedureId,
 		weight,
 		time,
-		language,
 		isDeleted,
 	}: {
 		breedId?: string
 		procedureId?: string
 		weight?: number
 		time?: number
-		language?: Language
 		isDeleted?: boolean
 	}) {
 		const queryParams = new URLSearchParams()
@@ -113,8 +109,6 @@ class PriceApi {
 			queryParams.append('procedureId', procedureId)
 		if (weight !== undefined) queryParams.append('weight', String(weight))
 		if (time !== undefined) queryParams.append('time', String(time))
-		if (language !== undefined)
-			queryParams.append('language', String(language))
 		if (isDeleted !== undefined)
 			queryParams.append('isDeleted', String(isDeleted))
 

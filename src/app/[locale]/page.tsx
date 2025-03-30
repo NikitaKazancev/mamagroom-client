@@ -36,14 +36,12 @@ export default async function Home({
 					type: 'home-page',
 					name: 'main-title',
 					value: constants.homePage_mainTitle,
-					settingsTitle: 'Главный заголовок',
 				}}
 				descriptionData={{
 					language: params.locale,
 					type: 'home-page',
 					name: 'main-description',
 					value: constants.homePage_mainDescription,
-					settingsDescription: 'Главное описание',
 				}}
 				generalProps={generalProps}
 				fileUrl={mainImageUrl}

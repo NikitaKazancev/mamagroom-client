@@ -1,7 +1,6 @@
 'use server'
 
 import { objectFromFormData } from '@/utils/functions'
-import console from 'console'
 import { revalidateTag } from 'next/cache'
 import { REVALIDATE_TAGS } from '../request'
 import { breedApi, BreedDto } from './breed.api'
@@ -11,7 +10,6 @@ export const postBreed = async (
 	permanentData: BreedDto
 ) => {
 	const data = objectFromFormData(formData)
-	console.log(permanentData)
 
 	const res = await breedApi.post({ ...permanentData, ...data })
 	revalidateTag(REVALIDATE_TAGS.breeds)

@@ -1,26 +1,30 @@
 {
-	"General": {
-		"book": "book",
-		"siteName": "MamagrooM",
-		"metadataTitle": "MamagrooM - grooming salon in Mytishchi | mamagroom.ru",
-		"metadataDescription": "You give us chewbacca, we give you a dog",
-		"search": "Search"
+	"Metadata": {
+		"baseTitle": "MamagrooM - grooming salon in Mytishchi | mamagroom.ru",
+		"siteName": "MamagrooM"
 	},
 	"Footer": {
 		"address": "Mytishchi, Novomytishchinsky Prospect, 41b1",
 		"workingHours": "10:00 am – 9:00 pm",
 		"copyright": "MamagrooM © 2025. All rights reserved."
 	},
+	"General": {
+		"book": "записаться",
+		"search": "Поиск"
+	},
 	"Procedures": {
 		"smallDog": "Small",
 		"mediumDog": "Medium",
 		"bigDog": "Large",
-		"searchPlaceholder": "Alabay...",
-		"fullDogsLink": "Procedures for dogs",
-		"fullCatsLink": "Procedures for cats",
-		"tableProcedureCol": "Procedure",
-		"tableTimeCol": "Time",
-		"tablePriceCol": "Price (₽)"
+		"searchPlaceholder": "Alabay..."
+	},
+	"Table": {
+		"dogsLink": "Procedures for dogs",
+		"catsLink": "Procedures for cats",
+		"procedureCol": "Procedure",
+		"timeCol": "Time",
+		"priceCol": "Price (₽)",
+		"weightCol": "weight (кг)"
 	},
 	"Vacancies": {
 		"linkText": "More"
@@ -31,5 +35,9 @@
 	"Cookies": {
 		"message": "we use cookies to make everything work well",
 		"accept": "used to it"
+	},
+	"404": {
+		"message": "Page not found",
+		"linkText": "Return to the main page"
 	}
 }

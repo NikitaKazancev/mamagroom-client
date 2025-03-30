@@ -1,4 +1,3 @@
-import console from 'console'
 import { basicQueryParams, fullImageName, request } from '../request'
 
 export type MainSlider = {
@@ -64,8 +63,6 @@ class MainSliderApi {
 	}
 
 	async put(id: string, mainSlider: FormData | MainSliderDto) {
-		console.log(mainSlider)
-
 		const url = `/${this.url}/${id}`
 		const data = (await request({
 			url,

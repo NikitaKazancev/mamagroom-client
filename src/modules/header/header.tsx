@@ -23,23 +23,25 @@ type Props = {
 	generalProps: GeneralProps
 }
 
-const hasFirstState = (pathname: string) => {
+const hasFirstState = (pathname: string, isNotFound: boolean) => {
+	if (isNotFound) return false
 	if (pathname.includes('/users')) return false
 	return true
 }
 
 export const Header = ({ navLinks, translations, generalProps }: Props) => {
 	const pathname = usePathname()
-	const [isScrolled, setIsScrolled] = useState(!hasFirstState(pathname))
+	const [isScrolled, setIsScrolled] = useState(!hasFirstState(pathname, false))
 
 	useEffect(() => {
-		const initialIsScrolled = !hasFirstState(pathname)
+		const isNotFound = document.getElementById('_404') !== null
+		const initialIsScrolled = !hasFirstState(pathname, isNotFound)
 		setIsScrolled(prev =>
 			prev !== initialIsScrolled ? initialIsScrolled : prev
 		)
 
 		const handleScroll = () => {
-			if (!hasFirstState(pathname)) {
+			if (!hasFirstState(pathname, isNotFound)) {
 				setIsScrolled(prev => (prev ? prev : true))
 				return
 			}

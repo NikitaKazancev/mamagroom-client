@@ -1,31 +1,40 @@
-// import './page.scss'
+import { Button } from '@/ui/button/button'
+import { Metadata } from 'next'
+import { useTranslations } from 'next-intl'
+import styles from './page.module.scss'
+
+export async function generateMetadata({
+	params,
+}: {
+	params: { locale: string }
+}): Promise<Metadata> {
+	return {
+		robots: {
+			index: false,
+			follow: false,
+			googleBot: {
+				index: false,
+				follow: false,
+			},
+		},
+		title: 'Не найдено',
+	}
+}
 
 export default function CatchAllPage() {
-	return 'Hello'
-	// <div>
-	// 	<h1>404 Error Page #2</h1>
-	// 	<p className='zoom-area'>
-	// 		<b>CSS</b> animations to make a cool 404 page.{' '}
-	// 	</p>
-	// 	<section className='error-container'>
-	// 		<span className='four'>
-	// 			<span className='screen-reader-text'>4</span>
-	// 		</span>
-	// 		<span className='zero'>
-	// 			<span className='screen-reader-text'>0</span>
-	// 		</span>
-	// 		<span className='four'>
-	// 			<span className='screen-reader-text'>4</span>
-	// 		</span>
-	// 	</section>
-	// 	<div className='link-container'>
-	// 		<a
-	// 			target='_blank'
-	// 			href='https://www.silocreativo.com/en/creative-examples-404-error-css/'
-	// 			className='more-link'
-	// 		>
-	// 			Visit the original article
-	// 		</a>
-	// 	</div>
-	// </div>
+	const t = useTranslations('404')
+
+	return (
+		<div className={styles.main}>
+			<section className={styles._404} id='_404'>
+				<span className={styles.four}></span>
+				<span className={styles.zero}></span>
+				<span className={styles.four}></span>
+			</section>
+			<div className={styles.bottom}>
+				<div className={styles.message}>{t('message')}</div>
+				<Button theme='dark' text={t('linkText')} href={'/'} />
+			</div>
+		</div>
+	)
 }

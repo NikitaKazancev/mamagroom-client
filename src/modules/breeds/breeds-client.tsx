@@ -3,6 +3,7 @@
 import { Breed } from '@/api/breed/breed.api'
 import { SettingsBreedForm } from '@/components/settings/breeds/breeds-form'
 import { SettingsBreed } from '@/components/settings/breeds/breeds-link'
+import { SettingsProcedureForm } from '@/components/settings/procedure/procedure-form'
 import { Link } from '@/i18n/routing'
 import { Input } from '@/ui/input/input'
 import { GeneralProps } from '@/utils/types'
@@ -38,19 +39,25 @@ const getFirstLetters = (breeds: Breed[]) => {
 	return res
 }
 
-const breedTypeName = {
-	smallDog: 'Мелкие',
-	mediumDog: 'Средние',
-	bigDog: 'Крупные',
-}
-
 type Props = {
 	breeds: Breed[]
 	type: 'dogs' | 'cats'
 	generalProps: GeneralProps
+	translations: {
+		smallDog: string
+		mediumDog: string
+		bigDog: string
+		searchPlaceholder: string
+		search: string
+	}
 }
 
-export const BreedsClient = ({ breeds, type, generalProps }: Props) => {
+export const BreedsClient = ({
+	breeds,
+	type,
+	generalProps,
+	translations,
+}: Props) => {
 	const [search, setSearch] = useState('')
 	const [filterType, setFilterType] = useState('')
 
@@ -90,7 +97,7 @@ export const BreedsClient = ({ breeds, type, generalProps }: Props) => {
 								setFilterType(filterType === type ? '' : type)
 							}
 						>
-							{breedTypeName[type]}
+							{translations[type]}
 						</button>
 					))}
 					<AddItem
@@ -106,14 +113,28 @@ export const BreedsClient = ({ breeds, type, generalProps }: Props) => {
 						formTitle='Добавление породы'
 					/>
 				</div>
-				<Input
-					name='search'
-					title='Поиск:'
-					value={search}
-					onChange={onSearch}
-					theme='main'
-					placeholder='Алабай...'
-				/>
+				<div className={styles.right}>
+					<AddItem
+						type='procedure'
+						Component={SettingsProcedureForm}
+						data={{
+							id: '',
+							name: '',
+							language: generalProps.language,
+						}}
+						postRole={generalProps.roles.procedurePost}
+						formTitle='Добавление процедуры'
+						className={styles.addProcedure}
+					/>
+					<Input
+						name='search'
+						title={`${translations.search}:`}
+						value={search}
+						onChange={onSearch}
+						theme='main'
+						placeholder={translations.searchPlaceholder}
+					/>
+				</div>
 			</div>
 		)
 	}

@@ -7,6 +7,23 @@ import { MainImageSection } from '@/modules/main-image-section/main-image-sectio
 import { MainPageReviews } from '@/page/main/reviews-section/reviews-section'
 import { getRoles } from '@/utils/auth/auth'
 import { GeneralProps } from '@/utils/types'
+import { Metadata } from 'next'
+
+export async function generateMetadata({
+	params,
+}: {
+	params: { locale: string }
+}): Promise<Metadata> {
+	const constants = await constantApi.findMany({
+		language: params.locale as Language,
+		type: 'vacanciesPage',
+	})
+
+	return {
+		title: constants?.vacanciesPage_mainTitle,
+		description: constants?.vacanciesPage_mainDescription,
+	}
+}
 
 export default async function Vacancies({
 	params,

@@ -7,11 +7,22 @@ import { MainImageSection } from '@/modules/main-image-section/main-image-sectio
 import { MainPageReviews } from '@/page/main/reviews-section/reviews-section'
 import { getRoles } from '@/utils/auth/auth'
 import { GeneralProps } from '@/utils/types'
+import { Metadata } from 'next'
 
-export const metadata = {
-	title: 'Our Expert Team | Your Company',
-	description:
-		'Meet our team of expert professionals dedicated to providing exceptional service and results.',
+export async function generateMetadata({
+	params,
+}: {
+	params: { locale: string }
+}): Promise<Metadata> {
+	const constants = await constantApi.findMany({
+		language: params.locale as Language,
+		type: 'mastersPage',
+	})
+
+	return {
+		title: constants?.mastersPage_mainTitle,
+		description: constants?.mastersPage_mainDescription,
+	}
 }
 
 const MastersPage = async ({ params }: { params: { locale: Language } }) => {

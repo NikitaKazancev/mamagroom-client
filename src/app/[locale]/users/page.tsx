@@ -4,9 +4,22 @@ import { getRoles } from '@/utils/auth/auth'
 import { GeneralProps } from '@/utils/types'
 import { Metadata } from 'next'
 
-export const metadata: Metadata = {
-	title: 'User Management',
-	description: 'Manage system users and their roles',
+export async function generateMetadata({
+	params,
+}: {
+	params: { locale: string }
+}): Promise<Metadata> {
+	return {
+		robots: {
+			index: false,
+			follow: false,
+			googleBot: {
+				index: false,
+				follow: false,
+			},
+		},
+		title: 'Пользователи',
+	}
 }
 
 export default async function Users({

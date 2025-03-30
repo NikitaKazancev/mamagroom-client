@@ -47,6 +47,7 @@ export const Cards = ({ data, title, generalProps }: Props) => {
 										alt={item.name}
 										fill
 										className='object-cover'
+										sizes='250px'
 									/>
 								</div>
 							)}

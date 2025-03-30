@@ -29,9 +29,9 @@ export const MainImageSection = async ({
 			<Image
 				src={fileUrl ? fileUrl : ''}
 				alt='МамагруМ'
-				width={1920}
-				height={59}
 				priority
+				fill
+				sizes='100wv'
 			/>
 			{generalProps.roles.filePostPut && (
 				<Settings

@@ -18,6 +18,8 @@ import {
 } from '@/api/main-slider/main-slider.server'
 import { PriceDto } from '@/api/price/price.api'
 import { postPrice, putPrice } from '@/api/price/price.server'
+import { ProcedureDto } from '@/api/procedure/procedure.api'
+import { postProcedure } from '@/api/procedure/procedure.server'
 import { ValueDto } from '@/api/values/values.api'
 import { postValue, putValue } from '@/api/values/values.server'
 import { AuthFormBtns } from '@/modules/auth/auth-form-btns'
@@ -128,6 +130,10 @@ export const SettingsForm = () => {
 				result = await postPrice(formData, data as PriceDto)
 			} else {
 				result = await putPrice(formData, data as PriceDto)
+			}
+		} else if (type === 'procedure') {
+			if (method === 'post') {
+				result = await postProcedure(formData, data as ProcedureDto)
 			}
 		}
 
