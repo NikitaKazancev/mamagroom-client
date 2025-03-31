@@ -1,3 +1,5 @@
+'use client'
+
 import { setToken } from '@/utils/cookies/cookies-client.api'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
