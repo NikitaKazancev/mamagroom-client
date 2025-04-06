@@ -15,7 +15,7 @@ export async function generateMetadata({
 	}
 }
 
-export default async function Cats({
+export default function Cats({
 	params,
 }: {
 	params: { locale: Language; id: string }

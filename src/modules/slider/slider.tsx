@@ -6,17 +6,15 @@ import styles from './slider.module.scss'
 import { MainSlider } from '@/api/main-slider/main-slider.api'
 import { SettingsMainSliderForm } from '@/components/settings/main-slider/main-slider-form'
 import { SettingsMainSlider } from '@/components/settings/main-slider/main-slider-link'
-import { GeneralProps } from '@/utils/types'
 import Image from 'next/image'
 import { useState } from 'react'
 import { AddItem } from '../settings/add/add-item'
 
 type Props = {
 	data: MainSlider[]
-	generalProps: GeneralProps
 }
 
-export const Slider = ({ data, generalProps }: Props) => {
+export const Slider = ({ data }: Props) => {
 	const [activeSlideIndex, setActiveSlideIndex] = useState(0)
 
 	const prevSlide = () => {
@@ -53,7 +51,6 @@ export const Slider = ({ data, generalProps }: Props) => {
 							/>
 							<SettingsMainSlider
 								data={slider}
-								roles={generalProps.roles}
 								iconClassname={styles.settings}
 								theme='dark'
 								formTitle='Изменение слайда'
@@ -72,7 +69,6 @@ export const Slider = ({ data, generalProps }: Props) => {
 				Component={SettingsMainSliderForm}
 				type='main-slider'
 				className={styles.addItem}
-				postRole={generalProps.roles.mainSliderPost}
 				formTitle='Добавление слайда'
 			/>
 		</div>

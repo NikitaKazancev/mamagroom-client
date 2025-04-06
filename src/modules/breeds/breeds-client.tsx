@@ -6,7 +6,6 @@ import { SettingsBreed } from '@/components/settings/breeds/breeds-link'
 import { SettingsProcedureForm } from '@/components/settings/procedure/procedure-form'
 import { Link } from '@/i18n/routing'
 import { Input } from '@/ui/input/input'
-import { GeneralProps } from '@/utils/types'
 import classNames from 'classnames'
 import { useMemo, useState } from 'react'
 import { AddItem } from '../settings/add/add-item'
@@ -42,7 +41,6 @@ const getFirstLetters = (breeds: Breed[]) => {
 type Props = {
 	breeds: Breed[]
 	type: 'dogs' | 'cats'
-	generalProps: GeneralProps
 	translations: {
 		smallDog: string
 		mediumDog: string
@@ -52,12 +50,7 @@ type Props = {
 	}
 }
 
-export const BreedsClient = ({
-	breeds,
-	type,
-	generalProps,
-	translations,
-}: Props) => {
+export const BreedsClient = ({ breeds, type, translations }: Props) => {
 	const [search, setSearch] = useState('')
 	const [filterType, setFilterType] = useState('')
 
@@ -107,9 +100,7 @@ export const BreedsClient = ({
 							id: '',
 							name: '',
 							type: 'smallDog',
-							language: generalProps.language,
 						}}
-						postRole={generalProps.roles.breedPost}
 						formTitle='Добавление породы'
 					/>
 				</div>
@@ -120,9 +111,7 @@ export const BreedsClient = ({
 						data={{
 							id: '',
 							name: '',
-							language: generalProps.language,
 						}}
-						postRole={generalProps.roles.procedurePost}
 						formTitle='Добавление процедуры'
 						className={styles.addProcedure}
 					/>
@@ -159,7 +148,6 @@ export const BreedsClient = ({
 									</Link>
 									<SettingsBreed
 										data={breed}
-										roles={generalProps.roles}
 										theme='dark'
 										iconClassname={styles.settings}
 										formTitle='Изменение породы'

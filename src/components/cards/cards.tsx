@@ -3,7 +3,6 @@ import { AddItem } from '@/modules/settings/add/add-item'
 import { Layout } from '@/ui/layout/layout'
 import { SectionTitle } from '@/ui/section-title/section-title'
 import { Section } from '@/ui/section/section'
-import { GeneralProps } from '@/utils/types'
 import Image from 'next/image'
 import { SettingsConstant } from '../settings/constant/settings-constant'
 import { SettingsMasterForm } from '../settings/master/master-form'
@@ -11,18 +10,16 @@ import { SettingsMaster } from '../settings/master/master-link'
 import styles from './cards.module.scss'
 
 type Props = {
-	generalProps: GeneralProps
 	title: string
 	data: MasterDto[]
 }
 
-export const Cards = ({ data, title, generalProps }: Props) => {
+export const Cards = ({ data, title }: Props) => {
 	return (
 		<Section>
 			<Layout>
 				<SettingsConstant
 					data={{
-						language: generalProps.language,
 						type: 'home-page',
 						name: 'about-us-title',
 						value: title,
@@ -30,7 +27,6 @@ export const Cards = ({ data, title, generalProps }: Props) => {
 					title='Значение'
 					iconClassname={styles.settings}
 					type='constant_short'
-					roles={generalProps.roles}
 					theme='dark'
 					formTitle='Заголовок секции'
 				>
@@ -41,7 +37,6 @@ export const Cards = ({ data, title, generalProps }: Props) => {
 						<li key={item.id} className={styles.card}>
 							<SettingsMaster
 								data={{ ...item }}
-								roles={generalProps.roles}
 								iconClassname={styles.settings}
 								theme='dark'
 								formTitle='Изменение мастера'
@@ -67,7 +62,6 @@ export const Cards = ({ data, title, generalProps }: Props) => {
 				<AddItem
 					data={{
 						id: '',
-						language: generalProps.language,
 						name: '',
 						position: '',
 						description: '',
@@ -75,7 +69,6 @@ export const Cards = ({ data, title, generalProps }: Props) => {
 					type='master'
 					Component={SettingsMasterForm}
 					className={styles.addItem}
-					postRole={generalProps.roles.masterPost}
 					formTitle='Добавление мастера'
 				/>
 			</Layout>

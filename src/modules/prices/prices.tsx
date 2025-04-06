@@ -2,10 +2,10 @@ import { Price, priceApi } from '@/api/price/price.api'
 import { procedureApi } from '@/api/procedure/procedure.api'
 import { SettingsPriceForm } from '@/components/settings/prices/prices-form'
 import { LINKS } from '@/constants/links.constants'
+import { getLanguage, useRoles } from '@/context/my-server-context'
 import { Link } from '@/i18n/routing'
 import { Layout } from '@/ui/layout/layout'
 import { Section } from '@/ui/section/section'
-import { GeneralProps } from '@/utils/types'
 import { getTranslations } from 'next-intl/server'
 import { AddItem } from '../settings/add/add-item'
 import { MergedPrice, Table } from '../table/table'
@@ -50,34 +50,29 @@ const mergePrices = (prices: Price[]) => {
 export const Prices = async ({
 	id,
 	type,
-	generalProps,
 }: {
 	id: string
 	type: 'dogs' | 'cats'
-	generalProps: GeneralProps
 }) => {
+	const roles = useRoles()
+	const language = await getLanguage()
 	const prices = await priceApi.findMany({
 		breedId: id,
 		isDeleted:
-			generalProps.roles.priceDelete ||
-			generalProps.roles.pricePut ||
-			generalProps.roles.pricePost
+			roles.priceDelete || roles.pricePut || roles.pricePost
 				? undefined
 				: false,
 	})
 	const procedures = await procedureApi.findMany({
-		language: generalProps.language,
-
+		language: language,
 		isDeleted:
-			generalProps.roles.procedureDelete ||
-			generalProps.roles.procedurePut ||
-			generalProps.roles.procedurePost
+			roles.procedureDelete || roles.procedurePut || roles.procedurePost
 				? undefined
 				: false,
 	})
 	const t = await getTranslations('Table')
 
-	const isAdmin = generalProps.roles.pricePut || generalProps.roles.priceDelete
+	const isAdmin = roles.pricePut || roles.priceDelete
 
 	let resPrices = undefined
 	if (isAdmin) {
@@ -114,7 +109,6 @@ export const Prices = async ({
 										? ['procedure', 'time', 'weight', 'price']
 										: ['procedure', 'time', 'price']
 								}
-								generalProps={generalProps}
 								procedures={procedures}
 								translations={{
 									procedureCol: t('procedureCol'),
@@ -139,7 +133,6 @@ export const Prices = async ({
 							}}
 							type='price'
 							Component={SettingsPriceForm}
-							postRole={generalProps.roles.pricePost}
 							className={styles.addItem}
 							procedures={procedures}
 							formTitle='Добавление цены'

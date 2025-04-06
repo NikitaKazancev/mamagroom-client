@@ -1,24 +1,25 @@
+'use client'
+
 import { PriceDto } from '@/api/price/price.api'
 import { Procedure } from '@/api/procedure/procedure.api'
 import { Settings } from '@/modules/settings/settings'
-import { Roles } from '@/utils/auth/auth'
 import { SettingsPriceForm } from './prices-form'
+import { useMyContext } from '@/context/my-context'
 
 export const SettingsPrice = ({
 	data,
 	iconClassname,
-	roles,
 	theme,
 	procedures,
 	formTitle,
 }: {
 	data: PriceDto
 	iconClassname?: string
-	roles: Roles
 	theme?: 'light' | 'dark'
 	procedures: Procedure[]
 	formTitle: string
 }) => {
+	const roles = useMyContext().roles
 	if (!roles.pricePut && !roles.priceDelete) return null
 
 	return (

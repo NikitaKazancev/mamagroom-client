@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
 import styles from './page.module.scss'
 
-export default async function AuthRedirectPage() {
+export default function AuthRedirectPage() {
 	const searchParams = useSearchParams()
 	const router = useRouter()
 

@@ -37,7 +37,7 @@ export type Constant = {
 }
 
 export type ConstantDto = {
-	language: Language
+	language?: Language
 	type: CamelToKebab<ConstantType>
 	name: CamelToKebab<ConstantName>
 	value: string

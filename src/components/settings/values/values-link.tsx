@@ -1,21 +1,22 @@
+'use client'
+
 import { ValueDto } from '@/api/values/values.api'
 import { Settings } from '@/modules/settings/settings'
-import { Roles } from '@/utils/auth/auth'
 import { SettingsValueForm } from './values-form'
+import { useMyContext } from '@/context/my-context'
 
 export const SettingsValue = ({
 	data,
 	iconClassname,
-	roles,
 	theme,
 	formTitle,
 }: {
 	data: ValueDto
 	iconClassname?: string
-	roles: Roles
 	theme?: 'light' | 'dark'
 	formTitle: string
 }) => {
+	const roles = useMyContext().roles
 	if (!roles.valuePut && !roles.valueDelete) return null
 
 	return (

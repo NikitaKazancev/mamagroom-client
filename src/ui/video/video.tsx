@@ -8,7 +8,7 @@ type Props = {
 
 export const Video = ({ className, src }: Props) => {
 	return (
-		<div className={classNames(className, styles.video)}>
+		<div className={classNames(styles.video, className)}>
 			<iframe
 				src={src}
 				allow='autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write;'

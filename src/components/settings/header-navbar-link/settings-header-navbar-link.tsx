@@ -2,25 +2,24 @@ import {
 	HeaderNavbarLink,
 	HeaderNavbarLinkDto,
 } from '@/api/header-navbar-link/header-navbar-link.api'
+import { useMyContext } from '@/context/my-context'
 import { Settings } from '@/modules/settings/settings'
-import { Roles } from '@/utils/auth/auth'
 import { SettingsHeaderNavbarLinkForm } from './settings-header-navbar-link-form'
 
 export const SettingsHeaderNavbarLink = ({
 	data,
 	iconClassname,
-	roles,
 	theme,
 	headerNavbarLinks,
 	formTitle,
 }: {
 	data: HeaderNavbarLinkDto
 	iconClassname?: string
-	roles: Roles
 	theme?: 'light' | 'dark'
 	headerNavbarLinks: HeaderNavbarLink[]
 	formTitle: string
 }) => {
+	const roles = useMyContext().roles
 	if (!roles.headerNavbarLinkPut && !roles.headerNavbarLinkDelete) return null
 
 	return (

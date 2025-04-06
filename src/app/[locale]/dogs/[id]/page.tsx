@@ -15,7 +15,7 @@ export async function generateMetadata({
 	}
 }
 
-export default async function Dogs({
+export default function Dogs({
 	params,
 }: {
 	params: { locale: Language; id: string }

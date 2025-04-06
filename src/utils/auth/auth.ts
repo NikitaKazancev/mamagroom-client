@@ -1,8 +1,30 @@
 import { Role } from '@/api/user/user.types'
-import { jwtVerify } from 'jose'
-import { getToken } from '../cookies/cookies-server.api'
+import { headers } from 'next/headers'
 
 export type Roles = { [P in Role]: boolean }
+
+export const rolesFromHeader = (): Roles => {
+	const hdr = headers()
+	const raw = hdr.get('x-user-roles')
+	if (!raw) return generateRolesWith(false)
+
+	try {
+		const roles = JSON.parse(raw) as Role[]
+		const hasFull = roles.includes('fullAccess')
+		const roleSet = new Set(roles)
+		return generateRolesWith(role => hasFull || roleSet.has(role))
+	} catch {
+		return generateRolesWith(false)
+	}
+}
+
+const generateRolesWith = (fn: boolean | ((role: Role) => boolean)): Roles => {
+	const roles: Partial<Roles> = {}
+	for (const role of Object.keys(ROLES) as Role[]) {
+		roles[role] = typeof fn === 'function' ? fn(role) : fn
+	}
+	return roles as Roles
+}
 
 const ROLES: Roles = {
 	fullAccess: false,
@@ -43,41 +65,4 @@ const ROLES: Roles = {
 	responseFromAIPost: false,
 	responseFromAIPut: false,
 	responseFromAIDelete: false,
-}
-
-export const getRoles = async (jwtToken: string | undefined = undefined) => {
-	let token = jwtToken
-	if (token === undefined) token = await getToken() // not an empty string
-	if (!token) {
-		fillWith(false)
-		return ROLES
-	}
-
-	const { payload } = await jwtVerify(
-		token,
-		new TextEncoder().encode(process.env.JWT_SECRET)
-	)
-
-	if (!payload?.roles) {
-		fillWith(false)
-		return ROLES
-	}
-
-	const roles = payload.roles as Role[]
-
-	if (roles.includes('fullAccess')) {
-		fillWith(true)
-	}
-
-	for (const role of roles) {
-		ROLES[role] = true
-	}
-
-	return ROLES
-}
-
-const fillWith = (value: boolean) => {
-	for (const role in ROLES) {
-		ROLES[role as Role] = value
-	}
 }

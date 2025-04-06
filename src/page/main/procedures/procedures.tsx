@@ -5,7 +5,6 @@ import { Layout } from '@/ui/layout/layout'
 import { SectionTitle } from '@/ui/section-title/section-title'
 import { Section } from '@/ui/section/section'
 import { Video } from '@/ui/video/video'
-import { GeneralProps } from '@/utils/types'
 import { LuCat, LuDog } from 'react-icons/lu'
 import styles from './procedures.module.scss'
 
@@ -14,7 +13,6 @@ type Props = {
 	dogsDescription: string
 	catsTitle: string
 	catsDescription: string
-	generalProps: GeneralProps
 }
 
 export const MainPageProcedures = ({
@@ -22,7 +20,6 @@ export const MainPageProcedures = ({
 	dogsDescription,
 	catsTitle,
 	catsDescription,
-	generalProps,
 }: Props) => {
 	return (
 		<Section className={styles.main}>
@@ -30,7 +27,6 @@ export const MainPageProcedures = ({
 				<div className={styles.titles}>
 					<SettingsConstant
 						data={{
-							language: generalProps.language,
 							type: 'home-page',
 							name: 'procedures-for-dogs-title',
 							value: dogsTitle,
@@ -38,7 +34,6 @@ export const MainPageProcedures = ({
 						title='Значение'
 						iconClassname={styles.settings}
 						type='constant_short'
-						roles={generalProps.roles}
 						theme='dark'
 						formTitle='Заголовок'
 					>
@@ -53,7 +48,6 @@ export const MainPageProcedures = ({
 					</SettingsConstant>
 					<SettingsConstant
 						data={{
-							language: generalProps.language,
 							type: 'home-page',
 							name: 'procedures-for-cats-title',
 							value: catsTitle,
@@ -61,7 +55,6 @@ export const MainPageProcedures = ({
 						title='Значение'
 						iconClassname={styles.settings}
 						type='constant_short'
-						roles={generalProps.roles}
 						theme='dark'
 						formTitle='Заголовок'
 					>
@@ -78,7 +71,6 @@ export const MainPageProcedures = ({
 				<div className={styles.descriptions}>
 					<SettingsConstant
 						data={{
-							language: generalProps.language,
 							type: 'home-page',
 							name: 'procedures-for-dogs-description',
 							value: dogsDescription,
@@ -86,7 +78,6 @@ export const MainPageProcedures = ({
 						title='Значение'
 						iconClassname={styles.settings}
 						type='constant_long'
-						roles={generalProps.roles}
 						theme='dark'
 						formTitle='Описание'
 					>
@@ -95,7 +86,6 @@ export const MainPageProcedures = ({
 
 					<SettingsConstant
 						data={{
-							language: generalProps.language,
 							type: 'home-page',
 							name: 'procedures-for-cats-description',
 							value: catsDescription,
@@ -103,7 +93,6 @@ export const MainPageProcedures = ({
 						title='Значение'
 						iconClassname={styles.settings}
 						type='constant_long'
-						roles={generalProps.roles}
 						theme='dark'
 						formTitle='Описание'
 					>

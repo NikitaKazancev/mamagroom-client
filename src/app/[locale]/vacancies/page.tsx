@@ -2,11 +2,10 @@ import { constantApi } from '@/api/constant/constant.api'
 import { fileApi } from '@/api/file/file.api'
 import { vacancyApi } from '@/api/vacancy/vacancy.api'
 import { Feed } from '@/components/feed/feed'
+import { useRoles } from '@/context/my-server-context'
 import { Language } from '@/i18n/types'
 import { MainImageSection } from '@/modules/main-image-section/main-image-section'
 import { MainPageReviews } from '@/page/main/reviews-section/reviews-section'
-import { getRoles } from '@/utils/auth/auth'
-import { GeneralProps } from '@/utils/types'
 import { Metadata } from 'next'
 
 export async function generateMetadata({
@@ -30,14 +29,12 @@ export default async function Vacancies({
 }: {
 	params: { locale: Language }
 }) {
-	const roles = await getRoles()
-	const generalProps: GeneralProps = { roles, language: params.locale }
+	const roles = useRoles()
 
 	const constants = await constantApi.findMany({
 		language: params.locale,
 		type: 'vacanciesPage',
 	})
-
 	if (!constants) {
 		return null
 	}
@@ -50,9 +47,7 @@ export default async function Vacancies({
 	const vacancies = await vacancyApi.findMany({
 		language: params.locale,
 		isDeleted:
-			generalProps.roles.vacancyDelete ||
-			generalProps.roles.vacancyPut ||
-			generalProps.roles.vacancyPost
+			roles.vacancyDelete || roles.vacancyPut || roles.vacancyPost
 				? undefined
 				: false,
 	})
@@ -72,12 +67,11 @@ export default async function Vacancies({
 					name: 'main-description',
 					value: constants.vacanciesPage_mainDescription,
 				}}
-				generalProps={generalProps}
 				fileUrl={mainImageUrl}
 				externalPath='pages/vacancies/main-bg'
 			/>
-			<Feed data={vacancies} generalProps={generalProps} />
-			<MainPageReviews generalProps={generalProps} />
+			<Feed data={vacancies} />
+			<MainPageReviews />
 		</>
 	)
 }

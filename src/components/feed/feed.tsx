@@ -2,17 +2,15 @@ import { VacancyDto } from '@/api/vacancy/vacancy.api'
 import { Button } from '@/ui/button/button'
 import { Layout } from '@/ui/layout/layout'
 import { Section } from '@/ui/section/section'
-import { GeneralProps } from '@/utils/types'
 import { useTranslations } from 'next-intl'
 import { SettingsVacancy } from '../settings/vacancy/vacancy-link'
 import styles from './feed.module.scss'
 
 type Props = {
 	data: VacancyDto[]
-	generalProps: GeneralProps
 }
 
-export const Feed = ({ data, generalProps }: Props) => {
+export const Feed = ({ data }: Props) => {
 	const t = useTranslations('Vacancies')
 
 	return (
@@ -25,7 +23,6 @@ export const Feed = ({ data, generalProps }: Props) => {
 								data={{
 									...item,
 								}}
-								roles={generalProps.roles}
 								iconClassname={styles.settings}
 								theme='dark'
 								formTitle={'Изменение вакансии'}

@@ -1,21 +1,20 @@
 import { BreedDto } from '@/api/breed/breed.api'
+import { useMyContext } from '@/context/my-context'
 import { Settings } from '@/modules/settings/settings'
-import { Roles } from '@/utils/auth/auth'
 import { SettingsBreedForm } from './breeds-form'
 
 export const SettingsBreed = ({
 	data,
 	iconClassname,
-	roles,
 	theme,
 	formTitle,
 }: {
 	data: BreedDto
 	iconClassname?: string
-	roles: Roles
 	theme?: 'light' | 'dark'
 	formTitle: string
 }) => {
+	const roles = useMyContext().roles
 	if (!roles.breedPut && !roles.breedDelete) return null
 
 	return (

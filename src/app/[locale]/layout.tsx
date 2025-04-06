@@ -1,22 +1,20 @@
-// import { Comfortaa, Quicksand, Raleway, Montserrat, Nunito, Poppins } from 'next/font/google'
 import { constantApi } from '@/api/constant/constant.api'
 import { headerNavbarLinkApi } from '@/api/header-navbar-link/header-navbar-link.api'
+import { MyProvider } from '@/context/my-context-provider'
+import { useRoles } from '@/context/my-server-context'
 import { Language } from '@/i18n/types'
 import { AcceptCookiePopUpServer } from '@/modules/accept-cookie-pop-up/accept-cookie-pop-up-server'
-import { Footer } from '@/modules/footer/footer'
 import { FullTransparentBlock } from '@/modules/full-transparent-block/full-transparent-block'
 import { Header } from '@/modules/header/header'
-import { ProcedureSelection } from '@/modules/procedure-selection/procedure-selection'
-import { SettingsForm } from '@/modules/settings/form/settings-form'
 import { MyToaster } from '@/ui/toaster/my-toaster'
-import { getRoles } from '@/utils/auth/auth'
-import { getToken } from '@/utils/cookies/cookies-server.api'
-import { GeneralProps } from '@/utils/types'
 import { Metadata } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 import { Raleway } from 'next/font/google'
 import './globals.scss'
+import { Footer } from '@/modules/footer/footer'
+import { ProcedureSelection } from '@/modules/procedure-selection/procedure-selection'
+import { SettingsForm } from '@/modules/settings/form/settings-form'
 
 const inter = Raleway({
 	subsets: ['latin'],
@@ -68,9 +66,7 @@ export default async function RootLayout({
 	params: { locale: Language }
 }>) {
 	const t = await getTranslations('General')
-	const token = await getToken()
-	const roles = await getRoles(token ? token : '')
-	const generalProps: GeneralProps = { roles, language: params.locale }
+	const roles = useRoles()
 
 	const navLinks = await headerNavbarLinkApi.findMany({
 		language: params.locale,
@@ -98,19 +94,19 @@ export default async function RootLayout({
 			/>
 			<body className={inter.className}>
 				<NextIntlClientProvider>
-					<MyToaster />
-					{/* {process.env.NODE_ENV === 'production' && <WorkingMessage />} */}
-					<AcceptCookiePopUpServer />
-					<FullTransparentBlock />
-					<Header
-						translations={{ book: t('book') }}
-						navLinks={navLinks}
-						generalProps={generalProps}
-					/>
-					<SettingsForm />
-					<main>{children}</main>
-					<Footer token={token} />
-					<ProcedureSelection />
+					<MyProvider roles={roles} language={params.locale}>
+						<MyToaster />
+						<AcceptCookiePopUpServer />
+						<FullTransparentBlock />
+						<Header
+							translations={{ book: t('book') }}
+							navLinks={navLinks}
+						/>
+						<SettingsForm />
+						<main>{children}</main>
+						<Footer />
+						<ProcedureSelection />
+					</MyProvider>
 				</NextIntlClientProvider>
 			</body>
 		</html>

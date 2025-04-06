@@ -2,20 +2,16 @@ import { userApi } from '@/api/user/user.api'
 import { Layout } from '@/ui/layout/layout'
 import { SectionTitle } from '@/ui/section-title/section-title'
 import { Section } from '@/ui/section/section'
-import { GeneralProps } from '@/utils/types'
 import { Table } from '../table/table'
 import styles from './users-section.module.scss'
+import { useRoles } from '@/context/my-server-context'
 
-type Props = {
-	generalProps: GeneralProps
-}
+export const UsersSection = async () => {
+	const roles = useRoles()
 
-export const UsersSection = async ({ generalProps }: Props) => {
 	const users = await userApi.findMany({
 		isDeleted:
-			generalProps.roles.userDelete ||
-			generalProps.roles.userPut ||
-			generalProps.roles.userPost
+			roles.userDelete || roles.userPut || roles.userPost
 				? undefined
 				: false,
 	})
@@ -28,7 +24,6 @@ export const UsersSection = async ({ generalProps }: Props) => {
 					data={users}
 					columns={['name', 'email', 'createdAt', 'updatedAt', 'roles']}
 					className={styles.table}
-					generalProps={generalProps}
 					translations={undefined}
 				/>
 			</Layout>

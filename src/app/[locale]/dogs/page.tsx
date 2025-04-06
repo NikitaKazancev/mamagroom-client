@@ -19,10 +19,6 @@ export async function generateMetadata({
 	}
 }
 
-export default async function Dogs({
-	params,
-}: {
-	params: { locale: Language }
-}) {
+export default function Dogs({ params }: { params: { locale: Language } }) {
 	return <Procedures locale={params.locale} type='dogs' />
 }

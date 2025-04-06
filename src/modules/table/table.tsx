@@ -5,7 +5,6 @@ import { Procedure } from '@/api/procedure/procedure.api'
 import { roleName, User } from '@/api/user/user.types'
 import { SettingsPrice } from '@/components/settings/prices/prices-link'
 import { formatDate, minutesToHours } from '@/utils/functions'
-import { GeneralProps } from '@/utils/types'
 import classNames from 'classnames'
 import { useState } from 'react'
 import styles from './table.module.scss'
@@ -21,14 +20,12 @@ type Props =
 			data: User[]
 			columns: (keyof User)[]
 			className?: string
-			generalProps: GeneralProps
 			translations: undefined
 	  }
 	| {
 			data: MergedPrice[]
 			columns: (keyof MergedPrice)[]
 			className?: string
-			generalProps: GeneralProps
 			procedures: Procedure[]
 			translations: {
 				procedureCol: string
@@ -61,7 +58,6 @@ export const Table = ({
 	data,
 	columns,
 	className,
-	generalProps,
 	translations,
 	...props
 }: Props) => {
@@ -105,7 +101,8 @@ export const Table = ({
 
 	const dataByColumn = (
 		item: User | MergedPrice,
-		column: keyof User | keyof MergedPrice
+		column: keyof User | keyof MergedPrice,
+		index: number
 	) => {
 		let value
 		const itemData = item[column as keyof typeof item]
@@ -162,7 +159,11 @@ export const Table = ({
 		}
 
 		return (
-			<td key={column} scope='col'>
+			<td
+				key={column}
+				scope='col'
+				className={classNames(index === 0 && styles.firstColumn)}
+			>
 				<span>{value}</span>
 			</td>
 		)
@@ -177,7 +178,9 @@ export const Table = ({
 		>
 			{data.map((item, index) => (
 				<tr key={index} onClick={() => handleClickOnTr(item)}>
-					{columns.map(column => dataByColumn(item, column))}
+					{columns.map((column, colIndex) =>
+						dataByColumn(item, column, colIndex)
+					)}
 				</tr>
 			))}
 		</tbody>
@@ -241,7 +244,6 @@ export const Table = ({
 								breedId: (item as MergedPrice).breedId,
 								procedureId: (item as MergedPrice).procedure.id,
 							}}
-							roles={generalProps.roles}
 							key={index}
 							iconClassname={styles.settings}
 							procedures={(props as any).procedures}

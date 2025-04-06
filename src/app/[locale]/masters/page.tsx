@@ -2,11 +2,10 @@ import { constantApi } from '@/api/constant/constant.api'
 import { fileApi } from '@/api/file/file.api'
 import { masterApi } from '@/api/master/master.api'
 import { Cards } from '@/components/cards/cards'
+import { useRoles } from '@/context/my-server-context'
 import { Language } from '@/i18n/types'
 import { MainImageSection } from '@/modules/main-image-section/main-image-section'
 import { MainPageReviews } from '@/page/main/reviews-section/reviews-section'
-import { getRoles } from '@/utils/auth/auth'
-import { GeneralProps } from '@/utils/types'
 import { Metadata } from 'next'
 
 export async function generateMetadata({
@@ -26,14 +25,12 @@ export async function generateMetadata({
 }
 
 const MastersPage = async ({ params }: { params: { locale: Language } }) => {
-	const roles = await getRoles()
-	const generalProps: GeneralProps = { roles, language: params.locale }
+	const roles = useRoles()
 
 	const constants = await constantApi.findMany({
 		language: params.locale,
 		type: 'mastersPage',
 	})
-
 	if (!constants) {
 		return null
 	}
@@ -66,16 +63,11 @@ const MastersPage = async ({ params }: { params: { locale: Language } }) => {
 					name: 'main-description',
 					value: constants.mastersPage_mainDescription,
 				}}
-				generalProps={generalProps}
 				fileUrl={mainImageUrl}
 				externalPath='pages/masters/main-bg'
 			/>
-			<Cards
-				title={'наша команда'}
-				data={masters}
-				generalProps={generalProps}
-			/>
-			<MainPageReviews generalProps={generalProps} />
+			<Cards title={'наша команда'} data={masters} />
+			<MainPageReviews />
 		</>
 	)
 }

@@ -9,18 +9,16 @@ import { TelegramIcon } from '@/ui/icons/telegram/telegram'
 import { WhatsAppIcon } from '@/ui/icons/whatsapp/whatsapp'
 import { WorldIcon } from '@/ui/icons/world/world'
 import { Logo } from '@/ui/logo/logo'
-import { GeneralProps } from '@/utils/types'
 import classNames from 'classnames'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import styles from './header.module.scss'
 
 type Props = {
-	navLinks: HeaderNavbarLink[]
 	translations: {
 		book: string
 	}
-	generalProps: GeneralProps
+	navLinks: HeaderNavbarLink[]
 }
 
 const hasFirstState = (pathname: string, isNotFound: boolean) => {
@@ -29,7 +27,7 @@ const hasFirstState = (pathname: string, isNotFound: boolean) => {
 	return true
 }
 
-export const Header = ({ navLinks, translations, generalProps }: Props) => {
+export const Header = ({ translations, navLinks }: Props) => {
 	const pathname = usePathname()
 	const [isScrolled, setIsScrolled] = useState(!hasFirstState(pathname, false))
 
@@ -74,11 +72,7 @@ export const Header = ({ navLinks, translations, generalProps }: Props) => {
 		>
 			<div className={styles.content}>
 				<Logo theme={theme} />
-				<Navbar
-					theme={theme}
-					navLinks={navLinks}
-					generalProps={generalProps}
-				/>
+				<Navbar theme={theme} navLinks={navLinks} />
 				<div className={styles.rightSection}>
 					<DropDown
 						items={routing.locales.map(locale => ({

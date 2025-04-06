@@ -4,8 +4,6 @@ import { Language } from '@/i18n/types'
 import { MainImageSection } from '@/modules/main-image-section/main-image-section'
 import { Prices } from '@/modules/prices/prices'
 import { MainPageReviews } from '@/page/main/reviews-section/reviews-section'
-import { getRoles } from '@/utils/auth/auth'
-import { GeneralProps } from '@/utils/types'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -22,14 +20,10 @@ export default async function ProceduresById({
 	id: string
 	type: 'dogs' | 'cats'
 }) {
-	const roles = await getRoles()
-	const generalProps: GeneralProps = { roles, language: locale }
-
 	const constants = await constantApi.findMany({
 		language: locale,
 		type: `${type}Page`,
 	})
-
 	if (!constants) {
 		return null
 	}
@@ -54,12 +48,11 @@ export default async function ProceduresById({
 					name: 'main-description',
 					value: constants[`${type}Page_mainDescription`],
 				}}
-				generalProps={generalProps}
 				fileUrl={mainImageUrl}
 				externalPath={`pages/${type}/main-bg`}
 			/>
-			<Prices id={id} type={type} generalProps={generalProps} />
-			<MainPageReviews generalProps={generalProps} />
+			<Prices id={id} type={type} />
+			<MainPageReviews />
 		</>
 	)
 }

@@ -1,21 +1,20 @@
 import { MainSliderDto } from '@/api/main-slider/main-slider.api'
+import { useMyContext } from '@/context/my-context'
 import { Settings } from '@/modules/settings/settings'
-import { Roles } from '@/utils/auth/auth'
 import { SettingsMainSliderForm } from './main-slider-form'
 
 export const SettingsMainSlider = ({
 	data,
 	iconClassname,
-	roles,
 	theme,
 	formTitle,
 }: {
 	data: MainSliderDto
 	iconClassname?: string
-	roles: Roles
 	theme?: 'light' | 'dark'
 	formTitle: string
 }) => {
+	const roles = useMyContext().roles
 	if (!roles.mainSliderPut && !roles.mainSliderDelete) return null
 
 	return (

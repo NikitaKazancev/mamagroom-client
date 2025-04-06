@@ -1,27 +1,26 @@
 import { breedApi } from '@/api/breed/breed.api'
+import { getLanguage, useRoles } from '@/context/my-server-context'
 import { Layout } from '@/ui/layout/layout'
 import { Section } from '@/ui/section/section'
-import { GeneralProps } from '@/utils/types'
 import { getTranslations } from 'next-intl/server'
 import { BreedsClient } from './breeds-client'
 import styles from './breeds.module.scss'
 
 type Props = {
 	type: 'dogs' | 'cats'
-	generalProps: GeneralProps
 }
 
-export const Breeds = async ({ type, generalProps }: Props) => {
+export const Breeds = async ({ type }: Props) => {
 	const t = await getTranslations('Procedures')
 	const tGeneral = await getTranslations('General')
+	const language = await getLanguage()
+	const roles = useRoles()
 
 	const breeds = await breedApi.findMany({
-		language: generalProps.language,
+		language: language,
 		type,
 		isDeleted:
-			generalProps.roles.breedPut ||
-			generalProps.roles.breedDelete ||
-			generalProps.roles.breedPost
+			roles.breedPut || roles.breedDelete || roles.breedPost
 				? undefined
 				: false,
 	})
@@ -34,7 +33,6 @@ export const Breeds = async ({ type, generalProps }: Props) => {
 					<BreedsClient
 						breeds={breeds}
 						type={type}
-						generalProps={generalProps}
 						translations={{
 							smallDog: t('smallDog'),
 							mediumDog: t('mediumDog'),

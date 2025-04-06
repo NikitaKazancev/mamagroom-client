@@ -1,3 +1,7 @@
+.listWrapper {
+	@apply flex justify-center;
+}
+
 .main {
 	--grid-width: 400px;
 	--grid-height: 250px;
@@ -121,7 +125,7 @@
 
 @media (min-width: 1920px) {
 	.main {
-		--grid-width: 539px;
-		--grid-height: 250px;
+		--grid-width: 500px;
+		--grid-height: 350px;
 	}
 }

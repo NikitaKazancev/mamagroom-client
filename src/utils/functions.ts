@@ -1,3 +1,4 @@
+import { Language } from '@/i18n/types'
 import { format } from 'date-fns'
 import { CamelToKebab, KebabToCamel } from './types'
 
@@ -48,4 +49,8 @@ export const minutesToHours = (minutes: number): string => {
 	}
 
 	return `${mins}мин`
+}
+
+export function hasLanguageField(data: any): data is { language: Language } {
+	return typeof data === 'object' && data !== null && 'language' in data
 }
