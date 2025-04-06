@@ -1,15 +1,29 @@
 .main {
 	@apply flex justify-center relative pb-20;
+}
 
-	// .left {
-	// 	@apply w-1/2;
-	// }
+@media screen and (max-width: 1360px) {
+	.main {
+		padding-bottom: 56px !important;
+	}
+}
 
-	// .right {
-	// 	@apply w-1/2;
+@media screen and (max-width: 1000px) {
+	.main {
+		padding-bottom: 40px !important;
+	}
+}
 
-	// 	.reviews {
-	// 		@apply -translate-x-1/2;
-	// 	}
-	// }
+@media screen and (max-width: 800px) {
+	.main {
+		padding-bottom: 24px !important;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.main {
+		.reviews {
+			@apply w-96;
+		}
+	}
 }

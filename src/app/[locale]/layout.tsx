@@ -3,18 +3,18 @@ import { headerNavbarLinkApi } from '@/api/header-navbar-link/header-navbar-link
 import { MyProvider } from '@/context/my-context-provider'
 import { useRoles } from '@/context/my-server-context'
 import { Language } from '@/i18n/types'
-import { AcceptCookiePopUpServer } from '@/modules/accept-cookie-pop-up/accept-cookie-pop-up-server'
-import { FullTransparentBlock } from '@/modules/full-transparent-block/full-transparent-block'
-import { Header } from '@/modules/header/header'
-import { MyToaster } from '@/ui/toaster/my-toaster'
+import { ProcedureSelection } from '@/modules/procedure-selection/procedure-selection'
 import { Metadata } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 import { Raleway } from 'next/font/google'
 import './globals.scss'
+import { AcceptCookiePopUpServer } from '@/modules/accept-cookie-pop-up/accept-cookie-pop-up-server'
 import { Footer } from '@/modules/footer/footer'
-import { ProcedureSelection } from '@/modules/procedure-selection/procedure-selection'
+import { FullTransparentBlock } from '@/modules/full-transparent-block/full-transparent-block'
+import { Header } from '@/modules/header/header'
 import { SettingsForm } from '@/modules/settings/form/settings-form'
+import { MyToaster } from '@/ui/toaster/my-toaster'
 
 const inter = Raleway({
 	subsets: ['latin'],

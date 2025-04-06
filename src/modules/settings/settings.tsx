@@ -36,6 +36,26 @@ import classNames from 'classnames'
 import toast from 'react-hot-toast'
 import styles from './settings.module.scss'
 
+export const isSettingElem = (elem: HTMLElement, containerClass: string) => {
+	if (!elem) return false
+
+	let parent = elem
+	while (
+		parent &&
+		!parent.classList.contains(containerClass) &&
+		parent !== document.body
+	) {
+		for (let i = 0; i < parent.classList.length; i++) {
+			const className = parent.classList[i]
+			if (className.startsWith('settings')) return true
+			if (className.startsWith('add-item')) return true
+		}
+		parent = parent.parentElement as HTMLElement
+	}
+
+	return false
+}
+
 export const Settings = ({
 	iconClassname,
 	Component,
@@ -133,9 +153,9 @@ export const Settings = ({
 	return (
 		<div className={classNames(styles.wrapper, iconClassname)}>
 			{isDeleted ? (
-				<CheckIcon onClick={onRecover} />
+				<CheckIcon onClick={onRecover} theme={theme} />
 			) : (
-				<ExitIcon theme='red' onClick={onDelete} />
+				<ExitIcon theme={theme} onClick={onDelete} />
 			)}
 			<SettingsIcon onClick={handleClick} theme={theme} />
 		</div>

@@ -1,9 +1,25 @@
 .main {
-	.list {
+	.gridList {
 		@apply mt-10;
+	}
+
+	.insideCards {
+		@apply hidden mt-10;
 	}
 
 	.addItem {
 		@apply left-1/2;
+	}
+}
+
+@media screen and (max-width: 1000px) {
+	.main {
+		.gridList {
+			@apply hidden;
+		}
+
+		.insideCards {
+			@apply grid;
+		}
 	}
 }

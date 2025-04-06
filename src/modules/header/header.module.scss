@@ -2,18 +2,24 @@
 	@apply fixed top-0 left-0 right-0 text-white;
 	z-index: 10;
 
-	.content {
-		@apply px-10 py-5 flex items-center gap-10 relative;
+	&.isScrolled {
+		.line {
+			@apply pt-2 text-dark;
+		}
+		.burger {
+			@apply pt-2;
+		}
+
+		.blurBlock {
+			backdrop-filter: blur(24px);
+			background-color: rgba(255, 255, 255, 0.8);
+		}
+	}
+
+	.line {
+		@apply pl-6 pr-8 py-5 flex items-center gap-10 relative;
 		z-index: 12;
 		transition: padding-top 0.5s;
-
-		.logo {
-			@apply flex-none;
-		}
-
-		nav {
-			@apply flex-none;
-		}
 
 		.rightSection {
 			@apply flex items-center gap-3 flex-1 justify-end;
@@ -49,14 +55,109 @@
 		);
 	}
 
-	&.isScrolled {
-		.content {
-			@apply pt-2 text-dark;
+	&.dark {
+		.burger {
+			.burgerCheckbox {
+				span {
+					@apply bg-dark;
+				}
+			}
+		}
+	}
+	&.light {
+		.burger {
+			.burgerCheckbox {
+				span {
+					@apply bg-white;
+				}
+			}
+		}
+	}
+
+	.burger {
+		@apply hidden py-5 pl-6 pr-8 justify-between items-center relative transition-all duration-300;
+		z-index: 12;
+
+		.burgerCheckbox {
+			@apply cursor-pointer flex flex-col transition-all duration-300 -translate-y-1;
+			gap: 5px;
+			z-index: 13;
+
+			span {
+				@apply block w-7 h-1 relative rounded-sm transition-all duration-300;
+			}
 		}
 
-		.blurBlock {
-			backdrop-filter: blur(24px);
-			background-color: rgba(255, 255, 255, 0.8);
+		.burgerBg {
+			@apply absolute top-0 left-0 h-screen w-screen bg-main-200 transition-opacity duration-300 opacity-0;
+
+			&.right {
+				@apply left-full;
+			}
+
+			.burgerPanel {
+				@apply h-full w-full ml-auto flex flex-col gap-5 items-center justify-center bg-secondary-800 transition-all duration-300;
+				max-width: 480px;
+				transform: translateX(480px);
+			}
+		}
+
+		.links {
+			@apply flex gap-3 items-center;
+
+			.langs {
+				@apply flex gap-1 items-center text-xl;
+			}
+		}
+
+		&.active {
+			.burgerBg {
+				opacity: 0.96;
+
+				.burgerPanel {
+					transform: translateX(0);
+				}
+			}
+
+			.burgerCheckbox {
+				span {
+					@apply bg-white;
+
+					&:nth-child(1) {
+						width: 34px;
+						transform: rotate(-45deg) translate3d(-5px, 7px, 0);
+					}
+					&:nth-child(2) {
+						@apply opacity-0;
+					}
+					&:nth-child(3) {
+						width: 34px;
+						transform: rotate(45deg) translate3d(-5px, -7px, 0);
+					}
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1360px) {
+	.header {
+		.line {
+			@apply hidden;
+		}
+
+		.burger {
+			@apply flex;
+		}
+	}
+}
+@media screen and (max-width: 600px) {
+	.header {
+		.logo div {
+			@apply h-14;
+		}
+		.burger {
+			@apply p-3 pr-5;
 		}
 	}
 }

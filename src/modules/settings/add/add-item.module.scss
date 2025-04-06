@@ -1,3 +1,11 @@
 .add {
-	@apply relative text-5xl text-green-700 cursor-pointer;
+	@apply relative text-5xl cursor-pointer;
+
+	&.dark {
+		@apply text-green-700;
+	}
+
+	&.light {
+		@apply text-green-300;
+	}
 }

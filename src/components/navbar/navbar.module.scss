@@ -7,6 +7,10 @@
 
 	.item {
 		@apply relative cursor-pointer lowercase transition-all duration-300 text-xl;
+
+		&.shownSublink {
+			@apply hidden;
+		}
 	}
 
 	&.dark {
@@ -30,6 +34,33 @@
 	}
 
 	.settings {
-		@apply left-auto top-auto translate-y-0 right-0 -top-4;
+		@apply left-auto translate-y-0 right-0 -top-4;
+	}
+}
+
+@media screen and (max-width: 1360px) {
+	.navbar {
+		@apply relative;
+
+		.list {
+			@apply flex flex-col gap-5;
+		}
+
+		.settings {
+			@apply top-1 -right-14;
+		}
+
+		.addItem {
+			@apply absolute -bottom-7 left-1/2 -translate-x-1/2;
+		}
+
+		.item {
+			&.shownSublink {
+				@apply block;
+			}
+			&.dropDown {
+				@apply hidden;
+			}
+		}
 	}
 }

@@ -6,7 +6,6 @@
 
 	.title {
 		@apply text-7xl text-dark;
-		// line-height: 0.5;
 
 		&::after {
 			@apply bg-dark;
@@ -20,6 +19,30 @@
 
 		&::after {
 			@apply bg-secondary-900;
+		}
+	}
+}
+
+@media screen and (max-width: 1360px) {
+	.sectionTitle {
+		.title {
+			@apply text-5xl;
+		}
+	}
+}
+
+@media screen and (max-width: 1000px) {
+	.sectionTitle {
+		.title {
+			@apply text-5xl;
+		}
+	}
+}
+
+@media screen and (max-width: 530px) {
+	.sectionTitle {
+		.title {
+			@apply text-3xl font-bold;
 		}
 	}
 }

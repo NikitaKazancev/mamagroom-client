@@ -5,3 +5,15 @@
 		@apply bg-tertiary-50;
 	}
 }
+
+@media screen and (max-width: 1360px) {
+	.layout {
+		@apply px-10;
+	}
+}
+
+@media screen and (max-width: 1000px) {
+	.layout {
+		@apply px-6;
+	}
+}

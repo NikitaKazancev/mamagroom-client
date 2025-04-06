@@ -54,3 +54,65 @@
 		@apply absolute bottom-5 right-5 left-auto top-auto translate-y-0;
 	}
 }
+
+@media screen and (max-width: 1000px) {
+	.footer {
+		.content {
+			.left {
+				.logo div {
+					width: 250px;
+					height: 70px;
+					background-size: 250px 70px;
+				}
+				address {
+					@apply text-xl;
+				}
+			}
+			.right {
+				.map {
+					width: 400px;
+					height: 300px;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 730px) {
+	.footer {
+		.content {
+			@apply flex-col items-center gap-5;
+			.left {
+				@apply w-auto;
+				.logo {
+					@apply hidden;
+				}
+				address {
+					.bottomLinks {
+						@apply mt-2;
+					}
+				}
+			}
+			.right {
+				@apply w-full;
+				.map {
+					width: 420px;
+					height: 300px;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 460px) {
+	.footer {
+		.content {
+			.right {
+				.map {
+					width: 100%;
+					height: 250px;
+				}
+			}
+		}
+	}
+}

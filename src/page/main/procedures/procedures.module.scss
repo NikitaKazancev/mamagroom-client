@@ -1,6 +1,23 @@
 .main {
-	.layout {
+	.twoCols {
 		@apply flex flex-col gap-4;
+	}
+
+	.oneCol {
+		@apply hidden flex-col gap-6;
+
+		.elem {
+			@apply flex flex-col gap-2;
+
+			.description {
+				@apply text-justify;
+			}
+
+			.video {
+				@apply self-center;
+				width: 500px;
+			}
+		}
 	}
 
 	.titles,
@@ -13,34 +30,74 @@
 		}
 	}
 
-	.titles {
-		.titleWrapper {
-			@apply flex gap-2 items-center;
+	.titleWrapper {
+		@apply flex gap-2 items-center;
 
+		.title {
+			h3 {
+				@apply font-bold text-3xl transition-colors duration-200;
+			}
+		}
+
+		.icon {
+			@apply text-main-700 text-3xl relative transition-colors duration-300;
+			bottom: 6px;
+		}
+
+		&:hover {
 			.title {
 				h3 {
-					@apply font-bold text-3xl transition-colors duration-200;
+					@apply text-secondary-800;
+				}
+
+				&::after {
+					@apply bg-secondary-800;
 				}
 			}
 
 			.icon {
-				@apply text-main-700 text-3xl relative transition-colors duration-300;
-				bottom: 6px;
+				@apply text-main-500;
 			}
+		}
+	}
+}
 
-			&:hover {
-				.title {
-					h3 {
-						@apply text-secondary-800;
-					}
+@media screen and (max-width: 1000px) {
+	.main {
+		.titles,
+		.descriptions,
+		.videos {
+			@apply gap-5;
+		}
+	}
+}
 
-					&::after {
-						@apply bg-secondary-800;
-					}
+@media screen and (max-width: 800px) {
+	.main {
+		.twoCols {
+			@apply hidden;
+		}
+		.oneCol {
+			@apply flex;
+		}
+	}
+}
+
+@media screen and (max-width: 530px) {
+	.main {
+		.oneCol {
+			@apply gap-10;
+
+			.elem {
+				.video {
+					width: 400px;
 				}
-
-				.icon {
-					@apply text-main-500;
+			}
+		}
+		.titleWrapper {
+			.title {
+				h3 {
+					@apply text-2xl;
 				}
 			}
 		}

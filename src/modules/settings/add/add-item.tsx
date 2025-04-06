@@ -20,6 +20,7 @@ export const AddItem = ({
 	data,
 	className,
 	formTitle,
+	theme = 'dark',
 }: {
 	Component: SettingsFormComponent
 	type: SettingsFormType
@@ -28,6 +29,7 @@ export const AddItem = ({
 	data: SettingsFormData
 	className?: string
 	formTitle: string
+	theme?: 'light' | 'dark'
 }) => {
 	const { show } = useSettingsStore()
 
@@ -62,7 +64,10 @@ export const AddItem = ({
 	}
 
 	return (
-		<span className={classNames(styles.add, className)} onClick={handleClick}>
+		<span
+			className={classNames(styles.add, className, styles[theme])}
+			onClick={handleClick}
+		>
 			+
 		</span>
 	)

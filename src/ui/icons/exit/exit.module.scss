@@ -2,14 +2,10 @@
 	@apply size-5 transition-colors duration-200;
 
 	&.light {
-		@apply text-white;
+		@apply text-red-400;
 	}
 
 	&.dark {
-		@apply text-black;
-	}
-
-	&.red {
 		@apply text-red-700;
 	}
 }

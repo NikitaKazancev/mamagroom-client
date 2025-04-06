@@ -21,3 +21,37 @@
 		}
 	}
 }
+
+@media screen and (max-width: 1360px) {
+	.main {
+		padding-top: 56px !important;
+	}
+}
+
+@media screen and (max-width: 1000px) {
+	.main {
+		padding-top: 40px !important;
+	}
+}
+
+@media screen and (max-width: 800px) {
+	.main {
+		padding-top: 24px !important;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.main {
+		.content {
+			@apply flex-col gap-3;
+		}
+
+		.left {
+			@apply w-full text-justify;
+		}
+
+		.right {
+			@apply w-full;
+		}
+	}
+}

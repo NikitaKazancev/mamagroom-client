@@ -6,6 +6,7 @@ import { capitalizeFirst } from '@/utils/functions'
 import classNames from 'classnames'
 import Image from 'next/image'
 import { useRef, useState } from 'react'
+import { isSettingElem } from '../settings/settings'
 import styles from './grid-list.module.scss'
 
 type Item = {
@@ -40,22 +41,6 @@ const classForRotation = (direction: Direction) => {
 	return styles[`rotate${capitalizeFirst(direction)}`]
 }
 
-const isSettingElem = (elem: HTMLElement) => {
-	if (!elem) return false
-
-	let parent = elem
-	while (
-		parent &&
-		!parent.classList.contains(styles.item) &&
-		parent !== document.body
-	) {
-		if (parent.classList.contains(styles.settings)) return true
-		parent = parent.parentElement as HTMLElement
-	}
-
-	return false
-}
-
 export const GridList = ({ content, className }: Props) => {
 	const [elemsState, setElemsState] = useState(
 		content.map((_, i) => {
@@ -82,7 +67,7 @@ export const GridList = ({ content, className }: Props) => {
 		const elems = ul.current?.querySelectorAll('li')
 		if (!elems) return
 
-		if (isSettingElem(target as HTMLElement)) return
+		if (isSettingElem(target as HTMLElement, styles.item)) return
 
 		const activeIndex = activeItemIndex()
 

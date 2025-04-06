@@ -2,14 +2,10 @@
 	@apply size-5;
 
 	&.light {
-		@apply text-white;
+		@apply text-green-300;
 	}
 
 	&.dark {
-		@apply text-black;
-	}
-
-	&.green {
 		@apply text-green-700;
 	}
 }

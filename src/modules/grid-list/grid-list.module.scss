@@ -3,8 +3,8 @@
 }
 
 .main {
-	--grid-width: 400px;
-	--grid-height: 250px;
+	--grid-width: 500px;
+	--grid-height: 312px;
 
 	@apply grid gap-7 justify-items-stretch;
 	grid-template-columns: repeat(3, var(--grid-width));
@@ -116,16 +116,15 @@
 	left: auto !important;
 }
 
-@media (min-width: 1440px) {
+@media screen and (max-width: 1360px) {
 	.main {
-		--grid-width: 408px;
-		--grid-height: 250px;
+		grid-template-columns: repeat(2, var(--grid-width));
 	}
 }
 
-@media (min-width: 1920px) {
+@media screen and (max-width: 1920px) {
 	.main {
-		--grid-width: 500px;
-		--grid-height: 350px;
+		--grid-width: 400px;
+		--grid-height: 250px;
 	}
 }
