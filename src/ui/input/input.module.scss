@@ -117,3 +117,9 @@
 		}
 	}
 }
+
+@media screen and (max-width: 430px) {
+	.container {
+		@apply min-w-80;
+	}
+}

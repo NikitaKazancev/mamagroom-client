@@ -162,9 +162,31 @@ export const Table = ({
 			<td
 				key={column}
 				scope='col'
-				className={classNames(index === 0 && styles.firstColumn)}
+				className={classNames(
+					index === 0 && styles.firstColumn,
+					'relative'
+				)}
 			>
 				<span>{value}</span>
+				{index === columns.length - 1 && isPrice && (
+					<SettingsPrice
+						data={{
+							...item,
+							price: (item as MergedPrice).price[0],
+							weight: (item as MergedPrice).weight[0],
+							time: (item as MergedPrice).time[0],
+							breedId: (item as MergedPrice).breedId,
+							procedureId: (item as MergedPrice).procedure.id,
+						}}
+						key={index}
+						iconClassname={styles.settings}
+						procedures={(props as any).procedures}
+						theme='dark'
+						formTitle={
+							isUser ? 'Изменение пользователя' : 'Изменение цены'
+						}
+					/>
+				)}
 			</td>
 		)
 	}
@@ -232,7 +254,7 @@ export const Table = ({
 				<div className={styles.expandedItem}>{expandedItemBody}</div>
 			)}
 
-			{isPrice && (
+			{/* {isPrice && (
 				<div className={styles.settingsWrapper}>
 					{data.map((item, index) => (
 						<SettingsPrice
@@ -254,7 +276,7 @@ export const Table = ({
 						/>
 					))}
 				</div>
-			)}
+			)} */}
 		</div>
 	)
 }

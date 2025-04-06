@@ -8,7 +8,6 @@
 
 	.main {
 		@apply relative bg-white rounded-md px-5 py-4;
-		max-width: 50vw;
 		box-shadow: 0 0 20px rgb(97, 97, 97);
 
 		.header {
@@ -38,5 +37,11 @@
 				}
 			}
 		}
+	}
+}
+
+@media screen and (max-width: 430px) {
+	.wrapper .main {
+		width: 400px;
 	}
 }
