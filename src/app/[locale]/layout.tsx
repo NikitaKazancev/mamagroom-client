@@ -3,18 +3,18 @@ import { headerNavbarLinkApi } from '@/api/header-navbar-link/header-navbar-link
 import { MyProvider } from '@/context/my-context-provider'
 import { useRoles } from '@/context/my-server-context'
 import { Language } from '@/i18n/types'
+import { AcceptCookiePopUpServer } from '@/modules/accept-cookie-pop-up/accept-cookie-pop-up-server'
+import { Footer } from '@/modules/footer/footer'
+import { FullTransparentBlock } from '@/modules/full-transparent-block/full-transparent-block'
+import { Header } from '@/modules/header/header'
 import { ProcedureSelection } from '@/modules/procedure-selection/procedure-selection'
+import { SettingsForm } from '@/modules/settings/form/settings-form'
+import { MyToaster } from '@/ui/toaster/my-toaster'
 import { Metadata } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 import { Raleway } from 'next/font/google'
 import './globals.scss'
-import { AcceptCookiePopUpServer } from '@/modules/accept-cookie-pop-up/accept-cookie-pop-up-server'
-import { Footer } from '@/modules/footer/footer'
-import { FullTransparentBlock } from '@/modules/full-transparent-block/full-transparent-block'
-import { Header } from '@/modules/header/header'
-import { SettingsForm } from '@/modules/settings/form/settings-form'
-import { MyToaster } from '@/ui/toaster/my-toaster'
 
 const inter = Raleway({
 	subsets: ['latin'],
@@ -79,19 +79,25 @@ export default async function RootLayout({
 	})
 	return (
 		<html lang={params.locale}>
-			<link rel='icon' href='/logos/favicon.png' sizes='any' />
-			<link
-				rel='preload'
-				href='/logos/logo-row-dark.png'
-				as='image'
-				fetchPriority='high'
-			/>
-			<link
-				rel='preload'
-				href='/logos/logo-row-light.png'
-				as='image'
-				fetchPriority='high'
-			/>
+			<head>
+				<link rel='icon' href='/logos/favicon.png' sizes='any' />
+				<link
+					rel='preload'
+					href='/logos/logo-row-dark.png'
+					as='image'
+					fetchPriority='high'
+				/>
+				<link
+					rel='preload'
+					href='/logos/logo-row-light.png'
+					as='image'
+					fetchPriority='high'
+				/>
+				<script
+					type='text/javascript'
+					src='https://dikidi.ru/assets/js/widget_record/widget2.min.js'
+				></script>
+			</head>
 			<body className={inter.className}>
 				<NextIntlClientProvider>
 					<MyProvider roles={roles} language={params.locale}>

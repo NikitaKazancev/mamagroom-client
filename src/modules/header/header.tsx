@@ -2,6 +2,7 @@
 
 import { HeaderNavbarLink } from '@/api/header-navbar-link/header-navbar-link.api'
 import { Navbar } from '@/components/navbar/navbar'
+import { LINKS } from '@/constants/links.constants'
 import { Link, routing, usePathname } from '@/i18n/routing'
 import { Button } from '@/ui/button/button'
 import { DropDown } from '@/ui/drop-down/drop-down'
@@ -107,7 +108,7 @@ export const Header = ({ translations, navLinks }: Props) => {
 					<Button
 						text={translations.book}
 						theme={theme}
-						onClick={message}
+						href={LINKS.dikidi.generalBook}
 					/>
 				</div>
 			</div>
@@ -145,7 +146,7 @@ export const Header = ({ translations, navLinks }: Props) => {
 						<Button
 							text={translations.book}
 							theme={'light'}
-							onClick={message}
+							href={LINKS.dikidi.generalBook}
 						/>
 					</div>
 				</div>

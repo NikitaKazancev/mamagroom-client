@@ -23,4 +23,7 @@ export const LINKS = {
 		iframeMap:
 			'https://yandex.ru/map-widget/v1/?um=constructor%3A1c5f3f02206d183feacfbb4092f49742be4c23c16a8bc321e8ff1c1a7959efe7&amp;source=constructor',
 	},
+	dikidi: {
+		generalBook: 'https://dikidi.ru/#widget=184511',
+	},
 }
