@@ -1,6 +1,6 @@
 .cards {
 	@apply flex mt-12 mx-auto flex-wrap relative gap-x-10 gap-y-20;
-	max-width: 1145px;
+	max-width: 1144px;
 }
 
 .card {
@@ -40,4 +40,23 @@
 	bottom: 0 !important;
 	left: 50% !important;
 	transform: translateX(-50%) !important;
+}
+
+@media screen and (max-width: 1400px) {
+	.cards {
+		@apply gap-y-16;
+		max-width: 848px;
+	}
+}
+@media screen and (max-width: 900px) {
+	.cards {
+		@apply gap-y-12;
+		max-width: 552px;
+	}
+}
+@media screen and (max-width: 600px) {
+	.cards {
+		@apply gap-y-10;
+		max-width: 256px;
+	}
 }

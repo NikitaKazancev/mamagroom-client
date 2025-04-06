@@ -21,7 +21,7 @@
 		@apply flex items-center gap-3;
 
 		.addProcedure {
-			@apply relative top-3 flex items-center gap-1;
+			@apply relative top-3 flex items-center gap-1 text-right;
 
 			&::before {
 				@apply text-base text-dark;
@@ -89,6 +89,47 @@
 }
 
 .settings {
-	@apply top-4;
+	top: 14px !important;
 	left: -3rem !important;
+}
+
+@media screen and (max-width: 1360px) {
+	.breeds {
+		.breed {
+			@apply w-fit;
+		}
+	}
+	.settings {
+		left: calc(100% + 2px) !important;
+	}
+}
+@media screen and (max-width: 920px) {
+	.filters {
+		@apply flex flex-col-reverse items-start;
+
+		.right {
+			@apply flex-row-reverse;
+		}
+	}
+	.breeds {
+		@apply grid-cols-3;
+	}
+}
+@media screen and (max-width: 760px) {
+	.breeds {
+		@apply grid-cols-2;
+	}
+}
+@media screen and (max-width: 560px) {
+	.breeds {
+		@apply grid-cols-1;
+	}
+
+	.right {
+		.addProcedure {
+			&::before {
+				content: '' !important;
+			}
+		}
+	}
 }

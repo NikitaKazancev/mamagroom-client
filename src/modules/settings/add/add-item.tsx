@@ -8,7 +8,6 @@ import useSettingsStore, {
 	SettingsFormData,
 	SettingsFormType,
 } from '@/modules/settings/utils/store'
-import { hasLanguageField } from '@/utils/functions'
 import classNames from 'classnames'
 import styles from './add-item.module.scss'
 
@@ -46,10 +45,7 @@ export const AddItem = ({
 	if (type === 'header-navbar-link' && !roles.headerNavbarLinkPost) return null
 	if (type === 'main-slider' && !roles.mainSliderPost) return null
 	if (type === 'file' && !roles.filePostPut) return null
-
-	if (hasLanguageField(data)) {
-		data.language = language
-	}
+	;(data as any).language = language
 
 	const handleClick = () => {
 		show({

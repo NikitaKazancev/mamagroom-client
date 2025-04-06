@@ -78,3 +78,21 @@
 		transform: none;
 	}
 }
+
+@media screen and (max-width: 900px) {
+	.table {
+		@apply text-sm;
+	}
+
+	.thead {
+		th {
+			@apply px-2 py-2;
+		}
+	}
+
+	.tbody {
+		td {
+			@apply px-2 py-1;
+		}
+	}
+}
