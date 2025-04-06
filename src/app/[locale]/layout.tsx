@@ -1,5 +1,6 @@
 import { constantApi } from '@/api/constant/constant.api'
 import { headerNavbarLinkApi } from '@/api/header-navbar-link/header-navbar-link.api'
+import { LINKS } from '@/constants/links.constants'
 import { MyProvider } from '@/context/my-context-provider'
 import { useRoles } from '@/context/my-server-context'
 import { Language } from '@/i18n/types'
@@ -93,10 +94,7 @@ export default async function RootLayout({
 					as='image'
 					fetchPriority='high'
 				/>
-				<script
-					type='text/javascript'
-					src='https://dikidi.ru/assets/js/widget_record/widget2.min.js'
-				></script>
+				<script src={LINKS.dikidi.widgetJs} async />
 			</head>
 			<body className={inter.className}>
 				<NextIntlClientProvider>
