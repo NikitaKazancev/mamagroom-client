@@ -30,6 +30,7 @@ import { AuthFormBtns } from '@/modules/auth/auth-form-btns'
 import { Button } from '@/ui/button/button'
 import { ExitIcon } from '@/ui/icons/exit/exit'
 import { setToken } from '@/utils/cookies/cookies-client.api'
+import imageCompression from 'browser-image-compression'
 import classNames from 'classnames'
 import { useRef } from 'react'
 import toast from 'react-hot-toast'
@@ -95,7 +96,24 @@ export const SettingsForm = () => {
 		const toastId = toast.loading('Загрузка...')
 		let result: SettingsFormResultType = undefined
 		if (type === 'file') {
-			postFile(formData)
+			const file = formData.get('file')
+			if (file) {
+				toast.loading('Обработка файла...', {
+					id: toastId,
+				})
+				const compressedFile = await imageCompression(file as File, {
+					maxSizeMB: 0.2, // 👉 до 200 КБ
+					maxWidthOrHeight: 1920, // 👉 уменьшить разрешение
+					useWebWorker: true,
+				})
+				formData.delete('file')
+				formData.append('file', compressedFile)
+				toast.loading('Отправка файла...', {
+					id: toastId,
+				})
+				await postFile(formData)
+			}
+
 			result = 'true'
 		} else if (type && type.startsWith('constant')) {
 			result = await putConstant(formData, data as ConstantDto)
@@ -118,6 +136,20 @@ export const SettingsForm = () => {
 				result = await putValue(formData, data as ValueDto)
 			}
 		} else if (type === 'main-slider') {
+			const file = formData.get('file')
+			if (file) {
+				toast.loading('Обработка файла...', {
+					id: toastId,
+				})
+				const compressedFile = await imageCompression(file as File, {
+					maxSizeMB: 0.2, // 👉 до 200 КБ
+					maxWidthOrHeight: 1920, // 👉 уменьшить разрешение
+					useWebWorker: true,
+				})
+				formData.delete('file')
+				formData.append('file', compressedFile)
+			}
+
 			if (method === 'post') {
 				result = await postMainSlider(formData)
 			} else {
