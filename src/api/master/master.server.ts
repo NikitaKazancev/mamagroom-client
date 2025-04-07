@@ -12,13 +12,6 @@ export const postMaster = async (formData: FormData) => {
 }
 
 export const putMaster = async (formData: FormData, initialData: MasterDto) => {
-	if (
-		formData.get('file') === null ||
-		(formData.get('file') as File).name === 'undefined'
-	) {
-		formData.delete('file')
-	}
-
 	const res = await masterApi.put(initialData.id, formData)
 	revalidateTag(REVALIDATE_TAGS.masters)
 

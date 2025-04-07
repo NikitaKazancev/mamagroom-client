@@ -45,6 +45,14 @@ export const SettingsValueForm = ({
 				value={localData.description}
 			/>
 			<Input
+				name='order'
+				onChange={onChange}
+				title='Порядок'
+				type='number'
+				value={localData.order}
+				required={method === 'put'}
+			/>
+			<Input
 				name='file'
 				title='File'
 				required={method === 'post'}

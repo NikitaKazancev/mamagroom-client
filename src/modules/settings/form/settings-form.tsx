@@ -30,7 +30,7 @@ import { AuthFormBtns } from '@/modules/auth/auth-form-btns'
 import { Button } from '@/ui/button/button'
 import { ExitIcon } from '@/ui/icons/exit/exit'
 import { setToken } from '@/utils/cookies/cookies-client.api'
-import imageCompression from 'browser-image-compression'
+import { compressImage, isFileReceived } from '@/utils/functions'
 import classNames from 'classnames'
 import { useRef } from 'react'
 import toast from 'react-hot-toast'
@@ -95,30 +95,31 @@ export const SettingsForm = () => {
 
 		const toastId = toast.loading('Загрузка...')
 		let result: SettingsFormResultType = undefined
+
 		if (type === 'file') {
-			const file = formData.get('file')
-			if (file) {
-				toast.loading('Обработка файла...', {
-					id: toastId,
-				})
-				const compressedFile = await imageCompression(file as File, {
-					maxSizeMB: 0.2, // 👉 до 200 КБ
-					maxWidthOrHeight: 1920, // 👉 уменьшить разрешение
-					useWebWorker: true,
-				})
-				formData.delete('file')
-				formData.append('file', compressedFile)
+			if (!isFileReceived(formData)) {
+				toast.dismiss(toastId)
+				result = undefined
+			} else {
+				await compressImage(formData, toastId)
 				toast.loading('Отправка файла...', {
 					id: toastId,
 				})
 				await postFile(formData)
+				result = 'true'
 			}
-
-			result = 'true'
 		} else if (type && type.startsWith('constant')) {
 			result = await putConstant(formData, data as ConstantDto)
 		} else if (type === 'header-navbar-link') {
+			if (formData.get('parentLinkId')) {
+				formData.delete('parentLinkId')
+			}
+
 			if (method === 'post') {
+				if (formData.get('order') === '') {
+					formData.delete('order')
+				}
+
 				result = await postHeaderNavbarLink(
 					formData,
 					data as HeaderNavbarLinkDto
@@ -130,27 +131,33 @@ export const SettingsForm = () => {
 				)
 			}
 		} else if (type === 'value') {
+			if (isFileReceived(formData)) {
+				await compressImage(formData, toastId)
+			} else {
+				formData.delete('file')
+			}
+
 			if (method === 'post') {
+				if (formData.get('order') === '') {
+					formData.delete('order')
+				}
+
 				result = await postValue(formData)
 			} else {
 				result = await putValue(formData, data as ValueDto)
 			}
 		} else if (type === 'main-slider') {
-			const file = formData.get('file')
-			if (file) {
-				toast.loading('Обработка файла...', {
-					id: toastId,
-				})
-				const compressedFile = await imageCompression(file as File, {
-					maxSizeMB: 0.2, // 👉 до 200 КБ
-					maxWidthOrHeight: 1920, // 👉 уменьшить разрешение
-					useWebWorker: true,
-				})
+			if (isFileReceived(formData)) {
+				await compressImage(formData, toastId)
+			} else {
 				formData.delete('file')
-				formData.append('file', compressedFile)
 			}
 
 			if (method === 'post') {
+				if (formData.get('order') === '') {
+					formData.delete('order')
+				}
+
 				result = await postMainSlider(formData)
 			} else {
 				result = await putMainSlider(formData, data as MainSliderDto)
@@ -172,6 +179,12 @@ export const SettingsForm = () => {
 				result = await postProcedure(formData, data as ProcedureDto)
 			}
 		} else if (type === 'master') {
+			if (isFileReceived(formData)) {
+				await compressImage(formData, toastId)
+			} else {
+				formData.delete('file')
+			}
+
 			if (method === 'post') {
 				result = await postMaster(formData)
 			} else {

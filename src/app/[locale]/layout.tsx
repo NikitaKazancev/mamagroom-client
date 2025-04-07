@@ -11,7 +11,8 @@ import { Header } from '@/modules/header/header'
 import { ProcedureSelection } from '@/modules/procedure-selection/procedure-selection'
 import { SettingsForm } from '@/modules/settings/form/settings-form'
 import { MyToaster } from '@/ui/toaster/my-toaster'
-import { Metadata } from 'next'
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
+import { Metadata, Viewport } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 import { Raleway } from 'next/font/google'
@@ -44,19 +45,55 @@ export async function generateMetadata({
 			template: `%s | ${t('siteName')}`,
 		},
 		description: constants?.homePage_mainDescription,
+		applicationName: t('siteName'),
+		icons: {
+			icon: '/logos/logo-256.png',
+			shortcut: '/logos/logo-256.png',
+			apple: '/logos/logo-256.png',
+			other: {
+				rel: 'touch-icons',
+				url: '/logos/logo-256.png',
+				sizes: '256х256',
+				type: 'image/png',
+			},
+		},
+		metadataBase: new URL(LINKS.site.url),
+		openGraph: {
+			type: 'website',
+			locale: params.locale,
+			siteName: t('siteName'),
+			images: {
+				url: '/logos/logo-full-256.png',
+				width: 256,
+				height: 256,
+				alt: t('siteName'),
+			},
+			emails: LINKS.foreign.email,
+			phoneNumbers: LINKS.foreign.phone,
+			alternateLocale: params.locale === 'ru' ? 'en' : 'ru',
+		},
 		verification: {
 			google: 'H36KGQNSmi2SdKelkImPwdO69JOYLUcSvNfabDWJ9wU',
 			yandex: 'adefe41fd50ead4c',
 		},
-		robots: {
-			index: false,
-			follow: false,
-			googleBot: {
-				index: false,
-				follow: false,
+		alternates: {
+			canonical: LINKS.site.url,
+			languages: {
+				ru: LINKS.site.url + '/ru',
+				en: LINKS.site.url + '/en',
 			},
 		},
+		manifest: '/manifest.json',
+		publisher: t('siteName'),
+		authors: {
+			name: t('siteName'),
+			url: LINKS.site.url,
+		},
 	}
+}
+
+export const viewport: Viewport = {
+	themeColor: '#0987A0',
 }
 
 export default async function RootLayout({
@@ -81,7 +118,6 @@ export default async function RootLayout({
 	return (
 		<html lang={params.locale}>
 			<head>
-				<link rel='icon' href='/logos/favicon.png' sizes='any' />
 				<link
 					rel='preload'
 					href='/logos/logo-row-dark.png'
@@ -96,6 +132,7 @@ export default async function RootLayout({
 				/>
 				<script src={LINKS.dikidi.widgetJs} async />
 			</head>
+			<GoogleTagManager gtmId='GTM-XYZ' />
 			<body className={inter.className}>
 				<NextIntlClientProvider>
 					<MyProvider roles={roles} language={params.locale}>
@@ -113,6 +150,7 @@ export default async function RootLayout({
 					</MyProvider>
 				</NextIntlClientProvider>
 			</body>
+			<GoogleAnalytics gaId='G-XYZ' />
 		</html>
 	)
 }

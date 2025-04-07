@@ -1,4 +1,7 @@
 export const LINKS = {
+	site: {
+		url: 'https://mamagroom.ru',
+	},
 	pages: {
 		home: '/',
 		dogs: '/dogs',

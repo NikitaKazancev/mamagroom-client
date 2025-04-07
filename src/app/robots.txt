@@ -1,11 +1,26 @@
 User-Agent: Yandex
-Disallow: /
-Sitemap: https://mamagroom.ru/api/sitemap.xml
+Host: https://mamagroom.ru
+Disallow: /auth
+Disallow: /api
+Disallow: *utm_
+Allow: /
+
+Sitemap: https://mamagroom.ru/sitemap.xml
 
 User-Agent: GoogleBot
-Disallow: /
-Sitemap: https://mamagroom.ru/api/sitemap.xml
+Host: https://mamagroom.ru
+Disallow: /auth
+Disallow: /api
+Disallow: *utm_
+Allow: /
+
+Sitemap: https://mamagroom.ru/sitemap.xml
 
 User-Agent: *
-Disallow: /
-Sitemap: https://mamagroom.ru/api/sitemap.xml
+Host: https://mamagroom.ru
+Disallow: /auth
+Disallow: /api
+Disallow: *utm_
+Allow: /
+
+Sitemap: https://mamagroom.ru/sitemap.xml

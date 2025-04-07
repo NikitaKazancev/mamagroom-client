@@ -1,5 +1,7 @@
 import { Language } from '@/i18n/types'
+import imageCompression from 'browser-image-compression'
 import { format } from 'date-fns'
+import toast from 'react-hot-toast'
 import { CamelToKebab, KebabToCamel } from './types'
 
 export const kebabToCamel = <T extends string>(str: T): KebabToCamel<T> => {
@@ -53,4 +55,34 @@ export const minutesToHours = (minutes: number): string => {
 
 export function hasLanguageField(data: any): data is { language: Language } {
 	return typeof data === 'object' && data !== null && 'language' in data
+}
+
+export const compressImage = async (formData: FormData, toastId: string) => {
+	if (!isFileReceived(formData)) {
+		return
+	}
+
+	const file = formData.get('file') as File
+	console.log(file.size)
+
+	const maxFileSize = 500 * 1024
+	if (file.size < maxFileSize) {
+		return
+	}
+
+	if (file) {
+		toast.loading('Обработка файла...', {
+			id: toastId,
+		})
+		const compressedFile = await imageCompression(file as File, {
+			maxSizeMB: maxFileSize / 1024,
+		})
+		formData.delete('file')
+		formData.append('file', compressedFile)
+	}
+}
+
+export const isFileReceived = (formData: FormData) => {
+	const file = formData.get('file') as File
+	return file !== null && file.name !== 'undefined'
 }

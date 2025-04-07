@@ -5,10 +5,6 @@ import { REVALIDATE_TAGS } from '../request'
 import { mainSliderApi, MainSliderDto } from './main-slider.api'
 
 export const postMainSlider = async (formData: FormData) => {
-	if (formData.get('order') === '') {
-		formData.delete('order')
-	}
-
 	const res = await mainSliderApi.post(formData)
 	revalidateTag(REVALIDATE_TAGS.mainSlider)
 
@@ -19,13 +15,6 @@ export const putMainSlider = async (
 	formData: FormData,
 	initialData: MainSliderDto
 ) => {
-	if (
-		formData.get('file') === null ||
-		(formData.get('file') as File).name === 'undefined'
-	) {
-		formData.delete('file')
-	}
-
 	const res = await mainSliderApi.put(initialData.id, formData)
 	revalidateTag(REVALIDATE_TAGS.mainSlider)
 

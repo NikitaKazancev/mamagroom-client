@@ -1,0 +1,19 @@
+{
+	"theme_color": "#0987A0",
+	"background_color": "#f6f2ec",
+	"scope": "/",
+	"start_url": "/",
+	"display": "standalone",
+	"orientation": "portrait",
+	"name": "МамагруМ",
+	"short_name": "МамагруМ",
+	"description": "МамагруМ - груминг салон в Мытищах | mamagroom.ru",
+	"icons": [
+		{
+			"src": "/logos/logo-256.png",
+			"sizes": "256x256",
+			"type": "image/png",
+			"purpose": "any maskable"
+		}
+	]
+}

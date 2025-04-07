@@ -12,13 +12,6 @@ export const postValue = async (formData: FormData) => {
 }
 
 export const putValue = async (formData: FormData, initialData: ValueDto) => {
-	if (
-		formData.get('file') === null ||
-		(formData.get('file') as File).name === 'undefined'
-	) {
-		formData.delete('file')
-	}
-
 	const res = await valueApi.put(initialData.id, formData)
 	revalidateTag(REVALIDATE_TAGS.values)
 
