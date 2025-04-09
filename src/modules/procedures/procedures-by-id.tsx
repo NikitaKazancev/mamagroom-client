@@ -1,15 +1,9 @@
-import { constantApi } from '@/api/constant/constant.api'
-import { fileApi } from '@/api/file/file.api'
+import { breedApi } from '@/api/breed/breed.api'
 import { Language } from '@/i18n/types'
-import { MainImageSection } from '@/modules/main-image-section/main-image-section'
 import { Prices } from '@/modules/prices/prices'
 import { MainPageReviews } from '@/page/main/reviews-section/reviews-section'
-import { Metadata } from 'next'
-
-export const metadata: Metadata = {
-	title: 'User Management',
-	description: 'Manage system users and their roles',
-}
+import { generalPageData } from '@/utils/functions'
+import { ImageSectionWithoutChange } from '../main-image-section/image-section-without-change/image-section-without-change'
 
 export default async function ProceduresById({
 	locale,
@@ -20,36 +14,18 @@ export default async function ProceduresById({
 	id: string
 	type: 'dogs' | 'cats'
 }) {
-	const constants = await constantApi.findMany({
-		language: locale,
-		type: `${type}Page`,
+	const { mainImageUrl } = await generalPageData({
+		params: { locale },
+		constantsPageType: `${type}Page`,
+		mainImagePageType: `pages/${type}`,
 	})
-	if (!constants) {
-		return null
-	}
-
-	const mainImageUrl = await fileApi.findDestination(
-		`pages/${type}`,
-		'main-bg'
-	)
+	const breed = await breedApi.findById(id)
 
 	return (
 		<>
-			<MainImageSection
-				titleData={{
-					language: locale,
-					type: `${type}-page`,
-					name: 'main-title',
-					value: constants[`${type}Page_mainTitle`],
-				}}
-				descriptionData={{
-					language: locale,
-					type: `${type}-page`,
-					name: 'main-description',
-					value: constants[`${type}Page_mainDescription`],
-				}}
+			<ImageSectionWithoutChange
+				title={breed?.name}
 				fileUrl={mainImageUrl}
-				externalPath={`pages/${type}/main-bg`}
 			/>
 			<Prices id={id} type={type} />
 			<MainPageReviews />

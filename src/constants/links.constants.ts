@@ -16,6 +16,9 @@ export const LINKS = {
 		email: 'zabotamg@yandex.ru',
 		phone: '+79164842727',
 	},
+	my: {
+		telegram: 'https://t.me/NikitaKazantsev',
+	},
 	video: {
 		dogsProcedures: 'https://kinescope.io/embed/qwzRJY8MYFJnizBh4xvz7J',
 		catsProcedures: 'https://kinescope.io/embed/97nArcF2eLXEE5TvLMubGn',

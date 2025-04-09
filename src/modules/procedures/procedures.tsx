@@ -1,9 +1,8 @@
-import { constantApi } from '@/api/constant/constant.api'
-import { fileApi } from '@/api/file/file.api'
 import { Language } from '@/i18n/types'
 import { Breeds } from '@/modules/breeds/breeds'
 import { MainImageSection } from '@/modules/main-image-section/main-image-section'
 import { MainPageReviews } from '@/page/main/reviews-section/reviews-section'
+import { generalPageData } from '@/utils/functions'
 
 export default async function Procedures({
 	locale,
@@ -12,18 +11,11 @@ export default async function Procedures({
 	locale: Language
 	type: 'dogs' | 'cats'
 }) {
-	const constants = await constantApi.findMany({
-		language: locale,
-		type: `${type}Page`,
+	const { constants, mainImageUrl } = await generalPageData({
+		params: { locale },
+		constantsPageType: `${type}Page`,
+		mainImagePageType: `pages/${type}`,
 	})
-	if (!constants) {
-		return null
-	}
-
-	const mainImageUrl = await fileApi.findDestination(
-		`pages/${type}`,
-		'main-bg'
-	)
 
 	return (
 		<>

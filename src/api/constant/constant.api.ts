@@ -25,10 +25,6 @@ class ConstantApi {
 			revalidateTag: 'constants',
 		})) as Constant[]
 
-		if (!data) {
-			return undefined
-		}
-
 		// @ts-ignore
 		const res: FullConstantName = {}
 

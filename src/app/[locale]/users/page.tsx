@@ -17,6 +17,7 @@ export async function generateMetadata({
 			},
 		},
 		title: 'Пользователи',
+		description: 'Пользователи',
 	}
 }
 

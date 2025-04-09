@@ -1,27 +1,26 @@
-import { constantApi } from '@/api/constant/constant.api'
-import { fileApi } from '@/api/file/file.api'
 import { vacancyApi } from '@/api/vacancy/vacancy.api'
 import { Feed } from '@/components/feed/feed'
 import { useRoles } from '@/context/my-server-context'
 import { Language } from '@/i18n/types'
 import { MainImageSection } from '@/modules/main-image-section/main-image-section'
 import { MainPageReviews } from '@/page/main/reviews-section/reviews-section'
-import { Metadata } from 'next'
+import { buildMetadata, generalPageData } from '@/utils/functions'
+import { Metadata, ResolvingMetadata } from 'next'
 
-export async function generateMetadata({
-	params,
-}: {
-	params: { locale: string }
-}): Promise<Metadata> {
-	const constants = await constantApi.findMany({
-		language: params.locale as Language,
-		type: 'vacanciesPage',
+export async function generateMetadata(
+	{
+		params,
+	}: {
+		params: { locale: Language }
+	},
+	parent: ResolvingMetadata
+): Promise<Metadata> {
+	return await buildMetadata({
+		pageName: 'vacancies',
+		parentMetadata: parent,
+		params,
+		constantsType: 'vacanciesPage',
 	})
-
-	return {
-		title: constants?.vacanciesPage_mainTitle,
-		description: constants?.vacanciesPage_mainDescription,
-	}
 }
 
 export default async function Vacancies({
@@ -30,19 +29,11 @@ export default async function Vacancies({
 	params: { locale: Language }
 }) {
 	const roles = useRoles()
-
-	const constants = await constantApi.findMany({
-		language: params.locale,
-		type: 'vacanciesPage',
+	const { constants, mainImageUrl } = await generalPageData({
+		params,
+		constantsPageType: 'vacanciesPage',
+		mainImagePageType: 'pages/vacancies',
 	})
-	if (!constants) {
-		return null
-	}
-
-	const mainImageUrl = await fileApi.findDestination(
-		'pages/vacancies',
-		'main-bg'
-	)
 
 	const vacancies = await vacancyApi.findMany({
 		language: params.locale,

@@ -1,22 +1,22 @@
-import { constantApi } from '@/api/constant/constant.api'
 import { Language } from '@/i18n/types'
 import Procedures from '@/modules/procedures/procedures'
-import { Metadata } from 'next'
+import { buildMetadata } from '@/utils/functions'
+import { Metadata, ResolvingMetadata } from 'next'
 
-export async function generateMetadata({
-	params,
-}: {
-	params: { locale: string }
-}): Promise<Metadata> {
-	const constants = await constantApi.findMany({
-		language: params.locale as Language,
-		type: 'dogsPage',
+export async function generateMetadata(
+	{
+		params,
+	}: {
+		params: { locale: Language }
+	},
+	parent: ResolvingMetadata
+): Promise<Metadata> {
+	return await buildMetadata({
+		pageName: 'dogs',
+		parentMetadata: parent,
+		params,
+		constantsType: 'dogsPage',
 	})
-
-	return {
-		title: constants?.dogsPage_mainTitle,
-		description: constants?.dogsPage_mainDescription,
-	}
 }
 
 export default function Dogs({ params }: { params: { locale: Language } }) {

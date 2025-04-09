@@ -28,7 +28,7 @@ export const MainImageSection = async ({
 		<Section className={styles.main} bg={false} pTop={false} pBottom={false}>
 			<Image
 				src={fileUrl ? fileUrl : ''}
-				alt='МамагруМ'
+				alt={titleData.value}
 				priority
 				fill
 				sizes='100wv'

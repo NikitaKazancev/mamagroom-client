@@ -1,6 +1,11 @@
+import { constantApi } from '@/api/constant/constant.api'
+import { ConstantType } from '@/api/constant/constant.types'
+import { fileApi, FilePath } from '@/api/file/file.api'
+import { LINKS } from '@/constants/links.constants'
 import { Language } from '@/i18n/types'
 import imageCompression from 'browser-image-compression'
 import { format } from 'date-fns'
+import { Metadata, ResolvingMetadata } from 'next'
 import toast from 'react-hot-toast'
 import { CamelToKebab, KebabToCamel } from './types'
 
@@ -85,4 +90,71 @@ export const compressImage = async (formData: FormData, toastId: string) => {
 export const isFileReceived = (formData: FormData) => {
 	const file = formData.get('file') as File
 	return file !== null && file.name !== 'undefined'
+}
+
+export const buildMetadata = async ({
+	params,
+	constantsType,
+	parentMetadata,
+	pageName,
+	title,
+}: {
+	params: { locale: Language }
+	constantsType: ConstantType
+	parentMetadata: ResolvingMetadata
+	pageName: string
+	title?: string
+}): Promise<Metadata> => {
+	const constants = await constantApi.findMany({
+		language: params.locale as Language,
+		type: constantsType,
+	})
+
+	const parent = await parentMetadata.then(metadata => metadata)
+
+	if (!title) {
+		title = constants[`${constantsType}_mainTitle`]
+	}
+	const description = constants[`${constantsType}_mainDescription`]
+
+	return {
+		title,
+		description,
+		alternates: {
+			canonical: '.',
+			languages: {
+				ru: `/ru/${pageName}`,
+				en: `/en/${pageName}`,
+				'x-default': `/ru/${pageName}`,
+			},
+		},
+		openGraph: {
+			...parent?.openGraph,
+			title,
+			description,
+			url: `${LINKS.site.url}${params.locale}/${pageName}`,
+		},
+	}
+}
+
+export const generalPageData = async ({
+	params,
+	constantsPageType,
+	mainImagePageType,
+}: {
+	params: { locale: Language }
+	constantsPageType: ConstantType
+	mainImagePageType: FilePath
+}) => {
+	const constants = await constantApi.findMany({
+		language: params.locale,
+		type: constantsPageType,
+	})
+
+	const mainImageUrl = await fileApi.findDestination(
+		mainImagePageType,
+		'main-bg'
+	)
+
+	return { constants, mainImageUrl }
 }

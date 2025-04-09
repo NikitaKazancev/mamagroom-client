@@ -39,13 +39,28 @@ export async function generateMetadata({
 		type: 'homePage',
 	})
 
+	const me = t('me')
+	const siteName = t('siteName')
+	const title = t('baseTitle')
+	const description = constants?.homePage_mainDescription
+	const locale = params.locale
+
 	return {
-		title: {
-			default: t('baseTitle'),
-			template: `%s | ${t('siteName')}`,
+		generator: 'Next.js',
+		applicationName: siteName,
+		referrer: 'origin-when-cross-origin',
+		keywords: t('baseKeywords'),
+		authors: {
+			name: me,
+			url: LINKS.my.telegram,
 		},
-		description: constants?.homePage_mainDescription,
-		applicationName: t('siteName'),
+		creator: me,
+		publisher: me,
+		title: {
+			default: title,
+			template: `%s | ${siteName}`,
+		},
+		description,
 		icons: {
 			icon: '/logos/logo-256.png',
 			shortcut: '/logos/logo-256.png',
@@ -58,37 +73,50 @@ export async function generateMetadata({
 			},
 		},
 		metadataBase: new URL(LINKS.site.url),
+		alternates: {
+			canonical: '.',
+			languages: {
+				ru: '/ru',
+				en: '/en',
+				'x-default': '/ru',
+			},
+		},
 		openGraph: {
+			title,
+			description,
+			url: `${LINKS.site.url}/${locale}`,
 			type: 'website',
-			locale: params.locale,
-			siteName: t('siteName'),
+			locale,
+			siteName,
 			images: {
-				url: '/logos/logo-full-256.png',
+				url: `${LINKS.site.url}/logos/logo-full-256.png`,
 				width: 256,
 				height: 256,
-				alt: t('siteName'),
+				alt: siteName,
 			},
 			emails: LINKS.foreign.email,
 			phoneNumbers: LINKS.foreign.phone,
-			alternateLocale: params.locale === 'ru' ? 'en' : 'ru',
+			alternateLocale: locale === 'ru' ? 'en' : 'ru',
 		},
 		verification: {
 			google: 'H36KGQNSmi2SdKelkImPwdO69JOYLUcSvNfabDWJ9wU',
 			yandex: 'adefe41fd50ead4c',
 		},
-		alternates: {
-			canonical: LINKS.site.url,
-			languages: {
-				ru: LINKS.site.url + '/ru',
-				en: LINKS.site.url + '/en',
+		manifest: '/manifest.json',
+		robots: {
+			index: true,
+			follow: true,
+			nocache: false,
+			googleBot: {
+				index: true,
+				follow: true,
+				noimageindex: false,
+				'max-video-preview': -1,
+				'max-image-preview': 'large',
+				'max-snippet': -1,
 			},
 		},
-		manifest: '/manifest.json',
-		publisher: t('siteName'),
-		authors: {
-			name: t('siteName'),
-			url: LINKS.site.url,
-		},
+		category: t('category'),
 	}
 }
 

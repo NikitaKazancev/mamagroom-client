@@ -1,18 +1,26 @@
 import { breedApi } from '@/api/breed/breed.api'
 import { Language } from '@/i18n/types'
 import ProceduresById from '@/modules/procedures/procedures-by-id'
-import { Metadata } from 'next'
+import { buildMetadata } from '@/utils/functions'
+import { Metadata, ResolvingMetadata } from 'next'
 
-export async function generateMetadata({
-	params,
-}: {
-	params: { locale: Language; id: string }
-}): Promise<Metadata> {
+export async function generateMetadata(
+	{
+		params,
+	}: {
+		params: { locale: Language; id: string }
+	},
+	parent: ResolvingMetadata
+): Promise<Metadata> {
 	const breed = await breedApi.findById(params.id)
 
-	return {
+	return await buildMetadata({
 		title: breed?.name,
-	}
+		pageName: 'cats',
+		parentMetadata: parent,
+		params,
+		constantsType: 'catsPage',
+	})
 }
 
 export default function Cats({

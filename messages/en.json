@@ -1,7 +1,10 @@
 {
 	"Metadata": {
 		"baseTitle": "MamagrooM - grooming salon in Mytishchi | mamagroom.ru",
-		"siteName": "MamagrooM"
+		"siteName": "MamagrooM",
+		"baseKeywords": "mamagroom, grooming, salon, mytishchi, haircut, dogs, cats, procedures, hairdressing, beauty",
+		"me": "Kazantsev N.V.",
+		"category": "procedures"
 	},
 	"Footer": {
 		"address": "Mytishchi, Novomytishchinsky Prospect, 41b1",

@@ -1,44 +1,35 @@
-import { constantApi } from '@/api/constant/constant.api'
-import { fileApi } from '@/api/file/file.api'
 import { masterApi } from '@/api/master/master.api'
 import { Cards } from '@/components/cards/cards'
 import { useRoles } from '@/context/my-server-context'
 import { Language } from '@/i18n/types'
 import { MainImageSection } from '@/modules/main-image-section/main-image-section'
 import { MainPageReviews } from '@/page/main/reviews-section/reviews-section'
-import { Metadata } from 'next'
+import { buildMetadata, generalPageData } from '@/utils/functions'
+import { Metadata, ResolvingMetadata } from 'next'
 
-export async function generateMetadata({
-	params,
-}: {
-	params: { locale: string }
-}): Promise<Metadata> {
-	const constants = await constantApi.findMany({
-		language: params.locale as Language,
-		type: 'mastersPage',
+export async function generateMetadata(
+	{
+		params,
+	}: {
+		params: { locale: Language }
+	},
+	parent: ResolvingMetadata
+): Promise<Metadata> {
+	return await buildMetadata({
+		pageName: 'masters',
+		parentMetadata: parent,
+		params,
+		constantsType: 'mastersPage',
 	})
-
-	return {
-		title: constants?.mastersPage_mainTitle,
-		description: constants?.mastersPage_mainDescription,
-	}
 }
 
 const MastersPage = async ({ params }: { params: { locale: Language } }) => {
 	const roles = useRoles()
-
-	const constants = await constantApi.findMany({
-		language: params.locale,
-		type: 'mastersPage',
+	const { constants, mainImageUrl } = await generalPageData({
+		params,
+		constantsPageType: 'mastersPage',
+		mainImagePageType: 'pages/masters',
 	})
-	if (!constants) {
-		return null
-	}
-
-	const mainImageUrl = await fileApi.findDestination(
-		'pages/masters',
-		'main-bg'
-	)
 
 	const masters = await masterApi.findMany({
 		language: params.locale,

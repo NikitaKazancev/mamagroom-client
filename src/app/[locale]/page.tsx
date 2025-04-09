@@ -1,26 +1,21 @@
-import { constantApi } from '@/api/constant/constant.api'
-import { fileApi } from '@/api/file/file.api'
 import { Language } from '@/i18n/types'
 import { MainImageSection } from '@/modules/main-image-section/main-image-section'
 import { MainPageAboutUs } from '@/page/main/about-us-section/about-us-section'
 import { MainPageProcedures } from '@/page/main/procedures/procedures'
 import { MainPageReviews } from '@/page/main/reviews-section/reviews-section'
 import { MainPageValues } from '@/page/main/values/values'
+import { generalPageData } from '@/utils/functions'
 
 export default async function Home({
 	params,
 }: {
 	params: { locale: Language }
 }) {
-	const constants = await constantApi.findMany({
-		language: params.locale,
-		type: 'homePage',
+	const { constants, mainImageUrl } = await generalPageData({
+		params,
+		constantsPageType: 'homePage',
+		mainImagePageType: 'pages/home',
 	})
-	if (!constants) {
-		return null
-	}
-
-	const mainImageUrl = await fileApi.findDestination('pages/home', 'main-bg')
 
 	return (
 		<>
