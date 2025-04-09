@@ -1,26 +1,7 @@
-User-Agent: Yandex
-Host: https://mamagroom.ru
-Disallow: /auth
-Disallow: /api
-Disallow: *utm_
-Allow: /
-
-Sitemap: https://mamagroom.ru/sitemap.xml
-
-User-Agent: GoogleBot
-Host: https://mamagroom.ru
-Disallow: /auth
-Disallow: /api
-Disallow: *utm_
-Allow: /
-
-Sitemap: https://mamagroom.ru/sitemap.xml
-
 User-Agent: *
-Host: https://mamagroom.ru
 Disallow: /auth
 Disallow: /api
-Disallow: *utm_
+Disallow: /*utm
 Allow: /
 
 Sitemap: https://mamagroom.ru/sitemap.xml
