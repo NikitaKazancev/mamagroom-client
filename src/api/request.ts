@@ -8,7 +8,7 @@ export const SERVER_URL =
 	process.env.NODE_ENV === 'development'
 		? 'http://localhost:8080/api'
 		: 'https://mamagroom.ru/api'
-const initialTtl = process.env.NODE_ENV === 'development' ? 1 : 60 * 5
+const initialTtl = process.env.NODE_ENV === 'development' ? 1 : 60 * 60 * 24
 
 export const request = async ({
 	url,

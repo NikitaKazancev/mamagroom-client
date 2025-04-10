@@ -3,6 +3,7 @@ import { User, UserDto } from './user.types'
 
 class UserApi {
 	url = 'users'
+	ttl = 60
 
 	async findMany(queryParams: { isDeleted?: boolean }) {
 		const url = `/${this.url}?${basicQueryParams(queryParams)}`
@@ -10,6 +11,7 @@ class UserApi {
 			url,
 			revalidateTag: 'users',
 			auth: true,
+			ttl: this.ttl,
 		})) as User[]
 
 		if (data) {
@@ -21,7 +23,7 @@ class UserApi {
 
 	async findById(id: string) {
 		const url = `/${this.url}/${id}`
-		const data = (await request({ url })) as User
+		const data = (await request({ url, auth: true, ttl: this.ttl })) as User
 
 		if (data) {
 			return data

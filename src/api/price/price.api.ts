@@ -28,6 +28,7 @@ export type PriceDto = {
 
 class PriceApi {
 	url = 'prices'
+	ttl = 60 * 60
 
 	async findMany(queryParams: {
 		breedId?: string
@@ -37,7 +38,11 @@ class PriceApi {
 		isDeleted?: boolean
 	}) {
 		const url = `/${this.url}?${this.queryParams(queryParams)}`
-		const data = (await request({ url, revalidateTag: 'prices' })) as Price[]
+		const data = (await request({
+			url,
+			revalidateTag: 'prices',
+			ttl: this.ttl,
+		})) as Price[]
 
 		if (data) {
 			return data
@@ -48,7 +53,7 @@ class PriceApi {
 
 	async findById(id: string) {
 		const url = `/${this.url}/${id}`
-		const data = (await request({ url })) as Price
+		const data = (await request({ url, ttl: this.ttl })) as Price
 
 		if (data) {
 			return data
