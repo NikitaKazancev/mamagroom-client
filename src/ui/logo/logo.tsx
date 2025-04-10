@@ -28,14 +28,14 @@ export const Logo = ({ theme, className, link, targetBlank }: Props) => {
 				target='_blank'
 				className={clazzName}
 			>
-				<Image src={imagePath} fill alt='logo' />
+				<Image src={imagePath} fill alt='logo' sizes='400px' />
 			</Link>
 		)
 	}
 
 	return (
 		<Link href={link || LINKS.pages.home} className={clazzName}>
-			<Image src={imagePath} fill alt='logo' />
+			<Image src={imagePath} fill alt='logo' sizes='400px' />
 		</Link>
 	)
 }

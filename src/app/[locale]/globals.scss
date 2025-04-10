@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+	--plyr-color-main: #0987a0;
+}
+
+.plyr {
+	@apply rounded-md overflow-hidden;
+}
+
 @layer utilities {
 	.text-balance {
 		text-wrap: balance;

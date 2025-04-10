@@ -3,6 +3,7 @@ import { AddItem } from '@/modules/settings/add/add-item'
 import { DropDown } from '@/ui/drop-down/drop-down'
 import classNames from 'classnames'
 import Link from 'next/link'
+import { Fragment } from 'react'
 import { SettingsHeaderNavbarLink } from '../settings/header-navbar-link/settings-header-navbar-link'
 import { SettingsHeaderNavbarLinkForm } from '../settings/header-navbar-link/settings-header-navbar-link-form'
 import styles from './navbar.module.scss'
@@ -20,14 +21,14 @@ export const Navbar = ({ theme, navLinks, className }: Props) => {
 			role='navigation'
 		>
 			<ul className={styles.list}>
-				{navLinks.map(data => {
+				{navLinks.map((data, index) => {
 					const { name, link, sublinks } = data
 					if (!link && (!sublinks || !sublinks.length)) return null
 
 					return (
-						<>
+						<Fragment key={index}>
 							{link ? (
-								<li key={name} className={styles.item}>
+								<li className={styles.item}>
 									<Link className={styles.hover} href={link}>
 										{name}
 									</Link>
@@ -42,7 +43,6 @@ export const Navbar = ({ theme, navLinks, className }: Props) => {
 							) : (
 								<>
 									<li
-										key={name}
 										className={classNames(
 											styles.item,
 											styles.dropDown
@@ -70,9 +70,9 @@ export const Navbar = ({ theme, navLinks, className }: Props) => {
 									</li>
 									{sublinks
 										.filter(({ link }) => !!link)
-										.map(data => (
+										.map((data, index) => (
 											<li
-												key={data.name}
+												key={index}
 												className={classNames(
 													styles.item,
 													styles.shownSublink
@@ -81,7 +81,6 @@ export const Navbar = ({ theme, navLinks, className }: Props) => {
 												<Link
 													className={styles.hover}
 													href={data.link as string}
-													key={data.link}
 												>
 													{data.name}
 												</Link>
@@ -96,7 +95,7 @@ export const Navbar = ({ theme, navLinks, className }: Props) => {
 										))}
 								</>
 							)}
-						</>
+						</Fragment>
 					)
 				})}
 			</ul>

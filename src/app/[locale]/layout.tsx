@@ -146,7 +146,9 @@ export default async function RootLayout({
 	return (
 		<html lang={params.locale}>
 			<head>
-				<script src={LINKS.dikidi.widgetJs} async />
+				<script src={LINKS.scripts.dikidi} async />
+				<script src={LINKS.scripts.plyr} async></script>
+				<link rel='stylesheet' href='https://cdn.plyr.io/3.7.8/plyr.css' />
 			</head>
 			<body className={inter.className}>
 				<NextIntlClientProvider>

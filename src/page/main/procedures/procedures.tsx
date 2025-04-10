@@ -108,11 +108,13 @@ export const MainPageProcedures = ({
 					</div>
 					<div className={styles.videos}>
 						<Video
-							src={LINKS.video.dogsProcedures}
+							posterSrc='/video/dogs/poster.jpg'
+							src='/video/dogs/video.mp4'
 							className={styles.video}
 						/>
 						<Video
-							src={LINKS.video.catsProcedures}
+							posterSrc='/video/cats/poster.jpg'
+							src='/video/cats/video.mp4'
 							className={styles.video}
 						/>
 					</div>
@@ -158,7 +160,8 @@ export const MainPageProcedures = ({
 							<p className={styles.description}>{dogsDescription}</p>
 						</SettingsConstant>
 						<Video
-							src={LINKS.video.dogsProcedures}
+							posterSrc='/video/dogs/poster.jpg'
+							src='/video/dogs/video.mp4'
 							className={styles.video}
 						/>
 					</div>
@@ -202,7 +205,8 @@ export const MainPageProcedures = ({
 							<p className={styles.description}>{catsDescription}</p>
 						</SettingsConstant>
 						<Video
-							src={LINKS.video.catsProcedures}
+							posterSrc='/video/cats/poster.jpg'
+							src='/video/cats/video.mp4'
 							className={styles.video}
 						/>
 					</div>
