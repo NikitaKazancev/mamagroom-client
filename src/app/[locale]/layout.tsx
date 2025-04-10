@@ -11,7 +11,7 @@ import { Header } from '@/modules/header/header'
 import { ProcedureSelection } from '@/modules/procedure-selection/procedure-selection'
 import { SettingsForm } from '@/modules/settings/form/settings-form'
 import { MyToaster } from '@/ui/toaster/my-toaster'
-import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
+import { GoogleAnalytics } from '@next/third-parties/google'
 import { Metadata, Viewport } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
@@ -146,21 +146,8 @@ export default async function RootLayout({
 	return (
 		<html lang={params.locale}>
 			<head>
-				<link
-					rel='preload'
-					href='/logos/logo-row-dark.png'
-					as='image'
-					fetchPriority='high'
-				/>
-				<link
-					rel='preload'
-					href='/logos/logo-row-light.png'
-					as='image'
-					fetchPriority='high'
-				/>
 				<script src={LINKS.dikidi.widgetJs} async />
 			</head>
-			<GoogleTagManager gtmId='GTM-XYZ' />
 			<body className={inter.className}>
 				<NextIntlClientProvider>
 					<MyProvider roles={roles} language={params.locale}>
