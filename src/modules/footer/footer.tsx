@@ -16,6 +16,7 @@ import styles from './footer.module.scss'
 
 export const Footer = async () => {
 	const t = await getTranslations('Footer')
+	const tYandex = await getTranslations('Yandex')
 	const token = await useToken()
 
 	return (
@@ -50,7 +51,10 @@ export const Footer = async () => {
 						</address>
 					</div>
 					<div className={styles.right}>
-						<YandexMap className={styles.map} />
+						<YandexMap
+							className={styles.map}
+							btnText={tYandex('openMap')}
+						/>
 					</div>
 				</div>
 				<div className={styles.bottom}>

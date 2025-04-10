@@ -33,7 +33,8 @@
 		"linkText": "More"
 	},
 	"Yandex": {
-		"onMap": "MamagrooM on the map of Mytishchi — Yandex Maps"
+		"onMap": "MamagrooM on the map of Mytishchi — Yandex Maps",
+		"openMap": "Show map"
 	},
 	"Cookies": {
 		"message": "we use cookies to make everything work well",

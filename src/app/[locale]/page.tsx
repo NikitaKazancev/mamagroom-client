@@ -1,8 +1,8 @@
+import { UseTranslation } from '@/components/use-translation/use-translation'
 import { Language } from '@/i18n/types'
 import { MainImageSection } from '@/modules/main-image-section/main-image-section'
 import { MainPageAboutUs } from '@/page/main/about-us-section/about-us-section'
 import { MainPageProcedures } from '@/page/main/procedures/procedures'
-import { MainPageReviews } from '@/page/main/reviews-section/reviews-section'
 import { MainPageValues } from '@/page/main/values/values'
 import { generalPageData } from '@/utils/functions'
 
@@ -19,6 +19,7 @@ export default async function Home({
 
 	return (
 		<>
+			<UseTranslation />
 			<MainImageSection
 				titleData={{
 					type: 'home-page',
@@ -44,7 +45,6 @@ export default async function Home({
 				catsDescription={constants.homePage_proceduresForCatsDescription}
 			/>
 			<MainPageValues title={constants.homePage_valuesTitle} />
-			<MainPageReviews />
 		</>
 	)
 }

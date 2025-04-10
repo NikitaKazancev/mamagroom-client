@@ -1,9 +1,9 @@
 import { masterApi } from '@/api/master/master.api'
 import { Cards } from '@/components/cards/cards'
+import { UseTranslation } from '@/components/use-translation/use-translation'
 import { useRoles } from '@/context/my-server-context'
 import { Language } from '@/i18n/types'
 import { MainImageSection } from '@/modules/main-image-section/main-image-section'
-import { MainPageReviews } from '@/page/main/reviews-section/reviews-section'
 import { buildMetadata, generalPageData } from '@/utils/functions'
 import { Metadata, ResolvingMetadata } from 'next'
 
@@ -41,6 +41,7 @@ const MastersPage = async ({ params }: { params: { locale: Language } }) => {
 
 	return (
 		<>
+			<UseTranslation />
 			<MainImageSection
 				titleData={{
 					language: params.locale,
@@ -58,7 +59,6 @@ const MastersPage = async ({ params }: { params: { locale: Language } }) => {
 				externalPath='pages/masters/main-bg'
 			/>
 			<Cards title={'наша команда'} data={masters} />
-			<MainPageReviews />
 		</>
 	)
 }

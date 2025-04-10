@@ -3,7 +3,6 @@ import { Feed } from '@/components/feed/feed'
 import { useRoles } from '@/context/my-server-context'
 import { Language } from '@/i18n/types'
 import { MainImageSection } from '@/modules/main-image-section/main-image-section'
-import { MainPageReviews } from '@/page/main/reviews-section/reviews-section'
 import { buildMetadata, generalPageData } from '@/utils/functions'
 import { Metadata, ResolvingMetadata } from 'next'
 
@@ -62,7 +61,6 @@ export default async function Vacancies({
 				externalPath='pages/vacancies/main-bg'
 			/>
 			<Feed data={vacancies} />
-			<MainPageReviews />
 		</>
 	)
 }

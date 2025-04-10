@@ -1,8 +1,8 @@
 import { Language } from '@/i18n/types'
 import { Breeds } from '@/modules/breeds/breeds'
-import { MainImageSection } from '@/modules/main-image-section/main-image-section'
-import { MainPageReviews } from '@/page/main/reviews-section/reviews-section'
 import { generalPageData } from '@/utils/functions'
+import { MainImageSection } from '../main-image-section/main-image-section'
+import { UseTranslation } from '@/components/use-translation/use-translation'
 
 export default async function Procedures({
 	locale,
@@ -19,6 +19,7 @@ export default async function Procedures({
 
 	return (
 		<>
+			<UseTranslation />
 			<MainImageSection
 				titleData={{
 					language: locale,
@@ -36,7 +37,6 @@ export default async function Procedures({
 				externalPath={`pages/${type}/main-bg`}
 			/>
 			<Breeds type={type} />
-			<MainPageReviews />
 		</>
 	)
 }

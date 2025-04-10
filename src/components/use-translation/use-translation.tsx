@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl'
 
-export const MainPageReviews = () => {
+export const UseTranslation = () => {
 	const t = useTranslations('General')
 	return <></>
 }

@@ -10,7 +10,6 @@ import { FullTransparentBlock } from '@/modules/full-transparent-block/full-tran
 import { Header } from '@/modules/header/header'
 import { SettingsForm } from '@/modules/settings/form/settings-form'
 import { MyToaster } from '@/ui/toaster/my-toaster'
-import { GoogleAnalytics } from '@next/third-parties/google'
 import { Metadata, Viewport } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
@@ -146,7 +145,6 @@ export default async function RootLayout({
 		<html lang={params.locale}>
 			<head>
 				<script src={LINKS.scripts.dikidi} async />
-				<script src={LINKS.scripts.plyr} async></script>
 				<link rel='stylesheet' href='https://cdn.plyr.io/3.7.8/plyr.css' />
 			</head>
 			<body className={inter.className}>
@@ -166,7 +164,7 @@ export default async function RootLayout({
 					</MyProvider>
 				</NextIntlClientProvider>
 			</body>
-			<GoogleAnalytics gaId='G-XYZ' />
+			{/* <GoogleAnalytics gaId='G-XYZ' /> */}
 		</html>
 	)
 }
