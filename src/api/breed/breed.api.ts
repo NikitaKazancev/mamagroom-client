@@ -41,7 +41,7 @@ class BreedApi {
 
 	async findById(id: string) {
 		const url = `/${this.url}/${id}`
-		const data = (await request({ url })) as Breed
+		const data = (await request({ url, revalidateTag: 'breeds' })) as Breed
 
 		if (data) {
 			return data

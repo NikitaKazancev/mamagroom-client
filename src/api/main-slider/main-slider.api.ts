@@ -40,7 +40,10 @@ class MainSliderApi {
 
 	async findById(id: string) {
 		const url = `/${this.url}/${id}`
-		const data = (await request({ url })) as MainSlider
+		const data = (await request({
+			url,
+			revalidateTag: 'main-slider',
+		})) as MainSlider
 
 		if (data) {
 			data.imageName = fullImageName(data.imageName)

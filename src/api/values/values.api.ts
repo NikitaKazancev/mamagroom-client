@@ -43,7 +43,7 @@ class ValueApi {
 
 	async findById(id: string) {
 		const url = `/${this.url}/${id}`
-		const data = (await request({ url })) as Value
+		const data = (await request({ url, revalidateTag: 'values' })) as Value
 
 		if (data) {
 			data.imageName = fullImageName(data.imageName)

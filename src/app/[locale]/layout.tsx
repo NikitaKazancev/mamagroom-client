@@ -8,7 +8,6 @@ import { AcceptCookiePopUpServer } from '@/modules/accept-cookie-pop-up/accept-c
 import { Footer } from '@/modules/footer/footer'
 import { FullTransparentBlock } from '@/modules/full-transparent-block/full-transparent-block'
 import { Header } from '@/modules/header/header'
-import { ProcedureSelection } from '@/modules/procedure-selection/procedure-selection'
 import { SettingsForm } from '@/modules/settings/form/settings-form'
 import { MyToaster } from '@/ui/toaster/my-toaster'
 import { GoogleAnalytics } from '@next/third-parties/google'
@@ -163,7 +162,7 @@ export default async function RootLayout({
 						<SettingsForm />
 						<main>{children}</main>
 						<Footer />
-						<ProcedureSelection />
+						{/* <ProcedureSelection /> */}
 					</MyProvider>
 				</NextIntlClientProvider>
 			</body>

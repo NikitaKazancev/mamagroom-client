@@ -43,7 +43,10 @@ class HeaderNavbarLinkApi {
 
 	async findById(id: string) {
 		const url = `/${this.url}/${id}`
-		const data = (await request({ url })) as HeaderNavbarLink
+		const data = (await request({
+			url,
+			revalidateTag: 'header-navbar-links',
+		})) as HeaderNavbarLink
 
 		if (data) {
 			return data

@@ -23,7 +23,12 @@ class UserApi {
 
 	async findById(id: string) {
 		const url = `/${this.url}/${id}`
-		const data = (await request({ url, auth: true, ttl: this.ttl })) as User
+		const data = (await request({
+			url,
+			auth: true,
+			ttl: this.ttl,
+			revalidateTag: 'users',
+		})) as User
 
 		if (data) {
 			return data

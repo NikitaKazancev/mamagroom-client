@@ -53,7 +53,11 @@ class PriceApi {
 
 	async findById(id: string) {
 		const url = `/${this.url}/${id}`
-		const data = (await request({ url, ttl: this.ttl })) as Price
+		const data = (await request({
+			url,
+			ttl: this.ttl,
+			revalidateTag: 'prices',
+		})) as Price
 
 		if (data) {
 			return data

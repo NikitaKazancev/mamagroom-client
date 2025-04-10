@@ -53,6 +53,10 @@
 	.auth {
 		@apply absolute bottom-5 right-5 left-auto top-auto translate-y-0;
 	}
+
+	.reload {
+		@apply absolute bottom-5 right-12;
+	}
 }
 
 @media screen and (max-width: 1000px) {

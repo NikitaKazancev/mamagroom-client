@@ -45,7 +45,7 @@ class MasterApi {
 
 	async findById(id: string) {
 		const url = `/${this.url}/${id}`
-		const data = (await request({ url })) as Master
+		const data = (await request({ url, revalidateTag: 'masters' })) as Master
 
 		if (data) {
 			data.imageName = fullImageName(data.imageName)

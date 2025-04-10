@@ -1,4 +1,5 @@
 import { Logout } from '@/components/logout/logout'
+import { ReloadCache } from '@/components/reload-cache/reload-cache'
 import { YandexMap } from '@/components/yandex/map/yandex-map'
 import { LINKS } from '@/constants/links.constants'
 import { useToken } from '@/context/my-server-context'
@@ -56,6 +57,7 @@ export const Footer = async () => {
 					<p>{t('copyright')}</p>
 				</div>
 			</Layout>
+			<ReloadCache theme='light' className={styles.reload} />
 			{token ? (
 				<Logout className={styles.auth} />
 			) : (

@@ -40,7 +40,10 @@ class VacancyApi {
 
 	async findById(id: string) {
 		const url = `/${this.url}/${id}`
-		const data = (await request({ url })) as Vacancy
+		const data = (await request({
+			url,
+			revalidateTag: 'vacancies',
+		})) as Vacancy
 
 		if (data) {
 			return data

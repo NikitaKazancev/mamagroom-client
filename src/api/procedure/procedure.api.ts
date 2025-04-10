@@ -53,7 +53,10 @@ class ProcedureApi {
 
 	async findById(id: string) {
 		const url = `/${this.url}/${id}`
-		const data = (await request({ url })) as Procedure
+		const data = (await request({
+			url,
+			revalidateTag: 'procedures',
+		})) as Procedure
 
 		if (data) {
 			return data
