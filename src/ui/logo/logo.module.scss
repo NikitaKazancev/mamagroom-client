@@ -1,21 +1,6 @@
 .logo {
-	div {
-		@apply h-auto;
-		transition: all 0.5s;
-		height: 74px;
-		aspect-ratio: 250/74;
-		background-size: 100% 100%;
-	}
-
-	&.dark {
-		div {
-			background-image: url('/logos/logo-row-dark.png');
-		}
-	}
-
-	&.light {
-		div {
-			background-image: url('/logos/logo-row-light.png');
-		}
-	}
+	@apply h-auto relative;
+	transition: all 0.5s;
+	height: 74px;
+	aspect-ratio: 250/74;
 }

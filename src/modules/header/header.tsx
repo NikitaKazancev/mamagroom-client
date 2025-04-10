@@ -3,7 +3,7 @@
 import { HeaderNavbarLink } from '@/api/header-navbar-link/header-navbar-link.api'
 import { Navbar } from '@/components/navbar/navbar'
 import { LINKS } from '@/constants/links.constants'
-import { Link, routing, usePathname } from '@/i18n/routing'
+import { Link, routing } from '@/i18n/routing'
 import { Button } from '@/ui/button/button'
 import { DropDown } from '@/ui/drop-down/drop-down'
 import { TelegramIcon } from '@/ui/icons/telegram/telegram'
@@ -11,8 +11,7 @@ import { WhatsAppIcon } from '@/ui/icons/whatsapp/whatsapp'
 import { WorldIcon } from '@/ui/icons/world/world'
 import { Logo } from '@/ui/logo/logo'
 import classNames from 'classnames'
-import { useEffect, useRef, useState } from 'react'
-import toast from 'react-hot-toast'
+import { useRef, useState } from 'react'
 import { isSettingElem } from '../settings/settings'
 import styles from './header.module.scss'
 
@@ -23,50 +22,9 @@ type Props = {
 	navLinks: HeaderNavbarLink[]
 }
 
-const hasFirstState = (pathname: string, isNotFound: boolean) => {
-	if (isNotFound) return false
-	if (pathname.includes('/users')) return false
-	return true
-}
-
 export const Header = ({ translations, navLinks }: Props) => {
-	const pathname = usePathname()
-	const [isScrolled, setIsScrolled] = useState(!hasFirstState(pathname, false))
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
 	const burgerBg = useRef<HTMLDivElement>(null)
-
-	useEffect(() => {
-		const isNotFound = document.getElementById('_404') !== null
-		const initialIsScrolled = !hasFirstState(pathname, isNotFound)
-		setIsScrolled(prev =>
-			prev !== initialIsScrolled ? initialIsScrolled : prev
-		)
-
-		const handleScroll = () => {
-			if (!hasFirstState(pathname, isNotFound)) {
-				setIsScrolled(prev => (prev ? prev : true))
-				return
-			}
-
-			const newIsScrolled = window.scrollY > window.innerHeight / 5
-			setIsScrolled(prev => (prev !== newIsScrolled ? newIsScrolled : prev))
-		}
-
-		window.addEventListener('scroll', handleScroll)
-		handleScroll()
-
-		return () => {
-			window.removeEventListener('scroll', handleScroll)
-		}
-	}, [pathname])
-
-	const theme = isScrolled ? 'dark' : 'light'
-
-	const message = () => {
-		toast.success('test', {
-			duration: Infinity,
-		})
-	}
 
 	const toggleMenu = (e: any) => {
 		if (isSettingElem(e.target as HTMLElement, styles.navbar)) return
@@ -82,12 +40,10 @@ export const Header = ({ translations, navLinks }: Props) => {
 		setIsMenuOpen(prev => !prev)
 	}
 
+	const theme = 'dark'
+
 	return (
-		<header
-			className={classNames(styles.header, styles.blur, styles[theme], {
-				[styles.isScrolled]: isScrolled,
-			})}
-		>
+		<header className={classNames(styles.header, styles.blur)}>
 			<div className={styles.line}>
 				<Logo theme={theme} />
 				<Navbar theme={theme} navLinks={navLinks} />

@@ -2,38 +2,14 @@
 	@apply fixed top-0 left-0 right-0 text-white;
 	z-index: 10;
 
-	&.isScrolled {
-		.line {
-			@apply pt-2 text-dark;
-		}
-		.burger {
-			@apply pt-2;
-		}
-
-		.blurBlock {
-			backdrop-filter: blur(24px);
-			background-color: rgba(255, 255, 255, 0.8);
-		}
-	}
-
-	.line {
-		@apply pl-6 pr-8 py-5 flex items-center gap-10 relative;
-		z-index: 12;
-		transition: padding-top 0.5s;
-
-		.rightSection {
-			@apply flex items-center gap-3 flex-1 justify-end;
-		}
-	}
-
 	.blurBlock {
 		@apply absolute -top-5 bottom-0 left-0 right-0;
 		z-index: 11;
 		transition: backdrop-filter background-color;
 		transition-duration: 0.5s;
-		background-color: initial;
+		background-color: rgba(255, 255, 255, 0.8);
 
-		backdrop-filter: initial;
+		backdrop-filter: blur(24px);
 		mask-image: linear-gradient(
 			to top,
 			hsla(210, 100%, 45.1%, 0) 0%,
@@ -55,27 +31,18 @@
 		);
 	}
 
-	&.dark {
-		.burger {
-			.burgerCheckbox {
-				span {
-					@apply bg-dark;
-				}
-			}
-		}
-	}
-	&.light {
-		.burger {
-			.burgerCheckbox {
-				span {
-					@apply bg-white;
-				}
-			}
+	.line {
+		@apply pt-2 pl-6 pr-8 py-5 flex items-center gap-10 relative text-dark;
+		z-index: 12;
+		transition: padding-top 0.5s;
+
+		.rightSection {
+			@apply flex items-center gap-3 flex-1 justify-end;
 		}
 	}
 
 	.burger {
-		@apply hidden py-5 pl-6 pr-8 justify-between items-center relative transition-all duration-300;
+		@apply hidden py-5 pl-6 pr-8 pt-2 justify-between items-center relative transition-all duration-300;
 		z-index: 12;
 
 		.burgerCheckbox {
@@ -84,7 +51,7 @@
 			z-index: 13;
 
 			span {
-				@apply block w-7 h-1 relative rounded-sm transition-all duration-300;
+				@apply block w-7 h-1 relative rounded-sm transition-all duration-300 bg-dark;
 			}
 		}
 

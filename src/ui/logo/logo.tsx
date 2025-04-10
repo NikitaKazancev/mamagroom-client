@@ -1,6 +1,7 @@
 import { LINKS } from '@/constants/links.constants'
 import { Link } from '@/i18n/routing'
 import classNames from 'classnames'
+import Image from 'next/image'
 import styles from './logo.module.scss'
 
 type Props = {
@@ -11,7 +12,14 @@ type Props = {
 }
 
 export const Logo = ({ theme, className, link, targetBlank }: Props) => {
-	const clazzName = classNames(styles.logo, styles[theme], className)
+	const clazzName = classNames(styles.logo, className)
+
+	let imagePath = ''
+	if (theme === 'light') {
+		imagePath = '/logos/logo-row-light.png'
+	} else {
+		imagePath = '/logos/logo-row-dark.png'
+	}
 
 	if (targetBlank) {
 		return (
@@ -20,14 +28,14 @@ export const Logo = ({ theme, className, link, targetBlank }: Props) => {
 				target='_blank'
 				className={clazzName}
 			>
-				<div></div>
+				<Image src={imagePath} fill alt='logo' />
 			</Link>
 		)
 	}
 
 	return (
 		<Link href={link || LINKS.pages.home} className={clazzName}>
-			<div></div>
+			<Image src={imagePath} fill alt='logo' />
 		</Link>
 	)
 }
