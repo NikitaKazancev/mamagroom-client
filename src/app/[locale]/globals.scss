@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 :root {
+	@apply scroll-smooth;
 	--plyr-color-main: #0987a0;
 }
 

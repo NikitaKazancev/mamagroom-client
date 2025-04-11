@@ -20,7 +20,7 @@ export const Input = ({
 	title: string
 	name: string
 	required?: boolean
-	value?: string | number
+	value?: string | number | Date
 	type?: HTMLInputTypeAttribute
 	onChange?: (
 		data:
@@ -32,6 +32,10 @@ export const Input = ({
 	placeholder?: string
 	className?: string
 }) => {
+	if (value instanceof Date) {
+		value = value.toISOString().split('T')[0]
+	}
+
 	const props: {
 		required?: boolean
 		type?: HTMLInputTypeAttribute
@@ -53,7 +57,7 @@ export const Input = ({
 			: !required
 			? 'Не обязательно'
 			: '',
-		value: value || '',
+		value,
 		className,
 	}
 

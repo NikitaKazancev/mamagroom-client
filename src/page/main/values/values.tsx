@@ -28,7 +28,6 @@ export const MainPageValues = async ({ title }: Props) => {
 	return (
 		<Section className={styles.main}>
 			<Layout>
-				<div></div>
 				<SettingsConstant
 					data={{
 						type: 'home-page',

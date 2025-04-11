@@ -58,8 +58,28 @@ export const minutesToHours = (minutes: number): string => {
 	return `${mins}мин`
 }
 
+export const compactText = (text: string, length: number = 200): string => {
+	return text.length > length ? `${text.slice(0, length)}...` : text
+}
+
 export function hasLanguageField(data: any): data is { language: Language } {
 	return typeof data === 'object' && data !== null && 'language' in data
+}
+
+export const wordByAmount = (amount: number, words: string) => {
+	const listOfWords = words.split(',')
+
+	if (amount % 10 === 1 && amount % 100 !== 11) {
+		return listOfWords[0]
+	} else if (
+		amount % 10 >= 2 &&
+		amount % 10 <= 4 &&
+		(amount % 100 < 10 || amount % 100 >= 20)
+	) {
+		return listOfWords[1]
+	} else {
+		return listOfWords[2]
+	}
 }
 
 export const compressImage = async (formData: FormData, toastId: string) => {
@@ -68,7 +88,6 @@ export const compressImage = async (formData: FormData, toastId: string) => {
 	}
 
 	const file = formData.get('file') as File
-	console.log(file.size)
 
 	const maxFileSize = 500 * 1024
 	if (file.size < maxFileSize) {

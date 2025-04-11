@@ -20,6 +20,8 @@ import { deleteMaster, recoverMaster } from '@/api/master/master.server'
 import { Price } from '@/api/price/price.api'
 import { deletePrice, recoverPrice } from '@/api/price/price.server'
 import { Procedure } from '@/api/procedure/procedure.api'
+import { Review } from '@/api/review/review.api'
+import { deleteReview } from '@/api/review/review.server'
 import { Vacancy } from '@/api/vacancy/vacancy.api'
 import { deleteVacancy, recoverVacancy } from '@/api/vacancy/vacancy.server'
 import { ValueDto } from '@/api/values/values.api'
@@ -110,6 +112,12 @@ export const Settings = ({
 			await deleteMaster((data as Master).id)
 		} else if (type === 'vacancy') {
 			await deleteVacancy((data as Vacancy).id)
+		} else if (type === 'review') {
+			await deleteReview((data as Review).id)
+			toast.success('Удалено', {
+				id: toastId,
+			})
+			return
 		}
 
 		toast.success('Помечено на удаление', {

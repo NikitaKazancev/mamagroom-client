@@ -1,0 +1,7 @@
+.icon {
+	@apply size-5 text-gray-400;
+
+	&.fill {
+		@apply text-yellow-400;
+	}
+}

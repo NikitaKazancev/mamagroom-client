@@ -10,6 +10,7 @@ import { MainSlider, MainSliderDto } from '@/api/main-slider/main-slider.api'
 import { Master, MasterDto } from '@/api/master/master.api'
 import { Price, PriceDto } from '@/api/price/price.api'
 import { Procedure, ProcedureDto } from '@/api/procedure/procedure.api'
+import { Review, ReviewDto } from '@/api/review/review.api'
 import { Vacancy, VacancyDto } from '@/api/vacancy/vacancy.api'
 import { Value, ValueDto } from '@/api/values/values.api'
 import { ComponentType } from 'react'
@@ -28,6 +29,7 @@ export type SettingsFormType =
 	| 'procedure'
 	| 'master'
 	| 'vacancy'
+	| 'review'
 	| undefined
 export type SettingsFormData =
 	| ConstantDto
@@ -40,6 +42,7 @@ export type SettingsFormData =
 	| ProcedureDto
 	| MasterDto
 	| VacancyDto
+	| ReviewDto
 	| { path: ExternalPath }
 	| undefined
 export type SettingsFormResultType =
@@ -54,6 +57,7 @@ export type SettingsFormResultType =
 	| Procedure
 	| Master
 	| Vacancy
+	| Review
 export type SettingFormSetData = (data: SettingsFormData) => void
 export type SettingsFormComponent = ComponentType<{
 	data: SettingsFormData

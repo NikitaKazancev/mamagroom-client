@@ -2,17 +2,17 @@ import { constantApi } from '@/api/constant/constant.api'
 import { headerNavbarLinkApi } from '@/api/header-navbar-link/header-navbar-link.api'
 import { LINKS } from '@/constants/links.constants'
 import { MyProvider } from '@/context/my-context-provider'
-import { useRoles } from '@/context/my-server-context'
+import { getTranslation, useRoles } from '@/context/my-server-context'
 import { Language } from '@/i18n/types'
 import { AcceptCookiePopUpServer } from '@/modules/accept-cookie-pop-up/accept-cookie-pop-up-server'
 import { Footer } from '@/modules/footer/footer'
 import { FullTransparentBlock } from '@/modules/full-transparent-block/full-transparent-block'
 import { Header } from '@/modules/header/header'
+import { Reviews } from '@/modules/reviews/reviews'
 import { SettingsForm } from '@/modules/settings/form/settings-form'
 import { MyToaster } from '@/ui/toaster/my-toaster'
 import { Metadata, Viewport } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
-import { getTranslations } from 'next-intl/server'
 import { Raleway } from 'next/font/google'
 import './globals.scss'
 
@@ -28,7 +28,7 @@ export async function generateMetadata({
 }: {
 	params: { locale: string }
 }): Promise<Metadata> {
-	const t = await getTranslations({
+	const t = await getTranslation({
 		namespace: 'Metadata',
 		locale: params.locale,
 	})
@@ -129,7 +129,7 @@ export default async function RootLayout({
 	children: React.ReactNode
 	params: { locale: Language }
 }>) {
-	const t = await getTranslations('General')
+	const t = await getTranslation('General')
 	const roles = useRoles()
 
 	const navLinks = await headerNavbarLinkApi.findMany({
@@ -158,7 +158,10 @@ export default async function RootLayout({
 							navLinks={navLinks}
 						/>
 						<SettingsForm />
-						<main>{children}</main>
+						<main>
+							{children}
+							<Reviews />
+						</main>
 						<Footer />
 						{/* <ProcedureSelection /> */}
 					</MyProvider>

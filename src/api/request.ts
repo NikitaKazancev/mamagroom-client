@@ -167,6 +167,7 @@ export const REVALIDATE_TAGS = {
 	users: 'users',
 	vacancies: 'vacancies',
 	values: 'values',
+	reviews: 'reviews',
 } as const
 export type RevalidateTag =
 	(typeof REVALIDATE_TAGS)[keyof typeof REVALIDATE_TAGS]

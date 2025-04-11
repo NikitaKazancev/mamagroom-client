@@ -13,7 +13,8 @@
 	},
 	"General": {
 		"book": "записаться",
-		"search": "Поиск"
+		"search": "Поиск",
+		"more": "подробнее"
 	},
 	"Procedures": {
 		"smallDog": "Мелкие",
@@ -34,7 +35,11 @@
 	},
 	"Yandex": {
 		"onMap": "МамагруМ на карте Мытищ — Яндекс Карты",
-		"openMap": "Показать карту"
+		"openMap": "Показать карту",
+		"reviewWord": "отзыв,отзыва,отзывов",
+		"generalRating": "в Яндексе",
+		"personalRating": "Персонал",
+		"cleanRating": "Чистота"
 	},
 	"Cookies": {
 		"message": "мы используем cookies, чтобы все хорошо работало",

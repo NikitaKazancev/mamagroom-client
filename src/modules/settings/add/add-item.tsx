@@ -45,6 +45,7 @@ export const AddItem = ({
 	if (type === 'header-navbar-link' && !roles.headerNavbarLinkPost) return null
 	if (type === 'main-slider' && !roles.mainSliderPost) return null
 	if (type === 'file' && !roles.filePostPut) return null
+	if (type === 'review' && !roles.reviewPost) return null
 	;(data as any).language = language
 
 	const handleClick = () => {

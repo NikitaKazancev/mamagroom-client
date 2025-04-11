@@ -22,6 +22,8 @@ import { PriceDto } from '@/api/price/price.api'
 import { postPrice, putPrice } from '@/api/price/price.server'
 import { ProcedureDto } from '@/api/procedure/procedure.api'
 import { postProcedure } from '@/api/procedure/procedure.server'
+import { ReviewDto } from '@/api/review/review.api'
+import { postReview, putReview } from '@/api/review/review.server'
 import { VacancyDto } from '@/api/vacancy/vacancy.api'
 import { postVacancy, putVacancy } from '@/api/vacancy/vacancy.server'
 import { ValueDto } from '@/api/values/values.api'
@@ -195,6 +197,12 @@ export const SettingsForm = () => {
 				result = await postVacancy(formData, data as VacancyDto)
 			} else {
 				result = await putVacancy(formData, data as VacancyDto)
+			}
+		} else if (type === 'review') {
+			if (method === 'post') {
+				result = await postReview(formData, data as ReviewDto)
+			} else {
+				result = await putReview(formData, data as ReviewDto)
 			}
 		}
 

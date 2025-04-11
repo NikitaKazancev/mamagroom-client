@@ -13,7 +13,8 @@
 	},
 	"General": {
 		"book": "записаться",
-		"search": "Поиск"
+		"search": "Поиск",
+		"more": "more"
 	},
 	"Procedures": {
 		"smallDog": "Small",
@@ -34,7 +35,11 @@
 	},
 	"Yandex": {
 		"onMap": "MamagrooM on the map of Mytishchi — Yandex Maps",
-		"openMap": "Show map"
+		"openMap": "Show map",
+		"reviewWord": "review,reviews,reviews",
+		"generalRating": "Yandex organization rating",
+		"personalRating": "Personal",
+		"cleanRating": "Cleanliness"
 	},
 	"Cookies": {
 		"message": "we use cookies to make everything work well",

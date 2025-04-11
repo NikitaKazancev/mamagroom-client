@@ -7,6 +7,7 @@ export const CONSTANT_TYPES = {
 	mastersPage: 'masters-page',
 	dogsPage: 'dogs-page',
 	catsPage: 'cats-page',
+	reviews: 'reviews',
 }
 
 export type ConstantType = keyof typeof CONSTANT_TYPES
@@ -21,6 +22,13 @@ export const CONSTANT_NAMES = {
 	proceduresForCatsTitle: 'procedures-for-cats-title',
 	proceduresForCatsDescription: 'procedures-for-cats-description',
 	valuesTitle: 'values-title',
+	title: 'title',
+	rating: 'rating',
+	amount: 'amount',
+	personalRating: 'personal-rating',
+	personalAmount: 'personal-amount',
+	cleanRating: 'clean-rating',
+	cleanAmount: 'clean-amount',
 }
 
 export type ConstantName = keyof typeof CONSTANT_NAMES

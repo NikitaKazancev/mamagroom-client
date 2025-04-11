@@ -1,0 +1,186 @@
+.main {
+	.addItem {
+		@apply left-1/2;
+	}
+}
+
+.yandex {
+	@apply mt-4 inline-flex gap-2 text-sm;
+
+	.ratingBlock {
+		@apply bg-white rounded-md flex flex-col justify-center;
+		gap: 2px;
+		padding: 6px;
+
+		.top {
+			@apply flex items-center gap-2;
+		}
+	}
+
+	.personalRating,
+	.cleanRating {
+		.rating {
+			@apply text-green-500 font-bold;
+		}
+	}
+}
+
+.wrapper {
+	@apply relative w-full mt-7;
+
+	&::before,
+	&::after {
+		@apply pointer-events-none absolute inset-y-0 w-20 from-main-25 to-transparent;
+		content: '';
+		z-index: 1;
+	}
+	&::before {
+		@apply bg-gradient-to-r;
+		left: -1px;
+	}
+	&::after {
+		@apply bg-gradient-to-l;
+		right: -1px;
+	}
+}
+
+.container {
+	@apply w-full overflow-x-auto relative px-10 flex gap-4;
+
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+	::-webkit-scrollbar {
+		display: none;
+	}
+
+	.list {
+		@apply flex flex-nowrap gap-6;
+
+		.btnItem {
+			@apply self-center;
+
+			.btn {
+				@apply mr-20;
+			}
+		}
+	}
+}
+
+.item {
+	@apply w-96 shrink-0 px-3 py-2 rounded-2xl border-4 border-secondary-700 relative;
+
+	.title {
+		@apply text-xl font-semibold;
+	}
+
+	.dateAndRating {
+		@apply flex items-center gap-4 mt-1;
+
+		.rating {
+			@apply w-24 flex items-center gap-1;
+		}
+	}
+
+	.description {
+		@apply mt-2;
+	}
+
+	.settings {
+		top: 16px !important;
+		bottom: auto !important;
+		left: auto !important;
+		right: 6px !important;
+	}
+}
+
+.settingsBlock {
+	@apply relative h-6;
+
+	.settings {
+		top: auto !important;
+		bottom: auto !important;
+		left: auto !important;
+		right: auto !important;
+	}
+
+	> div {
+		@apply absolute top-6;
+
+		&:nth-child(1) {
+			left: 126px;
+		}
+		&:nth-child(2) {
+			left: 148px;
+		}
+
+		&:nth-child(3) {
+			left: 255px;
+		}
+		&:nth-child(4) {
+			left: 277px;
+		}
+
+		&:nth-child(5) {
+			left: 372px;
+		}
+		&:nth-child(6) {
+			left: 394px;
+		}
+	}
+}
+
+@media screen and (max-width: 728px) {
+	.wrapper {
+		&::before {
+			@apply w-10;
+		}
+		&::after {
+			@apply w-10;
+		}
+	}
+
+	.container {
+		.list {
+			@apply gap-3;
+
+			.btnItem {
+				.btn {
+					@apply mr-10;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 450px) {
+	.yandex {
+		@apply text-xs;
+	}
+
+	.settingsBlock {
+		> div {
+			@apply absolute top-6;
+
+			&:nth-child(1) {
+				left: 120px;
+			}
+			&:nth-child(2) {
+				left: 144px;
+			}
+
+			&:nth-child(3) {
+				left: 231px;
+			}
+			&:nth-child(4) {
+				left: 253px;
+			}
+
+			&:nth-child(5) {
+				left: 342px;
+			}
+			&:nth-child(6) {
+				left: 364px;
+			}
+		}
+	}
+}
