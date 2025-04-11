@@ -6,11 +6,10 @@ import styles from './video.module.scss'
 
 type Props = {
 	src: string
-	posterSrc: string
 	className?: string
 }
 
-export const Video = ({ className, src, posterSrc }: Props) => {
+export const Video = ({ className, src }: Props) => {
 	const videoRef = useRef<HTMLVideoElement | null>(null)
 
 	useEffect(() => {
@@ -28,7 +27,6 @@ export const Video = ({ className, src, posterSrc }: Props) => {
 			className={classNames(styles.video, className)}
 			controls
 			playsInline
-			data-poster={posterSrc}
 		>
 			<source src={src} type='video/mp4' />
 		</video>

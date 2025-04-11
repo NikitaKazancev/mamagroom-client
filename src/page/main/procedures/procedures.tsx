@@ -107,16 +107,8 @@ export const MainPageProcedures = ({
 						</SettingsConstant>
 					</div>
 					<div className={styles.videos}>
-						<Video
-							posterSrc='/video/dogs/poster.jpg'
-							src='/video/dogs/video.mp4'
-							className={styles.video}
-						/>
-						<Video
-							posterSrc='/video/cats/poster.jpg'
-							src='/video/cats/video.mp4'
-							className={styles.video}
-						/>
+						<Video src='/video/dogs/video.mp4' className={styles.video} />
+						<Video src='/video/cats/video.mp4' className={styles.video} />
 					</div>
 				</div>
 				<div className={styles.oneCol}>
@@ -159,11 +151,7 @@ export const MainPageProcedures = ({
 						>
 							<p className={styles.description}>{dogsDescription}</p>
 						</SettingsConstant>
-						<Video
-							posterSrc='/video/dogs/poster.jpg'
-							src='/video/dogs/video.mp4'
-							className={styles.video}
-						/>
+						<Video src='/video/dogs/video.mp4' className={styles.video} />
 					</div>
 					<div className={styles.elem}>
 						<SettingsConstant
@@ -204,11 +192,7 @@ export const MainPageProcedures = ({
 						>
 							<p className={styles.description}>{catsDescription}</p>
 						</SettingsConstant>
-						<Video
-							posterSrc='/video/cats/poster.jpg'
-							src='/video/cats/video.mp4'
-							className={styles.video}
-						/>
+						<Video src='/video/cats/video.mp4' className={styles.video} />
 					</div>
 				</div>
 			</Layout>

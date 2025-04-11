@@ -108,7 +108,7 @@ export const compressImage = async (formData: FormData, toastId: string) => {
 
 export const isFileReceived = (formData: FormData) => {
 	const file = formData.get('file') as File
-	return file !== null && file.name !== 'undefined'
+	return file !== null && file.name && file.name !== 'undefined'
 }
 
 export const buildMetadata = async ({
