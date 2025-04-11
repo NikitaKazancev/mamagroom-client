@@ -1,8 +1,8 @@
 import { VacancyDto } from '@/api/vacancy/vacancy.api'
-import { useTranslation } from '@/context/my-server-context'
 import { Button } from '@/ui/button/button'
 import { Layout } from '@/ui/layout/layout'
 import { Section } from '@/ui/section/section'
+import { useTranslations } from 'next-intl'
 import { SettingsVacancy } from '../settings/vacancy/vacancy-link'
 import styles from './feed.module.scss'
 
@@ -11,7 +11,7 @@ type Props = {
 }
 
 export const Feed = ({ data }: Props) => {
-	const t = useTranslation('Vacancies')
+	const t = useTranslations('Vacancies')
 
 	return (
 		<Section>

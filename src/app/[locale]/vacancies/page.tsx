@@ -1,5 +1,6 @@
 import { vacancyApi } from '@/api/vacancy/vacancy.api'
 import { Feed } from '@/components/feed/feed'
+import { UseTranslation } from '@/components/use-translation/use-translation'
 import { useRoles } from '@/context/my-server-context'
 import { Language } from '@/i18n/types'
 import { MainImageSection } from '@/modules/main-image-section/main-image-section'
@@ -44,6 +45,7 @@ export default async function Vacancies({
 
 	return (
 		<>
+			<UseTranslation />
 			<MainImageSection
 				titleData={{
 					language: params.locale,

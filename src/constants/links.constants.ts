@@ -26,10 +26,9 @@ export const LINKS = {
 			'https://yandex.ru/map-widget/v1/?um=constructor%3A1c5f3f02206d183feacfbb4092f49742be4c23c16a8bc321e8ff1c1a7959efe7&amp;source=constructor',
 	},
 	dikidi: {
-		generalBook: 'https://dikidi.ru/#widget=184511',
+		book: 'https://dikidi.ru/mamagroom?p=1.pi-po',
 	},
 	scripts: {
-		plyr: 'https://cdn.plyr.io/3.7.8/plyr.js',
-		dikidi: 'https://dikidi.ru/assets/js/widget_record/widget2.min.js',
+		plyrCss: 'https://cdn.plyr.io/3.7.8/plyr.css',
 	},
 }

@@ -1,6 +1,6 @@
-import { useTranslation } from '@/context/my-server-context'
 import { Button } from '@/ui/button/button'
 import { Metadata } from 'next'
+import { useTranslations } from 'next-intl'
 import styles from './page.module.scss'
 
 export async function generateMetadata({
@@ -22,7 +22,7 @@ export async function generateMetadata({
 }
 
 export default function CatchAllPage() {
-	const t = useTranslation('404')
+	const t = useTranslations('404')
 
 	return (
 		<div className={styles.main}>

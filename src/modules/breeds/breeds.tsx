@@ -1,11 +1,8 @@
 import { breedApi } from '@/api/breed/breed.api'
-import {
-	getLanguage,
-	getTranslation,
-	useRoles,
-} from '@/context/my-server-context'
+import { getLanguage, useRoles } from '@/context/my-server-context'
 import { Layout } from '@/ui/layout/layout'
 import { Section } from '@/ui/section/section'
+import { getTranslations } from 'next-intl/server'
 import { BreedsClient } from './breeds-client'
 import styles from './breeds.module.scss'
 
@@ -14,8 +11,8 @@ type Props = {
 }
 
 export const Breeds = async ({ type }: Props) => {
-	const t = await getTranslation('Procedures')
-	const tGeneral = await getTranslation('General')
+	const t = await getTranslations('Procedures')
+	const tGeneral = await getTranslations('General')
 	const language = await getLanguage()
 	const roles = useRoles()
 

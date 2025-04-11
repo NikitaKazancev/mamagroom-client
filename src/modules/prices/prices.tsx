@@ -2,14 +2,11 @@ import { Price, priceApi } from '@/api/price/price.api'
 import { procedureApi } from '@/api/procedure/procedure.api'
 import { SettingsPriceForm } from '@/components/settings/prices/prices-form'
 import { LINKS } from '@/constants/links.constants'
-import {
-	getLanguage,
-	getTranslation,
-	useRoles,
-} from '@/context/my-server-context'
+import { getLanguage, useRoles } from '@/context/my-server-context'
 import { Link } from '@/i18n/routing'
 import { Layout } from '@/ui/layout/layout'
 import { Section } from '@/ui/section/section'
+import { getTranslations } from 'next-intl/server'
 import { AddItem } from '../settings/add/add-item'
 import { MergedPrice, Table } from '../table/table'
 import styles from './prices.module.scss'
@@ -73,7 +70,7 @@ export const Prices = async ({
 				? undefined
 				: false,
 	})
-	const t = await getTranslation('Table')
+	const t = await getTranslations('Table')
 
 	const isAdmin = roles.pricePut || roles.priceDelete
 

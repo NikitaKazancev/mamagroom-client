@@ -2,19 +2,20 @@ import { constantApi } from '@/api/constant/constant.api'
 import { headerNavbarLinkApi } from '@/api/header-navbar-link/header-navbar-link.api'
 import { LINKS } from '@/constants/links.constants'
 import { MyProvider } from '@/context/my-context-provider'
-import { getTranslation, useRoles } from '@/context/my-server-context'
+import { useRoles } from '@/context/my-server-context'
 import { Language } from '@/i18n/types'
 import { AcceptCookiePopUpServer } from '@/modules/accept-cookie-pop-up/accept-cookie-pop-up-server'
 import { Footer } from '@/modules/footer/footer'
 import { FullTransparentBlock } from '@/modules/full-transparent-block/full-transparent-block'
 import { Header } from '@/modules/header/header'
-import { Reviews } from '@/modules/reviews/reviews'
 import { SettingsForm } from '@/modules/settings/form/settings-form'
 import { MyToaster } from '@/ui/toaster/my-toaster'
 import { Metadata, Viewport } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 import { Raleway } from 'next/font/google'
 import './globals.scss'
+import { Reviews } from '@/modules/reviews/reviews'
 
 const inter = Raleway({
 	subsets: ['latin'],
@@ -28,7 +29,7 @@ export async function generateMetadata({
 }: {
 	params: { locale: string }
 }): Promise<Metadata> {
-	const t = await getTranslation({
+	const t = await getTranslations({
 		namespace: 'Metadata',
 		locale: params.locale,
 	})
@@ -129,7 +130,7 @@ export default async function RootLayout({
 	children: React.ReactNode
 	params: { locale: Language }
 }>) {
-	const t = await getTranslation('General')
+	const t = await getTranslations('General')
 	const roles = useRoles()
 
 	const navLinks = await headerNavbarLinkApi.findMany({
@@ -144,8 +145,7 @@ export default async function RootLayout({
 	return (
 		<html lang={params.locale}>
 			<head>
-				<script src={LINKS.scripts.dikidi} async />
-				<link rel='stylesheet' href='https://cdn.plyr.io/3.7.8/plyr.css' />
+				<link rel='stylesheet' href={LINKS.scripts.plyrCss} />
 			</head>
 			<body className={inter.className}>
 				<NextIntlClientProvider>
@@ -163,11 +163,9 @@ export default async function RootLayout({
 							<Reviews />
 						</main>
 						<Footer />
-						{/* <ProcedureSelection /> */}
 					</MyProvider>
 				</NextIntlClientProvider>
 			</body>
-			{/* <GoogleAnalytics gaId='G-XYZ' /> */}
 		</html>
 	)
 }

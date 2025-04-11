@@ -64,7 +64,8 @@ export const Header = ({ translations, navLinks }: Props) => {
 					<Button
 						text={translations.book}
 						theme={theme}
-						href={LINKS.dikidi.generalBook}
+						href={LINKS.dikidi.book}
+						isExternalLink
 					/>
 				</div>
 			</div>
@@ -102,7 +103,8 @@ export const Header = ({ translations, navLinks }: Props) => {
 						<Button
 							text={translations.book}
 							theme={'light'}
-							href={LINKS.dikidi.generalBook}
+							href={LINKS.dikidi.book}
+							isExternalLink
 						/>
 					</div>
 				</div>

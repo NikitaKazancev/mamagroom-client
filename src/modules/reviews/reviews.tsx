@@ -5,11 +5,7 @@ import { SettingsConstant } from '@/components/settings/constant/settings-consta
 import { SettingsReviewForm } from '@/components/settings/review/review-form'
 import { SettingsReview } from '@/components/settings/review/review-link'
 import { LINKS } from '@/constants/links.constants'
-import {
-	getTranslation,
-	useLanguage,
-	useRoles,
-} from '@/context/my-server-context'
+import { getLanguage, useRoles } from '@/context/my-server-context'
 import { Button } from '@/ui/button/button'
 import { YandexMapsIcon } from '@/ui/icons/yandex-maps/yandex-maps'
 import { Layout } from '@/ui/layout/layout'
@@ -17,6 +13,7 @@ import { SectionTitle } from '@/ui/section-title/section-title'
 import { Section } from '@/ui/section/section'
 import { capitalizeFirst, compactText, wordByAmount } from '@/utils/functions'
 import classNames from 'classnames'
+import { getTranslations } from 'next-intl/server'
 import Link from 'next/link'
 import { AddItem } from '../settings/add/add-item'
 import styles from './reviews.module.scss'
@@ -26,9 +23,9 @@ export const Reviews = async () => {
 		type: 'reviews',
 	})
 	const reviews = await reviewApi.findMany()
-	const language = useLanguage()
-	const t = await getTranslation('Yandex')
-	const tGeneral = await getTranslation('General')
+	const language = await getLanguage()
+	const t = await getTranslations('Yandex')
+	const tGeneral = await getTranslations('General')
 	const roles = useRoles()
 
 	return (
