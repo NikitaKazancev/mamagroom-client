@@ -49,6 +49,7 @@ export const SettingsVacancyForm = ({
 				onChange={onChange}
 				required
 			/>
+			<Input name='language' title='' value={localData.language} invisible />
 		</>
 	)
 }

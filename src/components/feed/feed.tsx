@@ -1,8 +1,10 @@
 import { VacancyDto } from '@/api/vacancy/vacancy.api'
+import { AddItem } from '@/modules/settings/add/add-item'
 import { Button } from '@/ui/button/button'
 import { Layout } from '@/ui/layout/layout'
 import { Section } from '@/ui/section/section'
 import { useTranslations } from 'next-intl'
+import { SettingsVacancyForm } from '../settings/vacancy/vacancy-form'
 import { SettingsVacancy } from '../settings/vacancy/vacancy-link'
 import styles from './feed.module.scss'
 
@@ -40,6 +42,18 @@ export const Feed = ({ data }: Props) => {
 						</li>
 					))}
 				</ul>
+				<AddItem
+					data={{
+						id: '',
+						name: '',
+						description: '',
+						link: '',
+					}}
+					type='vacancy'
+					Component={SettingsVacancyForm}
+					className={styles.addItem}
+					formTitle='Добавление вакансии'
+				/>
 			</Layout>
 		</Section>
 	)
