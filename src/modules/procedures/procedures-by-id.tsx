@@ -3,6 +3,7 @@ import { Language } from '@/i18n/types'
 import { Prices } from '@/modules/prices/prices'
 import { generalPageData } from '@/utils/functions'
 import { ImageSectionWithoutChange } from '../main-image-section/image-section-without-change/image-section-without-change'
+import { UseTranslation } from '@/components/use-translation/use-translation'
 
 export default async function ProceduresById({
 	locale,
@@ -22,6 +23,7 @@ export default async function ProceduresById({
 
 	return (
 		<>
+			<UseTranslation />
 			<ImageSectionWithoutChange
 				title={breed?.name}
 				fileUrl={mainImageUrl}
