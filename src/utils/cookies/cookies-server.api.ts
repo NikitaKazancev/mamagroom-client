@@ -7,30 +7,11 @@ export const getCookie = async (cookieName: COOKIES) => {
 	return cookies().get(cookieName)?.value
 }
 
-export const setCookie = async (
-	cookieName: COOKIES,
-	value: string,
-	expires: number = 365
-) => {
-	cookies().set(cookieName, value, {
-		expires,
-		sameSite: 'lax',
-	})
-}
-
 export const getToken = async () => {
 	const cookie = cookies()
 
 	if (!cookie.has(COOKIES.token)) return undefined
 	return cookie.get(COOKIES.token)?.value || undefined
-}
-
-export const setToken = async (token: string) => {
-	cookies().set(COOKIES.token, token, {
-		expires: 7,
-		sameSite: 'lax',
-		secure: true,
-	})
 }
 
 export const removeToken = async () => {

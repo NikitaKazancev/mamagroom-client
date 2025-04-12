@@ -1,8 +1,8 @@
 'use server'
 
-import { removeToken, setToken } from '@/utils/cookies/cookies-server.api'
 import { objectFromFormData } from '@/utils/functions'
 import { authApi } from './auth.api'
+import { removeToken } from '@/utils/cookies/cookies-server.api'
 
 export const login = async (formData: FormData) => {
 	const data = objectFromFormData(formData)
@@ -16,7 +16,6 @@ export const login = async (formData: FormData) => {
 	})
 
 	if (fetchedData) {
-		setToken(fetchedData.token)
 		return fetchedData.token
 	}
 

@@ -28,6 +28,7 @@ import { VacancyDto } from '@/api/vacancy/vacancy.api'
 import { postVacancy, putVacancy } from '@/api/vacancy/vacancy.server'
 import { ValueDto } from '@/api/values/values.api'
 import { postValue, putValue } from '@/api/values/values.server'
+import { useRouter } from '@/i18n/routing'
 import { AuthFormBtns } from '@/modules/auth/auth-form-btns'
 import { Button } from '@/ui/button/button'
 import { ExitIcon } from '@/ui/icons/exit/exit'
@@ -55,6 +56,7 @@ export const SettingsForm = () => {
 	} = useSettingsStore()
 
 	const form = useRef<HTMLFormElement>(null)
+	const router = useRouter()
 
 	let formElems: {
 		buttonText: string
@@ -92,6 +94,7 @@ export const SettingsForm = () => {
 				},
 			})
 
+			router.refresh()
 			return
 		}
 

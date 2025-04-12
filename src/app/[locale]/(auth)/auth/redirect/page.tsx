@@ -1,12 +1,10 @@
 'use client'
 
-import { setToken } from '@/utils/cookies/cookies-server.api'
+import { setToken } from '@/utils/cookies/cookies-client.api'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
 
-import styles from './auth-redirect.module.scss'
-
-export const AuthRedirect = () => {
+export default function AuthRedirectPage() {
 	const searchParams = useSearchParams()
 	const router = useRouter()
 
@@ -20,5 +18,5 @@ export const AuthRedirect = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
-	return <div className={styles.main}>Loading...</div>
+	return <div>Авторизация...</div>
 }
