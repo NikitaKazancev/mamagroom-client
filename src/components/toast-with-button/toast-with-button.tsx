@@ -17,9 +17,9 @@ export const ToastWithButton = ({ text, buttonText, onClick }: Props) => {
 	}
 
 	return (
-		<div className={styles.toast}>
+		<aside className={styles.toast} role='alert' aria-live='assertive'>
 			<p>{text}</p>
 			<Button text={buttonText} theme='dark' onClick={handleClick} />
-		</div>
+		</aside>
 	)
 }

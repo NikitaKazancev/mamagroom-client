@@ -62,7 +62,8 @@
 			@apply bg-white text-dark;
 
 			.item {
-				&:hover {
+				&:hover,
+				&:focus {
 					@apply bg-secondary-300;
 				}
 
@@ -78,7 +79,8 @@
 			@apply bg-dark text-white;
 
 			.item {
-				&:hover {
+				&:hover,
+				&:focus {
 					@apply bg-secondary-800;
 				}
 

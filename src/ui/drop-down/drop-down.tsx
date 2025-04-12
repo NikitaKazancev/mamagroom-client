@@ -4,6 +4,7 @@ import { Link } from '@/i18n/routing'
 import useFullTransparentBlockStore from '@/modules/full-transparent-block/utils/store'
 import classNames from 'classnames'
 import { useEffect, useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 import styles from './drop-down.module.scss'
 
 type Props = {
@@ -71,6 +72,7 @@ export const DropDown = ({
 		}
 	}
 
+	const id = uuidv4()
 	const itemsAreString = items.length && typeof items[0] === 'string'
 
 	return (
@@ -84,9 +86,16 @@ export const DropDown = ({
 				styles[direction || 'leftBottom']
 			)}
 		>
-			<div onClick={onToggle}>{titleElement}</div>
+			<button
+				onClick={onToggle}
+				aria-haspopup='true'
+				aria-expanded='false'
+				aria-controls={id}
+			>
+				{titleElement}
+			</button>
 			{itemsAreString ? (
-				<ul className={styles.list}>
+				<ul className={styles.list} id={id}>
 					{items.map((item, i) => {
 						const title = item as string
 

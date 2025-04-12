@@ -80,7 +80,8 @@
 				color: var(--primary-color);
 			}
 
-			&:hover {
+			&:hover,
+			&:focus {
 				background-color: #f3f4f6;
 			}
 

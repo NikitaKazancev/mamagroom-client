@@ -1,9 +1,9 @@
 'use client'
 
+import { revalidateAllTags } from '@/api/request-server'
 import { ReloadIcon } from '@/ui/icons/reload/reload'
 import classNames from 'classnames'
 import styles from './reload-cache.module.scss'
-import { revalidateAllTags } from '@/api/request-server'
 
 type Props = {
 	className?: string
@@ -12,10 +12,12 @@ type Props = {
 
 export const ReloadCache = ({ className, theme }: Props) => {
 	return (
-		<ReloadIcon
-			onClick={revalidateAllTags}
-			className={classNames(styles.main, className)}
-			theme={theme}
-		/>
+		<button>
+			<ReloadIcon
+				onClick={revalidateAllTags}
+				className={classNames(styles.main, className)}
+				theme={theme}
+			/>
+		</button>
 	)
 }

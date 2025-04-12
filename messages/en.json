@@ -42,8 +42,8 @@
 		"cleanRating": "Cleanliness"
 	},
 	"Cookies": {
-		"message": "we use cookies to make everything work well",
-		"accept": "used to it"
+		"message": "our site uses cookies",
+		"accept": "ok"
 	},
 	"404": {
 		"message": "Page not found",

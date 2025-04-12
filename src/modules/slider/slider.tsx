@@ -29,14 +29,14 @@ export const Slider = ({ data }: Props) => {
 	}
 
 	return (
-		<div className={styles.slider}>
+		<article className={styles.slider}>
 			<button className={styles.leftToggle} onClick={prevSlide}>
 				❮
 			</button>
-			<div className={styles.content}>
+			<ul className={styles.content}>
 				{data.map((slider, index) => {
 					return (
-						<div
+						<li
 							key={index}
 							className={classNames(
 								styles.slide,
@@ -55,10 +55,10 @@ export const Slider = ({ data }: Props) => {
 								theme='dark'
 								formTitle='Изменение слайда'
 							/>
-						</div>
+						</li>
 					)
 				})}
-			</div>
+			</ul>
 			<button className={styles.rightToggle} onClick={nextSlide}>
 				❯
 			</button>
@@ -71,6 +71,6 @@ export const Slider = ({ data }: Props) => {
 				className={styles.addItem}
 				formTitle='Добавление слайда'
 			/>
-		</div>
+		</article>
 	)
 }

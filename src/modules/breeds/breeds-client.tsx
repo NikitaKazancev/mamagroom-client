@@ -78,7 +78,7 @@ export const BreedsClient = ({ breeds, type, translations }: Props) => {
 	let filters = undefined
 	if (type === 'dogs') {
 		filters = (
-			<div className={styles.filters}>
+			<aside className={styles.filters}>
 				<div className={styles.breedTypes}>
 					{(['smallDog', 'mediumDog', 'bigDog'] as const).map(type => (
 						<button
@@ -124,7 +124,7 @@ export const BreedsClient = ({ breeds, type, translations }: Props) => {
 						placeholder={translations.searchPlaceholder}
 					/>
 				</div>
-			</div>
+			</aside>
 		)
 	}
 

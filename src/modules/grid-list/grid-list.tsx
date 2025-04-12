@@ -221,7 +221,7 @@ const Item = ({
 	className?: string
 }) => {
 	return (
-		<div
+		<article
 			className={classNames(
 				styles.wrapper,
 				showTitle && styles.titleBlock,
@@ -229,7 +229,7 @@ const Item = ({
 			)}
 		>
 			{showTitle ? (
-				<h3 className={styles.title}>{title}</h3>
+				<h4 className={styles.title}>{title}</h4>
 			) : (
 				<>
 					<p className={styles.description}>{description}</p>
@@ -242,6 +242,6 @@ const Item = ({
 					/>
 				</>
 			)}
-		</div>
+		</article>
 	)
 }

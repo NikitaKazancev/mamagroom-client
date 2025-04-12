@@ -2,13 +2,15 @@
 	@apply size-6 transition-all duration-200;
 
 	&.light {
-		&:hover {
+		&:hover,
+		&:focus {
 			@apply text-green-300;
 		}
 	}
 
 	&.dark {
-		&:hover {
+		&:hover,
+		&:focus {
 			@apply text-green-500;
 		}
 	}

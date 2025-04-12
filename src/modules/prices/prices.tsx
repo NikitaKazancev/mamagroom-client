@@ -91,7 +91,7 @@ export const Prices = async ({
 			<div id='prices' className={styles.identifier}></div>
 			<Section className={styles.main}>
 				<Layout>
-					<div className={styles.breadCrumbs}>
+					<nav className={styles.breadCrumbs}>
 						<Link
 							href={`${
 								type === 'dogs' ? LINKS.pages.dogs : LINKS.pages.cats
@@ -99,8 +99,8 @@ export const Prices = async ({
 						>
 							← {type === 'dogs' ? t('dogsLink') : t('catsLink')}
 						</Link>
-					</div>
-					<div className={styles.prices}>
+					</nav>
+					<article className={styles.prices}>
 						{resPrices.length > 0 ? (
 							<Table
 								data={resPrices}
@@ -137,7 +137,7 @@ export const Prices = async ({
 							procedures={procedures}
 							formTitle='Добавление цены'
 						/>
-					</div>
+					</article>
 				</Layout>
 			</Section>
 		</>

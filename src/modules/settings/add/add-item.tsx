@@ -61,11 +61,11 @@ export const AddItem = ({
 	}
 
 	return (
-		<span
+		<button
 			className={classNames(styles.add, className, styles[theme])}
 			onClick={handleClick}
 		>
 			+
-		</span>
+		</button>
 	)
 }

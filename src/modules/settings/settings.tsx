@@ -150,22 +150,30 @@ export const Settings = ({
 
 	if (isDeleted === undefined) {
 		return (
-			<SettingsIcon
-				onClick={handleClick}
-				className={classNames(styles.wrapper, iconClassname)}
-				theme={theme}
-			/>
+			<button>
+				<SettingsIcon
+					onClick={handleClick}
+					className={classNames(styles.wrapper, iconClassname)}
+					theme={theme}
+				/>
+			</button>
 		)
 	}
 
 	return (
 		<div className={classNames(styles.wrapper, iconClassname)}>
 			{isDeleted ? (
-				<CheckIcon onClick={onRecover} theme={theme} />
+				<button>
+					<CheckIcon onClick={onRecover} theme={theme} />
+				</button>
 			) : (
-				<ExitIcon theme={theme} onClick={onDelete} />
+				<button>
+					<ExitIcon theme={theme} onClick={onDelete} />
+				</button>
 			)}
-			<SettingsIcon onClick={handleClick} theme={theme} />
+			<button>
+				<SettingsIcon onClick={handleClick} theme={theme} />
+			</button>
 		</div>
 	)
 }

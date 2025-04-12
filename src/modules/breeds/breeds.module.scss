@@ -7,7 +7,8 @@
 		button {
 			@apply px-4 py-2 rounded-lg transition-all duration-200 bg-white text-gray-800;
 
-			&:hover {
+			&:hover,
+			&:focus {
 				@apply bg-gray-300;
 			}
 
@@ -62,7 +63,8 @@
 		a {
 			@apply block w-full h-full;
 
-			&:hover {
+			&:hover,
+			&:focus {
 				span {
 					&::after {
 						@apply hidden;

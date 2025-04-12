@@ -19,7 +19,9 @@ export const ImageSectionWithoutChange = async ({ title, fileUrl }: Props) => {
 				sizes='100wv'
 			/>
 			<Layout>
-				<div className={styles.headers}>{title && <h2>{title}</h2>}</div>
+				<div className={styles.headers}>
+					{title && <h1 className={styles.title}>{title}</h1>}
+				</div>
 			</Layout>
 		</Section>
 	)

@@ -4,7 +4,8 @@
 	&.light {
 		@apply text-light;
 
-		&:hover {
+		&:hover,
+		&:focus {
 			@apply text-gray-300;
 		}
 	}
@@ -12,7 +13,8 @@
 	&.dark {
 		@apply text-dark;
 
-		&:hover {
+		&:hover,
+		&:focus {
 			@apply text-gray-500;
 		}
 	}

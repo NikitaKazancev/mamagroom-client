@@ -3,13 +3,15 @@
 	transition-timing-function: cubic-bezier(0, 0.94, 0, 0.97);
 
 	&.light {
-		&:hover {
+		&:hover,
+		&:focus {
 			@apply text-gray-300;
 		}
 	}
 
 	&.dark {
-		&:hover {
+		&:hover,
+		&:focus {
 			@apply text-gray-500;
 		}
 	}

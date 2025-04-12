@@ -30,7 +30,7 @@ export const Feed = ({ data }: Props) => {
 								formTitle={'Изменение вакансии'}
 							/>
 							<div className={styles.info}>
-								<h3 className={styles.title}>{item.name}</h3>
+								<h4 className={styles.title}>{item.name}</h4>
 								<p className={styles.desc}>{item.description}</p>
 								<Button
 									text={t('linkText')}

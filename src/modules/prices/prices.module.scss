@@ -5,7 +5,8 @@
 .breadCrumbs {
 	@apply text-lg transition-all duration-100 w-fit;
 
-	&:hover {
+	&:hover,
+	&:focus {
 		@apply text-gray-500;
 	}
 }

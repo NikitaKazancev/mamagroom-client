@@ -44,7 +44,8 @@
 			bottom: 6px;
 		}
 
-		&:hover {
+		&:hover,
+		&:focus {
 			.title {
 				h3 {
 					@apply text-secondary-800;

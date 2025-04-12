@@ -55,7 +55,7 @@ export const MainImageSection = async ({
 						type='constant_short'
 						formTitle='Главный заголовок'
 					>
-						<h2>{titleData.value}</h2>
+						<h1 className={styles.title}>{titleData.value}</h1>
 					</SettingsConstant>
 					<SettingsConstant
 						data={{
@@ -67,7 +67,9 @@ export const MainImageSection = async ({
 						type='constant_long'
 						formTitle='Главное описание'
 					>
-						<h3>{descriptionData.value}</h3>
+						<h2 className={styles.description}>
+							{descriptionData.value}
+						</h2>
 					</SettingsConstant>
 				</div>
 			</Layout>

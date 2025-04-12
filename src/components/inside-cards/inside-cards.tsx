@@ -18,7 +18,7 @@ export const InsideCards = ({ data, className }: Props) => {
 						className={classNames(styles.item, styles.transition)}
 						key={item.title}
 					>
-						<h3 className={styles.title}>{item.title}</h3>
+						<h4 className={styles.title}>{item.title}</h4>
 						<p className={styles.description}>{item.description}</p>
 						<Image
 							src={item.imageName}

@@ -18,7 +18,8 @@
 			@apply text-black;
 		}
 
-		.hover:hover {
+		.hover:hover,
+		.hover:focus {
 			@apply text-secondary-700;
 		}
 	}
@@ -28,7 +29,8 @@
 			@apply text-white;
 		}
 
-		.hover:hover {
+		.hover:hover,
+		.hover:focus {
 			@apply text-secondary-200;
 		}
 	}

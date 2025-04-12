@@ -14,5 +14,9 @@ export const Logout = ({ className }: { className?: string }) => {
 		router.refresh()
 	}
 
-	return <LogoutIcon onClick={handleClick} className={className} />
+	return (
+		<button>
+			<LogoutIcon onClick={handleClick} className={className} />
+		</button>
+	)
 }

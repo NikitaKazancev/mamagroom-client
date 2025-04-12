@@ -57,3 +57,11 @@ body {
 * {
 	@apply whitespace-pre-line;
 }
+
+button {
+	@apply block;
+}
+
+strong {
+	@apply font-semibold;
+}

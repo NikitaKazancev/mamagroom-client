@@ -112,7 +112,7 @@ export const MainPageProcedures = ({
 					</div>
 				</div>
 				<div className={styles.oneCol}>
-					<div className={styles.elem}>
+					<article className={styles.elem}>
 						<SettingsConstant
 							data={{
 								type: 'home-page',
@@ -152,8 +152,8 @@ export const MainPageProcedures = ({
 							<p className={styles.description}>{dogsDescription}</p>
 						</SettingsConstant>
 						<Video src='/video/dogs/video.mp4' className={styles.video} />
-					</div>
-					<div className={styles.elem}>
+					</article>
+					<article className={styles.elem}>
 						<SettingsConstant
 							data={{
 								type: 'home-page',
@@ -193,7 +193,7 @@ export const MainPageProcedures = ({
 							<p className={styles.description}>{catsDescription}</p>
 						</SettingsConstant>
 						<Video src='/video/cats/video.mp4' className={styles.video} />
-					</div>
+					</article>
 				</div>
 			</Layout>
 		</Section>

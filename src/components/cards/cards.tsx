@@ -52,8 +52,8 @@ export const Cards = ({ data, title }: Props) => {
 									/>
 								</div>
 							)}
-							<h3 className={styles.title}>{item.name}</h3>
-							<h4 className={styles.position}>{item.position}</h4>
+							<h4 className={styles.title}>{item.name}</h4>
+							<h5 className={styles.position}>{item.position}</h5>
 							<div className={styles.line}></div>
 							<p className={styles.desc}>{item.description}</p>
 						</li>

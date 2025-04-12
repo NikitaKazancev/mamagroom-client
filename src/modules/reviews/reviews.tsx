@@ -46,7 +46,7 @@ export const Reviews = async () => {
 					<SectionTitle text={constants.reviews_title} color='blue' />
 				</SettingsConstant>
 				{roles.constantPut && (
-					<div className={styles.settingsBlock}>
+					<aside className={styles.settingsBlock}>
 						<SettingsConstant
 							data={{
 								type: 'reviews',
@@ -131,68 +131,69 @@ export const Reviews = async () => {
 						>
 							<></>
 						</SettingsConstant>
-					</div>
+					</aside>
 				)}
-				<Link
-					className={styles.yandex}
-					href={LINKS.yandex.map}
-					target='_blank'
-				>
-					<div
-						className={classNames(
-							styles.ratingBlock,
-							styles.generalRating
-						)}
-					>
-						<div className={styles.top}>
-							<YandexMapsIcon />
-							<span>{constants.reviews_rating}</span>
-							<RatingInStars rating={constants.reviews_rating} />
+				<Link href={LINKS.yandex.map} target='_blank'>
+					<article className={styles.yandex}>
+						<div
+							className={classNames(
+								styles.ratingBlock,
+								styles.generalRating
+							)}
+						>
+							<div className={styles.top}>
+								<YandexMapsIcon />
+								<span>{constants.reviews_rating}</span>
+								<RatingInStars rating={constants.reviews_rating} />
+							</div>
+							<span className={styles.bottom}>{`${
+								constants.reviews_amount
+							} ${wordByAmount(
+								Number(constants.reviews_amount),
+								t('reviewWord')
+							)} ${t('generalRating')}`}</span>
 						</div>
-						<span className={styles.bottom}>{`${
-							constants.reviews_amount
-						} ${wordByAmount(
-							Number(constants.reviews_amount),
-							t('reviewWord')
-						)} ${t('generalRating')}`}</span>
-					</div>
-					<div
-						className={classNames(
-							styles.ratingBlock,
-							styles.personalRating
-						)}
-					>
-						<div className={styles.top}>
-							<span>{t('personalRating')}</span>
-							<span className={styles.rating}>
-								{Number(constants.reviews_personalRating) * 100}%
-							</span>
+						<div
+							className={classNames(
+								styles.ratingBlock,
+								styles.personalRating
+							)}
+						>
+							<div className={styles.top}>
+								<span>{t('personalRating')}</span>
+								<span className={styles.rating}>
+									{Number(constants.reviews_personalRating) * 100}%
+								</span>
+							</div>
+							<span className={styles.bottom}>{`${
+								constants.reviews_personalAmount
+							} ${wordByAmount(
+								Number(constants.reviews_personalAmount),
+								t('reviewWord')
+							)}`}</span>
 						</div>
-						<span className={styles.bottom}>{`${
-							constants.reviews_personalAmount
-						} ${wordByAmount(
-							Number(constants.reviews_personalAmount),
-							t('reviewWord')
-						)}`}</span>
-					</div>
-					<div
-						className={classNames(styles.ratingBlock, styles.cleanRating)}
-					>
-						<div className={styles.top}>
-							<span>{t('cleanRating')}</span>
-							<span className={styles.rating}>
-								{Number(constants.reviews_cleanRating) * 100}%
-							</span>
+						<div
+							className={classNames(
+								styles.ratingBlock,
+								styles.cleanRating
+							)}
+						>
+							<div className={styles.top}>
+								<span>{t('cleanRating')}</span>
+								<span className={styles.rating}>
+									{Number(constants.reviews_cleanRating) * 100}%
+								</span>
+							</div>
+							<span className={styles.bottom}>{`${
+								constants.reviews_cleanAmount
+							} ${wordByAmount(
+								Number(constants.reviews_cleanAmount),
+								t('reviewWord')
+							)}`}</span>
 						</div>
-						<span className={styles.bottom}>{`${
-							constants.reviews_cleanAmount
-						} ${wordByAmount(
-							Number(constants.reviews_cleanAmount),
-							t('reviewWord')
-						)}`}</span>
-					</div>
+					</article>
 				</Link>
-				<div className={styles.wrapper}>
+				<article className={styles.wrapper}>
 					<div className={styles.container}>
 						<ul className={styles.list}>
 							{reviews.map(review => {
@@ -238,7 +239,7 @@ export const Reviews = async () => {
 							</li>
 						</ul>
 					</div>
-				</div>
+				</article>
 				<AddItem
 					data={{
 						id: '',

@@ -18,7 +18,10 @@
 	@apply divide-y divide-main-100;
 
 	tr {
-		@apply hover:bg-gray-50;
+		&:hover,
+		&:focus {
+			@apply bg-gray-50;
+		}
 	}
 
 	&.isUser {

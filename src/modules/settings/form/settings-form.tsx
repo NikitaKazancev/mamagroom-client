@@ -229,10 +229,16 @@ export const SettingsForm = () => {
 			className={classNames(styles.wrapper, !isShown && styles.hide)}
 			onDoubleClick={onWrapperClick}
 		>
-			<div className={styles.main}>
+			<aside className={styles.main}>
 				<div className={styles.header}>
-					<h2 className={styles.title}>{formTitle}</h2>
-					<ExitIcon className={styles.exit} theme='dark' onClick={hide} />
+					<h3 className={styles.title}>{formTitle}</h3>
+					<button>
+						<ExitIcon
+							className={styles.exit}
+							theme='dark'
+							onClick={hide}
+						/>
+					</button>
 				</div>
 				<form onSubmit={handleSubmit} className={styles.form} ref={form}>
 					{Component && (
@@ -260,7 +266,7 @@ export const SettingsForm = () => {
 						/>
 					</div>
 				</form>
-			</div>
+			</aside>
 		</div>
 	)
 }

@@ -167,7 +167,13 @@ export const Table = ({
 					'relative'
 				)}
 			>
-				<span>{value}</span>
+				{index === 0 ? (
+					<span>
+						<strong>{value}</strong>
+					</span>
+				) : (
+					<span>{value}</span>
+				)}
 				{index === columns.length - 1 && isPrice && (
 					<SettingsPrice
 						data={{
@@ -215,7 +221,7 @@ export const Table = ({
 			if (Array.isArray(itemData)) {
 				if (itemData.length === 0) return null
 				return (
-					<div key={column}>
+					<aside key={column}>
 						<h4>{columnsNames[column as keyof typeof columnsNames]}</h4>
 						<div className={styles.expandedItemGrid}>
 							{itemData.map(role => (
@@ -227,7 +233,7 @@ export const Table = ({
 								</div>
 							))}
 						</div>
-					</div>
+					</aside>
 				)
 			}
 		})

@@ -25,7 +25,7 @@ export const MainPageAboutUs = async ({ title, description }: Props) => {
 		<Section className={styles.main} pTop={false}>
 			<Layout>
 				<div className={styles.content}>
-					<div className={styles.left}>
+					<section className={styles.left}>
 						<SettingsConstant
 							data={{
 								type: 'home-page',
@@ -54,11 +54,11 @@ export const MainPageAboutUs = async ({ title, description }: Props) => {
 						>
 							<h4>{description}</h4>
 						</SettingsConstant>
-					</div>
+					</section>
 
-					<div className={styles.right}>
+					<section className={styles.right}>
 						<Slider data={mainSliders} />
-					</div>
+					</section>
 				</div>
 			</Layout>
 		</Section>

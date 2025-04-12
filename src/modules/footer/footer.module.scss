@@ -18,7 +18,8 @@
 
 				a {
 					@apply transition-all;
-					&:hover {
+					&:hover,
+					&:focus {
 						@apply text-secondary-200;
 					}
 				}
