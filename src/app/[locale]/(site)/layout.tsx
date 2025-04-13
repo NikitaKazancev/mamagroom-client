@@ -1,6 +1,7 @@
 import { constantApi } from '@/api/constant/constant.api'
 import { headerNavbarLinkApi } from '@/api/header-navbar-link/header-navbar-link.api'
 import { reviewApi } from '@/api/review/review.api'
+import { YandexMetrika } from '@/components/yandex/metrics/yandex-metrics'
 import { LINKS } from '@/constants/links.constants'
 import { MyProvider } from '@/context/my-context-provider'
 import { useRoles } from '@/context/my-server-context'
@@ -266,6 +267,7 @@ export default async function RootLayout({
 		<html lang={params.locale}>
 			<head>
 				<link rel='stylesheet' href={LINKS.scripts.plyrCss} />
+				<YandexMetrika />
 			</head>
 			<body className={inter.className}>
 				<NextIntlClientProvider>
