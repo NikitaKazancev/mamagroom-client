@@ -19,11 +19,12 @@ import { AddItem } from '../settings/add/add-item'
 import styles from './reviews.module.scss'
 
 export const Reviews = async () => {
+	const language = await getLanguage()
 	const constants = await constantApi.findMany({
 		type: 'reviews',
+		language,
 	})
 	const reviews = await reviewApi.findMany()
-	const language = await getLanguage()
 	const t = await getTranslations('Yandex')
 	const tGeneral = await getTranslations('General')
 	const roles = useRoles()

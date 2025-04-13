@@ -69,8 +69,12 @@ export function hasLanguageField(data: any): data is { language: Language } {
 export const wordByAmount = (amount: number, words: string) => {
 	const listOfWords = words.split(',')
 
-	if (amount % 10 === 1 && amount % 100 !== 11) {
+	if (amount === 1) {
 		return listOfWords[0]
+	}
+
+	if (amount % 10 === 1 && amount % 100 !== 11) {
+		return listOfWords[3]
 	} else if (
 		amount % 10 >= 2 &&
 		amount % 10 <= 4 &&
