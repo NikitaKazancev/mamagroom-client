@@ -26,6 +26,7 @@ import { Vacancy } from '@/api/vacancy/vacancy.api'
 import { deleteVacancy, recoverVacancy } from '@/api/vacancy/vacancy.server'
 import { ValueDto } from '@/api/values/values.api'
 import { deleteValue, recoverValue } from '@/api/values/values.server'
+import { useRouter } from '@/i18n/routing'
 import useSettingsStore, {
 	SettingsFormComponent,
 	SettingsFormData,
@@ -82,6 +83,7 @@ export const Settings = ({
 	formTitle: string
 }) => {
 	const { show } = useSettingsStore()
+	const router = useRouter()
 
 	const handleClick = () => {
 		show({
@@ -117,12 +119,14 @@ export const Settings = ({
 			toast.success('Удалено', {
 				id: toastId,
 			})
+			router.refresh()
 			return
 		}
 
 		toast.success('Помечено на удаление', {
 			id: toastId,
 		})
+		router.refresh()
 	}
 
 	const onRecover = async () => {
@@ -146,6 +150,7 @@ export const Settings = ({
 		toast.success('Восстановлено', {
 			id: toastId,
 		})
+		router.refresh()
 	}
 
 	if (isDeleted === undefined) {

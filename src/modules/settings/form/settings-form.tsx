@@ -222,6 +222,8 @@ export const SettingsForm = () => {
 			})
 			closeAndClearForm()
 		}
+
+		router.refresh()
 	}
 
 	return (

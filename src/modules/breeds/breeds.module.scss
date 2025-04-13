@@ -4,7 +4,7 @@
 	.breedTypes {
 		@apply flex gap-2 items-center;
 
-		button {
+		.filterButton {
 			@apply px-4 py-2 rounded-lg transition-all duration-200 bg-white text-gray-800;
 
 			&:hover,

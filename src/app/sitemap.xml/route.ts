@@ -4,65 +4,68 @@ import { Language } from '@/i18n/types'
 import { ISitemapField, getServerSideSitemap } from 'next-sitemap'
 
 export async function GET(request: Request) {
+	const now = new Date()
+	const updatedAt = new Date(now.getFullYear(), now.getMonth(), 1)
+
 	const fields: ISitemapField[] = [
 		buildSitemap({
 			language: 'ru',
 			pageUrl: '',
-			updatedAt: new Date(2025, 4, 9),
+			updatedAt,
 			priority: 1,
 		}),
 		buildSitemap({
 			language: 'en',
 			pageUrl: '',
-			updatedAt: new Date(2025, 4, 9),
+			updatedAt,
 			priority: 1,
 		}),
 		buildSitemap({
 			language: 'ru',
 			pageUrl: 'dogs',
-			updatedAt: new Date(2025, 4, 9),
+			updatedAt,
 			priority: 0.9,
 		}),
 		buildSitemap({
 			language: 'en',
 			pageUrl: 'dogs',
-			updatedAt: new Date(2025, 4, 9),
+			updatedAt,
 			priority: 0.9,
 		}),
 		buildSitemap({
 			language: 'ru',
 			pageUrl: 'cats',
-			updatedAt: new Date(2025, 4, 9),
+			updatedAt,
 			priority: 0.8,
 		}),
 		buildSitemap({
 			language: 'en',
 			pageUrl: 'cats',
-			updatedAt: new Date(2025, 4, 9),
+			updatedAt,
 			priority: 0.8,
 		}),
 		buildSitemap({
 			language: 'ru',
 			pageUrl: 'masters',
-			updatedAt: new Date(2025, 4, 9),
+			updatedAt,
 			priority: 0.7,
 		}),
 		buildSitemap({
 			language: 'en',
 			pageUrl: 'masters',
-			updatedAt: new Date(2025, 4, 9),
+			updatedAt,
 			priority: 0.7,
 		}),
 		buildSitemap({
 			language: 'ru',
 			pageUrl: 'vacancies',
-			updatedAt: new Date(2025, 4, 9),
+			updatedAt,
 			priority: 0.6,
 		}),
 		buildSitemap({
 			language: 'en',
 			pageUrl: 'vacancies',
-			updatedAt: new Date(2025, 4, 9),
+			updatedAt,
 			priority: 0.6,
 		}),
 	]
@@ -109,6 +112,6 @@ const buildSitemap = ({
 				hreflang: 'x-default',
 			},
 		],
-		changefreq: 'weekly',
+		changefreq: 'monthly',
 	}
 }

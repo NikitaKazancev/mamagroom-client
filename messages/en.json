@@ -21,8 +21,8 @@
 		"copyright": "MamagrooM © 2025. All rights reserved."
 	},
 	"General": {
-		"book": "записаться",
-		"search": "Поиск",
+		"book": "book",
+		"search": "Search",
 		"more": "more"
 	},
 	"Procedures": {
@@ -46,7 +46,7 @@
 		"onMap": "MamagrooM on the map of Mytishchi — Yandex Maps",
 		"openMap": "Show map",
 		"reviewWord": "review,reviews,reviews",
-		"generalRating": "Yandex organization rating",
+		"generalRating": "in Yandex",
 		"personalRating": "Personal",
 		"cleanRating": "Cleanliness"
 	},
