@@ -118,9 +118,7 @@ export const Prices = async ({
 								}}
 							/>
 						) : (
-							<div>
-								Для выбранной породы услуги пока не предоставляются
-							</div>
+							<div>{t('noData')}</div>
 						)}
 						<AddItem
 							data={{

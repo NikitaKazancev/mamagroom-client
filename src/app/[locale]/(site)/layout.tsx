@@ -225,8 +225,14 @@ export default async function RootLayout({
 		{
 			'@context': 'https://schema.org',
 			'@type': 'AggregateRating',
-			ratingValue: constants.reviews_rating,
-			reviewCount: constants.reviews_amount,
+			ratingValue: reviewsConstants.reviews_rating,
+			ratingCount: reviewsConstants.reviews_amount,
+			itemReviewed: {
+				'@type': 'Organization',
+				name: tMetadata('siteName'),
+				logo: `${LINKS.site.url}/logos/logo-full-256.png`,
+				url: LINKS.site.url,
+			},
 		},
 		{
 			'@context': 'https://schema.org',
@@ -247,6 +253,12 @@ export default async function RootLayout({
 				ratingValue: review.rating.toString(),
 			},
 			reviewBody: review.description,
+			itemReviewed: {
+				'@type': 'Organization',
+				name: tMetadata('siteName'),
+				logo: `${LINKS.site.url}/logos/logo-full-256.png`,
+				url: LINKS.site.url,
+			},
 		})
 	})
 

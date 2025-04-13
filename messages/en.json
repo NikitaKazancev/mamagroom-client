@@ -37,7 +37,8 @@
 		"procedureCol": "Procedure",
 		"timeCol": "Time",
 		"priceCol": "Price (₽)",
-		"weightCol": "weight (кг)"
+		"weightCol": "weight (кг)",
+		"noData": "Services for the selected breed are not provided yet"
 	},
 	"Vacancies": {
 		"linkText": "More"
