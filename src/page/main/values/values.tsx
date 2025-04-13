@@ -26,7 +26,7 @@ export const MainPageValues = async ({ title }: Props) => {
 	})
 
 	return (
-		<Section className={styles.main}>
+		<Section className={styles.main} id='values'>
 			<Layout>
 				<SettingsConstant
 					data={{

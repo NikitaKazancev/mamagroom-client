@@ -7,9 +7,17 @@ type Props = {
 	pTop?: boolean
 	pBottom?: boolean
 	bg?: boolean
+	id?: string
 }
 
-export const Section = ({ children, className, pTop, pBottom, bg }: Props) => {
+export const Section = ({
+	children,
+	className,
+	pTop,
+	pBottom,
+	bg,
+	id,
+}: Props) => {
 	if (pTop === undefined) {
 		pTop = true
 	}
@@ -29,6 +37,7 @@ export const Section = ({ children, className, pTop, pBottom, bg }: Props) => {
 				pBottom && styles.pBottom,
 				bg && styles.bg
 			)}
+			id={id}
 		>
 			{children}
 		</section>

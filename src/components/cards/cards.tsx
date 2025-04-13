@@ -16,7 +16,7 @@ type Props = {
 
 export const Cards = ({ data, title }: Props) => {
 	return (
-		<Section>
+		<Section id='masters'>
 			<Layout>
 				<SettingsConstant
 					data={{

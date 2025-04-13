@@ -43,7 +43,7 @@ export const Header = ({ translations, navLinks }: Props) => {
 	const theme = 'dark'
 
 	return (
-		<header className={classNames(styles.header, styles.blur)}>
+		<header className={classNames(styles.header, styles.blur)} id='header'>
 			<div className={styles.line}>
 				<Logo theme={theme} />
 				<Navbar theme={theme} navLinks={navLinks} />

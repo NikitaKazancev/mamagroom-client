@@ -111,6 +111,8 @@ export const Input = ({
 				ref={input}
 				autoComplete='on'
 				id={id}
+				aria-label={title}
+				aria-required={required}
 			/>
 			{type === 'number' && (
 				<div className={styles.numberControls}>

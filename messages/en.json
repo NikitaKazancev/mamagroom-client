@@ -4,7 +4,16 @@
 		"siteName": "MamagrooM",
 		"baseKeywords": "mamagroom, grooming, salon, mytishchi, haircut, dogs, cats, procedures, hairdressing, beauty",
 		"me": "Kazantsev N.V.",
-		"category": "procedures"
+		"category": "procedures",
+		"streetAddress": "Novomytishchinsky Prospect, 41b1",
+		"addressLocality": "Mytishchi",
+		"addressRegion": "Moscow Oblast",
+		"headerName": "Header",
+		"headerDescription": "Main navigation, logo and book button",
+		"footerName": "Footer",
+		"footerDescription": "Contacts, map and additional links",
+		"reviewsDescription": "Reviews of clients about our grooming salon",
+		"vacanciesDescription": "Vacancies in our grooming salon"
 	},
 	"Footer": {
 		"address": "Mytishchi, Novomytishchinsky Prospect, 41b1",

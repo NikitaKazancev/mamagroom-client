@@ -20,7 +20,7 @@ export const Footer = async () => {
 	const token = await useToken()
 
 	return (
-		<footer className={styles.footer}>
+		<footer className={styles.footer} id='footer'>
 			<Layout>
 				<div className={styles.content}>
 					<div className={styles.left}>
@@ -34,7 +34,12 @@ export const Footer = async () => {
 							<Link href={LINKS.yandex.map} target='_blank'>
 								{t('address')}
 								<br />
-								{t('workingHours')}
+								<time
+									itemProp='openingHours'
+									dateTime='Tu-Su 10:00-21:00'
+								>
+									{t('workingHours')}
+								</time>
 							</Link>
 							<div className={styles.bottomLinks}>
 								<Link href={`tel:${LINKS.foreign.phone}`}>

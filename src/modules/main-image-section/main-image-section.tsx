@@ -25,7 +25,13 @@ export const MainImageSection = async ({
 	const roles = useRoles()
 
 	return (
-		<Section className={styles.main} bg={false} pTop={false} pBottom={false}>
+		<Section
+			className={styles.main}
+			bg={false}
+			pTop={false}
+			pBottom={false}
+			id='main'
+		>
 			<Image
 				src={fileUrl ? fileUrl : ''}
 				alt={titleData.value}

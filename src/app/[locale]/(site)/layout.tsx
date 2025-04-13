@@ -1,5 +1,6 @@
 import { constantApi } from '@/api/constant/constant.api'
 import { headerNavbarLinkApi } from '@/api/header-navbar-link/header-navbar-link.api'
+import { reviewApi } from '@/api/review/review.api'
 import { LINKS } from '@/constants/links.constants'
 import { MyProvider } from '@/context/my-context-provider'
 import { useRoles } from '@/context/my-server-context'
@@ -8,6 +9,7 @@ import { AcceptCookiePopUpServer } from '@/modules/accept-cookie-pop-up/accept-c
 import { Footer } from '@/modules/footer/footer'
 import { FullTransparentBlock } from '@/modules/full-transparent-block/full-transparent-block'
 import { Header } from '@/modules/header/header'
+import { Reviews } from '@/modules/reviews/reviews'
 import { SettingsForm } from '@/modules/settings/form/settings-form'
 import { MyToaster } from '@/ui/toaster/my-toaster'
 import { Metadata, Viewport } from 'next'
@@ -15,7 +17,6 @@ import { NextIntlClientProvider } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 import { Raleway } from 'next/font/google'
 import './globals.scss'
-import { Reviews } from '@/modules/reviews/reviews'
 
 const inter = Raleway({
 	subsets: ['latin'],
@@ -142,6 +143,113 @@ export default async function RootLayout({
 				? undefined
 				: false,
 	})
+	const tMetadata = await getTranslations({
+		namespace: 'Metadata',
+		locale: params.locale,
+	})
+	const constants = await constantApi.findMany({
+		language: params.locale as Language,
+		type: 'homePage',
+	})
+	const reviewsConstants = await constantApi.findMany({
+		language: params.locale as Language,
+		type: 'reviews',
+	})
+	const reviews = await reviewApi.findMany()
+
+	const schemas = [
+		{
+			'@context': 'https://schema.org',
+			'@type': 'LocalBusiness',
+			name: tMetadata('siteName'),
+			image: `${LINKS.site.url}/logos/logo-full-256.png`,
+			description: constants.homePage_mainDescription,
+			url: `${LINKS.site.url}/${params.locale}`,
+			telephone: LINKS.foreign.phone,
+			address: {
+				'@type': 'PostalAddress',
+				streetAddress: tMetadata('streetAddress'),
+				addressLocality: tMetadata('addressLocality'),
+				addressRegion: 'Московская область',
+				postalCode: '141018',
+				addressCountry: 'RU',
+				telephone: LINKS.foreign.phone,
+			},
+			openingHours: 'Tu-Su 10:00-21:00',
+			openingHoursSpecification: {
+				'@type': 'OpeningHoursSpecification',
+				opens: '10:00',
+				closes: '21:00',
+				dayOfWeek: [
+					'Tuesday',
+					'Wednesday',
+					'Thursday',
+					'Friday',
+					'Saturday',
+					'Sunday',
+				],
+			},
+			geo: {
+				'@type': 'GeoCoordinates',
+				latitude: '55.9016',
+				longitude: '37.7249',
+			},
+			sameAs: [LINKS.foreign.telegram, LINKS.foreign.whatsapp],
+			aggregateRating: {
+				'@type': 'AggregateRating',
+				ratingValue: reviewsConstants.reviews_rating,
+				reviewCount: reviewsConstants.reviews_amount,
+				ratingCount: reviewsConstants.reviews_amount,
+			},
+		},
+		{
+			'@context': 'https://schema.org',
+			'@type': 'WebSite',
+			name: tMetadata('siteName'),
+			url: LINKS.site.url + params.locale,
+		},
+		{
+			'@context': 'https://schema.org',
+			'@type': 'WPHeader',
+			name: tMetadata('headerName'),
+			description: tMetadata('headerDescription'),
+			url: `${LINKS.site.url}/${params.locale}#header`,
+		},
+		{
+			'@context': 'https://schema.org',
+			'@type': 'WebPageElement',
+			name: constants.reviews_title,
+			description: tMetadata('reviewsDescription'),
+			url: `${LINKS.site.url}/${params.locale}#reviews`,
+		},
+		{
+			'@context': 'https://schema.org',
+			'@type': 'AggregateRating',
+			ratingValue: constants.reviews_rating,
+			reviewCount: constants.reviews_amount,
+		},
+		{
+			'@context': 'https://schema.org',
+			'@type': 'WPFooter',
+			name: tMetadata('footerName'),
+			description: tMetadata('footerDescription'),
+			url: `${LINKS.site.url}/${params.locale}#footer`,
+		},
+	] as any[]
+	reviews.forEach(review => {
+		schemas.push({
+			'@context': 'https://schema.org',
+			'@type': 'Review',
+			author: { '@type': 'Person', name: review.name },
+			datePublished: review.date,
+			reviewRating: {
+				'@type': 'Rating',
+				ratingValue: review.rating.toString(),
+			},
+			reviewBody: review.description,
+		})
+	})
+
 	return (
 		<html lang={params.locale}>
 			<head>
@@ -153,6 +261,18 @@ export default async function RootLayout({
 						<MyToaster />
 						<AcceptCookiePopUpServer />
 						<FullTransparentBlock />
+
+						{schemas.map((schema, index) => (
+							<script
+								key={index}
+								type='application/ld+json'
+								suppressHydrationWarning
+								dangerouslySetInnerHTML={{
+									__html: JSON.stringify(schema),
+								}}
+							/>
+						))}
+
 						<Header
 							translations={{ book: t('book') }}
 							navLinks={navLinks}

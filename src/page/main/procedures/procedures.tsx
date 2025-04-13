@@ -22,7 +22,7 @@ export const MainPageProcedures = ({
 	catsDescription,
 }: Props) => {
 	return (
-		<Section className={styles.main}>
+		<Section className={styles.main} id='procedures'>
 			<Layout className={styles.layout}>
 				<div className={styles.twoCols}>
 					<div className={styles.titles}>
@@ -107,8 +107,16 @@ export const MainPageProcedures = ({
 						</SettingsConstant>
 					</div>
 					<div className={styles.videos}>
-						<Video src='/video/dogs/video.mp4' className={styles.video} />
-						<Video src='/video/cats/video.mp4' className={styles.video} />
+						<Video
+							src='/video/dogs/video.mp4'
+							className={styles.video}
+							label={dogsTitle}
+						/>
+						<Video
+							src='/video/cats/video.mp4'
+							className={styles.video}
+							label={catsTitle}
+						/>
 					</div>
 				</div>
 				<div className={styles.oneCol}>
@@ -151,7 +159,11 @@ export const MainPageProcedures = ({
 						>
 							<p className={styles.description}>{dogsDescription}</p>
 						</SettingsConstant>
-						<Video src='/video/dogs/video.mp4' className={styles.video} />
+						<Video
+							src='/video/dogs/video.mp4'
+							className={styles.video}
+							label={dogsTitle}
+						/>
 					</article>
 					<article className={styles.elem}>
 						<SettingsConstant
@@ -192,7 +204,11 @@ export const MainPageProcedures = ({
 						>
 							<p className={styles.description}>{catsDescription}</p>
 						</SettingsConstant>
-						<Video src='/video/cats/video.mp4' className={styles.video} />
+						<Video
+							src='/video/cats/video.mp4'
+							className={styles.video}
+							label={catsTitle}
+						/>
 					</article>
 				</div>
 			</Layout>

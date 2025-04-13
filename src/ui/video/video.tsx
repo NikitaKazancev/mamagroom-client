@@ -7,9 +7,10 @@ import styles from './video.module.scss'
 type Props = {
 	src: string
 	className?: string
+	label?: string
 }
 
-export const Video = ({ className, src }: Props) => {
+export const Video = ({ className, src, label }: Props) => {
 	const videoRef = useRef<HTMLVideoElement | null>(null)
 
 	useEffect(() => {
@@ -27,6 +28,7 @@ export const Video = ({ className, src }: Props) => {
 			className={classNames(styles.video, className)}
 			controls
 			playsInline
+			aria-label={label}
 		>
 			<source src={src} type='video/mp4' />
 		</video>

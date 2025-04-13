@@ -16,7 +16,7 @@ export const Feed = ({ data }: Props) => {
 	const t = useTranslations('Vacancies')
 
 	return (
-		<Section>
+		<Section id='vacancies'>
 			<Layout>
 				<ul className={styles.main}>
 					{data.map(item => (

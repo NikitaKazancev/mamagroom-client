@@ -36,6 +36,8 @@ export const Select = ({
 				required={required}
 				value={value}
 				onChange={onChange}
+				aria-label={title}
+				aria-required={required}
 			>
 				<option value=''>Выберите:</option>
 				{options.map(({ name, value }) => (

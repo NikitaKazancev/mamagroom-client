@@ -22,7 +22,7 @@ export const MainPageAboutUs = async ({ title, description }: Props) => {
 	})
 
 	return (
-		<Section className={styles.main} pTop={false}>
+		<Section className={styles.main} pTop={false} id='about'>
 			<Layout>
 				<div className={styles.content}>
 					<section className={styles.left}>

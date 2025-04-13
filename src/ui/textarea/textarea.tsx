@@ -32,6 +32,8 @@ export const TextArea = ({
 				onChange={onChange}
 				autoComplete='on'
 				id={id}
+				aria-label={title}
+				aria-required={required}
 			/>
 		</div>
 	)
