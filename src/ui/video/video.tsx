@@ -8,9 +8,10 @@ type Props = {
 	src: string
 	className?: string
 	label?: string
+	thumbnail?: string
 }
 
-export const Video = ({ className, src, label }: Props) => {
+export const Video = ({ className, src, label, thumbnail }: Props) => {
 	const videoRef = useRef<HTMLVideoElement | null>(null)
 
 	useEffect(() => {
@@ -29,6 +30,7 @@ export const Video = ({ className, src, label }: Props) => {
 			controls
 			playsInline
 			aria-label={label}
+			poster={thumbnail}
 		>
 			<source src={src} type='video/mp4' />
 		</video>

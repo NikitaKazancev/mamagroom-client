@@ -53,6 +53,7 @@ export default async function Home({
 			uploadDate: '2025-04-13',
 			contentUrl: `${LINKS.site.url}/video/dogs/video.mp4`,
 			embedUrl: `${LINKS.site.url}/${params.locale}#procedures`,
+			thumbnailUrl: `${LINKS.site.url}/video/dogs/thumbnail.webp`,
 		},
 		{
 			'@context': 'https://schema.org',
@@ -62,6 +63,7 @@ export default async function Home({
 			uploadDate: '2025-04-13',
 			contentUrl: `${LINKS.site.url}/video/cats/video.mp4`,
 			embedUrl: `${LINKS.site.url}/${params.locale}#procedures`,
+			thumbnailUrl: `${LINKS.site.url}/video/cats/thumbnail.webp`,
 		},
 		{
 			'@context': 'https://schema.org',

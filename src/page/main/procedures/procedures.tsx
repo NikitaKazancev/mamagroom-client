@@ -111,11 +111,13 @@ export const MainPageProcedures = ({
 							src='/video/dogs/video.mp4'
 							className={styles.video}
 							label={dogsTitle}
+							thumbnail='/video/dogs/thumbnail.webp'
 						/>
 						<Video
 							src='/video/cats/video.mp4'
 							className={styles.video}
 							label={catsTitle}
+							thumbnail='/video/cats/thumbnail.webp'
 						/>
 					</div>
 				</div>
@@ -163,6 +165,7 @@ export const MainPageProcedures = ({
 							src='/video/dogs/video.mp4'
 							className={styles.video}
 							label={dogsTitle}
+							thumbnail='/video/dogs/thumbnail.webp'
 						/>
 					</article>
 					<article className={styles.elem}>
@@ -208,6 +211,7 @@ export const MainPageProcedures = ({
 							src='/video/cats/video.mp4'
 							className={styles.video}
 							label={catsTitle}
+							thumbnail='/video/cats/thumbnail.webp'
 						/>
 					</article>
 				</div>
