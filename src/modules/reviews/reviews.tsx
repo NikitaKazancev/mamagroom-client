@@ -135,7 +135,7 @@ export const Reviews = async () => {
 					</aside>
 				)}
 				<Link href={LINKS.yandex.map} target='_blank'>
-					<article className={styles.yandex}>
+					<div className={styles.yandex}>
 						<div
 							className={classNames(
 								styles.ratingBlock,
@@ -192,9 +192,9 @@ export const Reviews = async () => {
 								t('reviewWord')
 							)}`}</span>
 						</div>
-					</article>
+					</div>
 				</Link>
-				<article className={styles.wrapper}>
+				<div className={styles.wrapper}>
 					<div className={styles.container}>
 						<ul className={styles.list}>
 							{reviews.map(review => {
@@ -240,7 +240,7 @@ export const Reviews = async () => {
 							</li>
 						</ul>
 					</div>
-				</article>
+				</div>
 				<AddItem
 					data={{
 						id: '',

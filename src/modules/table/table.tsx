@@ -161,7 +161,6 @@ export const Table = ({
 		return (
 			<td
 				key={column}
-				scope='col'
 				className={classNames(
 					index === 0 && styles.firstColumn,
 					'relative'

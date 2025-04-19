@@ -34,12 +34,7 @@ export const Footer = async () => {
 							<Link href={LINKS.yandex.map} target='_blank'>
 								{t('address')}
 								<br />
-								<time
-									itemProp='openingHours'
-									dateTime='Tu-Su 10:00-21:00'
-								>
-									{t('workingHours')}
-								</time>
+								<time>{t('workingHours')}</time>
 							</Link>
 							<div className={styles.bottomLinks}>
 								<Link href={`tel:${LINKS.foreign.phone}`}>

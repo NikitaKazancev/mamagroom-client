@@ -100,7 +100,7 @@ export const Prices = async ({
 							← {type === 'dogs' ? t('dogsLink') : t('catsLink')}
 						</Link>
 					</nav>
-					<article className={styles.prices}>
+					<div className={styles.prices}>
 						{resPrices.length > 0 ? (
 							<Table
 								data={resPrices}
@@ -135,7 +135,7 @@ export const Prices = async ({
 							procedures={procedures}
 							formTitle='Добавление цены'
 						/>
-					</article>
+					</div>
 				</Layout>
 			</Section>
 		</>

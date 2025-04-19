@@ -29,7 +29,7 @@ export const Slider = ({ data }: Props) => {
 	}
 
 	return (
-		<article className={styles.slider}>
+		<div className={styles.slider}>
 			<button className={styles.leftToggle} onClick={prevSlide}>
 				❮
 			</button>
@@ -71,6 +71,6 @@ export const Slider = ({ data }: Props) => {
 				className={styles.addItem}
 				formTitle='Добавление слайда'
 			/>
-		</article>
+		</div>
 	)
 }

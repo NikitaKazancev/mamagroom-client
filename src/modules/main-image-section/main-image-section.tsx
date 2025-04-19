@@ -37,7 +37,7 @@ export const MainImageSection = async ({
 				alt={titleData.value}
 				priority
 				fill
-				sizes='100wv'
+				sizes='100vw'
 			/>
 			{roles.filePostPut && (
 				<Settings

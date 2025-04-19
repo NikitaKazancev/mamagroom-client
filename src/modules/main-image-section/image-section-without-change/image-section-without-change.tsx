@@ -16,7 +16,7 @@ export const ImageSectionWithoutChange = async ({ title, fileUrl }: Props) => {
 				alt='МамагруМ'
 				priority
 				fill
-				sizes='100wv'
+				sizes='100vw'
 			/>
 			<Layout>
 				<div className={styles.headers}>

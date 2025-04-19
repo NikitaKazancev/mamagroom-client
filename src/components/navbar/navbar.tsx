@@ -16,10 +16,7 @@ type Props = {
 
 export const Navbar = ({ theme, navLinks, className }: Props) => {
 	return (
-		<nav
-			className={classNames(styles.navbar, styles[theme], className)}
-			role='navigation'
-		>
+		<nav className={classNames(styles.navbar, styles[theme], className)}>
 			<ul className={styles.list}>
 				{navLinks.map((data, index) => {
 					const { name, link, sublinks } = data

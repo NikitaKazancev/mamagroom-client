@@ -145,7 +145,7 @@ export const buildMetadata = async ({
 		title,
 		description,
 		alternates: {
-			canonical: '.',
+			canonical: `/ru/${pageName}`,
 			languages: {
 				ru: `/ru/${pageName}`,
 				en: `/en/${pageName}`,

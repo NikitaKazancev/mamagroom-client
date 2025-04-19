@@ -64,19 +64,34 @@ export async function generateMetadata({
 		},
 		description,
 		icons: {
-			icon: '/logos/logo-256.png',
-			shortcut: '/logos/logo-256.png',
-			apple: '/logos/logo-256.png',
-			other: {
-				rel: 'touch-icons',
-				url: '/logos/logo-256.png',
-				sizes: '256х256',
-				type: 'image/png',
-			},
+			icon: [
+				{
+					url: '/logos/logo-32.png',
+					sizes: '32x32',
+					type: 'image/png',
+				},
+				{
+					url: '/logos/logo-192.png',
+					sizes: '192x192',
+					type: 'image/png',
+				},
+				{
+					url: '/logos/logo-256.png',
+					sizes: '256x256',
+					type: 'image/png',
+				},
+				{
+					url: '/logos/logo-full-512.png',
+					sizes: '512x512',
+					type: 'image/png',
+				},
+			],
+			shortcut: '/logos/logo-32.png',
+			apple: '/logos/logo-180.png',
 		},
 		metadataBase: new URL(LINKS.site.url),
 		alternates: {
-			canonical: '.',
+			canonical: '/ru',
 			languages: {
 				ru: '/ru',
 				en: '/en',
