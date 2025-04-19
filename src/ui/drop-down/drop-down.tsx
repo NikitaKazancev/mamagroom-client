@@ -89,7 +89,7 @@ export const DropDown = ({
 				onClick={onToggle}
 				aria-haspopup='true'
 				aria-expanded={isShown}
-				aria-controls={id}
+				aria-controls={itemsAreString ? id : undefined}
 			>
 				{titleElement}
 			</button>
