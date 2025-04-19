@@ -10,7 +10,7 @@
 	"description": "МамагруМ - груминг салон в Мытищах | mamagroom.ru",
 	"icons": [
 		{
-			"src": "/logos/logo-256.png",
+			"src": "/logos/logo-full-256.png",
 			"sizes": "256x256",
 			"type": "image/png",
 			"purpose": "any maskable"

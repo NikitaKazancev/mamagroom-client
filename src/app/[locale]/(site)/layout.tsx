@@ -76,7 +76,7 @@ export async function generateMetadata({
 					type: 'image/png',
 				},
 				{
-					url: '/logos/logo-256.png',
+					url: '/logos/logo-full-256.png',
 					sizes: '256x256',
 					type: 'image/png',
 				},
@@ -86,7 +86,6 @@ export async function generateMetadata({
 					type: 'image/png',
 				},
 			],
-			shortcut: '/logos/logo-32.png',
 			apple: '/logos/logo-180.png',
 		},
 		metadataBase: new URL(LINKS.site.url),
