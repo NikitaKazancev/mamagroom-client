@@ -7,6 +7,7 @@ import {
 } from '@/modules/settings/utils/store'
 import { Input } from '@/ui/input/input'
 import { TextArea } from '@/ui/textarea/textarea'
+import { useId } from 'react'
 
 export const SettingsVacancyForm = ({
 	data,
@@ -15,6 +16,8 @@ export const SettingsVacancyForm = ({
 	data: SettingsFormData
 	setData: SettingFormSetData
 }) => {
+	const id = useId()
+
 	if (!data) return
 	const localData = data as VacancyDto
 
@@ -41,6 +44,7 @@ export const SettingsVacancyForm = ({
 				value={localData.description}
 				onChange={onChange}
 				required
+				id={id}
 			/>
 			<Input
 				name='link'

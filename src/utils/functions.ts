@@ -3,10 +3,10 @@ import { ConstantType } from '@/api/constant/constant.types'
 import { fileApi, FilePath } from '@/api/file/file.api'
 import { LINKS } from '@/constants/links.constants'
 import { Language } from '@/i18n/types'
-import imageCompression from 'browser-image-compression'
+import imageCompression from '@/utils/dynamics/browser-image-compression'
+import myToast from '@/utils/dynamics/toast'
 import { format } from 'date-fns'
 import { Metadata, ResolvingMetadata } from 'next'
-import toast from 'react-hot-toast'
 import { CamelToKebab, KebabToCamel } from './types'
 
 export const kebabToCamel = <T extends string>(str: T): KebabToCamel<T> => {
@@ -99,6 +99,7 @@ export const compressImage = async (formData: FormData, toastId: string) => {
 	}
 
 	if (file) {
+		const toast = await myToast()
 		toast.loading('Обработка файла...', {
 			id: toastId,
 		})

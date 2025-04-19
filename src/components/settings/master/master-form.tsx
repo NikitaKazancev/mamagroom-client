@@ -7,6 +7,7 @@ import {
 } from '@/modules/settings/utils/store'
 import { Input } from '@/ui/input/input'
 import { TextArea } from '@/ui/textarea/textarea'
+import { useId } from 'react'
 
 export const SettingsMasterForm = ({
 	data,
@@ -17,6 +18,8 @@ export const SettingsMasterForm = ({
 	setData: SettingFormSetData
 	method?: 'post' | 'put'
 }) => {
+	const id = useId()
+
 	if (!data) return
 	const localData = data as MasterDto
 
@@ -50,6 +53,7 @@ export const SettingsMasterForm = ({
 				title='Описание'
 				required
 				value={localData.description}
+				id={id}
 			/>
 			<Input
 				name='file'

@@ -3,8 +3,8 @@
 import { ToastWithButton } from '@/components/toast-with-button/toast-with-button'
 import { setCookie } from '@/utils/cookies/cookies-client.api'
 import { COOKIES } from '@/utils/cookies/cookies.general'
+import myToast from '@/utils/dynamics/toast'
 import { useEffect, useRef } from 'react'
-import toast from 'react-hot-toast'
 
 type Props = {
 	openOnMount?: boolean
@@ -25,16 +25,20 @@ export const AcceptCookiePopUp = ({ openOnMount, message, accept }: Props) => {
 		}
 
 		toastShownRef.current = true
-		toast.custom(
-			<ToastWithButton
-				text={message}
-				buttonText={accept}
-				onClick={acceptCookie}
-			/>,
-			{
-				duration: Infinity,
-			}
-		)
+		const func = async () => {
+			const toast = await myToast()
+			toast.custom(
+				<ToastWithButton
+					text={message}
+					buttonText={accept}
+					onClick={acceptCookie}
+				/>,
+				{
+					duration: Infinity,
+				}
+			)
+		}
+		func()
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 

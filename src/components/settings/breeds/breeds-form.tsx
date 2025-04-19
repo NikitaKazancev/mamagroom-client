@@ -7,6 +7,7 @@ import {
 } from '@/modules/settings/utils/store'
 import { Input } from '@/ui/input/input'
 import { Select } from '@/ui/select/select'
+import { useId } from 'react'
 
 export const SettingsBreedForm = ({
 	data,
@@ -15,6 +16,8 @@ export const SettingsBreedForm = ({
 	data: SettingsFormData
 	setData: SettingFormSetData
 }) => {
+	const id = useId()
+
 	if (!data) return
 	const localData = data as BreedDto
 
@@ -47,6 +50,7 @@ export const SettingsBreedForm = ({
 				]}
 				value={localData.type}
 				onChange={onChange}
+				id={id}
 			/>
 		</>
 	)

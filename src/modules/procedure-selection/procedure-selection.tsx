@@ -8,10 +8,11 @@ import { Input } from '@/ui/input/input'
 import { TextArea } from '@/ui/textarea/textarea'
 import classNames from 'classnames'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useId, useState } from 'react'
 import styles from './procedure-selection.module.scss'
 
 export const ProcedureSelection = () => {
+	const id = useId()
 	const [isOpen, setIsOpen] = useState(false)
 	const [loading, setLoading] = useState(false)
 	const [dataFromAI, setDataFromAI] = useState<{
@@ -59,6 +60,7 @@ export const ProcedureSelection = () => {
 					title='Описание питомца'
 					required
 					className={styles.textarea}
+					id={id}
 				/>
 				<Input
 					name='file'

@@ -35,8 +35,8 @@ import useSettingsStore, {
 import { CheckIcon } from '@/ui/icons/check/check'
 import { ExitIcon } from '@/ui/icons/exit/exit'
 import { SettingsIcon } from '@/ui/icons/settings/settings'
+import myToast from '@/utils/dynamics/toast'
 import classNames from 'classnames'
-import toast from 'react-hot-toast'
 import styles from './settings.module.scss'
 
 export const isSettingElem = (elem: HTMLElement, containerClass: string) => {
@@ -99,6 +99,8 @@ export const Settings = ({
 	}
 
 	const onDelete = async () => {
+		const toast = await myToast()
+
 		const toastId = toast.loading('Удаление...')
 		if (type === 'header-navbar-link') {
 			await deleteHeaderNavbarLink((data as HeaderNavbarLinkDto).id)
@@ -130,6 +132,8 @@ export const Settings = ({
 	}
 
 	const onRecover = async () => {
+		const toast = await myToast()
+
 		const toastId = toast.loading('Восстановление...')
 		if (type === 'header-navbar-link') {
 			await recoverHeaderNavbarLink(data as HeaderNavbarLinkDto)

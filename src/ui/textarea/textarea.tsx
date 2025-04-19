@@ -1,5 +1,4 @@
 import classNames from 'classnames'
-import { v4 as uuidv4 } from 'uuid'
 import styles from './textarea.module.scss'
 
 export const TextArea = ({
@@ -10,6 +9,7 @@ export const TextArea = ({
 	onChange,
 	theme = 'white',
 	className,
+	id,
 }: {
 	title: string
 	name: string
@@ -18,9 +18,8 @@ export const TextArea = ({
 	onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
 	theme?: 'white' | 'main'
 	className?: string
+	id: string
 }) => {
-	const id = uuidv4()
-
 	return (
 		<div className={classNames(styles.container, styles[theme], className)}>
 			<label htmlFor={id}>{title}</label>

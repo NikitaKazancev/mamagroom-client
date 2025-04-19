@@ -8,6 +8,7 @@ import {
 } from '@/modules/settings/utils/store'
 import { Input } from '@/ui/input/input'
 import { Select } from '@/ui/select/select'
+import { useId } from 'react'
 
 export const SettingsPriceForm = ({
 	data,
@@ -18,6 +19,8 @@ export const SettingsPriceForm = ({
 	setData: SettingFormSetData
 	procedures?: Procedure[]
 }) => {
+	const id = useId()
+
 	if (!data || !procedures) return
 	const localData = data as PriceDto
 
@@ -40,6 +43,7 @@ export const SettingsPriceForm = ({
 					value: data.id,
 				}))}
 				value={localData.procedureId}
+				id={id}
 			/>
 			<Input
 				name='weight'

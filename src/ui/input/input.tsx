@@ -1,8 +1,7 @@
 'use client'
 
 import classNames from 'classnames'
-import { HTMLInputTypeAttribute, useRef } from 'react'
-import { v4 as uuidv4 } from 'uuid'
+import { HTMLInputTypeAttribute, useId, useRef } from 'react'
 import styles from './input.module.scss'
 
 export const Input = ({
@@ -61,6 +60,7 @@ export const Input = ({
 		className,
 	}
 
+	const id = useId()
 	const input = useRef<HTMLInputElement>(null)
 
 	if (onChange) {
@@ -93,8 +93,6 @@ export const Input = ({
 		decreaseValue = () => changeNumberValue(-1)
 		increaseValue = () => changeNumberValue(1)
 	}
-
-	const id = uuidv4()
 
 	return (
 		<div

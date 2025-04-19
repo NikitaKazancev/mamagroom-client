@@ -3,8 +3,7 @@
 import { Link } from '@/i18n/routing'
 import useFullTransparentBlockStore from '@/modules/full-transparent-block/utils/store'
 import classNames from 'classnames'
-import { useEffect, useState } from 'react'
-import { v4 as uuidv4 } from 'uuid'
+import { useEffect, useId, useState } from 'react'
 import styles from './drop-down.module.scss'
 
 type Props = {
@@ -72,7 +71,7 @@ export const DropDown = ({
 		}
 	}
 
-	const id = uuidv4()
+	const id = useId()
 	const itemsAreString = items.length && typeof items[0] === 'string'
 
 	return (

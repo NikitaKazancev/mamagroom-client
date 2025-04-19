@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@/ui/button/button'
-import toast from 'react-hot-toast'
+import myToast from '@/utils/dynamics/toast'
 import styles from './toast-with-button.module.scss'
 
 type Props = {
@@ -11,8 +11,9 @@ type Props = {
 }
 
 export const ToastWithButton = ({ text, buttonText, onClick }: Props) => {
-	const handleClick = () => {
+	const handleClick = async () => {
 		onClick()
+		const toast = await myToast()
 		toast.remove()
 	}
 

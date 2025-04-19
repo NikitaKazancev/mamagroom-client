@@ -33,10 +33,10 @@ import { AuthFormBtns } from '@/modules/auth/auth-form-btns'
 import { Button } from '@/ui/button/button'
 import { ExitIcon } from '@/ui/icons/exit/exit'
 import { setToken } from '@/utils/cookies/cookies-client.api'
+import myToast from '@/utils/dynamics/toast'
 import { compressImage, isFileReceived } from '@/utils/functions'
 import classNames from 'classnames'
 import { useRef } from 'react'
-import toast from 'react-hot-toast'
 import useSettingsStore, { SettingsFormResultType } from '../utils/store'
 import styles from './settings-form.module.scss'
 
@@ -79,6 +79,7 @@ export const SettingsForm = () => {
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 		const formData = new FormData(e.currentTarget)
+		const toast = await myToast()
 
 		if (type === 'auth') {
 			await toast.promise(login(formData), {

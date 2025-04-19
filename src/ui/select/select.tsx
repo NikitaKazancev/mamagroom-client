@@ -1,5 +1,4 @@
 import classNames from 'classnames'
-import { v4 as uuidv4 } from 'uuid'
 import styles from './select.module.scss'
 
 type Props = {
@@ -12,6 +11,7 @@ type Props = {
 	className?: string
 	required?: boolean
 	value?: string
+	id: string
 	onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
 }
 
@@ -23,9 +23,8 @@ export const Select = ({
 	required,
 	value = '',
 	onChange,
+	id,
 }: Props) => {
-	const id = uuidv4()
-
 	return (
 		<div className={classNames(styles.wrapper, className)}>
 			<label htmlFor={id}>{title}</label>

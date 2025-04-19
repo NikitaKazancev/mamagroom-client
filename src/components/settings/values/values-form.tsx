@@ -7,6 +7,7 @@ import {
 } from '@/modules/settings/utils/store'
 import { Input } from '@/ui/input/input'
 import { TextArea } from '@/ui/textarea/textarea'
+import { useId } from 'react'
 
 export const SettingsValueForm = ({
 	data,
@@ -17,6 +18,8 @@ export const SettingsValueForm = ({
 	setData: SettingFormSetData
 	method?: 'post' | 'put'
 }) => {
+	const id = useId()
+
 	if (!data) return
 	const localData = data as ValueDto
 
@@ -43,6 +46,7 @@ export const SettingsValueForm = ({
 				title='Описание'
 				required
 				value={localData.description}
+				id={id}
 			/>
 			<Input
 				name='order'

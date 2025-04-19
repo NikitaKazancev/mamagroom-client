@@ -8,6 +8,7 @@ import {
 } from '@/modules/settings/utils/store'
 import { Input } from '@/ui/input/input'
 import { TextArea } from '@/ui/textarea/textarea'
+import { useId } from 'react'
 
 export const SettingsConstantForm = ({
 	title,
@@ -20,6 +21,8 @@ export const SettingsConstantForm = ({
 	setData: SettingFormSetData
 	type: SettingsFormType
 }) => {
+	const id = useId()
+
 	if (!title || !data) return null
 	const localData = data as ConstantDto
 
@@ -46,6 +49,7 @@ export const SettingsConstantForm = ({
 				required
 				value={localData.value}
 				onChange={onChange}
+				id={id}
 			/>
 		)
 	}
