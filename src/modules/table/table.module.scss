@@ -1,16 +1,40 @@
 .table {
-	@apply min-w-full bg-white rounded-lg shadow-md overflow-hidden;
+	@apply min-w-full bg-white shadow-md rounded-xl;
 
 	&.expandedItemIsOpen {
-		@apply rounded-none rounded-ss-lg rounded-se-lg;
+		@apply rounded-none rounded-tl-xl rounded-tr-xl;
+
+		.tbody {
+			tr {
+				&:last-child {
+					td:first-child {
+						@apply rounded-none;
+					}
+					td:last-child {
+						@apply rounded-none;
+					}
+				}
+			}
+		}
 	}
 }
 
 .thead {
 	@apply bg-secondary-700;
 
-	th {
-		@apply px-6 py-3 text-left uppercase tracking-wider text-white;
+	tr {
+		@apply overflow-hidden rounded-tl-xl rounded-tr-xl;
+
+		th {
+			@apply px-6 py-3 text-left uppercase tracking-wider text-white;
+
+			&:first-child {
+				@apply rounded-tl-xl;
+			}
+			&:last-child {
+				@apply rounded-tr-xl;
+			}
+		}
 	}
 }
 
@@ -21,6 +45,15 @@
 		&:hover,
 		&:focus {
 			@apply bg-gray-50;
+		}
+
+		&:last-child {
+			td:first-child {
+				@apply rounded-bl-xl;
+			}
+			td:last-child {
+				@apply rounded-br-xl;
+			}
 		}
 	}
 
@@ -35,6 +68,35 @@
 
 		&.firstColumn {
 			@apply font-bold text-gray-700;
+		}
+
+		.descriptionWrapper {
+			@apply relative;
+
+			.descriptionBlock {
+				@apply font-normal bg-main-100 h-6 w-6 rounded-xl inline-flex justify-center items-center absolute overflow-y-auto overflow-x-hidden text-sm;
+				left: calc(100% + 6px);
+				font-style: normal;
+				z-index: 1;
+
+				.openDescription {
+					@apply inline-block;
+				}
+				.description {
+					@apply hidden;
+				}
+
+				&:hover {
+					@apply inline-block h-52 w-60 p-2;
+
+					.openDescription {
+						@apply hidden;
+					}
+					.description {
+						@apply inline-block;
+					}
+				}
+			}
 		}
 	}
 
@@ -91,6 +153,12 @@
 	.tbody {
 		td {
 			@apply px-2 py-1;
+
+			.descriptionWrapper {
+				.descriptionBlock {
+					@apply h-5 w-5;
+				}
+			}
 		}
 	}
 }

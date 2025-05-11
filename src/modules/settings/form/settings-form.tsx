@@ -244,18 +244,20 @@ export const SettingsForm = () => {
 					</button>
 				</div>
 				<form onSubmit={handleSubmit} className={styles.form} ref={form}>
-					{Component && (
-						<Component
-							{...componentProps}
-							data={data}
-							setData={setData}
-							type={type}
-							headerNavbarLinks={headerNavbarLinks}
-							procedures={procedures}
-							method={method}
-							formTitle={formTitle}
-						/>
-					)}
+					<div className={styles.fields}>
+						{Component && (
+							<Component
+								{...componentProps}
+								data={data}
+								setData={setData}
+								type={type}
+								headerNavbarLinks={headerNavbarLinks}
+								procedures={procedures}
+								method={method}
+								formTitle={formTitle}
+							/>
+						)}
+					</div>
 					<div className={styles.buttons}>
 						{type === 'auth' && (
 							<div className={styles.leftBtns}>

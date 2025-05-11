@@ -26,13 +26,14 @@ export const TextArea = ({
 			<textarea
 				required={required}
 				value={value}
-				className={styles.input}
+				className={styles.textarea}
 				name={name}
 				onChange={onChange}
 				autoComplete='on'
 				id={id}
 				aria-label={title}
 				aria-required={required}
+				placeholder={!required ? 'Не обязательно' : ''}
 			/>
 		</div>
 	)

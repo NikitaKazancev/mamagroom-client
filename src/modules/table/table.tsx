@@ -110,6 +110,21 @@ export const Table = ({
 			value = formatDate(itemData as Date)
 		} else if (column === 'procedure') {
 			value = (itemData as unknown as { name: string }).name
+
+			const description = item[
+				'description' as keyof typeof item
+			] as unknown as string
+			if (description) {
+				value = (
+					<span className={styles.descriptionWrapper}>
+						{value}
+						<div className={styles.descriptionBlock}>
+							<div className={styles.openDescription}>?</div>
+							<div className={styles.description}>{description}</div>
+						</div>
+					</span>
+				)
+			}
 		} else if (column === 'weight' && Array.isArray(itemData)) {
 			value = itemData.join(' / ')
 		} else if (column === 'time' && Array.isArray(itemData)) {
@@ -117,19 +132,26 @@ export const Table = ({
 		} else if (typeof itemData === 'boolean') {
 			value = itemData ? 'Да' : 'Нет'
 		} else if (column === 'price' && Array.isArray(itemData)) {
-			const weight = item[
-				'weight' as keyof typeof item
-			] as unknown as number[]
-
-			if (weight.length > 1) {
-				value = (
-					<div className={styles.textList}>
-						<span>{itemData.join(' / ')}</span>
-						<span>({weight.map(w => `${w}кг`).join(' / ')})</span>
-					</div>
-				)
+			const maxPrice = item[
+				'maxPrice' as keyof typeof item
+			] as unknown as number
+			if (maxPrice) {
+				value = `${itemData} — ${maxPrice}`
 			} else {
-				value = itemData.join(' / ')
+				const weight = item[
+					'weight' as keyof typeof item
+				] as unknown as number[]
+
+				if (weight.length > 1) {
+					value = (
+						<div className={styles.textList}>
+							<span>{itemData.join(' / ')}</span>
+							<span>({weight.map(w => `${w}кг`).join(' / ')})</span>
+						</div>
+					)
+				} else {
+					value = itemData.join(' / ')
+				}
 			}
 		} else if (column === 'roles' && Array.isArray(itemData)) {
 			value = (
@@ -258,30 +280,6 @@ export const Table = ({
 			{expandedItem && (
 				<div className={styles.expandedItem}>{expandedItemBody}</div>
 			)}
-
-			{/* {isPrice && (
-				<div className={styles.settingsWrapper}>
-					{data.map((item, index) => (
-						<SettingsPrice
-							data={{
-								...item,
-								price: (item as MergedPrice).price[0],
-								weight: (item as MergedPrice).weight[0],
-								time: (item as MergedPrice).time[0],
-								breedId: (item as MergedPrice).breedId,
-								procedureId: (item as MergedPrice).procedure.id,
-							}}
-							key={index}
-							iconClassname={styles.settings}
-							procedures={(props as any).procedures}
-							theme='dark'
-							formTitle={
-								isUser ? 'Изменение пользователя' : 'Изменение цены'
-							}
-						/>
-					))}
-				</div>
-			)} */}
 		</div>
 	)
 }

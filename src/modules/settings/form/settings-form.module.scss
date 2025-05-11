@@ -25,6 +25,11 @@
 		.form {
 			@apply flex flex-col gap-3;
 
+			.fields {
+				@apply flex flex-col gap-3 overflow-y-auto pr-1;
+				max-height: 400px;
+			}
+
 			.buttons {
 				@apply w-full flex justify-between mt-1 gap-2;
 

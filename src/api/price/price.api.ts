@@ -3,6 +3,8 @@ import { request } from '../request'
 export type Price = {
 	id: string
 	price: number
+	maxPrice: number
+	description: string
 	createdAt: Date
 	updatedAt: Date
 	isDeleted: boolean
@@ -23,6 +25,8 @@ export type PriceDto = {
 	weight?: number
 	time?: number
 	price: number
+	maxPrice?: number
+	description?: string
 	isDeleted?: boolean
 }
 
