@@ -1,36 +1,26 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Главная страница
 
-## Getting Started
+    При входе на главную страницу сайта можно увидеть, что сверху расположены навигационные ссылки. Они необходимы для перехода между страницами сайта. Также в правой части такой «шапки» сайта можно увидеть возможность изменить язык на сайте, написать администратору через социальную сеть или записаться на процедуру (услугу).
 
-First, run the development server:
+    При прокрутке страницы сначала можно увидеть секцию «О нас». В правой части этой секции расположен слайдер, с помощью которого можно просмотреть картинки с интересными моментами из жизни нашего салона. Далее располагается секция с описанием предоставляемых процедур для собак и для кошек, здесь же можно посмотреть видео-презентации процесса стрижки.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+    При последующей прокрутке будет показана секция «наши ценности». На этой секции расположены ценности, которых придерживается наш салон и все его сотрудники. Выполнено это в виде «кубов», которые можно вращать путем наведения мышки на интересующую вас ценность. Далее располагается секция отзывов от наших клиентов из сервисов Яндекса.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+    В конце страницы можно увидеть секцию с контактной информацией о салоне и его местоположение на Яндекс.Картах. Карта интерактивная, поэтому можно прямо с сайта перейти в Карты и построить маршрут до нашего салона.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Процедуры и цены
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+    Страница процедур выполнена в виде списка пород, поскольку необходимо сначала выбрать вашу породу, чтобы посмотреть процедуры, которые предоставляются для неё. Для удобства на этой странице все породы рассортированы по алфавиту, а также тут есть фильтрация по типу породы: мелкая, средняя или крупная – и также есть поиск по названию породы.
 
-## Learn More
+    При клике на конкретную породу у вас открывается таблица цен на процедуры для этой породе. Цены показаны в разрезе веса породы, также вместе с ценой показывается примерное время предоставления услуги.
 
-To learn more about Next.js, take a look at the following resources:
+## Страница мастеров
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    Мастера – это наша команда, большая часть которой занимается стрижкой ваших питомцев. Поэтому на этой странице вы можете с ними познакомиться и прочитать про их заслуги.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+    Если же вам критично выбрать конкретного мастера для работы именно с вашей редкой породой, то обратитесь с таким вопросом к администратору, например, через WhatsApp или Telegram, ссылки на которые расположены в правой части шапки сайта.
 
-## Deploy on Vercel
+## Страница вакансий
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+    Если же вы пришли к нам не как клиент, а как потенциальный сотрудник, например, грумер, администор или даже стажер, то вы можете посмотреть открытые вакансии на этой странице. Тут описаны основные требования к вакансии и есть ссылка на неё на Авито/hh.ru.
+    Мы всегда ждем новых талантов в нашу команду.
