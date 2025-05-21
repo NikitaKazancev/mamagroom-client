@@ -10,9 +10,9 @@ import { AcceptCookiePopUpServer } from '@/modules/accept-cookie-pop-up/accept-c
 import { Footer } from '@/modules/footer/footer'
 import { FullTransparentBlock } from '@/modules/full-transparent-block/full-transparent-block'
 import { Header } from '@/modules/header/header'
+import { ProcedureSelection } from '@/modules/procedure-selection/procedure-selection'
 import { Reviews } from '@/modules/reviews/reviews'
 import { SettingsForm } from '@/modules/settings/form/settings-form'
-import { WorkingMessage } from '@/temp/working-message/working-message'
 import { MyToaster } from '@/ui/toaster/my-toaster'
 import { Metadata, Viewport } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
@@ -288,7 +288,7 @@ export default async function RootLayout({
 				<NextIntlClientProvider>
 					<MyProvider roles={roles} language={params.locale}>
 						<MyToaster />
-						{process.env.NODE_ENV === 'production' && <WorkingMessage />}
+						{/* {process.env.NODE_ENV === 'production' && <WorkingMessage />} */}
 						<AcceptCookiePopUpServer />
 						<FullTransparentBlock />
 
@@ -313,6 +313,7 @@ export default async function RootLayout({
 							<Reviews />
 						</main>
 						<Footer />
+						<ProcedureSelection />
 					</MyProvider>
 				</NextIntlClientProvider>
 			</body>
