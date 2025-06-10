@@ -1,5 +1,5 @@
 .main {
-	@apply fixed right-4 bottom-4 w-fit p-3 bg-main-100 rounded-2xl flex justify-center items-center cursor-pointer;
+	@apply fixed right-4 bottom-4 p-3 bg-main-100 rounded-2xl flex justify-center items-center cursor-pointer;
 
 	&.open {
 		@apply flex-col cursor-auto;
@@ -47,6 +47,16 @@
 
 		.button {
 			@apply mt-4;
+		}
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.main {
+		@apply right-2 bottom-2;
+
+		.textarea {
+			min-width: calc(100vw - 40px) !important;
 		}
 	}
 }
